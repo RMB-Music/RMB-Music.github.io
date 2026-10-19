@@ -1,26 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>R.M.B. | MUSIC TEST</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
 
 <style>
-
-/* ==============================
+/* =========================
    GRUNDEINSTELLUNGEN
-============================== */
+========================= */
 
 :root {
   --background: #101720;
   --card: #1c2530;
   --silver: #b8c8db;
   --line: #304052;
-  --blue: #7cbfff;
+  --blue: #7ec8ff;
+  --blue-soft: rgba(126, 200, 255, 0.28);
 }
 
 * {
@@ -46,20 +44,20 @@ button {
 }
 
 button:focus-visible {
-  outline: 2px solid #86c8ff;
+  outline: 2px solid #89d1ff;
   outline-offset: 3px;
 }
 
-/* ==============================
-   MUSIC UND SKYLINE
-============================== */
+/* =========================
+   HERO / MUSIC / SKYLINE
+========================= */
 
 .music-hero {
   position: relative;
-  width: 100%;
   overflow: hidden;
-  padding: 0 0 32px;
   text-align: center;
+  padding: 0 0 18px;
+  background: var(--background);
 }
 
 .music-hero::before {
@@ -69,288 +67,388 @@ button:focus-visible {
   top: 0;
   transform: translateX(-50%);
   width: 100%;
-  height: 560px;
+  height: 520px;
   pointer-events: none;
   background: radial-gradient(
     ellipse,
-    rgba(56,94,135,.17) 0%,
-    rgba(30,52,75,.07) 45%,
+    rgba(56, 94, 135, 0.16) 0%,
+    rgba(30, 52, 75, 0.07) 45%,
     transparent 75%
   );
 }
 
-/* OBERER GRAFIKBEREICH */
-
 .music-composition {
   position: relative;
   width: 100%;
-  height: clamp(260px, 30vw, 390px);
+  height: clamp(190px, 21vw, 280px);
   isolation: isolate;
 }
 
-/* SKYLINE VOLLE BREITE */
-
 .skyline {
   position: absolute;
-  z-index: 0;
   left: 0;
   bottom: 0;
+  z-index: 0;
+  display: block;
   width: 100%;
   max-width: none;
   height: auto;
-  display: block;
-  opacity: .28;
+  opacity: 0.28;
   filter: brightness(0) invert(1);
   pointer-events: none;
 }
 
-/* MUSIC 50 % GRÖSSER ALS ZUVOR */
-
 .music-heading {
   position: absolute;
-  z-index: 2;
   left: 50%;
-  top: clamp(45px, 5vw, 80px);
+  top: clamp(14px, 1.8vw, 28px);
   transform: translateX(-50%);
-  display: block;
+  z-index: 2;
   width: min(720px, 92%);
   max-width: 720px;
   height: auto;
   mix-blend-mode: screen;
-  filter: drop-shadow(
-    0 0 10px rgba(95,165,255,.18)
-  );
+  filter: drop-shadow(0 0 10px rgba(95, 165, 255, 0.18));
   pointer-events: none;
 }
 
-/* ==============================
-   DJ-SETUP
-============================== */
+/* =========================
+   DJ SETUP
+========================= */
 
 .dj-setup {
   position: relative;
   z-index: 5;
-
-  width: min(1160px, 96%);
-  margin: 12px auto 0;
-
+  width: min(1180px, 96%);
+  margin: -8px auto 0;
   display: grid;
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 2.15fr)
-    minmax(0, 1fr);
-
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.05fr) minmax(0, 1fr);
   gap: 12px;
   align-items: stretch;
 }
 
-/* GEMEINSAME GERÄTEOPTIK */
-
 .dj-device {
   position: relative;
   min-width: 0;
-  height: 232px;
+  height: 214px;
+  border: 1px solid #617488;
+  border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #64778b;
-  border-radius: 9px;
   background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.08),
-      transparent 27%
-    ),
-    linear-gradient(
-      155deg,
-      #344252,
-      #202c39 52%,
-      #141d27
-    );
-
+    linear-gradient(135deg, rgba(255,255,255,0.08), transparent 26%),
+    linear-gradient(155deg, #364555, #202c39 52%, #141d27);
   box-shadow:
-    inset 0 1px 2px rgba(255,255,255,.2),
-    inset 0 -3px 5px rgba(0,0,0,.3),
-    0 8px 22px rgba(0,0,0,.3);
+    inset 0 1px 2px rgba(255,255,255,0.18),
+    inset 0 -3px 6px rgba(0,0,0,0.3),
+    0 8px 18px rgba(0,0,0,0.28);
 }
 
-/* ==============================
+/* =========================
    TURNTABLES
-============================== */
+========================= */
 
 .turntable {
   padding: 8px;
 }
 
-.turntable-top {
+.turntable-topline {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4px;
-
-  color: #aebfd0;
+  gap: 6px;
+  color: #a9bbcd;
   font-family: "Michroma", Arial, sans-serif;
-  font-size: clamp(5px, .6vw, 8px);
-  letter-spacing: .4px;
+  font-size: clamp(5px, 0.58vw, 8px);
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
 }
 
-.turntable-led {
+.tt-signal {
   width: 6px;
   height: 6px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: #51718b;
+  background: #49657a;
+  box-shadow: 0 0 0 transparent;
 }
 
-.turntable.selected .turntable-led {
-  background: #8bd3ff;
-  box-shadow: 0 0 9px #60b6ff;
+.turntable.selected .tt-signal {
+  background: #8fd5ff;
+  box-shadow: 0 0 8px #63b8ff;
 }
 
-.turntable-surface {
+.turntable-body {
   position: absolute;
-  inset: 21px 6px 22px;
+  inset: 24px 8px 8px;
+  border: 1px solid #47596c;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.08), transparent 26%),
+    linear-gradient(180deg, #d8dce1 0%, #c9ced4 34%, #d9dde2 100%);
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,0.75),
+    inset 0 -2px 3px rgba(0,0,0,0.1);
 }
 
-/* RUNDES PLATTENTELLER-GEHÄUSE */
+/* platter area */
+
+.platter-wrap {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  width: 142px;
+  height: 142px;
+  border-radius: 50%;
+}
 
 .platter {
   position: absolute;
-  top: 50%;
-  left: 43%;
-  transform: translate(-50%, -50%);
-  width: min(82%, 190px);
-  aspect-ratio: 1;
+  inset: 0;
   border-radius: 50%;
-  padding: 5px;
-
-  background: repeating-conic-gradient(
-    from 0deg,
-    #9caab8 0deg 2deg,
-    #475866 2deg 4deg
-  );
-
-  border: 3px solid #8293a4;
-
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.16) 0 2px, transparent 2px 100%),
+    repeating-conic-gradient(from 0deg, #ebedf0 0deg 1.7deg, #6d7680 1.7deg 3.4deg);
+  border: 3px solid #727a84;
   box-shadow:
-    0 0 0 3px #111a24,
-    0 4px 12px rgba(0,0,0,.65),
-    inset 0 0 8px #000;
+    inset 0 0 0 3px #212730,
+    0 4px 10px rgba(0,0,0,0.36);
 }
 
-/* VINYLSCHEIBE */
-
 .record {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  position: absolute;
+  inset: 7px;
   border-radius: 50%;
+  overflow: hidden;
   background:
     repeating-radial-gradient(
       circle,
-      transparent 0px,
-      transparent 3px,
-      rgba(190,209,226,.13) 4px,
-      transparent 5px
+      rgba(210,220,235,0.07) 0px,
+      rgba(210,220,235,0.07) 1px,
+      transparent 2px,
+      transparent 6px
     ),
-    conic-gradient(
-      #090c10 0deg,
-      #26313e 45deg,
-      #090c10 100deg,
-      #29394a 180deg,
-      #080c12 270deg,
-      #090c10 360deg
-    );
-  border: 2px solid #05080e;
+    radial-gradient(circle at 35% 30%, #314154 0%, #111821 46%, #070b10 73%, #05080c 100%);
+  border: 2px solid #090c12;
+  box-shadow: inset 0 0 18px rgba(255,255,255,0.06);
 }
 
-.record::after {
+.record::before {
   content: "";
   position: absolute;
-  inset: 3%;
+  inset: 10px;
   border-radius: 50%;
-  border: 1px solid rgba(200,220,235,.18);
+  border: 1px solid rgba(205,220,234,0.12);
+  pointer-events: none;
+}
+
+.record-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    linear-gradient(130deg, rgba(255,255,255,0.12), transparent 38%),
+    linear-gradient(310deg, rgba(255,255,255,0.05), transparent 42%);
   pointer-events: none;
 }
 
 .record-label {
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
-
+  border-radius: 50%;
+  border: 2px solid #d2dde8;
+  background: radial-gradient(circle at 35% 30%, #3f607d, #16283b 74%);
+  color: #f0f6ff;
+  font-family: "Michroma", Arial, sans-serif;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  border: 2px solid #d5e2ef;
-  border-radius: 50%;
-
-  background: radial-gradient(
-    circle at 35% 30%,
-    #355979,
-    #14263a 70%
-  );
-
-  color: #edf5ff;
-  font-family: "Michroma", Arial, sans-serif;
-  font-size: clamp(6px, .72vw, 9px);
   text-align: center;
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.18);
 }
-
-.record-label::after {
-  content: "";
-  width: 4px;
-  height: 4px;
-  margin-top: 5px;
-  background: silver;
-  border-radius: 50%;
-}
-
-/* SINGLE MIT GRÖSSEREM LABEL */
 
 .turntable.single .record-label {
-  width: 43%;
-  height: 43%;
+  width: 40%;
+  height: 40%;
+  font-size: 7px;
 }
-
-/* ALBUM MIT KLEINEREM LABEL */
 
 .turntable.album .record-label {
   width: 28%;
   height: 28%;
+  font-size: 6px;
 }
 
-/* PLATTE BEI AUSWAHL LEICHT ROTIEREN */
+.record-label::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: silver;
+  box-shadow: 0 0 2px rgba(255,255,255,0.6);
+}
 
 .turntable.selected .record {
-  animation: record-spin 5s linear infinite;
+  animation: vinyl-spin 5s linear infinite;
 }
 
-@keyframes record-spin {
+@keyframes vinyl-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* ==============================
-   S-TONARM
-============================== */
+/* turntable buttons / decor */
+
+.corner-knob {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, #eef4fa, #8d98a4 44%, #333b45 74%, #161a1f 100%);
+  border: 1px solid #737c86;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.5);
+}
+
+.start-stop {
+  position: absolute;
+  left: 9px;
+  bottom: 8px;
+  width: 58px;
+  height: 36px;
+  border: 2px solid #2d3742;
+  border-radius: 4px;
+  background: linear-gradient(#f4f5f6, #e0e3e7);
+  color: #303844;
+  font-family: "Michroma", Arial, sans-serif;
+  font-size: 8px;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.9),
+    0 1px 2px rgba(0,0,0,0.15);
+}
+
+.speed-switch {
+  position: absolute;
+  left: 74px;
+  bottom: 12px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.speed-pill {
+  min-width: 24px;
+  height: 12px;
+  padding: 0 4px;
+  border-radius: 2px;
+  border: 1px solid #3d4650;
+  background: #f0f2f4;
+  color: #2f3741;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.8);
+}
+
+.speed-pill.active::after {
+  content: "";
+  width: 9px;
+  height: 3px;
+  margin-left: 4px;
+  border-radius: 2px;
+  background: #ff7a7a;
+  box-shadow: 0 0 4px rgba(255,80,80,0.45);
+}
+
+.pitch-area {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  width: 34px;
+  height: 92px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pitch-slot {
+  position: relative;
+  width: 24px;
+  flex: 1;
+  border: 2px solid #b0b7bf;
+  border-radius: 4px;
+  background: #eceff3;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.85);
+}
+
+.pitch-slot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  bottom: 7px;
+  transform: translateX(-50%);
+  width: 5px;
+  border-radius: 4px;
+  background: #10151c;
+}
+
+.pitch-thumb {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  border-radius: 2px;
+  background: linear-gradient(#f2f4f6, #9da8b3);
+  border: 1px solid #dfe5eb;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.pitch-label {
+  margin-top: 5px;
+  color: #2b3440;
+  font-family: "Michroma", Arial, sans-serif;
+  font-size: 6px;
+  white-space: nowrap;
+}
+
+.strobe-light {
+  position: absolute;
+  left: 10px;
+  bottom: 16px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #60839c;
+}
+
+.turntable.selected .strobe-light {
+  background: #f95e5e;
+  box-shadow: 0 0 7px rgba(255,82,82,0.75);
+}
+
+/* tonearm */
 
 .tonearm-button {
   position: absolute;
-  z-index: 5;
-  right: 0;
-  top: 4px;
-
-  width: 54%;
-  height: 91%;
-
+  right: 28px;
+  top: 8px;
+  width: 92px;
+  height: 154px;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
-
   touch-action: manipulation;
 }
 
@@ -358,247 +456,187 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   overflow: visible;
-  filter: drop-shadow(
-    2px 3px 2px rgba(0,0,0,.65)
-  );
+  filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.45));
 }
 
-.tonearm-moving {
-  transform-box: view-box;
-  transform-origin: 81px 18px;
+.tonearm-group {
+  transform-origin: 70px 22px;
   transform: rotate(0deg);
-  transition: transform .55s ease-in-out;
+  transition: transform 0.45s ease-in-out;
 }
 
-.turntable.selected .tonearm-moving {
-  transform: rotate(-27deg);
+.turntable.selected .tonearm-group {
+  transform: rotate(-22deg);
 }
 
-/* TONARMBASIS */
-
-.tonearm-base {
-  fill: #a8bbc9;
-  stroke: #34495c;
-  stroke-width: 3;
+.arm-base-ring {
+  fill: #2c3138;
+  stroke: #bfc8d1;
+  stroke-width: 2;
 }
 
-.tonearm-inner {
-  fill: #42576b;
+.arm-base-inner {
+  fill: #6c737c;
 }
 
-/* S-FÖRMIGER TONARM */
+.arm-weight {
+  fill: url(#armMetal);
+  stroke: #818b96;
+  stroke-width: 1;
+}
 
-.tonearm-shape {
+.arm-main {
   fill: none;
-  stroke: #d4e1ed;
-  stroke-width: 7;
+  stroke: url(#armStroke);
+  stroke-width: 8;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.tonearm-highlight {
+.arm-highlight {
   fill: none;
-  stroke: rgba(255,255,255,.75);
+  stroke: rgba(255,255,255,0.72);
   stroke-width: 2;
   stroke-linecap: round;
 }
 
-/* TONABNEHMER */
-
-.cartridge {
-  fill: #263744;
-  stroke: #c4d5e2;
-  stroke-width: 2;
+.arm-headshell {
+  fill: #1f2832;
+  stroke: #cbd6e0;
+  stroke-width: 1.6;
 }
 
-/* START-STOP-DEKORATION */
-
-.turntable-controls {
-  position: absolute;
-  bottom: 7px;
-  left: 9px;
-
-  display: flex;
-  align-items: center;
-  gap: 7px;
-
-  color: #aabed1;
-  font-size: 8px;
-  letter-spacing: 1px;
+.arm-headshell-hole {
+  fill: rgba(255,255,255,0.22);
 }
 
-.power-light {
-  width: 7px;
-  height: 7px;
-  background: #84c9ff;
-  border-radius: 50%;
-  box-shadow: 0 0 5px #60b1ff;
-}
-
-.start-stop {
-  width: 27px;
-  height: 10px;
-  background: linear-gradient(
-    #c4d1dc,
-    #74889c
-  );
-  border: 1px solid #e0e8f0;
-  border-radius: 2px;
-}
-
-/* ==============================
-   MISCHPULT
-============================== */
+/* =========================
+   MIXER
+========================= */
 
 .mixer {
-  padding: 8px 10px 10px;
+  padding: 8px 10px 9px;
 }
 
 .mixer-top {
-  height: 20px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   color: #b7c9dc;
   font-family: "Michroma", Arial, sans-serif;
-  font-size: clamp(6px, .7vw, 9px);
-  letter-spacing: .6px;
+  font-size: clamp(6px, 0.68vw, 9px);
+  letter-spacing: 0.55px;
 }
 
-.mixer-indicator {
+.mixer-top-light {
   display: inline-block;
   width: 6px;
   height: 6px;
   margin-right: 5px;
   border-radius: 50%;
-  background: #8ad0ff;
+  background: #8bd3ff;
   box-shadow: 0 0 7px #60b6ff;
 }
 
-/* LINKS / FADER / RECHTS */
-
 .mixer-main {
   display: grid;
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 3.25fr)
-    minmax(0, 1fr);
-  gap: 7px;
-  height: 148px;
-  align-items: stretch;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 3.65fr) minmax(0, 0.95fr);
+  gap: 8px;
+  height: 136px;
+  margin-top: 4px;
 }
-
-/* LINKER UND RECHTER EQUALIZER */
 
 .eq-panel {
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: 2px;
   border: 1px solid #425367;
   border-radius: 4px;
-  background: rgba(7,14,22,.21);
+  background: rgba(7,14,22,0.22);
+  padding: 5px 5px 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .eq-title {
   color: #9fb5ca;
+  font-family: "Michroma", Arial, sans-serif;
   font-size: 7px;
-  letter-spacing: .5px;
+  text-align: left;
 }
 
-.knob-row {
+.eq-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 100%;
+  gap: 6px;
+  min-width: 0;
 }
 
-.knob {
+.eq-knob {
   position: relative;
   flex: 0 0 auto;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-
   border: 2px solid #8ca0b2;
-
   background: conic-gradient(
-    #526a7e,
-    #d2dce6,
-    #465a6e,
-    #a2b4c4,
-    #526a7e
+    #4d667b,
+    #d0dce6,
+    #455b6f,
+    #a4b5c5,
+    #4d667b
   );
-
   box-shadow:
-    0 2px 3px #060b11,
-    inset 0 1px 2px #ecf4fa;
+    0 2px 3px rgba(0,0,0,0.35),
+    inset 0 1px 2px rgba(255,255,255,0.75);
 }
 
-.knob::after {
+.eq-knob::after {
   content: "";
   position: absolute;
   width: 2px;
   height: 7px;
   top: 1px;
   left: calc(50% - 1px);
-  background: #14202d;
+  background: #13202d;
   border-radius: 2px;
 }
 
-.knob-label {
-  color: #aec0d0;
-  font-size: clamp(5px, .6vw, 7px);
-  letter-spacing: .2px;
+.eq-name {
+  color: #b3c4d3;
+  font-family: "Michroma", Arial, sans-serif;
+  font-size: clamp(5px, 0.58vw, 7px);
+  letter-spacing: 0.15px;
 }
-
-/* FADER- UND LED-BEREICH */
 
 .mixer-center {
   display: grid;
-  grid-template-columns:
-    10px minmax(0,1fr) 10px;
-  gap: 5px;
+  grid-template-columns: 10px minmax(0, 1fr) 10px;
+  gap: 4px;
   min-width: 0;
 }
 
-/* LED-PEGELANZEIGEN */
-
 .vu-meter {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-start;
-  gap: 3px;
-  padding: 5px 1px;
-
   border: 1px solid #405063;
   border-radius: 3px;
   background: #080e14;
+  padding: 4px 1px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
 }
 
 .vu-led {
   width: 100%;
   height: 5px;
-  background: #192a26;
   border-radius: 1px;
-  opacity: .3;
+  background: #182724;
+  opacity: 0.28;
 }
 
-.vu-led.green {
-  --lit: #41ef83;
-}
-
-.vu-led.yellow {
-  --lit: #e7db50;
-}
-
-.vu-led.red {
-  --lit: #f46d62;
-}
+.vu-led.green { --lit: #41ef83; }
+.vu-led.yellow { --lit: #e7db50; }
+.vu-led.red { --lit: #f46d62; }
 
 .vu-led.on {
   background: var(--lit);
@@ -606,12 +644,9 @@ button:focus-visible {
   box-shadow: 0 0 4px var(--lit);
 }
 
-/* FÜNF NAVIGATIONS-FADER */
-
 .mixer-channels {
   display: grid;
-  grid-template-columns:
-    repeat(5,minmax(0,1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 4px;
   min-width: 0;
 }
@@ -621,12 +656,7 @@ button:focus-visible {
   min-width: 0;
   border: 1px solid #394c5e;
   border-radius: 3px;
-  background: linear-gradient(
-    90deg,
-    #17212d,
-    #283747 50%,
-    #17212d
-  );
+  background: linear-gradient(90deg, #17212d, #283747 50%, #17212d);
 }
 
 .fader-track {
@@ -646,34 +676,25 @@ button:focus-visible {
   background: #070c12;
   box-shadow:
     inset 1px 0 2px #000,
-    1px 0 1px rgba(255,255,255,.12);
+    1px 0 1px rgba(255,255,255,0.12);
 }
 
 .fader-handle {
   position: absolute;
   left: 50%;
-  top: 63px;
-
-  transform: translate(
-    -50%,
-    calc(-1 * var(--drag, 0px))
-  );
-
+  top: 60px;
+  transform: translate(-50%, calc(-1 * var(--drag, 0px)));
   width: calc(100% - 1px);
-  height: 40px;
-
+  height: 38px;
   padding: 0 1px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-
+  gap: 4px;
   border: 1px solid #e6eef5;
   border-bottom-color: #62778d;
   border-radius: 3px;
-
   background: linear-gradient(
     180deg,
     #edf4fa,
@@ -683,17 +704,14 @@ button:focus-visible {
     #bacad8 80%,
     #7f95aa
   );
-
   box-shadow:
-    0 3px 5px rgba(0,0,0,.65),
+    0 3px 5px rgba(0,0,0,0.65),
     inset 0 1px 1px white;
-
   color: #142332;
-  font-family: "Michroma",Arial,sans-serif;
-  font-size: clamp(4.5px,.58vw,7.5px);
+  font-family: "Michroma", Arial, sans-serif;
+  font-size: clamp(4.6px, 0.56vw, 7.5px);
   font-weight: bold;
-  letter-spacing: -.4px;
-
+  letter-spacing: -0.38px;
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -715,23 +733,21 @@ button:focus-visible {
 }
 
 .fader-handle.returning {
-  transition: transform .2s ease-out;
+  transition: transform 0.2s ease-out;
 }
 
 .fader-handle[aria-current="page"] {
   border-color: #82bfff;
   box-shadow:
     0 3px 5px #000,
-    0 0 8px rgba(105,177,255,.4);
+    0 0 8px rgba(105,177,255,0.4);
 }
-
-/* DEKORATIVER CROSSFADER */
 
 .crossfader-area {
   position: relative;
-  margin: 10px auto 0;
-  height: 29px;
-  width: 58%;
+  width: 60%;
+  height: 24px;
+  margin: 8px auto 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -750,50 +766,42 @@ button:focus-visible {
 .crossfader-handle {
   position: absolute;
   left: 50%;
-  top: 2px;
+  top: 1px;
   transform: translateX(-50%);
-
   width: 40px;
-  height: 19px;
-
-  background: linear-gradient(
-    #e0e9f1,
-    #8499af
-  );
-
-  border: 1px solid #e5edf4;
+  height: 18px;
   border-radius: 3px;
-
+  border: 1px solid #e5edf4;
+  background: linear-gradient(#e0e9f1, #8499af);
   box-shadow: 0 3px 4px #080d13;
 }
 
 .crossfader-label {
   position: absolute;
-  top: 23px;
-  font-size: 7px;
+  top: 19px;
   color: #93acc3;
+  font-family: "Michroma", Arial, sans-serif;
+  font-size: 6px;
   letter-spacing: 1px;
 }
 
-/* ==============================
+/* =========================
    MUSIKRICHTUNGEN
-============================== */
+========================= */
 
 .music-style {
   position: relative;
-  z-index: 3;
-
-  margin: 27px auto 8px;
-
+  z-index: 4;
+  margin: 16px auto 0;
+  color: #adc0d6;
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #adc0d6;
 }
 
-/* ==============================
-   SONG- UND ALBUMGALERIE
-============================== */
+/* =========================
+   CONTENT / SONGS
+========================= */
 
 .content {
   width: 100%;
@@ -806,8 +814,8 @@ button:focus-visible {
 
 .section-heading {
   margin: 0 0 14px;
-  font-family: "Michroma",Arial,sans-serif;
-  font-size: clamp(19px,2.4vw,27px);
+  font-family: "Michroma", Arial, sans-serif;
+  font-size: clamp(19px, 2.4vw, 27px);
   font-weight: normal;
   letter-spacing: 2px;
 }
@@ -820,20 +828,21 @@ button:focus-visible {
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns:
-    repeat(5,minmax(0,1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
   text-align: center;
 }
 
 .music-card {
-  min-width: 0;
+  width: min(220px, 100%);
+  min-width: 180px;
   padding: 12px;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .music-card:hover {
@@ -903,7 +912,7 @@ button:focus-visible {
 }
 
 .empty-message {
-  grid-column: 1 / -1;
+  width: min(420px, 100%);
   padding: 38px 18px;
   background: var(--card);
   border: 1px solid var(--line);
@@ -918,7 +927,7 @@ button:focus-visible {
   border: 1px solid #6587aa;
   border-radius: 7px;
   color: white;
-  font-family: "Michroma",Arial,sans-serif;
+  font-family: "Michroma", Arial, sans-serif;
   font-size: 10px;
   cursor: pointer;
 }
@@ -927,9 +936,9 @@ button:focus-visible {
   display: none;
 }
 
-/* ==============================
-   VIDEOFENSTER
-============================== */
+/* =========================
+   VIDEO
+========================= */
 
 .video-modal {
   display: none;
@@ -937,7 +946,7 @@ button:focus-visible {
   inset: 0;
   z-index: 1000;
   padding: 25px;
-  background: rgba(0,0,0,.94);
+  background: rgba(0,0,0,0.94);
   align-items: center;
   justify-content: center;
 }
@@ -948,7 +957,7 @@ button:focus-visible {
 
 .video-window {
   position: relative;
-  width: min(900px,100%);
+  width: min(900px, 100%);
 }
 
 .video-frame {
@@ -969,9 +978,9 @@ button:focus-visible {
   cursor: pointer;
 }
 
-/* ==============================
-   FUSSZEILE
-============================== */
+/* =========================
+   FOOTER
+========================= */
 
 footer {
   padding: 30px 15px 35px;
@@ -981,105 +990,101 @@ footer {
   font-size: 12px;
 }
 
-/* ==============================
+/* =========================
    TABLET
-============================== */
+========================= */
 
-@media (max-width:1050px) {
-
+@media (max-width: 1080px) {
   .dj-setup {
     width: 98%;
-    grid-template-columns:
-      minmax(0,1fr)
-      minmax(0,2.2fr)
-      minmax(0,1fr);
-    gap: 7px;
+    gap: 8px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr) minmax(0, 1fr);
   }
 
   .dj-device {
-    height: 195px;
+    height: 198px;
   }
 
-  .mixer {
-    padding: 7px;
+  .platter-wrap {
+    width: 126px;
+    height: 126px;
+  }
+
+  .pitch-area {
+    right: 8px;
+    width: 28px;
+    height: 80px;
+  }
+
+  .pitch-slot {
+    width: 22px;
+  }
+
+  .start-stop {
+    width: 52px;
+    height: 31px;
+    font-size: 7px;
+  }
+
+  .speed-pill {
+    min-width: 22px;
+    font-size: 7px;
+  }
+
+  .tonearm-button {
+    right: 18px;
+    width: 82px;
+    height: 146px;
   }
 
   .mixer-main {
-    height: 119px;
-    gap: 4px;
+    height: 124px;
+    gap: 5px;
   }
 
-  .mixer-center {
-    gap: 3px;
-  }
-
-  .mixer-channels {
-    gap: 2px;
+  .eq-knob {
+    width: 18px;
+    height: 18px;
   }
 
   .fader-handle {
     top: 54px;
-    height: 32px;
+    height: 34px;
   }
-
-  .knob {
-    width: 16px;
-    height: 16px;
-  }
-
-  .knob-row {
-    gap: 3px;
-  }
-
-  .platter {
-    width: min(82%,155px);
-  }
-
-  .crossfader-area {
-    margin-top: 5px;
-  }
-
-  .gallery {
-    grid-template-columns:
-      repeat(3,minmax(0,1fr));
-  }
-
 }
 
-/* ==============================
+/* =========================
    SMARTPHONE
-============================== */
+========================= */
 
-@media (max-width:650px) {
-
+@media (max-width: 700px) {
   .music-composition {
-    height: 240px;
+    height: 178px;
   }
 
   .music-heading {
-    top: 55px;
+    top: 18px;
     width: 94%;
   }
 
   .skyline {
-    opacity: .24;
+    opacity: 0.24;
   }
 
   .dj-setup {
-    width: min(460px,96%);
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-    gap: 9px;
+    width: min(470px, 96%);
+    margin-top: -4px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .dj-device {
-    height: 186px;
+    height: 206px;
   }
 
   .mixer {
     grid-column: 1 / -1;
     grid-row: 1;
-    height: 205px;
   }
 
   .turntable.single {
@@ -1092,39 +1097,51 @@ footer {
     grid-row: 2;
   }
 
+  .platter-wrap {
+    width: 124px;
+    height: 124px;
+  }
+
+  .tonearm-button {
+    right: 14px;
+    width: 76px;
+    height: 142px;
+  }
+
+  .corner-knob {
+    width: 22px;
+    height: 22px;
+  }
+
+  .pitch-area {
+    width: 26px;
+    height: 78px;
+    right: 6px;
+  }
+
+  .start-stop {
+    width: 49px;
+    height: 30px;
+    font-size: 7px;
+  }
+
   .mixer-main {
-    height: 128px;
-    grid-template-columns:
-      minmax(0,1fr)
-      minmax(0,3.5fr)
-      minmax(0,1fr);
+    height: 130px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3.6fr) minmax(0, 1fr);
   }
 
   .fader-handle {
-    top: 58px;
-    height: 36px;
-    font-size: clamp(6px,1.6vw,8px);
+    top: 56px;
+    height: 35px;
+    font-size: clamp(6px, 1.5vw, 8px);
   }
 
-  .knob {
-    width: 19px;
-    height: 19px;
-  }
-
-  .knob-label {
+  .eq-name {
     font-size: 7px;
-  }
-
-  .turntable-top {
-    font-size: 7px;
-  }
-
-  .platter {
-    width: min(83%,145px);
   }
 
   .music-style {
-    margin-top: 24px;
+    margin-top: 15px;
     font-size: 9px;
     letter-spacing: 1px;
   }
@@ -1134,73 +1151,60 @@ footer {
   }
 
   .gallery {
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
     gap: 12px;
   }
 
   .music-card {
+    min-width: 150px;
+    width: calc(50% - 6px);
     padding: 9px;
   }
 
   .track-title {
     font-size: 12px;
   }
-
 }
 
-/* SEHR SCHMALE DISPLAYS */
+@media (max-width: 420px) {
+  .music-card {
+    width: 100%;
+  }
 
-@media (max-width:360px) {
+  .platter-wrap {
+    width: 112px;
+    height: 112px;
+  }
 
-  .mixer-center {
-    grid-template-columns:
-      7px minmax(0,1fr) 7px;
-    gap: 2px;
+  .tonearm-button {
+    width: 66px;
+    height: 130px;
   }
 
   .fader-handle {
     font-size: 5px;
-    letter-spacing: -.6px;
+    letter-spacing: -0.5px;
   }
 
-  .mixer-main {
-    grid-template-columns:
-      minmax(0,.8fr)
-      minmax(0,3.8fr)
-      minmax(0,.8fr);
+  .eq-knob {
+    width: 15px;
+    height: 15px;
   }
-
-  .knob {
-    width: 14px;
-    height: 14px;
-  }
-
 }
 
-@media (prefers-reduced-motion:reduce) {
-
+@media (prefers-reduced-motion: reduce) {
   .record,
-  .tonearm-moving {
+  .tonearm-group {
     animation: none !important;
     transition: none !important;
   }
-
 }
-
 </style>
 </head>
-
 <body>
-
-<!-- ==============================
-     MUSIC MIT SKYLINE
-============================== -->
 
 <section class="music-hero">
 
   <div class="music-composition">
-
     <img
       class="skyline"
       src="images/frankfurt-skyline.png"
@@ -1212,463 +1216,358 @@ footer {
       src="images/music-schriftzug.png"
       alt="MUSIC – THE SOUND OF R.M.B."
     >
-
   </div>
-
-  <!-- ============================
-       KOMPLETTES DJ-SETUP
-  ============================ -->
 
   <div class="dj-setup">
 
-    <!-- ==========================
-         LINKER TURNTABLE
-         SINGLES
-    ========================== -->
-
+    <!-- LINKER TURNTABLE / SINGLES -->
     <div
       class="dj-device turntable single selected"
       id="singleTurntable"
     >
-
-      <div class="turntable-top">
-
-        <span>R.M.B. · SINGLES</span>
-
-        <span class="turntable-led"></span>
-
+      <div class="turntable-topline">
+        <span>R.M.B. · SINGLE DECK</span>
+        <span class="tt-signal"></span>
       </div>
 
-      <div class="turntable-surface">
+      <div class="turntable-body">
+        <div class="corner-knob" aria-hidden="true"></div>
 
-        <div class="platter">
-
-          <div class="record">
-
-            <div class="record-label">
-              SINGLE
+        <div class="platter-wrap">
+          <div class="platter">
+            <div class="record">
+              <div class="record-shine"></div>
+              <div class="record-label">SINGLE</div>
             </div>
-
           </div>
-
         </div>
-
-        <!-- BEWEGLICHER S-TONARM -->
 
         <button
           type="button"
           class="tonearm-button"
           id="singleTonearm"
-          aria-label="Singles mit dem Tonarm auswählen"
+          aria-label="Singles auswählen"
           aria-pressed="true"
         >
-
           <svg
             class="tonearm-svg"
-            viewBox="0 0 110 130"
+            viewBox="0 0 100 160"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
+            <defs>
+              <linearGradient id="armStroke" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#eef4fa"/>
+                <stop offset="55%" stop-color="#b0bdc9"/>
+                <stop offset="100%" stop-color="#5b6670"/>
+              </linearGradient>
 
-            <!-- BASIS -->
+              <linearGradient id="armMetal" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f3f7fb"/>
+                <stop offset="50%" stop-color="#9ba7b2"/>
+                <stop offset="100%" stop-color="#5a636c"/>
+              </linearGradient>
+            </defs>
 
-            <circle
-              class="tonearm-base"
-              cx="81"
-              cy="18"
-              r="13"
-            />
+            <g class="tonearm-group">
+              <circle class="arm-base-ring" cx="69" cy="22" r="16"></circle>
+              <circle class="arm-base-inner" cx="69" cy="22" r="8"></circle>
 
-            <circle
-              class="tonearm-inner"
-              cx="81"
-              cy="18"
-              r="6"
-            />
-
-            <!-- BEWEGLICHER ARM -->
-
-            <g class="tonearm-moving">
-
-              <path
-                class="tonearm-shape"
-                d="
-                  M81 18
-                  L81 39
-                  C81 53 67 55 61 64
-                  C54 74 69 82 61 93
-                  L49 106
-                "
-              />
+              <rect class="arm-weight" x="61" y="2" rx="3" ry="3" width="18" height="18"></rect>
 
               <path
-                class="tonearm-highlight"
-                d="
-                  M79 20
-                  L79 39
-                  C79 52 65 55 59 64
-                  C52 74 67 82 59 92
-                "
-              />
+                class="arm-main"
+                d="M69 22
+                   L69 52
+                   C69 66 59 70 54 79
+                   C48 89 60 97 54 108
+                   L42 129"
+              ></path>
 
-              <rect
-                class="cartridge"
-                x="38"
-                y="103"
-                width="23"
-                height="11"
-                rx="2"
-                transform="rotate(-40 49 108)"
-              />
+              <path
+                class="arm-highlight"
+                d="M67 24
+                   L67 52
+                   C67 64 57 69 52 78
+                   C46 88 58 96 52 106"
+              ></path>
 
+              <path
+                class="arm-headshell"
+                d="M33 126 L46 134 L37 154 L24 146 Z"
+              ></path>
+
+              <circle class="arm-headshell-hole" cx="33" cy="133" r="1.5"></circle>
+              <circle class="arm-headshell-hole" cx="38.5" cy="136" r="1.5"></circle>
+              <circle class="arm-headshell-hole" cx="29.5" cy="142.5" r="1.5"></circle>
             </g>
-
           </svg>
-
         </button>
 
+        <span class="strobe-light" aria-hidden="true"></span>
+
+        <div class="start-stop" aria-hidden="true">START • STOP</div>
+
+        <div class="speed-switch" aria-hidden="true">
+          <span class="speed-pill active">33</span>
+          <span class="speed-pill">45</span>
+        </div>
+
+        <div class="pitch-area" aria-hidden="true">
+          <div class="pitch-slot">
+            <span class="pitch-thumb"></span>
+          </div>
+          <span class="pitch-label">PITCH</span>
+        </div>
       </div>
-
-      <div class="turntable-controls">
-
-        <span class="power-light"></span>
-        <span class="start-stop"></span>
-        <span>33 / 45</span>
-
-      </div>
-
     </div>
 
-    <!-- ==========================
-         MITTLERES MISCHPULT
-    ========================== -->
-
+    <!-- MIXER -->
     <nav
       class="dj-device mixer"
       aria-label="Hauptnavigation über Mischpult-Schieberegler"
     >
-
       <div class="mixer-top">
-
         <span>R.M.B. · 5 CHANNEL MIXER</span>
-
-        <span>
-          <span class="mixer-indicator"></span>
-          POWER
-        </span>
-
+        <span><span class="mixer-top-light"></span>POWER</span>
       </div>
 
       <div class="mixer-main">
 
-        <!-- LINKE DREHREGLER -->
-
         <div class="eq-panel">
-
           <div class="eq-title">CH A</div>
 
-          <div class="knob-row">
-            <span class="knob"></span>
-            <span class="knob-label">GAIN</span>
+          <div class="eq-item">
+            <span class="eq-knob"></span>
+            <span class="eq-name">GAIN</span>
           </div>
 
-          <div class="knob-row">
-            <span class="knob"></span>
-            <span class="knob-label">HIGH</span>
+          <div class="eq-item">
+            <span class="eq-knob"></span>
+            <span class="eq-name">HIGH</span>
           </div>
 
-          <div class="knob-row">
-            <span class="knob"></span>
-            <span class="knob-label">MID</span>
+          <div class="eq-item">
+            <span class="eq-knob"></span>
+            <span class="eq-name">MID</span>
           </div>
 
-          <div class="knob-row">
-            <span class="knob"></span>
-            <span class="knob-label">BASS</span>
+          <div class="eq-item">
+            <span class="eq-knob"></span>
+            <span class="eq-name">BASS</span>
           </div>
-
         </div>
-
-        <!-- LEDS UND MENÜ-FADER -->
 
         <div class="mixer-center">
 
-          <!-- LINKE LED-LEISTE -->
-
-          <div
-            class="vu-meter"
-            id="vuLeft"
-            aria-hidden="true"
-          ></div>
-
-          <!-- FÜNF MENÜKANÄLE -->
+          <div class="vu-meter" id="vuLeft" aria-hidden="true"></div>
 
           <div class="mixer-channels">
 
-            <!-- HOME -->
-
             <div class="mixer-channel">
-
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="index.html"
-                  aria-label="HOME: nach oben schieben"
+                  aria-label="HOME nach oben schieben"
                 >HOME</button>
-
               </div>
-
             </div>
 
-            <!-- MUSIC -->
-
             <div class="mixer-channel">
-
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="music-test.html"
                   aria-current="page"
-                  aria-label="MUSIC: nach oben schieben"
+                  aria-label="MUSIC nach oben schieben"
                 >MUSIC</button>
-
               </div>
-
             </div>
 
-            <!-- RELEASES -->
-
             <div class="mixer-channel">
-
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="music.html"
-                  aria-label="RELEASES: nach oben schieben"
+                  aria-label="RELEASES nach oben schieben"
                 >RELEASES</button>
-
               </div>
-
             </div>
 
-            <!-- ABOUT -->
-
             <div class="mixer-channel">
-
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="about.html"
-                  aria-label="ABOUT: nach oben schieben"
+                  aria-label="ABOUT nach oben schieben"
                 >ABOUT</button>
-
               </div>
-
             </div>
 
-            <!-- CONTACT -->
-
             <div class="mixer-channel">
-
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="contact.html"
-                  aria-label="CONTACT: nach oben schieben"
+                  aria-label="CONTACT nach oben schieben"
                 >CONTACT</button>
-
               </div>
-
             </div>
 
           </div>
 
-          <!-- RECHTE LED-LEISTE -->
-
-          <div
-            class="vu-meter"
-            id="vuRight"
-            aria-hidden="true"
-          ></div>
+          <div class="vu-meter" id="vuRight" aria-hidden="true"></div>
 
         </div>
-
-        <!-- RECHTE DREHREGLER -->
 
         <div class="eq-panel">
-
           <div class="eq-title">CH B</div>
 
-          <div class="knob-row">
-            <span class="knob"></span>
-            <span class="knob-label">GAIN</span>
+          <div class="eq-item">
+            <span class="eq-knob"></span>
+            <span class="eq-name">GAIN</span>
           </div>
 
-          <div class="knob-row">
-            <span class="knob"></span>
-            <span class="knob-label">HIGH</span>
+          <div class="eq-item">
+            <span class="eq-knob"></span>
+            <span class="eq-name">HIGH</span>
           </div>
 
-          <div class="knob-row">
-            <span class="knob"></span>
-            <span class="knob-label">MID</span>
+          <div class="eq-item">
+            <span class="eq-knob"></span>
+            <span class="eq-name">MID</span>
           </div>
 
-          <div class="knob-row">
-            <span class="knob"></span>
-            <span class="knob-label">BASS</span>
+          <div class="eq-item">
+            <span class="eq-knob"></span>
+            <span class="eq-name">BASS</span>
           </div>
-
         </div>
-
       </div>
 
-      <!-- DEKORATIVER CROSSFADER -->
-
-      <div
-        class="crossfader-area"
-        aria-hidden="true"
-      >
-
+      <div class="crossfader-area" aria-hidden="true">
         <div class="crossfader-track"></div>
-
         <div class="crossfader-handle"></div>
-
-        <span class="crossfader-label">
-          CROSSFADER
-        </span>
-
+        <span class="crossfader-label">CROSSFADER</span>
       </div>
-
     </nav>
 
-    <!-- ==========================
-         RECHTER TURNTABLE
-         ALBUMS
-    ========================== -->
-
+    <!-- RECHTER TURNTABLE / ALBUMS -->
     <div
       class="dj-device turntable album"
       id="albumTurntable"
     >
-
-      <div class="turntable-top">
-
-        <span>R.M.B. · ALBUMS</span>
-
-        <span class="turntable-led"></span>
-
+      <div class="turntable-topline">
+        <span>R.M.B. · ALBUM DECK</span>
+        <span class="tt-signal"></span>
       </div>
 
-      <div class="turntable-surface">
+      <div class="turntable-body">
+        <div class="corner-knob" aria-hidden="true"></div>
 
-        <div class="platter">
-
-          <div class="record">
-
-            <div class="record-label">
-              ALBUM
+        <div class="platter-wrap">
+          <div class="platter">
+            <div class="record">
+              <div class="record-shine"></div>
+              <div class="record-label">ALBUM</div>
             </div>
-
           </div>
-
         </div>
-
-        <!-- BEWEGLICHER S-TONARM -->
 
         <button
           type="button"
           class="tonearm-button"
           id="albumTonearm"
-          aria-label="Albums mit dem Tonarm auswählen"
+          aria-label="Albums auswählen"
           aria-pressed="false"
         >
-
           <svg
             class="tonearm-svg"
-            viewBox="0 0 110 130"
+            viewBox="0 0 100 160"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
+            <defs>
+              <linearGradient id="armStrokeB" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#eef4fa"/>
+                <stop offset="55%" stop-color="#b0bdc9"/>
+                <stop offset="100%" stop-color="#5b6670"/>
+              </linearGradient>
 
-            <circle
-              class="tonearm-base"
-              cx="81"
-              cy="18"
-              r="13"
-            />
+              <linearGradient id="armMetalB" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f3f7fb"/>
+                <stop offset="50%" stop-color="#9ba7b2"/>
+                <stop offset="100%" stop-color="#5a636c"/>
+              </linearGradient>
+            </defs>
 
-            <circle
-              class="tonearm-inner"
-              cx="81"
-              cy="18"
-              r="6"
-            />
+            <g class="tonearm-group">
+              <circle class="arm-base-ring" cx="69" cy="22" r="16"></circle>
+              <circle class="arm-base-inner" cx="69" cy="22" r="8"></circle>
 
-            <g class="tonearm-moving">
-
-              <path
-                class="tonearm-shape"
-                d="
-                  M81 18
-                  L81 39
-                  C81 53 67 55 61 64
-                  C54 74 69 82 61 93
-                  L49 106
-                "
-              />
+              <rect x="61" y="2" rx="3" ry="3" width="18" height="18" fill="url(#armMetalB)" stroke="#818b96" stroke-width="1"></rect>
 
               <path
-                class="tonearm-highlight"
-                d="
-                  M79 20
-                  L79 39
-                  C79 52 65 55 59 64
-                  C52 74 67 82 59 92
-                "
-              />
+                d="M69 22
+                   L69 52
+                   C69 66 59 70 54 79
+                   C48 89 60 97 54 108
+                   L42 129"
+                fill="none"
+                stroke="url(#armStrokeB)"
+                stroke-width="8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
 
-              <rect
-                class="cartridge"
-                x="38"
-                y="103"
-                width="23"
-                height="11"
-                rx="2"
-                transform="rotate(-40 49 108)"
-              />
+              <path
+                d="M67 24
+                   L67 52
+                   C67 64 57 69 52 78
+                   C46 88 58 96 52 106"
+                fill="none"
+                stroke="rgba(255,255,255,0.72)"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path>
 
+              <path
+                class="arm-headshell"
+                d="M33 126 L46 134 L37 154 L24 146 Z"
+              ></path>
+
+              <circle class="arm-headshell-hole" cx="33" cy="133" r="1.5"></circle>
+              <circle class="arm-headshell-hole" cx="38.5" cy="136" r="1.5"></circle>
+              <circle class="arm-headshell-hole" cx="29.5" cy="142.5" r="1.5"></circle>
             </g>
-
           </svg>
-
         </button>
 
+        <span class="strobe-light" aria-hidden="true"></span>
+
+        <div class="start-stop" aria-hidden="true">START • STOP</div>
+
+        <div class="speed-switch" aria-hidden="true">
+          <span class="speed-pill active">33</span>
+          <span class="speed-pill">45</span>
+        </div>
+
+        <div class="pitch-area" aria-hidden="true">
+          <div class="pitch-slot">
+            <span class="pitch-thumb"></span>
+          </div>
+          <span class="pitch-label">PITCH</span>
+        </div>
       </div>
-
-      <div class="turntable-controls">
-
-        <span class="power-light"></span>
-        <span class="start-stop"></span>
-        <span>33 / 45</span>
-
-      </div>
-
     </div>
 
   </div>
-
-  <!-- MUSIKRICHTUNGEN -->
 
   <p class="music-style">
     90s Eurodance · EDM · Trance
@@ -1676,35 +1575,20 @@ footer {
 
 </section>
 
-<!-- ==============================
-     SONGS UND ALBEN
-============================== -->
-
 <main class="content">
 
-  <h1
-    class="section-heading"
-    id="sectionTitle"
-  >
+  <h1 class="section-heading" id="sectionTitle">
     SINGLES
   </h1>
 
-  <p
-    class="section-subtitle"
-    id="sectionSubtitle"
-  >
+  <p class="section-subtitle" id="sectionSubtitle">
     The Singles Collection
   </p>
 
-  <div
-    class="gallery"
-    id="gallery"
-  >
-
+  <div class="gallery" id="gallery">
     <div class="empty-message">
       Musik wird geladen ...
     </div>
-
   </div>
 
   <button
@@ -1722,22 +1606,14 @@ footer {
   © R.M.B. MUSIC · FRANKFURT AM MAIN
 </footer>
 
-<!-- ==============================
-     VIDEOFENSTER
-============================== -->
-
 <div class="video-modal" id="videoModal">
-
   <div class="video-window">
-
     <button
       type="button"
       class="close-video"
       id="closeVideo"
       aria-label="Video schließen"
-    >
-      &times;
-    </button>
+    >&times;</button>
 
     <iframe
       id="videoFrame"
@@ -1746,530 +1622,291 @@ footer {
       allow="autoplay; encrypted-media; picture-in-picture"
       allowfullscreen
     ></iframe>
-
   </div>
-
 </div>
 
 <script>
+/* =========================
+   MISCHPULT-FADER NAVIGATION
+========================= */
 
-/* ==============================
-   MISCHPULT-NAVIGATION
-============================== */
-
-document.querySelectorAll(
-  ".fader-handle"
-).forEach(handle => {
+document.querySelectorAll(".fader-handle").forEach(handle => {
 
   let startY = null;
   let pointerId = null;
   let distance = 0;
 
   function getTravel() {
-
-    const track =
-      handle.parentElement;
-
+    const track = handle.parentElement;
     return Math.max(
       12,
       Math.min(
         handle.offsetHeight,
-        track.clientHeight -
-        handle.offsetHeight - 10
+        track.clientHeight - handle.offsetHeight - 10
       )
     );
-
   }
 
   function reset() {
-
     startY = null;
     pointerId = null;
     distance = 0;
 
-    handle.classList.remove(
-      "dragging"
-    );
-
-    handle.classList.add(
-      "returning"
-    );
-
-    handle.style.setProperty(
-      "--drag",
-      "0px"
-    );
-
+    handle.classList.remove("dragging");
+    handle.classList.add("returning");
+    handle.style.setProperty("--drag", "0px");
   }
 
-  handle.addEventListener(
-    "pointerdown",
-    event => {
-
-      if (
-        event.pointerType === "mouse" &&
-        event.button !== 0
-      ) {
-        return;
-      }
-
-      event.preventDefault();
-
-      startY = event.clientY;
-      pointerId = event.pointerId;
-      distance = 0;
-
-      handle.classList.remove(
-        "returning"
-      );
-
-      handle.classList.add(
-        "dragging"
-      );
-
-      handle.setPointerCapture(
-        event.pointerId
-      );
-
+  handle.addEventListener("pointerdown", event => {
+    if (
+      event.pointerType === "mouse" &&
+      event.button !== 0
+    ) {
+      return;
     }
-  );
 
-  handle.addEventListener(
-    "pointermove",
-    event => {
+    event.preventDefault();
 
-      if (
-        startY === null ||
-        pointerId !== event.pointerId
-      ) {
-        return;
-      }
+    startY = event.clientY;
+    pointerId = event.pointerId;
+    distance = 0;
 
-      const travel = getTravel();
+    handle.classList.remove("returning");
+    handle.classList.add("dragging");
 
-      distance = Math.min(
-        travel,
-        Math.max(
-          0,
-          startY - event.clientY
-        )
-      );
+    handle.setPointerCapture(event.pointerId);
+  });
 
-      handle.style.setProperty(
-        "--drag",
-        distance + "px"
-      );
-
+  handle.addEventListener("pointermove", event => {
+    if (
+      startY === null ||
+      pointerId !== event.pointerId
+    ) {
+      return;
     }
-  );
 
-  handle.addEventListener(
-    "pointerup",
-    event => {
+    const travel = getTravel();
 
-      if (
-        startY === null ||
-        pointerId !== event.pointerId
-      ) {
-        return;
-      }
+    distance = Math.min(
+      travel,
+      Math.max(0, startY - event.clientY)
+    );
 
-      const reached =
-        distance >= getTravel() * .85;
+    handle.style.setProperty("--drag", distance + "px");
+  });
 
+  handle.addEventListener("pointerup", event => {
+    if (
+      startY === null ||
+      pointerId !== event.pointerId
+    ) {
+      return;
+    }
+
+    const reached = distance >= getTravel() * 0.85;
+
+    reset();
+
+    if (reached) {
+      window.location.assign(handle.dataset.url);
+    }
+  });
+
+  handle.addEventListener("pointercancel", reset);
+
+  handle.addEventListener("lostpointercapture", () => {
+    if (startY !== null) {
       reset();
-
-      if (reached) {
-
-        window.location.assign(
-          handle.dataset.url
-        );
-
-      }
-
     }
-  );
+  });
 
-  handle.addEventListener(
-    "pointercancel",
-    reset
-  );
-
-  handle.addEventListener(
-    "lostpointercapture",
-    () => {
-
-      if (startY !== null) {
-        reset();
-      }
-
+  handle.addEventListener("keydown", event => {
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      window.location.assign(handle.dataset.url);
     }
-  );
-
-  /* TASTATUR ALS ALTERNATIVE */
-
-  handle.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        event.key === "ArrowUp"
-      ) {
-
-        event.preventDefault();
-
-        window.location.assign(
-          handle.dataset.url
-        );
-
-      }
-
-    }
-  );
+  });
 
 });
 
-/* ==============================
-   LED-PEGELANZEIGEN
-============================== */
+/* =========================
+   VU METER
+========================= */
 
 function createMeter(id) {
+  const meter = document.getElementById(id);
 
-  const meter =
-    document.getElementById(id);
-
-  for (let i = 0; i < 15; i++) {
-
-    const led =
-      document.createElement("span");
-
+  for (let i = 0; i < 14; i++) {
+    const led = document.createElement("span");
     led.className = "vu-led";
 
-    if (i < 9) {
-
+    if (i < 8) {
       led.classList.add("green");
-
-    } else if (i < 13) {
-
+    } else if (i < 11) {
       led.classList.add("yellow");
-
     } else {
-
       led.classList.add("red");
-
     }
 
     meter.appendChild(led);
-
   }
 
-  return Array.from(
-    meter.children
-  );
-
+  return Array.from(meter.children);
 }
 
-const leftLEDs =
-  createMeter("vuLeft");
-
-const rightLEDs =
-  createMeter("vuRight");
+const leftLEDs = createMeter("vuLeft");
+const rightLEDs = createMeter("vuRight");
 
 function updateMeter(leds, level) {
-
   leds.forEach((led, i) => {
-
-    led.classList.toggle(
-      "on",
-      i < level
-    );
-
+    led.classList.toggle("on", i < level);
   });
-
 }
 
-let leftLevel = 7;
-let rightLevel = 6;
+let leftLevel = 6;
+let rightLevel = 7;
 
 function animateMeters() {
-
   if (document.hidden) return;
 
   leftLevel = Math.max(
     2,
-    Math.min(
-      15,
-      leftLevel +
-      Math.floor(Math.random() * 7) - 3
-    )
+    Math.min(14, leftLevel + Math.floor(Math.random() * 7) - 3)
   );
 
   rightLevel = Math.max(
     2,
-    Math.min(
-      15,
-      rightLevel +
-      Math.floor(Math.random() * 7) - 3
-    )
+    Math.min(14, rightLevel + Math.floor(Math.random() * 7) - 3)
   );
 
-  updateMeter(
-    leftLEDs,
-    leftLevel
-  );
-
-  updateMeter(
-    rightLEDs,
-    rightLevel
-  );
-
+  updateMeter(leftLEDs, leftLevel);
+  updateMeter(rightLEDs, rightLevel);
 }
 
 animateMeters();
 
 if (
-  !window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
 ) {
-
-  setInterval(
-    animateMeters,
-    170
-  );
-
+  setInterval(animateMeters, 170);
 }
 
-/* ==============================
-   MUSIKGALERIE
-============================== */
+/* =========================
+   TURNTABLE CATEGORY SWITCH
+========================= */
 
-const gallery =
-  document.getElementById("gallery");
+const singleTurntable = document.getElementById("singleTurntable");
+const albumTurntable = document.getElementById("albumTurntable");
+const singleTonearm = document.getElementById("singleTonearm");
+const albumTonearm = document.getElementById("albumTonearm");
 
-const sectionTitle =
-  document.getElementById("sectionTitle");
-
-const sectionSubtitle =
-  document.getElementById("sectionSubtitle");
-
-const moreButton =
-  document.getElementById("moreButton");
-
-const videoModal =
-  document.getElementById("videoModal");
-
-const videoFrame =
-  document.getElementById("videoFrame");
-
-const closeVideo =
-  document.getElementById("closeVideo");
-
-const singleTurntable =
-  document.getElementById(
-    "singleTurntable"
-  );
-
-const albumTurntable =
-  document.getElementById(
-    "albumTurntable"
-  );
-
-const singleTonearm =
-  document.getElementById(
-    "singleTonearm"
-  );
-
-const albumTonearm =
-  document.getElementById(
-    "albumTonearm"
-  );
-
-let allMusic = [];
 let activeCategory = "single";
+let allMusic = [];
 let visibleCount = 10;
 
-/* ==============================
-   TONARME ALS AUSWAHL
-============================== */
-
 function chooseCategory(category) {
-
   activeCategory = category;
   visibleCount = 10;
 
-  const isSingle =
-    category === "single";
+  const isSingle = category === "single";
 
-  singleTurntable.classList.toggle(
-    "selected",
-    isSingle
-  );
+  singleTurntable.classList.toggle("selected", isSingle);
+  albumTurntable.classList.toggle("selected", !isSingle);
 
-  albumTurntable.classList.toggle(
-    "selected",
-    !isSingle
-  );
-
-  singleTonearm.setAttribute(
-    "aria-pressed",
-    String(isSingle)
-  );
-
-  albumTonearm.setAttribute(
-    "aria-pressed",
-    String(!isSingle)
-  );
+  singleTonearm.setAttribute("aria-pressed", String(isSingle));
+  albumTonearm.setAttribute("aria-pressed", String(!isSingle));
 
   renderMusic();
-
 }
 
-singleTonearm.addEventListener(
-  "click",
-  () => {
+singleTonearm.addEventListener("click", () => {
+  chooseCategory("single");
+});
 
-    chooseCategory("single");
+albumTonearm.addEventListener("click", () => {
+  chooseCategory("album");
+});
 
-  }
-);
+/* =========================
+   GALLERY / DATA
+========================= */
 
-albumTonearm.addEventListener(
-  "click",
-  () => {
-
-    chooseCategory("album");
-
-  }
-);
-
-/* ==============================
-   HTML ABSICHERN
-============================== */
+const gallery = document.getElementById("gallery");
+const sectionTitle = document.getElementById("sectionTitle");
+const sectionSubtitle = document.getElementById("sectionSubtitle");
+const moreButton = document.getElementById("moreButton");
+const videoModal = document.getElementById("videoModal");
+const videoFrame = document.getElementById("videoFrame");
+const closeVideo = document.getElementById("closeVideo");
 
 function escapeHTML(value) {
-
   return String(value ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
-
 }
 
-/* ==============================
-   LINKS PRÜFEN
-============================== */
-
 function safeURL(value) {
-
   try {
-
-    const url = new URL(
-      value,
-      window.location.href
-    );
+    const url = new URL(value, window.location.href);
 
     if (
       url.protocol === "https:" ||
       url.protocol === "http:"
     ) {
-
       return url.href;
-
     }
-
   } catch {}
 
   return "";
-
 }
 
-/* ==============================
-   DATUM FORMATIEREN
-============================== */
-
 function formatDate(value) {
-
   if (!value) return "";
 
   const date = new Date(
-    String(value).slice(0,10) +
-    "T12:00:00"
+    String(value).slice(0, 10) + "T12:00:00"
   );
 
-  if (
-    Number.isNaN(date.getTime())
-  ) {
+  if (Number.isNaN(date.getTime())) {
     return "";
   }
 
-  return date.toLocaleDateString(
-    "de-DE",
-    {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    }
-  );
-
+  return date.toLocaleDateString("de-DE", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
 }
-
-/* ==============================
-   KATEGORIE ERMITTELN
-============================== */
 
 function categoryOf(item) {
-
   const category = String(
-    item.type ||
-    item.category ||
-    "single"
+    item.type || item.category || "single"
   ).toLowerCase();
 
-  return [
-    "album",
-    "albums",
-    "lp"
-  ].includes(category)
+  return ["album", "albums", "lp"].includes(category)
     ? "album"
     : "single";
-
 }
 
-/* ==============================
-   YOUTUBE-ID ERMITTELN
-============================== */
-
 function getYoutubeId(item) {
+  const value = String(item.youtube || "").trim();
 
-  const value = String(
-    item.youtube || ""
-  ).trim();
-
-  if (
-    /^[A-Za-z0-9_-]{11}$/.test(value)
-  ) {
+  if (/^[A-Za-z0-9_-]{11}$/.test(value)) {
     return value;
   }
 
   try {
-
     const url = new URL(value);
-
-    const hostname =
-      url.hostname.toLowerCase();
+    const hostname = url.hostname.toLowerCase();
 
     if (
       hostname === "youtu.be" ||
       hostname === "www.youtu.be"
     ) {
-
-      return (
-        url.pathname.split("/")[1] || ""
-      );
-
+      return url.pathname.split("/")[1] || "";
     }
 
     if (
@@ -2277,49 +1914,25 @@ function getYoutubeId(item) {
       hostname === "www.youtube.com" ||
       hostname === "m.youtube.com"
     ) {
-
-      if (
-        url.pathname === "/watch"
-      ) {
-
-        return (
-          url.searchParams.get("v") || ""
-        );
-
+      if (url.pathname === "/watch") {
+        return url.searchParams.get("v") || "";
       }
 
-      const parts =
-        url.pathname.split("/");
+      const parts = url.pathname.split("/");
 
       if (
-        [
-          "shorts",
-          "embed",
-          "live"
-        ].includes(parts[1])
+        ["shorts", "embed", "live"].includes(parts[1])
       ) {
-
         return parts[2] || "";
-
       }
-
     }
-
   } catch {}
 
   return "";
-
 }
 
-/* ==============================
-   VIDEO ÖFFNEN
-============================== */
-
 function openVideo(videoId) {
-
-  if (
-    !/^[A-Za-z0-9_-]{11}$/.test(videoId)
-  ) {
+  if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
     return;
   }
 
@@ -2328,96 +1941,47 @@ function openVideo(videoId) {
     videoId +
     "?autoplay=1";
 
-  videoModal.classList.add(
-    "open"
-  );
-
+  videoModal.classList.add("open");
 }
-
-/* ==============================
-   VIDEO SCHLIESSEN
-============================== */
 
 function closeVideoPlayer() {
-
-  videoModal.classList.remove(
-    "open"
-  );
-
+  videoModal.classList.remove("open");
   videoFrame.src = "";
-
 }
 
-closeVideo.addEventListener(
-  "click",
-  closeVideoPlayer
-);
+closeVideo.addEventListener("click", closeVideoPlayer);
 
-videoModal.addEventListener(
-  "click",
-  event => {
-
-    if (
-      event.target === videoModal
-    ) {
-      closeVideoPlayer();
-    }
-
+videoModal.addEventListener("click", event => {
+  if (event.target === videoModal) {
+    closeVideoPlayer();
   }
-);
+});
 
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      event.key === "Escape"
-    ) {
-      closeVideoPlayer();
-    }
-
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeVideoPlayer();
   }
-);
-
-/* ==============================
-   GALERIE AUFBAUEN
-============================== */
+});
 
 function renderMusic() {
+  const isSingle = activeCategory === "single";
 
-  const isSingle =
-    activeCategory === "single";
-
-  sectionTitle.textContent =
-    isSingle
-      ? "SINGLES"
-      : "ALBUMS";
-
-  sectionSubtitle.textContent =
-    isSingle
-      ? "The Singles Collection"
-      : "The Album Collection";
+  sectionTitle.textContent = isSingle ? "SINGLES" : "ALBUMS";
+  sectionSubtitle.textContent = isSingle
+    ? "The Singles Collection"
+    : "The Album Collection";
 
   const items = allMusic
-    .filter(
-      item =>
-        categoryOf(item) === activeCategory
-    )
-    .sort(
-      (a,b) =>
-        String(
-          b.releaseDate || ""
-        ).localeCompare(
-          String(
-            a.releaseDate || ""
-          )
-        )
+    .filter(item => categoryOf(item) === activeCategory)
+    .sort((a, b) =>
+      String(b.releaseDate || "").localeCompare(
+        String(a.releaseDate || "")
+      )
     );
 
   gallery.innerHTML = "";
 
   if (items.length === 0) {
-
     gallery.innerHTML = `
       <div class="empty-message">
         ${
@@ -2429,223 +1993,145 @@ function renderMusic() {
     `;
 
     moreButton.hidden = true;
-
     return;
-
   }
 
-  items
-    .slice(0,visibleCount)
-    .forEach(item => {
+  items.slice(0, visibleCount).forEach(item => {
+    const videoId = getYoutubeId(item);
 
-      const videoId =
-        getYoutubeId(item);
+    const validVideoId =
+      /^[A-Za-z0-9_-]{11}$/.test(videoId)
+        ? videoId
+        : "";
 
-      const validVideoId =
-        /^[A-Za-z0-9_-]{11}$/.test(videoId)
-          ? videoId
-          : "";
+    const cover =
+      safeURL(item.cover) ||
+      (
+        validVideoId
+          ? "https://img.youtube.com/vi/" +
+            validVideoId +
+            "/hqdefault.jpg"
+          : ""
+      );
 
-      const cover =
-        safeURL(item.cover) ||
-        (
-          validVideoId
-            ? "https://img.youtube.com/vi/" +
-              validVideoId +
-              "/hqdefault.jpg"
-            : ""
-        );
+    const spotify = safeURL(item.spotify);
+    const amazon = safeURL(item.amazon);
+    const date = formatDate(item.releaseDate);
 
-      const spotify =
-        safeURL(item.spotify);
+    const card = document.createElement("article");
+    card.className = "music-card";
 
-      const amazon =
-        safeURL(item.amazon);
-
-      const date =
-        formatDate(
-          item.releaseDate
-        );
-
-      const card =
-        document.createElement(
-          "article"
-        );
-
-      card.className =
-        "music-card";
-
-      card.innerHTML = `
-
-        <button
-          type="button"
-          class="cover-button"
-          ${
-            validVideoId
-              ? ""
-              : "disabled"
-          }
-          aria-label="Video öffnen"
+    card.innerHTML = `
+      <button
+        type="button"
+        class="cover-button"
+        ${validVideoId ? "" : "disabled"}
+        aria-label="Video öffnen"
+      >
+        <img
+          class="cover"
+          src="${escapeHTML(cover)}"
+          alt="${escapeHTML(item.title || "R.M.B.")}"
+          loading="lazy"
         >
+      </button>
 
-          <img
-            class="cover"
-            src="${escapeHTML(cover)}"
-            alt="${escapeHTML(
-              item.title || "R.M.B."
-            )}"
-            loading="lazy"
-          >
+      <div class="track-title">
+        ${escapeHTML(item.title || "R.M.B.")}
+      </div>
 
-        </button>
+      <div class="track-version">
+        ${escapeHTML(item.version || "")}
+      </div>
 
-        <div class="track-title">
-          ${escapeHTML(
-            item.title || "R.M.B."
-          )}
-        </div>
+      ${
+        date
+          ? `<div class="track-date">${escapeHTML(date)}</div>`
+          : ""
+      }
 
-        <div class="track-version">
-          ${escapeHTML(
-            item.version || ""
-          )}
-        </div>
-
+      <div class="music-links">
         ${
-          date
+          validVideoId
             ? `
-              <div class="track-date">
-                ${escapeHTML(date)}
-              </div>
+              <a
+                href="https://www.youtube.com/watch?v=${validVideoId}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >YouTube</a>
             `
             : ""
         }
 
-        <div class="music-links">
+        ${
+          spotify
+            ? `
+              <a
+                href="${escapeHTML(spotify)}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Spotify</a>
+            `
+            : ""
+        }
 
-          ${
-            validVideoId
-              ? `
-                <a
-                  href="https://www.youtube.com/watch?v=${validVideoId}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >YouTube</a>
-              `
-              : ""
-          }
+        ${
+          amazon
+            ? `
+              <a
+                href="${escapeHTML(amazon)}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Amazon</a>
+            `
+            : ""
+        }
+      </div>
+    `;
 
-          ${
-            spotify
-              ? `
-                <a
-                  href="${escapeHTML(spotify)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >Spotify</a>
-              `
-              : ""
-          }
+    if (validVideoId) {
+      card.querySelector(".cover-button").addEventListener(
+        "click",
+        () => openVideo(validVideoId)
+      );
+    }
 
-          ${
-            amazon
-              ? `
-                <a
-                  href="${escapeHTML(amazon)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >Amazon</a>
-              `
-              : ""
-          }
+    gallery.appendChild(card);
+  });
 
-        </div>
-      `;
+  moreButton.hidden = items.length <= visibleCount;
 
-      if (validVideoId) {
-
-        card.querySelector(
-          ".cover-button"
-        ).addEventListener(
-          "click",
-          () => openVideo(validVideoId)
-        );
-
-      }
-
-      gallery.appendChild(card);
-
-    });
-
-  moreButton.hidden =
-    items.length <= visibleCount;
-
-  moreButton.textContent =
-    isSingle
-      ? "WEITERE SONGS ANZEIGEN"
-      : "WEITERE ALBEN ANZEIGEN";
-
+  moreButton.textContent = isSingle
+    ? "WEITERE SONGS ANZEIGEN"
+    : "WEITERE ALBEN ANZEIGEN";
 }
 
-/* ==============================
-   WEITERE TITEL
-============================== */
-
-moreButton.addEventListener(
-  "click",
-  () => {
-
-    visibleCount += 10;
-
-    renderMusic();
-
-  }
-);
-
-/* ==============================
-   SONGS.JSON LADEN
-============================== */
+moreButton.addEventListener("click", () => {
+  visibleCount += 10;
+  renderMusic();
+});
 
 fetch("songs.json")
-
   .then(response => {
-
     if (!response.ok) {
-
-      throw new Error(
-        "songs.json nicht gefunden"
-      );
-
+      throw new Error("songs.json nicht gefunden");
     }
 
     return response.json();
-
   })
-
   .then(data => {
-
-    allMusic =
-      Array.isArray(data)
-        ? data
-        : [];
-
+    allMusic = Array.isArray(data) ? data : [];
     renderMusic();
-
   })
-
   .catch(error => {
-
     gallery.innerHTML = `
       <div class="empty-message">
-        Die Musikdaten konnten
-        nicht geladen werden.
+        Die Musikdaten konnten nicht geladen werden.
       </div>
     `;
 
     console.error(error);
-
   });
-
 </script>
 
 </body>
