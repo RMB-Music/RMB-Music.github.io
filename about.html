@@ -1,0 +1,693 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Die Geschichte hinter R.M.B. – Independent Electronic Music aus Frankfurt-Rödelheim.">
+<title>About R.M.B. | Behind the Music</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #121820;
+  color: #f2f4f8;
+  font-family: 'Michroma', sans-serif;
+}
+
+/* DIAMANT-BANNER */
+header {
+  width: 100%;
+  background: white;
+}
+
+header img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* MITTIGE NAVIGATION */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  background: #262b35;
+  padding: 22px 12px;
+  border-bottom: 1px solid #48515f;
+}
+
+nav a {
+  color: #cbd2dd;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+nav a:hover,
+nav a.active {
+  color: white;
+}
+
+/* HAUPTBEREICH */
+main {
+  max-width: 950px;
+  margin: auto;
+  padding: 45px 22px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-size: clamp(20px, 4vw, 32px);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  color: #b8c5d4;
+  font-size: 12px;
+}
+
+/* SPRACHSCHALTER */
+.language-switch {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 25px 0 35px;
+}
+
+.language-switch button {
+  background: #252e3b;
+  color: #c5d1df;
+  border: 1px solid #526075;
+  border-radius: 7px;
+  padding: 12px 23px;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.language-switch button.selected {
+  background: #43546c;
+  border-color: #a9bdd5;
+  color: white;
+}
+
+.language-switch button:hover {
+  background: #344255;
+}
+
+/* TEXTBEREICHE */
+.intro {
+  background: #1c2530;
+  border: 1px solid #364252;
+  border-radius: 9px;
+  padding: 28px;
+  margin-bottom: 26px;
+}
+
+.origin {
+  color: #adc0d4;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+h2 {
+  font-size: clamp(16px, 3vw, 21px);
+  line-height: 1.7;
+  margin: 15px 0;
+}
+
+.story {
+  background: #1c2530;
+  border-radius: 9px;
+  padding: 25px 28px;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #ccd5e1;
+  font-size: 12px;
+  line-height: 2.2;
+  overflow-wrap: anywhere;
+}
+
+.story p {
+  margin-bottom: 18px;
+}
+
+.story p:last-child {
+  margin-bottom: 0;
+}
+
+/* MUSIKRICHTUNGEN */
+.genres {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.genre {
+  background: #252e3b;
+  border: 1px solid #364252;
+  padding: 18px 12px;
+  text-align: center;
+  border-radius: 7px;
+  color: #e3e9f2;
+  font-size: 11px;
+}
+
+/* ABSCHLUSS */
+.closing {
+  background: #344255;
+  border: 1px solid #788ba3;
+  padding: 26px;
+  margin-top: 28px;
+  border-radius: 9px;
+  text-align: center;
+}
+
+.closing p {
+  color: #f0f4fa;
+  margin: 0;
+}
+
+.music-link {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 14px 20px;
+  border: 1px solid #a3b3c8;
+  border-radius: 7px;
+  color: white;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.music-link:hover {
+  background: #526681;
+}
+
+footer {
+  text-align: center;
+  background: #252a34;
+  color: #b9c2cf;
+  padding: 25px;
+  font-size: 11px;
+  margin-top: 35px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* SMARTPHONE */
+@media (max-width: 600px) {
+  nav {
+    gap: 15px;
+    padding: 18px 10px;
+  }
+
+  nav a {
+    font-size: 10px;
+  }
+
+  main {
+    padding: 28px 14px;
+  }
+
+  .intro,
+  .story {
+    padding: 20px 17px;
+  }
+
+  .genres {
+    gap: 8px;
+  }
+
+  .genre {
+    font-size: 9px;
+    padding: 15px 8px;
+  }
+
+  p {
+    font-size: 11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- R.M.B. BANNER -->
+<header>
+  <a href="index.html">
+    <img src="rmb-banner.png" alt="R.M.B. Diamond Logo">
+  </a>
+</header>
+
+<!-- NAVIGATION -->
+<nav aria-label="Main navigation">
+  <a href="index.html">HOME</a>
+  <a href="music.html">MUSIC</a>
+  <a href="releases.html">RELEASES</a>
+  <a class="active" href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+<main>
+
+<div class="page-title">
+  <h1>ABOUT R.M.B.</h1>
+  <div class="tagline">Behind the Music</div>
+</div>
+
+<!-- SPRACHAUSWAHL -->
+<div class="language-switch" aria-label="Language">
+  <button id="btn-de" class="selected"
+          aria-pressed="true"
+          onclick="switchLanguage('de')">
+    DEUTSCH
+  </button>
+
+  <button id="btn-en"
+          aria-pressed="false"
+          onclick="switchLanguage('en')">
+    ENGLISH
+  </button>
+</div>
+
+<!-- DEUTSCHE FASSUNG -->
+<div id="content-de" lang="de">
+
+<section class="intro">
+  <div class="origin">
+    FRANKFURT AM MAIN · RÖDELHEIM
+  </div>
+
+  <h2>Meine Geschichte hinter der Musik</h2>
+
+  <p>
+    R.M.B. ist mein unabhängiges Musikprojekt.
+    Der Künstlername leitet sich von meinen
+    eigenen Initialen ab.
+  </p>
+
+  <p>
+    Meine Begeisterung für elektronische Musik
+    begleitet mich schon seit meiner Jugend.
+    Heute verbinde ich diese Leidenschaft
+    mit eigenen Texten, persönlichen Geschichten
+    und neuen Möglichkeiten der Musikgestaltung.
+  </p>
+</section>
+
+<section class="story">
+  <h2>Die Anfänge</h2>
+
+  <p>
+    Bereits Mitte der 1980er-Jahre, während
+    meiner Schul- und Ausbildungszeit,
+    beschäftigte ich mich mit Plattenspielern
+    und einem eigenen Mischpult.
+  </p>
+
+  <p>
+    Ich experimentierte mit verschiedenen Titeln,
+    Rhythmen und Übergängen. Nicht als öffentlich
+    auftretender DJ, sondern ausschließlich
+    aus Freude an der Musik und ihren Möglichkeiten.
+  </p>
+
+  <p>
+    Über viele Jahre blieb diese Beschäftigung
+    ein privates Hobby, das mich neben meinem
+    Berufsleben immer wieder begleitete.
+  </p>
+</section>
+
+<section class="story">
+  <h2>Von der Hardware zur Software</h2>
+
+  <p>
+    Mit der Entwicklung digitaler Musikprogramme
+    eröffneten sich neue Möglichkeiten.
+    Ich beschäftigte mich unter anderem mit
+    ReBirth, Cool Edit von Syntrillium,
+    Steinbergs WaveLab und MixMeister.
+  </p>
+
+  <p>
+    Dabei bearbeitete ich vorhandene Musik,
+    experimentierte mit Klängen und gestaltete
+    Übergänge zwischen unterschiedlichen Titeln.
+  </p>
+
+  <p>
+    Später kamen Programme wie GarageBand
+    und virtuelle Instrumente hinzu.
+    Da ich selbst kein Instrument spiele,
+    versuchte ich, bekannte musikalische
+    Abläufe nachzustellen, einzelne Passagen
+    zu verändern und eigene Varianten
+    auszuprobieren.
+  </p>
+
+  <p>
+    So entwickelte sich über die Jahre ein
+    Gefühl für Rhythmen, Arrangements und
+    das Zusammenspiel verschiedener Klänge.
+  </p>
+</section>
+
+<section class="story">
+  <h2>Ein neuer Weg zur eigenen Musik</h2>
+
+  <p>
+    Ein Gespräch mit einem befreundeten
+    Fotografen, der einen Song für seine Frau
+    gestaltet hatte, brachte mich schließlich
+    auf Suno und die Möglichkeiten
+    KI-gestützter Musikproduktion.
+  </p>
+
+  <p>
+    Was zunächst aus Neugier begann,
+    eröffnete mir eine neue Möglichkeit:
+    Eigene Texte, Gedanken und musikalische
+    Vorstellungen zu vollständigen Songs
+    werden zu lassen.
+  </p>
+
+  <p>
+    Ich schreibe meine Songtexte selbst,
+    entwickle die musikalische Richtung
+    und beschreibe, welche Atmosphäre,
+    welchen Aufbau und welchen Klang
+    ich mir vorstelle.
+  </p>
+
+  <p>
+    Suno unterstützt mich bei der klanglichen
+    Umsetzung dieser Ideen. Dabei sehe ich
+    mich ein wenig wie einen Dirigenten,
+    der aus seinen Vorstellungen
+    ein musikalisches Ganzes gestaltet.
+  </p>
+</section>
+
+<section class="story">
+  <h2>Persönliche Geschichten in Musik</h2>
+
+  <p>
+    Hinter meinen Songs stehen persönliche
+    Erlebnisse, Begegnungen, Erinnerungen
+    und Gedanken.
+  </p>
+
+  <p>
+    Manche Titel spiegeln meine besondere
+    Verbundenheit mit La Palma wider,
+    andere entstehen aus der Wahrnehmung
+    von Menschen, die mir etwas bedeuten.
+  </p>
+
+  <p>
+    Wieder andere beschäftigen sich
+    mit meiner Einstellung zum Leben,
+    mit Freiheit, Selbstbestimmung
+    und dem Mut, den eigenen Weg zu gehen.
+  </p>
+
+  <p>
+    Jeder dieser Songs hat seinen eigenen
+    Hintergrund. Musik ist für mich eine
+    Möglichkeit, persönlichen Gedanken
+    eine hörbare Form zu geben.
+  </p>
+</section>
+
+<section class="story">
+  <h2>Mein musikalischer Stil</h2>
+
+  <p>
+    Die elektronische Musik der 1990er-Jahre
+    prägt meinen Geschmack bis heute.
+    Besonders Eurodance, Techno und Trance
+    gehören zu meinen musikalischen Wurzeln.
+  </p>
+
+  <p>
+    Diese Einflüsse verbinde ich mit
+    moderner elektronischer Musik,
+    unterschiedlichen Klangwelten
+    und eigenen musikalischen Ideen.
+  </p>
+
+  <div class="genres">
+    <div class="genre">90s Eurodance</div>
+    <div class="genre">Techno</div>
+    <div class="genre">Trance</div>
+    <div class="genre">Modern EDM</div>
+  </div>
+</section>
+
+<div class="closing">
+  <p>
+    R.M.B. steht für Musik, die aus
+    eigenen Gedanken entsteht –
+    und auf einem neuen Weg hörbar wird.
+  </p>
+
+  <a class="music-link" href="music.html">
+    MEINE MUSIK ENTDECKEN →
+  </a>
+</div>
+
+</div>
+
+<!-- ENGLISH VERSION -->
+<div id="content-en" lang="en" hidden>
+
+<section class="intro">
+  <div class="origin">
+    FRANKFURT AM MAIN · RÖDELHEIM
+  </div>
+
+  <h2>My Story Behind the Music</h2>
+
+  <p>
+    R.M.B. is my independent music project.
+    The artist name comes from my own initials.
+  </p>
+
+  <p>
+    My passion for electronic music goes
+    back to my youth. Today, I combine
+    that passion with original lyrics,
+    personal stories and new ways
+    of bringing musical ideas to life.
+  </p>
+</section>
+
+<section class="story">
+  <h2>Where It All Began</h2>
+
+  <p>
+    Back in the mid-1980s, during my school
+    and apprenticeship years, I began
+    experimenting with turntables and
+    my own mixing console.
+  </p>
+
+  <p>
+    I explored different tracks, rhythms
+    and transitions. I was never performing
+    publicly as a DJ. It was simply
+    something I enjoyed doing for myself.
+  </p>
+
+  <p>
+    For many years, music remained
+    a personal hobby alongside
+    my professional life.
+  </p>
+</section>
+
+<section class="story">
+  <h2>From Hardware to Software</h2>
+
+  <p>
+    As digital music software developed,
+    new possibilities opened up.
+    I explored programs including ReBirth,
+    Syntrillium Cool Edit,
+    Steinberg WaveLab and MixMeister.
+  </p>
+
+  <p>
+    I edited existing music,
+    experimented with sounds
+    and created transitions
+    between different tracks.
+  </p>
+
+  <p>
+    Later, I also explored GarageBand
+    and virtual instruments.
+    Since I do not play a musical instrument,
+    I tried recreating familiar musical
+    passages, changing individual sections
+    and experimenting with my own variations.
+  </p>
+
+  <p>
+    Over time, this gave me a better feel
+    for rhythm, arrangements and
+    how different sounds work together.
+  </p>
+</section>
+
+<section class="story">
+  <h2>A New Way to Create Music</h2>
+
+  <p>
+    A conversation with a photographer
+    friend who had created a song
+    for his wife eventually introduced
+    me to Suno and the possibilities
+    of AI-assisted music creation.
+  </p>
+
+  <p>
+    What began as curiosity opened up
+    a new way for me to turn original
+    lyrics, thoughts and musical ideas
+    into complete songs.
+  </p>
+
+  <p>
+    I write my own lyrics, develop
+    the musical direction and describe
+    the atmosphere, structure and sound
+    I want to achieve.
+  </p>
+
+  <p>
+    Suno helps bring those ideas to life
+    in sound. In a way, I see myself
+    as a conductor, guiding different
+    elements towards a musical whole.
+  </p>
+</section>
+
+<section class="story">
+  <h2>Personal Stories Through Music</h2>
+
+  <p>
+    My songs are rooted in personal
+    experiences, encounters, memories
+    and thoughts.
+  </p>
+
+  <p>
+    Some reflect my special connection
+    to La Palma. Others are inspired
+    by people who mean something to me.
+  </p>
+
+  <p>
+    Other tracks explore my outlook
+    on life, freedom, self-determination
+    and the courage to follow
+    my own path.
+  </p>
+
+  <p>
+    Every song has its own story.
+    For me, music is a way of giving
+    personal thoughts a sound.
+  </p>
+</section>
+
+<section class="story">
+  <h2>My Musical Style</h2>
+
+  <p>
+    Electronic music from the 1990s
+    continues to shape my musical taste.
+    Eurodance, Techno and Trance
+    are particularly important influences.
+  </p>
+
+  <p>
+    I combine these roots with
+    modern electronic music,
+    different soundscapes
+    and my own creative ideas.
+  </p>
+
+  <div class="genres">
+    <div class="genre">90s Eurodance</div>
+    <div class="genre">Techno</div>
+    <div class="genre">Trance</div>
+    <div class="genre">Modern EDM</div>
+  </div>
+</section>
+
+<div class="closing">
+  <p>
+    R.M.B. stands for music born
+    from personal thoughts –
+    brought to life in a new way.
+  </p>
+
+  <a class="music-link" href="music.html">
+    DISCOVER MY MUSIC →
+  </a>
+</div>
+
+</div>
+
+</main>
+
+<footer>
+  R.M.B. · Independent Electronic Music
+</footer>
+
+<!-- SPRACHUMSCHALTUNG -->
+<script>
+function switchLanguage(language) {
+  const german = language === 'de';
+
+  document.getElementById('content-de').hidden = !german;
+  document.getElementById('content-en').hidden = german;
+
+  const deButton = document.getElementById('btn-de');
+  const enButton = document.getElementById('btn-en');
+
+  deButton.classList.toggle('selected', german);
+  enButton.classList.toggle('selected', !german);
+
+  deButton.setAttribute('aria-pressed', String(german));
+  enButton.setAttribute('aria-pressed', String(!german));
+
+  document.documentElement.lang = language;
+}
+</script>
+
+</body>
+</html>
