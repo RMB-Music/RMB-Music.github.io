@@ -38,7 +38,7 @@ body {
 }
 
 /* R.M.B. BANNER */
-/* KORRIGIERT: VOLLE BILDSCHIRMBREITE */
+/* AUTOMATISCH VOLLE BILDSCHIRMBREITE */
 
 header {
   width: 100%;
@@ -81,13 +81,14 @@ nav a.active {
 }
 
 /* MUSIC-BEREICH */
+/* KEINE SEITLICHEN ABSTÄNDE */
 
 .music-hero {
   position: relative;
   overflow: hidden;
   background: var(--background);
   text-align: center;
-  padding: 10px 15px 35px;
+  padding: 10px 0 35px;
 }
 
 /* DEZENTER LICHTSCHEIN */
@@ -110,11 +111,12 @@ nav a.active {
 }
 
 /* SKYLINE UND MUSIC ÜBEREINANDER */
+/* VOLLE VERFÜGBARE BREITE */
 
 .music-composition {
   position: relative;
   width: 100%;
-  max-width: 1250px;
+  max-width: none;
   height: 305px;
   margin: 0 auto;
   display: flex;
@@ -124,7 +126,8 @@ nav a.active {
 }
 
 /* FRANKFURTER SKYLINE */
-/* MAXIMAL 850 PIXEL BREIT */
+/* AUTOMATISCH 100 PROZENT BREITE */
+/* KEINE MAXIMALE PIXELBEGRENZUNG */
 
 .skyline {
   position: absolute;
@@ -134,8 +137,8 @@ nav a.active {
   transform: translateX(-50%);
   display: block;
 
-  width: min(850px, 96%);
-  max-width: 850px;
+  width: 100%;
+  max-width: none;
   min-width: 0;
 
   height: auto;
@@ -149,13 +152,17 @@ nav a.active {
 }
 
 /* MUSIC-SCHRIFTZUG VOR DER SKYLINE */
+/* LEICHT VERGRÖSSERT */
+/* MAXIMAL 480 PIXEL */
+/* PROPORTIONAL AUF KLEINEREN DISPLAYS */
 
 .music-heading {
   position: relative;
   z-index: 2;
   display: block;
 
-  width: min(440px, 90%);
+  width: min(480px, 90%);
+  max-width: 480px;
   height: auto;
 
   margin: -10px auto 0;
@@ -548,10 +555,9 @@ footer {
   }
 
   .music-heading {
-    width: min(420px, 76%);
+    width: min(460px, 80%);
+    max-width: 460px;
   }
-
-  /* Keine Mindestbreite mehr für Skyline */
 
 }
 
@@ -577,7 +583,7 @@ footer {
   }
 
   .music-hero {
-    padding: 8px 8px 30px;
+    padding: 8px 0 30px;
   }
 
   .music-composition {
@@ -585,11 +591,14 @@ footer {
   }
 
   .music-heading {
-    width: min(330px, 85%);
+    width: min(350px, 88%);
+    max-width: 350px;
     margin-top: 0;
   }
 
   .skyline {
+    width: 100%;
+    max-width: none;
     opacity: 0.24;
   }
 
