@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R.M.B. | Electronic Music</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #121820;
+  color: white;
+}
+
+/* WEISSER LOGO-BANNER */
+header {
+  width: 100%;
+  background: white;
+}
+
+header img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* MENÜ MITTIG */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  background: #262b35;
+  padding: 22px 12px;
+  border-bottom: 1px solid #48515f;
+}
+
+nav a {
+  color: #cbd2dd;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+nav a:hover, nav a.active {
+  color: white;
+}
+
+/* SEITENINHALT */
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 22px;
+}
+
+.hero {
+  background: #1c2530;
+  padding: 35px 28px;
+  border-radius: 8px;
+}
+
+.wave {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 95px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+.wave span {
+  display: block;
+  width: 3px;
+  flex-shrink: 0;
+  background: #a4b5c9;
+  border-radius: 3px;
+  animation: pulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scaleY(.65); }
+  to { transform: scaleY(1); }
+}
+
+.origin {
+  color: #a9b6c8;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: clamp(28px, 5vw, 46px);
+  margin: 14px 0;
+}
+
+.subtitle {
+  color: #c5cdd8;
+}
+
+.releases {
+  margin-top: 45px;
+}
+
+.cover-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.cover {
+  background: #313a47;
+  aspect-ratio: 1;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a6b2c1;
+  font-size: 12px;
+}
+
+.song {
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.artist {
+  color: #a7b0bf;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+footer {
+  text-align: center;
+  background: #252a34;
+  color: #b9c2cf;
+  padding: 25px;
+  margin-top: 65px;
+}
+
+@media(max-width:600px) {
+  nav { gap: 15px; }
+  nav a { font-size: 11px; }
+  main { padding: 22px 15px; }
+  .cover-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="rmb-banner.png" alt="R.M.B. Diamond Logo">
+</header>
+
+<nav>
+  <a class="active" href="index.html">HOME</a>
+  <a href="music.html">MUSIC</a>
+  <a href="releases.html">RELEASES</a>
+  <a href="about.html">ABOUT</a>
+  <a href="contact.html">CONTACT</a>
+</nav>
+
+<main>
+
+<section class="hero">
+  <div class="wave" id="wave" aria-hidden="true"></div>
+
+  <div class="origin">
+    FRANKFURT · ELECTRONIC ROOTS
+  </div>
+
+  <h1>The Sound of R.M.B.</h1>
+
+  <p class="subtitle">
+    90s Eurodance · Techno · Trance · EDM
+  </p>
+</section>
+
+<section class="releases">
+  <h2>Latest Releases</h2>
+
+  <div class="cover-grid">
+
+    <div>
+      <div class="cover">YOUR COVER</div>
+      <div class="song">Turn It Up</div>
+      <div class="artist">R.M.B.</div>
+    </div>
+
+    <div>
+      <div class="cover">YOUR COVER</div>
+      <div class="song">Justine</div>
+      <div class="artist">R.M.B.</div>
+    </div>
+
+    <div>
+      <div class="cover">YOUR COVER</div>
+      <div class="song">The Pulse of the Earth</div>
+      <div class="artist">R.M.B.</div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  R.M.B. · Independent Electronic Music
+</footer>
+
+<script>
+const wave = document.getElementById("wave");
+
+for (let i = 0; i < 64; i++) {
+  const bar = document.createElement("span");
+  bar.style.height =
+    (8 + Math.abs(Math.sin(i * 1.71) * 65)) + "px";
+  bar.style.animationDelay = (i * .035) + "s";
+  wave.appendChild(bar);
+}
+</script>
+
+</body>
+</html>
