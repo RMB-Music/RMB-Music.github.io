@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>R.M.B. | MUSIC</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #101720;
+      color: #e5edf7;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* R.M.B. HEADER */
+
+    header {
+      text-align: center;
+      padding: 20px 15px 10px;
+      background: #121820;
+      border-bottom: 1px solid #35475b;
+    }
+
+    .rmb-logo {
+      display: block;
+      width: min(600px, 94%);
+      height: auto;
+      margin: 0 auto 18px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px 26px;
+      padding: 10px 0 15px;
+    }
+
+    nav a {
+      color: #b1c2d7;
+      font-family: "Michroma", Arial, sans-serif;
+      font-size: 10px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #ffffff;
+      text-shadow: 0 0 10px #7bbcff;
+    }
+
+    /* MUSIC BEREICH */
+
+    .music-hero {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      text-align: center;
+      padding: 35px 15px 55px;
+      background:
+        radial-gradient(
+          ellipse at 50% 22%,
+          #24364a 0%,
+          #131e2b 42%,
+          #0d141d 100%
+        );
+      border-bottom: 1px solid #35475b;
+    }
+
+    /* FRANKFURTER SKYLINE */
+
+    .skyline {
+      position: absolute;
+      z-index: -1;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 100%;
+      min-width: 760px;
+      max-width: 1800px;
+      height: auto;
+      opacity: 0.19;
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+    }
+
+    /* CHROM-SCHRIFTZUG */
+
+    .music-title {
+      display: block;
+      width: min(850px, 96%);
+      height: auto;
+      margin: 0 auto 25px;
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 12px rgba(76, 153, 240, 0.2));
+    }
+
+    .hero-intro {
+      color: #a9bed5;
+      letter-spacing: 2.5px;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin: 12px auto 36px;
+      line-height: 1.8;
+    }
+
+    /* VINYL-AUSWAHL */
+
+    .vinyl-menu {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(18px, 6vw, 90px);
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .vinyl-button {
+      background: transparent;
+      border: none;
+      color: #dce8f7;
+      padding: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.25s, opacity 0.25s;
+      opacity: 0.7;
+    }
+
+    .vinyl-button:hover {
+      transform: translateY(-5px);
+      opacity: 1;
+    }
+
+    .vinyl-button.selected {
+      opacity: 1;
+    }
+
+    .vinyl-button img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      transition: filter 0.25s;
+    }
+
+    .vinyl-button.selected img {
+      filter: drop-shadow(0 0 17px rgba(105, 174, 255, 0.5));
+    }
+
+    .vinyl-button.single {
+      width: clamp(145px, 23vw, 210px);
+    }
+
+    .vinyl-button.album {
+      width: clamp(190px, 30vw, 285px);
+    }
+
+    .vinyl-caption {
+      font-family: "Michroma", Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .selected .vinyl-caption {
+      color: #a8d3ff;
+      text-shadow: 0 0 12px rgba(90, 160, 245, 0.6);
+    }
+
+    /* SONG- UND ALBUM-GALERIE */
+
+    .content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 45px 22px 90px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: "Michroma", Arial, sans-serif;
+      color: #d7e5f4;
+      font-size: clamp(16px, 2.5vw, 25px);
+      font-weight: normal;
+      letter-spacing: 2px;
+      margin: 0 0 12px;
+    }
+
+    .section-subtitle {
+      color: #839cb7;
+      font-size: 13px;
+      margin: 0 0 38px;
+      letter-spacing: 1px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 24px;
+      text-align: center;
+    }
+
+    .music-card {
+      background: #1c2530;
+      border: 1px solid #334457;
+      border-radius: 12px;
+      padding: 12px;
+      min-width: 0;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .music-card:hover {
+      transform: translateY(-4px);
+      border-color: #7199c6;
+    }
+
+    .cover-button {
+      padding: 0;
+      width: 100%;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .music-cover {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 7px;
+      background: #101720;
+    }
+
+    .track-name {
+      color: #f0f5fc;
+      font-weight: bold;
+      font-size: 14px;
+      margin: 13px 0 5px;
+      line-height: 1.5;
+    }
+
+    .track-version {
+      color: #91a9c3;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 7px;
+    }
+
+    .track-date {
+      color: #748ca7;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .links a {
+      display: inline-block;
+      background: #293c50;
+      color: #d7e9fb;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+
+    .links a:hover {
+      background: #3d5b78;
+    }
+
+    .empty-message {
+      grid-column: 1 / -1;
+      color: #a7bed7;
+      background: #1c2530;
+      border: 1px solid #334457;
+      padding: 40px 20px;
+      border-radius: 12px;
+      line-height: 1.8;
+    }
+
+    .more-button {
+      margin-top: 32px;
+      padding: 13px 23px;
+      border-radius: 8px;
+      border: 1px solid #6788ac;
+      background: #22374b;
+      color: white;
+      cursor: pointer;
+      font-family: "Michroma", Arial, sans-serif;
+      font-size: 10px;
+    }
+
+    .more-button:hover {
+      background: #36516d;
+    }
+
+    /* YOUTUBE-PLAYER */
+
+    .video-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .video-modal.open {
+      display: flex;
+    }
+
+    .video-window {
+      width: min(900px, 100%);
+      position: relative;
+    }
+
+    .close-video {
+      position: absolute;
+      right: 0;
+      top: -45px;
+      background: none;
+      border: 0;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 9px;
+      background: black;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 12px;
+      color: #7389a1;
+      border-top: 1px solid #29394b;
+      font-size: 12px;
+    }
+
+    /* TABLET */
+
+    @media (max-width: 1050px) {
+      .gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    /* HANDY */
+
+    @media (max-width: 600px) {
+      header {
+        padding-top: 14px;
+      }
+
+      nav {
+        gap: 12px 16px;
+      }
+
+      nav a {
+        font-size: 9px;
+      }
+
+      .music-hero {
+        padding: 25px 8px 45px;
+      }
+
+      .hero-intro {
+        font-size: 10px;
+        letter-spacing: 1px;
+        margin-bottom: 25px;
+      }
+
+      .vinyl-menu {
+        gap: 4px;
+        flex-wrap: nowrap;
+      }
+
+      .vinyl-button.single {
+        width: 40%;
+      }
+
+      .vinyl-button.album {
+        width: 52%;
+      }
+
+      .vinyl-caption {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .content {
+        padding: 35px 12px 65px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .music-card {
+        padding: 9px;
+      }
+
+      .track-name {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img
+      src="rmb-banner.png"
+      alt="R.M.B. Logo"
+      class="rmb-logo"
+    >
+
+    <nav>
+      <a href="index.html">HOME</a>
+      <a href="music-test.html" class="active">MUSIC</a>
+      <a href="music.html">RELEASES</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </header>
+
+  <section class="music-hero">
+
+    <img
+      src="images/frankfurt-skyline.png"
+      alt=""
+      class="skyline"
+    >
+
+    <img
+      src="images/music-schriftzug.png"
+      alt="MUSIC – THE SOUND OF R.M.B."
+      class="music-title"
+    >
+
+    <p class="hero-intro">
+      90s Eurodance · EDM · Trance
+    </p>
+
+    <div class="vinyl-menu">
+
+      <button
+        class="vinyl-button single selected"
+        id="singlesButton"
+        type="button"
+        aria-pressed="true"
+      >
+        <img
+          src="images/vinyl-single.png"
+          alt="Singles-Schallplatte"
+        >
+        <span class="vinyl-caption">SINGLES</span>
+      </button>
+
+      <button
+        class="vinyl-button album"
+        id="albumsButton"
+        type="button"
+        aria-pressed="false"
+      >
+        <img
+          src="images/vinyl-album.png"
+          alt="Album-Schallplatte"
+        >
+        <span class="vinyl-caption">ALBUMS</span>
+      </button>
+
+    </div>
+
+  </section>
+
+  <main class="content">
+
+    <h1 class="section-title" id="sectionTitle">
+      SINGLES
+    </h1>
+
+    <p class="section-subtitle" id="sectionSubtitle">
+      Discover the sound of R.M.B.
+    </p>
+
+    <div class="gallery" id="gallery">
+      <div class="empty-message">
+        Musik wird geladen ...
+      </div>
+    </div>
+
+    <button
+      class="more-button"
+      id="moreButton"
+      type="button"
+      hidden
+    >
+      WEITERE SONGS ANZEIGEN
+    </button>
+
+  </main>
+
+  <footer>
+    © R.M.B. MUSIC · FRANKFURT AM MAIN
+  </footer>
+
+  <div class="video-modal" id="videoModal">
+    <div class="video-window">
+
+      <button
+        type="button"
+        class="close-video"
+        id="closeVideo"
+        aria-label="Video schließen"
+      >
+        &times;
+      </button>
+
+      <iframe
+        class="video-frame"
+        id="videoFrame"
+        title="R.M.B. Musikvideo"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+
+    </div>
+  </div>
+
+  <script>
+    const gallery = document.getElementById("gallery");
+    const singlesButton = document.getElementById("singlesButton");
+    const albumsButton = document.getElementById("albumsButton");
+    const sectionTitle = document.getElementById("sectionTitle");
+    const sectionSubtitle = document.getElementById("sectionSubtitle");
+    const moreButton = document.getElementById("moreButton");
+
+    const videoModal = document.getElementById("videoModal");
+    const videoFrame = document.getElementById("videoFrame");
+    const closeVideo = document.getElementById("closeVideo");
+
+    let allMusic = [];
+    let activeCategory = "single";
+    let visibleCount = 10;
+
+    function escapeHTML(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function safeURL(value) {
+      try {
+        const url = new URL(value, window.location.href);
+        return ["https:", "http:"].includes(url.protocol)
+          ? url.href
+          : "";
+      } catch {
+        return "";
+      }
+    }
+
+    function formatDate(dateString) {
+      if (!dateString) return "";
+
+      const date = new Date(dateString + "T12:00:00");
+
+      if (isNaN(date.getTime())) return "";
+
+      return date.toLocaleDateString("de-DE", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+    }
+
+    function categoryOf(item) {
+      const category = String(
+        item.type || item.category || "single"
+      ).toLowerCase();
+
+      return ["album", "albums", "lp"].includes(category)
+        ? "album"
+        : "single";
+    }
+
+    function getYoutubeId(item) {
+      const value = String(item.youtube || "").trim();
+
+      if (/^[A-Za-z0-9_-]{11}$/.test(value)) {
+        return value;
+      }
+
+      try {
+        const url = new URL(value);
+
+        if (url.hostname.includes("youtu.be")) {
+          return url.pathname.split("/")[1] || "";
+        }
+
+        if (url.hostname.includes("youtube.com")) {
+          return url.searchParams.get("v") ||
+            url.pathname.split("/").pop() || "";
+        }
+      } catch {}
+
+      return "";
+    }
+
+    function openVideo(videoId) {
+      if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) return;
+
+      videoFrame.src =
+        "https://www.youtube-nocookie.com/embed/" +
+        videoId +
+        "?autoplay=1";
+
+      videoModal.classList.add("open");
+    }
+
+    function closeVideoPlayer() {
+      videoModal.classList.remove("open");
+      videoFrame.src = "";
+    }
+
+    closeVideo.addEventListener("click", closeVideoPlayer);
+
+    videoModal.addEventListener("click", function(event) {
+      if (event.target === videoModal) {
+        closeVideoPlayer();
+      }
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeVideoPlayer();
+      }
+    });
+
+    function renderMusic() {
+      sectionTitle.textContent =
+        activeCategory === "single" ? "SINGLES" : "ALBUMS";
+
+      sectionSubtitle.textContent =
+        activeCategory === "single"
+          ? "The Singles Collection"
+          : "The Album Collection";
+
+      singlesButton.classList.toggle(
+        "selected",
+        activeCategory === "single"
+      );
+
+      albumsButton.classList.toggle(
+        "selected",
+        activeCategory === "album"
+      );
+
+      singlesButton.setAttribute(
+        "aria-pressed",
+        String(activeCategory === "single")
+      );
+
+      albumsButton.setAttribute(
+        "aria-pressed",
+        String(activeCategory === "album")
+      );
+
+      const items = allMusic
+        .filter(item => categoryOf(item) === activeCategory)
+        .sort((a, b) => {
+          return String(b.releaseDate || "")
+            .localeCompare(String(a.releaseDate || ""));
+        });
+
+      gallery.innerHTML = "";
+
+      if (items.length === 0) {
+        gallery.innerHTML = `
+          <div class="empty-message">
+            ${
+              activeCategory === "album"
+                ? "Hier erscheinen bald die R.M.B.-Alben."
+                : "Hier erscheinen bald die R.M.B.-Singles."
+            }
+          </div>
+        `;
+
+        moreButton.hidden = true;
+        return;
+      }
+
+      items.slice(0, visibleCount).forEach(item => {
+        const videoId = getYoutubeId(item);
+
+        const cover = safeURL(item.cover) ||
+          (videoId
+            ? "https://img.youtube.com/vi/" +
+              videoId + "/hqdefault.jpg"
+            : "");
+
+        const spotify = safeURL(item.spotify);
+        const amazon = safeURL(item.amazon);
+
+        const card = document.createElement("article");
+        card.className = "music-card";
+
+        card.innerHTML = `
+          <button
+            type="button"
+            class="cover-button"
+            ${videoId ? "" : "disabled"}
+            aria-label="Musikvideo öffnen"
+          >
+            <img
+              class="music-cover"
+              src="${escapeHTML(cover)}"
+              alt="${escapeHTML(item.title || "R.M.B.")}"
+              loading="lazy"
+            >
+          </button>
+
+          <div class="track-name">
+            ${escapeHTML(item.title || "R.M.B.")}
+          </div>
+
+          <div class="track-version">
+            ${escapeHTML(item.version || "")}
+          </div>
+
+          ${
+            item.releaseDate
+              ? `<div class="track-date">
+                   ${escapeHTML(formatDate(item.releaseDate))}
+                 </div>`
+              : ""
+          }
+
+          <div class="links">
+            ${
+              videoId
+                ? `<a
+                     href="https://www.youtube.com/watch?v=${videoId}"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                   >YouTube</a>`
+                : ""
+            }
+
+            ${
+              spotify
+                ? `<a
+                     href="${escapeHTML(spotify)}"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                   >Spotify</a>`
+                : ""
+            }
+
+            ${
+              amazon
+                ? `<a
+                     href="${escapeHTML(amazon)}"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                   >Amazon</a>`
+                : ""
+            }
+          </div>
+        `;
+
+        const coverButton =
+          card.querySelector(".cover-button");
+
+        if (videoId) {
+          coverButton.addEventListener("click", function() {
+            openVideo(videoId);
+          });
+        }
+
+        gallery.appendChild(card);
+      });
+
+      moreButton.hidden = items.length <= visibleCount;
+
+      moreButton.textContent =
+        activeCategory === "single"
+          ? "WEITERE SONGS ANZEIGEN"
+          : "WEITERE ALBEN ANZEIGEN";
+    }
+
+    singlesButton.addEventListener("click", function() {
+      activeCategory = "single";
+      visibleCount = 10;
+      renderMusic();
+    });
+
+    albumsButton.addEventListener("click", function() {
+      activeCategory = "album";
+      visibleCount = 10;
+      renderMusic();
+    });
+
+    moreButton.addEventListener("click", function() {
+      visibleCount += 10;
+      renderMusic();
+    });
+
+    fetch("songs.json")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("songs.json nicht gefunden");
+        }
+
+        return response.json();
+      })
+      .then(data => {
+        allMusic = Array.isArray(data) ? data : [];
+        renderMusic();
+      })
+      .catch(error => {
+        gallery.innerHTML =
+          '<div class="empty-message">' +
+          'Die Musikdaten konnten nicht geladen werden.' +
+          '</div>';
+
+        console.error(error);
+      });
+  </script>
+
+</body>
+</html>
