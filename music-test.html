@@ -38,17 +38,19 @@ body {
 }
 
 /* R.M.B. BANNER */
+/* KORRIGIERT: VOLLE BILDSCHIRMBREITE */
 
 header {
   width: 100%;
   background: var(--background);
-  padding: 20px 12px 0;
+  padding: 20px 0 0;
   text-align: center;
 }
 
 .rmb-banner {
   display: block;
-  width: min(850px, 96%);
+  width: 100%;
+  max-width: none;
   height: auto;
   margin: 0 auto;
 }
@@ -121,8 +123,8 @@ nav a.active {
   isolation: isolate;
 }
 
-/* FRANKFURTER SKYLINE
-   NEU: MAXIMAL 850 PIXEL BREIT */
+/* FRANKFURTER SKYLINE */
+/* MAXIMAL 850 PIXEL BREIT */
 
 .skyline {
   position: absolute;
@@ -558,7 +560,7 @@ footer {
 @media (max-width: 600px) {
 
   header {
-    padding: 12px 10px 0;
+    padding: 12px 0 0;
   }
 
   .rmb-banner {
