@@ -4,11 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>R.M.B. | MUSIC TEST</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================
+   GRUNDEINSTELLUNGEN
+========================= */
+
 :root {
   --background: #101720;
   --card: #1c2530;
@@ -21,7 +27,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   min-height: 100%;
@@ -45,14 +52,14 @@ input:focus-visible {
 }
 
 /* =========================
-   MUSIC + SKYLINE
+   MUSIC UND FRANKFURT
 ========================= */
 
 .music-hero {
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding: 0 0 18px;
+  padding: 0 0 0;
   background: var(--background);
 }
 
@@ -65,6 +72,7 @@ input:focus-visible {
   width: 100%;
   height: 520px;
   pointer-events: none;
+
   background: radial-gradient(
     ellipse,
     rgba(56,94,135,0.16),
@@ -73,8 +81,6 @@ input:focus-visible {
   );
 }
 
-/* Wieder die ursprüngliche Höhe */
-
 .music-composition {
   position: relative;
   width: 100%;
@@ -82,19 +88,26 @@ input:focus-visible {
   isolation: isolate;
 }
 
+/* Skyline bleibt bündig */
+
 .skyline {
   position: absolute;
   left: 0;
   bottom: -68px;
   z-index: 0;
+
   display: block;
   width: 100%;
   max-width: none;
   height: auto;
+
   opacity: 0.28;
   filter: brightness(0) invert(1);
+
   pointer-events: none;
 }
+
+/* Großer MUSIC-Schriftzug */
 
 .music-heading {
   position: absolute;
@@ -102,14 +115,18 @@ input:focus-visible {
   top: clamp(14px,1.8vw,28px);
   transform: translateX(-50%);
   z-index: 2;
+
   display: block;
   width: min(720px,92%);
   max-width: 720px;
   height: auto;
+
   mix-blend-mode: screen;
+
   filter: drop-shadow(
     0 0 10px rgba(95,165,255,0.18)
   );
+
   pointer-events: none;
 }
 
@@ -125,6 +142,7 @@ input:focus-visible {
   margin: 6px auto 0;
 
   display: grid;
+
   grid-template-columns:
     minmax(0,1.08fr)
     minmax(0,1.7fr)
@@ -133,19 +151,19 @@ input:focus-visible {
   gap: 10px;
   align-items: stretch;
 
-  /* Eine gemeinsame Gerätehöhe */
   --device-height: 260px;
 }
 
-/* GENRETEXT IN BESTEHENDER LÜCKE
-   Ohne zusätzliche Seitenhöhe */
+/* Genretext in vorhandener Lücke */
 
 .music-style-top {
   position: absolute;
   z-index: 8;
+
   left: 50%;
   top: -31px;
   transform: translateX(-50%);
+
   width: max-content;
   max-width: 96%;
 
@@ -153,10 +171,12 @@ input:focus-visible {
   padding: 0;
 
   color: #b9d3ee;
+
   font-family: "Michroma",Arial,sans-serif;
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
+
   white-space: nowrap;
 
   text-shadow:
@@ -172,12 +192,15 @@ input:focus-visible {
 .turntable {
   position: relative;
   min-width: 0;
+
   width: 100%;
   height: var(--device-height);
+
   overflow: hidden;
 
   border: 1px solid #667b91;
   border-radius: 6px;
+
   background: #cbd5df;
 
   box-shadow:
@@ -187,8 +210,10 @@ input:focus-visible {
 
 .turntable-image {
   display: block;
+
   width: 100%;
   height: 100%;
+
   object-fit: fill;
 }
 
@@ -199,6 +224,7 @@ input:focus-visible {
 .mixer {
   position: relative;
   min-width: 0;
+
   width: 100%;
   height: var(--device-height);
 
@@ -206,6 +232,7 @@ input:focus-visible {
 
   border: 1px solid #708299;
   border-radius: 7px;
+
   overflow: hidden;
 
   background:
@@ -227,19 +254,24 @@ input:focus-visible {
     0 8px 20px rgba(0,0,0,0.45);
 }
 
+/* Mixer-Überschrift */
+
 .mixer-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 6px;
 
   height: 19px;
   margin-bottom: 5px;
 
   color: #bfcedd;
+
   font-family: "Michroma",Arial,sans-serif;
   font-size: 8px;
   letter-spacing: 0.3px;
+
   white-space: nowrap;
 }
 
@@ -252,36 +284,47 @@ input:focus-visible {
 .power-led {
   width: 6px;
   height: 6px;
+
   border-radius: 50%;
+
   background: #82d2ff;
   box-shadow: 0 0 7px #6bc5ff;
 }
 
+/* Bedienfeld */
+
 .mixer-panel {
   display: grid;
+
   grid-template-columns:
     minmax(0,0.78fr)
     minmax(0,3.3fr)
     minmax(0,0.78fr);
 
   gap: 8px;
+
   height: calc(100% - 77px);
 }
+
+/* EQ links und rechts */
 
 .eq-panel {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
   min-width: 0;
   padding: 5px;
 
   border: 1px solid #405265;
   border-radius: 4px;
+
   background: rgba(6,13,20,0.23);
 }
 
 .eq-title {
   color: #abc1d5;
+
   font-family: "Michroma",sans-serif;
   font-size: 7px;
 }
@@ -295,11 +338,13 @@ input:focus-visible {
 .eq-knob {
   position: relative;
   flex-shrink: 0;
+
   width: 19px;
   height: 19px;
-  border-radius: 50%;
 
+  border-radius: 50%;
   border: 2px solid #8d9fb0;
+
   background: conic-gradient(
     #263c51,
     #e2eaf1,
@@ -316,30 +361,36 @@ input:focus-visible {
 .eq-knob::after {
   content: "";
   position: absolute;
+
   left: calc(50% - 1px);
   top: 1px;
+
   width: 2px;
   height: 6px;
+
   background: #172432;
   border-radius: 2px;
 }
 
 .eq-name {
   color: #acbed0;
+
   font-family: "Michroma",sans-serif;
   font-size: clamp(5px,0.56vw,7px);
 }
 
 /* =========================
-   VU-METER + 5 FADER
+   VU-METER UND FADER
 ========================= */
 
 .mixer-center {
   display: grid;
+
   grid-template-columns:
     10px
     minmax(0,1fr)
     10px;
+
   gap: 4px;
   min-width: 0;
 }
@@ -348,9 +399,11 @@ input:focus-visible {
   display: flex;
   flex-direction: column-reverse;
   gap: 2px;
+
   padding: 4px 1px;
 
   background: #080e14;
+
   border: 1px solid #405063;
   border-radius: 3px;
 }
@@ -359,7 +412,9 @@ input:focus-visible {
   width: 100%;
   flex: 1;
   min-height: 2px;
+
   border-radius: 1px;
+
   background: #14241f;
   opacity: 0.28;
 }
@@ -379,12 +434,18 @@ input:focus-visible {
 .vu-led.on {
   background: var(--lit);
   opacity: 1;
+
   box-shadow: 0 0 4px var(--lit);
 }
 
+/* Fünf Menükanäle */
+
 .mixer-channels {
   display: grid;
-  grid-template-columns: repeat(5,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(5,minmax(0,1fr));
+
   gap: 5px;
   min-width: 0;
 }
@@ -412,17 +473,24 @@ input:focus-visible {
 .fader-track::before {
   content: "";
   position: absolute;
+
   top: 4px;
   bottom: 4px;
   left: 50%;
+
   transform: translateX(-50%);
+
   width: 6px;
+
   border-radius: 4px;
   background: #060b11;
 }
 
+/* Echte Menüfader */
+
 .fader-handle {
   position: absolute;
+
   top: 57%;
   left: 50%;
 
@@ -432,12 +500,14 @@ input:focus-visible {
   width: calc(100% - 1px);
   min-width: 0;
   height: 35px;
+
   padding: 0 1px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   gap: 3px;
 
   border: 1px solid #ecf3fa;
@@ -454,6 +524,7 @@ input:focus-visible {
   );
 
   color: #152433;
+
   font-family: "Michroma",Arial,sans-serif;
   font-size: clamp(4.5px,0.55vw,7px);
   font-weight: bold;
@@ -461,6 +532,7 @@ input:focus-visible {
 
   cursor: grab;
   touch-action: none;
+
   user-select: none;
   -webkit-user-select: none;
 
@@ -471,9 +543,11 @@ input:focus-visible {
 
 .fader-handle::after {
   content: "";
+
   display: block;
   width: 70%;
   height: 3px;
+
   background: #7890a5;
 }
 
@@ -487,6 +561,7 @@ input:focus-visible {
 
 .fader-handle[aria-current="page"] {
   border-color: #85c4ff;
+
   box-shadow:
     0 3px 5px #000,
     0 0 8px rgba(105,177,255,0.45);
@@ -498,6 +573,7 @@ input:focus-visible {
 
 .crossfader-section {
   position: relative;
+
   width: min(80%,410px);
   margin: 6px auto 0;
 }
@@ -505,9 +581,11 @@ input:focus-visible {
 .crossfader-labels {
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 5px;
 
   color: #9cb2c7;
+
   font-family: "Michroma",sans-serif;
   font-size: 8px;
   letter-spacing: 1px;
@@ -520,6 +598,7 @@ input:focus-visible {
 
 .crossfader-slider {
   display: block;
+
   width: 100%;
   height: 20px;
   margin: 0;
@@ -528,19 +607,27 @@ input:focus-visible {
   -webkit-appearance: none;
 
   background: transparent;
+
   cursor: ew-resize;
   touch-action: pan-y;
 }
 
+/* Crossfader-Schiene */
+
 .crossfader-slider::-webkit-slider-runnable-track {
   height: 7px;
+
   border-radius: 5px;
   border: 1px solid #51677b;
+
   background: #090f17;
+
   box-shadow:
     inset 0 1px 3px #000,
     0 1px 1px #7a8ca0;
 }
+
+/* Crossfader-Schieber */
 
 .crossfader-slider::-webkit-slider-thumb {
   appearance: none;
@@ -573,8 +660,10 @@ input:focus-visible {
 .crossfader-slider::-moz-range-thumb {
   width: 38px;
   height: 18px;
+
   border-radius: 3px;
   border: 1px solid #e5edf4;
+
   background: #aebfd0;
 }
 
@@ -583,9 +672,11 @@ input:focus-visible {
   margin-top: 0;
 
   color: #7f9ab1;
+
   font-family: "Michroma",sans-serif;
   font-size: 7px;
   letter-spacing: 1px;
+
   text-align: center;
 }
 
@@ -603,8 +694,10 @@ input:focus-visible {
 
 .led-display {
   position: relative;
+
   width: 100%;
   padding: 8px 12px;
+
   overflow: hidden;
 
   border: 1px solid rgba(170,210,250,0.55);
@@ -628,6 +721,7 @@ input:focus-visible {
   content: "";
   position: absolute;
   inset: 0;
+
   pointer-events: none;
   border-radius: inherit;
 
@@ -650,44 +744,37 @@ input:focus-visible {
 
   border: 1px solid #344e69;
   border-radius: 7px;
+
   background: #07111b;
 }
 
 /* =========================
-   SONG-GALERIE
+   MUSIKCOVER DIREKT UNTER LED
 ========================= */
+
+/* Nur ein kleiner Abstand:
+   keine Überschrift,
+   kein zusätzlicher Untertitel */
 
 .content {
   width: 100%;
   max-width: 1400px;
+
   margin: 0 auto;
-  padding: 38px 24px 90px;
+
+  padding: 14px 24px 75px;
 
   background: var(--background);
   text-align: center;
 }
 
-.section-heading {
-  margin: 0 0 14px;
-
-  font-family: "Michroma",Arial,sans-serif;
-  font-size: clamp(19px,2.4vw,27px);
-  font-weight: normal;
-  letter-spacing: 2px;
-}
-
-.section-subtitle {
-  margin: 0 0 35px;
-
-  color: #91a7be;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
+/* Cover-Galerie */
 
 .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
   gap: 24px;
   text-align: center;
 }
@@ -695,9 +782,11 @@ input:focus-visible {
 .music-card {
   width: min(220px,100%);
   min-width: 180px;
+
   padding: 12px;
 
   background: var(--card);
+
   border: 1px solid var(--line);
   border-radius: 12px;
 
@@ -710,10 +799,13 @@ input:focus-visible {
 
 .cover-button {
   display: block;
+
   width: 100%;
   padding: 0;
+
   background: transparent;
   border: 0;
+
   cursor: pointer;
 }
 
@@ -723,15 +815,19 @@ input:focus-visible {
 
 .cover {
   display: block;
+
   width: 100%;
   aspect-ratio: 1;
+
   object-fit: cover;
+
   background: #090d13;
   border-radius: 7px;
 }
 
 .track-title {
   margin: 14px 0 5px;
+
   font-size: 14px;
   font-weight: bold;
   line-height: 1.5;
@@ -739,12 +835,14 @@ input:focus-visible {
 
 .track-version {
   margin-bottom: 8px;
+
   color: #9bafc5;
   font-size: 12px;
 }
 
 .track-date {
   margin-bottom: 10px;
+
   color: #8197ae;
   font-size: 11px;
 }
@@ -753,14 +851,17 @@ input:focus-visible {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
   gap: 7px;
   margin-top: 12px;
 }
 
 .music-links a {
   padding: 8px 10px;
+
   background: #293d53;
   border-radius: 6px;
+
   color: #d6e9fc;
   text-decoration: none;
   font-size: 11px;
@@ -772,6 +873,7 @@ input:focus-visible {
 
 .empty-message {
   width: min(420px,100%);
+
   padding: 38px 18px;
 
   background: var(--card);
@@ -783,6 +885,7 @@ input:focus-visible {
 
 .more-button {
   margin-top: 35px;
+
   padding: 13px 22px;
 
   background: #263c52;
@@ -790,8 +893,10 @@ input:focus-visible {
   border-radius: 7px;
 
   color: white;
+
   font-family: "Michroma",Arial,sans-serif;
   font-size: 10px;
+
   cursor: pointer;
 }
 
@@ -805,11 +910,13 @@ input:focus-visible {
 
 .video-modal {
   display: none;
+
   position: fixed;
   inset: 0;
   z-index: 1000;
 
   padding: 25px;
+
   background: rgba(0,0,0,0.94);
 
   align-items: center;
@@ -828,6 +935,7 @@ input:focus-visible {
 .video-frame {
   width: 100%;
   aspect-ratio: 16 / 9;
+
   border: 0;
   background: black;
 }
@@ -836,10 +944,13 @@ input:focus-visible {
   position: absolute;
   right: 0;
   top: -48px;
+
   background: none;
   border: 0;
+
   color: white;
   font-size: 34px;
+
   cursor: pointer;
 }
 
@@ -849,8 +960,10 @@ input:focus-visible {
 
 footer {
   padding: 30px 15px 35px;
+
   background: var(--background);
   color: #7d91a7;
+
   text-align: center;
   font-size: 12px;
 }
@@ -860,10 +973,13 @@ footer {
 ========================= */
 
 @media (max-width:1080px) {
+
   .dj-setup {
     width: 98%;
     gap: 7px;
-    --device-height: clamp(180px,21.5vw,250px);
+
+    --device-height:
+      clamp(180px,21.5vw,250px);
   }
 
   .mixer {
@@ -892,6 +1008,7 @@ footer {
   .led-display-wrap {
     width: 98%;
   }
+
 }
 
 /* =========================
@@ -899,6 +1016,7 @@ footer {
 ========================= */
 
 @media (max-width:700px) {
+
   .music-composition {
     height: 178px;
   }
@@ -915,8 +1033,12 @@ footer {
 
   .dj-setup {
     width: min(470px,96%);
+
     margin-top: 5px;
-    grid-template-columns: repeat(2,minmax(0,1fr));
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
     gap: 10px;
     align-items: stretch;
 
@@ -925,6 +1047,7 @@ footer {
 
   .music-style-top {
     top: -24px;
+
     font-size: 8px;
     letter-spacing: 1px;
   }
@@ -932,6 +1055,7 @@ footer {
   .mixer {
     grid-column: 1 / -1;
     grid-row: 1;
+
     height: 230px;
     padding: 10px;
   }
@@ -981,7 +1105,7 @@ footer {
   }
 
   .content {
-    padding: 35px 12px 65px;
+    padding: 12px 12px 65px;
   }
 
   .gallery {
@@ -991,15 +1115,18 @@ footer {
   .music-card {
     width: calc(50% - 6px);
     min-width: 150px;
+
     padding: 9px;
   }
 
   .track-title {
     font-size: 12px;
   }
+
 }
 
 @media (max-width:420px) {
+
   .mixer-header {
     font-size: 6px;
   }
@@ -1029,21 +1156,26 @@ footer {
   .music-card {
     width: 100%;
   }
+
 }
 
 @media (prefers-reduced-motion:reduce) {
+
   .fader-handle {
     transition: none !important;
   }
+
 }
 </style>
 </head>
 
 <body>
 
-<section class="music-hero">
+<!-- =========================
+     MUSIC UND SKYLINE
+========================= -->
 
-  <!-- MUSIC UND FRANKFURT -->
+<section class="music-hero">
 
   <div class="music-composition">
 
@@ -1061,17 +1193,17 @@ footer {
 
   </div>
 
-  <!-- DJ-AUFBAU -->
+  <!-- =========================
+       DJ-AUFBAU
+  ========================= -->
 
   <div class="dj-setup">
-
-    <!-- Text ohne zusätzliche Höhe -->
 
     <p class="music-style-top">
       90s Eurodance · EDM · Trance
     </p>
 
-    <!-- LINKER TURNTABLE -->
+    <!-- LINKER BAUSYS-TEM -->
 
     <div class="turntable single">
 
@@ -1083,13 +1215,17 @@ footer {
 
     </div>
 
-    <!-- MISCHPULT -->
+    <!-- =========================
+         MISCHPULT
+    ========================= -->
 
     <div class="mixer">
 
       <div class="mixer-header">
 
-        <span>R.M.B. · 5 CHANNEL DJ MIXER</span>
+        <span>
+          R.M.B. · 5 CHANNEL DJ MIXER
+        </span>
 
         <span class="power-indicator">
           <span class="power-led"></span>
@@ -1103,7 +1239,10 @@ footer {
         <!-- EQ LINKS -->
 
         <div class="eq-panel">
-          <span class="eq-title">CH A</span>
+
+          <span class="eq-title">
+            CH A
+          </span>
 
           <div class="eq-row">
             <span class="eq-knob"></span>
@@ -1124,9 +1263,10 @@ footer {
             <span class="eq-knob"></span>
             <span class="eq-name">BASS</span>
           </div>
+
         </div>
 
-        <!-- 5 MENÜFADER -->
+        <!-- FADER + VU-METER -->
 
         <div class="mixer-center">
 
@@ -1141,59 +1281,89 @@ footer {
             aria-label="DJ-Mischpult Navigation"
           >
 
+            <!-- HOME -->
+
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="index.html"
                   aria-label="HOME nach oben schieben"
-                >HOME</button>
+                >
+                  HOME
+                </button>
+
               </div>
             </div>
 
+            <!-- MUSIC -->
+
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="music-test.html"
                   aria-current="page"
                   aria-label="MUSIC nach oben schieben"
-                >MUSIC</button>
+                >
+                  MUSIC
+                </button>
+
               </div>
             </div>
 
+            <!-- RELEASES -->
+
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="music.html"
                   aria-label="RELEASES nach oben schieben"
-                >RELEASES</button>
+                >
+                  RELEASES
+                </button>
+
               </div>
             </div>
 
+            <!-- ABOUT -->
+
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="about.html"
                   aria-label="ABOUT nach oben schieben"
-                >ABOUT</button>
+                >
+                  ABOUT
+                </button>
+
               </div>
             </div>
 
+            <!-- CONTACT -->
+
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="contact.html"
                   aria-label="CONTACT nach oben schieben"
-                >CONTACT</button>
+                >
+                  CONTACT
+                </button>
+
               </div>
             </div>
 
@@ -1210,7 +1380,10 @@ footer {
         <!-- EQ RECHTS -->
 
         <div class="eq-panel">
-          <span class="eq-title">CH B</span>
+
+          <span class="eq-title">
+            CH B
+          </span>
 
           <div class="eq-row">
             <span class="eq-knob"></span>
@@ -1231,22 +1404,30 @@ footer {
             <span class="eq-knob"></span>
             <span class="eq-name">BASS</span>
           </div>
+
         </div>
 
       </div>
 
-      <!-- CROSSFADER -->
+      <!-- =========================
+           CROSSFADER
+      ========================= -->
 
       <div class="crossfader-section">
 
         <div class="crossfader-labels">
-          <span id="singleLabel" class="active">
+
+          <span
+            id="singleLabel"
+            class="active"
+          >
             SINGLE
           </span>
 
           <span id="albumLabel">
             ALBUM
           </span>
+
         </div>
 
         <input
@@ -1268,7 +1449,7 @@ footer {
 
     </div>
 
-    <!-- RECHTER TURNTABLE -->
+    <!-- RECHTER BAUSYS-TEM -->
 
     <div class="turntable album">
 
@@ -1282,7 +1463,9 @@ footer {
 
   </div>
 
-  <!-- LED-LAUFSCHRIFT -->
+  <!-- =========================
+       LED-LICHTLAUFLEISTE
+  ========================= -->
 
   <div class="led-display-wrap">
 
@@ -1294,7 +1477,7 @@ footer {
         width="1200"
         height="80"
         role="img"
-        aria-label="LED-Laufschrift mit aktiver Musik-Kollektion"
+        aria-label="SINGLE – THE SINGLE COLLECTION"
       ></canvas>
 
     </div>
@@ -1303,17 +1486,12 @@ footer {
 
 </section>
 
-<!-- SONGS / ALBEN -->
+<!-- =========================
+     MUSIKCOVER
+     OHNE EXTRA ÜBERSCHRIFT
+========================= -->
 
 <main class="content">
-
-  <h1 class="section-heading" id="sectionTitle">
-    SINGLES
-  </h1>
-
-  <p class="section-subtitle" id="sectionSubtitle">
-    The Singles Collection
-  </p>
 
   <div class="gallery" id="gallery">
 
@@ -1334,11 +1512,13 @@ footer {
 
 </main>
 
+<!-- FUSSZEILE -->
+
 <footer>
   © R.M.B. MUSIC · FRANKFURT AM MAIN
 </footer>
 
-<!-- YOUTUBE-VIDEO -->
+<!-- YOUTUBE-VIDEOFENSTER -->
 
 <div class="video-modal" id="videoModal">
 
@@ -1349,7 +1529,9 @@ footer {
       class="close-video"
       id="closeVideo"
       aria-label="Video schließen"
-    >&times;</button>
+    >
+      &times;
+    </button>
 
     <iframe
       id="videoFrame"
@@ -1364,11 +1546,13 @@ footer {
 </div>
 
 <script>
+
 /* =========================
    FADER-NAVIGATION
 ========================= */
 
-document.querySelectorAll(".fader-handle")
+document
+  .querySelectorAll(".fader-handle")
   .forEach(handle => {
 
     let startY = null;
@@ -1376,6 +1560,7 @@ document.querySelectorAll(".fader-handle")
     let distance = 0;
 
     function getTravel() {
+
       const track = handle.parentElement;
 
       return Math.max(
@@ -1388,90 +1573,136 @@ document.querySelectorAll(".fader-handle")
     }
 
     function reset() {
+
       startY = null;
       pointerId = null;
       distance = 0;
 
       handle.classList.remove("dragging");
       handle.classList.add("returning");
-      handle.style.setProperty("--drag","0px");
-    }
-
-    handle.addEventListener("pointerdown",event => {
-      if (
-        event.pointerType === "mouse" &&
-        event.button !== 0
-      ) return;
-
-      event.preventDefault();
-
-      startY = event.clientY;
-      pointerId = event.pointerId;
-      distance = 0;
-
-      handle.classList.remove("returning");
-      handle.classList.add("dragging");
-      handle.setPointerCapture(event.pointerId);
-    });
-
-    handle.addEventListener("pointermove",event => {
-      if (
-        startY === null ||
-        pointerId !== event.pointerId
-      ) return;
-
-      distance = Math.min(
-        getTravel(),
-        Math.max(0,startY - event.clientY)
-      );
 
       handle.style.setProperty(
         "--drag",
-        distance + "px"
+        "0px"
       );
-    });
+    }
 
-    handle.addEventListener("pointerup",event => {
-      if (
-        startY === null ||
-        pointerId !== event.pointerId
-      ) return;
+    handle.addEventListener(
+      "pointerdown",
+      event => {
 
-      const reached =
-        distance >= getTravel() * 0.85;
+        if (
+          event.pointerType === "mouse" &&
+          event.button !== 0
+        ) {
+          return;
+        }
 
-      const destination = handle.dataset.url;
+        event.preventDefault();
 
-      reset();
+        startY = event.clientY;
+        pointerId = event.pointerId;
+        distance = 0;
 
-      if (reached && destination) {
-        window.location.assign(destination);
+        handle.classList.remove("returning");
+        handle.classList.add("dragging");
+
+        handle.setPointerCapture(
+          event.pointerId
+        );
       }
-    });
+    );
 
-    handle.addEventListener("pointercancel",reset);
+    handle.addEventListener(
+      "pointermove",
+      event => {
+
+        if (
+          startY === null ||
+          pointerId !== event.pointerId
+        ) {
+          return;
+        }
+
+        distance = Math.min(
+          getTravel(),
+          Math.max(
+            0,
+            startY - event.clientY
+          )
+        );
+
+        handle.style.setProperty(
+          "--drag",
+          distance + "px"
+        );
+      }
+    );
+
+    handle.addEventListener(
+      "pointerup",
+      event => {
+
+        if (
+          startY === null ||
+          pointerId !== event.pointerId
+        ) {
+          return;
+        }
+
+        const reached =
+          distance >= getTravel() * 0.85;
+
+        const destination =
+          handle.dataset.url;
+
+        reset();
+
+        if (reached && destination) {
+          window.location.assign(
+            destination
+          );
+        }
+      }
+    );
+
+    handle.addEventListener(
+      "pointercancel",
+      reset
+    );
 
     handle.addEventListener(
       "lostpointercapture",
       () => {
-        if (startY !== null) reset();
+
+        if (startY !== null) {
+          reset();
+        }
       }
     );
 
-    handle.addEventListener("keydown",event => {
-      if (
-        event.key === "ArrowUp" ||
-        event.key === "Enter"
-      ) {
-        event.preventDefault();
+    handle.addEventListener(
+      "keydown",
+      event => {
 
-        const destination = handle.dataset.url;
+        if (
+          event.key === "ArrowUp" ||
+          event.key === "Enter"
+        ) {
 
-        if (destination) {
-          window.location.assign(destination);
+          event.preventDefault();
+
+          const destination =
+            handle.dataset.url;
+
+          if (destination) {
+            window.location.assign(
+              destination
+            );
+          }
         }
       }
-    });
+    );
 
   });
 
@@ -1480,11 +1711,17 @@ document.querySelectorAll(".fader-handle")
 ========================= */
 
 function createMeter(id) {
-  const meter = document.getElementById(id);
+
+  const meter =
+    document.getElementById(id);
+
   const leds = [];
 
   for (let i = 0; i < 14; i++) {
-    const led = document.createElement("span");
+
+    const led =
+      document.createElement("span");
+
     led.className = "vu-led";
 
     if (i < 8) {
@@ -1502,12 +1739,21 @@ function createMeter(id) {
   return leds;
 }
 
-const leftLEDs = createMeter("vuLeft");
-const rightLEDs = createMeter("vuRight");
+const leftLEDs =
+  createMeter("vuLeft");
+
+const rightLEDs =
+  createMeter("vuRight");
 
 function updateMeter(leds,level) {
+
   leds.forEach((led,i) => {
-    led.classList.toggle("on",i < level);
+
+    led.classList.toggle(
+      "on",
+      i < level
+    );
+
   });
 }
 
@@ -1515,13 +1761,17 @@ let leftLevel = 6;
 let rightLevel = 7;
 
 function animateMeters() {
-  if (document.hidden) return;
+
+  if (document.hidden) {
+    return;
+  }
 
   leftLevel = Math.max(
     2,
     Math.min(
       14,
-      leftLevel + Math.floor(Math.random()*7)-3
+      leftLevel +
+      Math.floor(Math.random()*7)-3
     )
   );
 
@@ -1529,26 +1779,38 @@ function animateMeters() {
     2,
     Math.min(
       14,
-      rightLevel + Math.floor(Math.random()*7)-3
+      rightLevel +
+      Math.floor(Math.random()*7)-3
     )
   );
 
-  updateMeter(leftLEDs,leftLevel);
-  updateMeter(rightLEDs,rightLevel);
+  updateMeter(
+    leftLEDs,
+    leftLevel
+  );
+
+  updateMeter(
+    rightLEDs,
+    rightLevel
+  );
 }
 
 animateMeters();
 
-const reduceMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
-).matches;
+const reduceMotion =
+  window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
 if (!reduceMotion) {
-  setInterval(animateMeters,170);
+  setInterval(
+    animateMeters,
+    170
+  );
 }
 
 /* =========================
-   CROSSFADER
+   CROSSFADER / KATEGORIEN
 ========================= */
 
 const crossfader =
@@ -1565,219 +1827,566 @@ let allMusic = [];
 let visibleCount = 10;
 
 function chooseCategory(category) {
-  if (category === activeCategory) return;
+
+  if (category === activeCategory) {
+    return;
+  }
 
   activeCategory = category;
   visibleCount = 10;
 
-  const isSingle = category === "single";
+  const isSingle =
+    category === "single";
 
-  singleLabel.classList.toggle("active",isSingle);
-  albumLabel.classList.toggle("active",!isSingle);
+  singleLabel.classList.toggle(
+    "active",
+    isSingle
+  );
+
+  albumLabel.classList.toggle(
+    "active",
+    !isSingle
+  );
 
   updateLEDMessage(category);
   renderMusic();
 }
 
-crossfader.addEventListener("input",() => {
-  chooseCategory(
-    Number(crossfader.value) < 50
-      ? "single"
-      : "album"
-  );
-});
+/* Crossfader umschalten */
 
-crossfader.addEventListener("change",() => {
-  const isSingle = Number(crossfader.value) < 50;
+crossfader.addEventListener(
+  "input",
+  () => {
 
-  crossfader.value = isSingle ? "0" : "100";
+    chooseCategory(
+      Number(crossfader.value) < 50
+        ? "single"
+        : "album"
+    );
+  }
+);
 
-  chooseCategory(
-    isSingle ? "single" : "album"
-  );
-});
+/* Beim Loslassen einrasten */
+
+crossfader.addEventListener(
+  "change",
+  () => {
+
+    const isSingle =
+      Number(crossfader.value) < 50;
+
+    crossfader.value =
+      isSingle ? "0" : "100";
+
+    chooseCategory(
+      isSingle ? "single" : "album"
+    );
+  }
+);
 
 /* =========================
-   ECHTE LED-PUNKTESCHRIFT
+   LED-PUNKTESCHRIFT
 ========================= */
 
 const ledCanvas =
   document.getElementById("ledCanvas");
 
-const ctx = ledCanvas.getContext("2d");
+const ctx =
+  ledCanvas.getContext("2d");
+
+/* 5x7 LED-Punktmatrix */
 
 const LED_FONT = {
-  "A":["01110","10001","10001","11111","10001","10001","10001"],
-  "B":["11110","10001","10001","11110","10001","10001","11110"],
-  "C":["01111","10000","10000","10000","10000","10000","01111"],
-  "D":["11110","10001","10001","10001","10001","10001","11110"],
-  "E":["11111","10000","10000","11110","10000","10000","11111"],
-  "F":["11111","10000","10000","11110","10000","10000","10000"],
-  "G":["01111","10000","10000","10111","10001","10001","01111"],
-  "H":["10001","10001","10001","11111","10001","10001","10001"],
-  "I":["11111","00100","00100","00100","00100","00100","11111"],
-  "L":["10000","10000","10000","10000","10000","10000","11111"],
-  "M":["10001","11011","10101","10101","10001","10001","10001"],
-  "N":["10001","11001","10101","10011","10001","10001","10001"],
-  "O":["01110","10001","10001","10001","10001","10001","01110"],
-  "P":["11110","10001","10001","11110","10000","10000","10000"],
-  "R":["11110","10001","10001","11110","10100","10010","10001"],
-  "S":["01111","10000","10000","01110","00001","00001","11110"],
-  "T":["11111","00100","00100","00100","00100","00100","00100"],
-  "U":["10001","10001","10001","10001","10001","10001","01110"],
-  "Y":["10001","10001","01010","00100","00100","00100","00100"],
-  " ":["00000","00000","00000","00000","00000","00000","00000"],
-  "·":["00000","00000","00100","00000","00100","00000","00000"]
+
+  "A":[
+    "01110",
+    "10001",
+    "10001",
+    "11111",
+    "10001",
+    "10001",
+    "10001"
+  ],
+
+  "B":[
+    "11110",
+    "10001",
+    "10001",
+    "11110",
+    "10001",
+    "10001",
+    "11110"
+  ],
+
+  "C":[
+    "01111",
+    "10000",
+    "10000",
+    "10000",
+    "10000",
+    "10000",
+    "01111"
+  ],
+
+  "D":[
+    "11110",
+    "10001",
+    "10001",
+    "10001",
+    "10001",
+    "10001",
+    "11110"
+  ],
+
+  "E":[
+    "11111",
+    "10000",
+    "10000",
+    "11110",
+    "10000",
+    "10000",
+    "11111"
+  ],
+
+  "G":[
+    "01111",
+    "10000",
+    "10000",
+    "10111",
+    "10001",
+    "10001",
+    "01111"
+  ],
+
+  "H":[
+    "10001",
+    "10001",
+    "10001",
+    "11111",
+    "10001",
+    "10001",
+    "10001"
+  ],
+
+  "I":[
+    "11111",
+    "00100",
+    "00100",
+    "00100",
+    "00100",
+    "00100",
+    "11111"
+  ],
+
+  "L":[
+    "10000",
+    "10000",
+    "10000",
+    "10000",
+    "10000",
+    "10000",
+    "11111"
+  ],
+
+  "M":[
+    "10001",
+    "11011",
+    "10101",
+    "10101",
+    "10001",
+    "10001",
+    "10001"
+  ],
+
+  "N":[
+    "10001",
+    "11001",
+    "10101",
+    "10011",
+    "10001",
+    "10001",
+    "10001"
+  ],
+
+  "O":[
+    "01110",
+    "10001",
+    "10001",
+    "10001",
+    "10001",
+    "10001",
+    "01110"
+  ],
+
+  "P":[
+    "11110",
+    "10001",
+    "10001",
+    "11110",
+    "10000",
+    "10000",
+    "10000"
+  ],
+
+  "R":[
+    "11110",
+    "10001",
+    "10001",
+    "11110",
+    "10100",
+    "10010",
+    "10001"
+  ],
+
+  "S":[
+    "01111",
+    "10000",
+    "10000",
+    "01110",
+    "00001",
+    "00001",
+    "11110"
+  ],
+
+  "T":[
+    "11111",
+    "00100",
+    "00100",
+    "00100",
+    "00100",
+    "00100",
+    "00100"
+  ],
+
+  "U":[
+    "10001",
+    "10001",
+    "10001",
+    "10001",
+    "10001",
+    "10001",
+    "01110"
+  ],
+
+  "Y":[
+    "10001",
+    "10001",
+    "01010",
+    "00100",
+    "00100",
+    "00100",
+    "00100"
+  ],
+
+  " ":[
+    "00000",
+    "00000",
+    "00000",
+    "00000",
+    "00000",
+    "00000",
+    "00000"
+  ],
+
+  "·":[
+    "00000",
+    "00000",
+    "00100",
+    "00000",
+    "00100",
+    "00000",
+    "00000"
+  ]
+
 };
 
+/* =========================
+   LED-ANIMATION
+   PENDLE LINKS / RECHTS
+========================= */
+
 let ledColumns = [];
-let ledOffset = 0;
+
+/* Position der Laufschrift */
+
+let ledPosition = 0;
+
+/* Richtung:
+   1 nach rechts
+  -1 nach links */
+
+let ledDirection = 1;
+
+/* Geschwindigkeit in Pixel/Sekunde */
+
+const LED_SPEED = 85;
+
 let ledLastTime = 0;
 
-/* Geschwindigkeit:
-   25 Spalten pro Sekunde */
+/* Maße werden automatisch
+   an die Fensterbreite angepasst */
 
-const LED_SPEED = 25;
+let ledPitch = 7;
+let ledTextWidth = 0;
 
 function blankColumn() {
   return [0,0,0,0,0,0,0];
 }
 
+/* Text in LED-Spalten umwandeln */
+
 function buildLEDText(text) {
+
   const result = [];
 
-  for (let i=0;i<24;i++) {
-    result.push(blankColumn());
-  }
+  for (
+    const character of text.toUpperCase()
+  ) {
 
-  for (const character of text.toUpperCase()) {
     const pattern =
-      LED_FONT[character] || LED_FONT[" "];
+      LED_FONT[character] ||
+      LED_FONT[" "];
 
-    for (let column=0;column<5;column++) {
+    for (
+      let column = 0;
+      column < 5;
+      column++
+    ) {
+
       const pixels = [];
 
-      for (let row=0;row<7;row++) {
+      for (
+        let row = 0;
+        row < 7;
+        row++
+      ) {
+
         pixels.push(
-          pattern[row][column] === "1" ? 1 : 0
+          pattern[row][column] === "1"
+            ? 1
+            : 0
         );
       }
 
       result.push(pixels);
     }
 
-    result.push(blankColumn());
-  }
+    /* Eine Leer-Spalte
+       zwischen den Buchstaben */
 
-  for (let i=0;i<24;i++) {
     result.push(blankColumn());
   }
 
   return result;
 }
 
+/* Kategorienachricht wechseln */
+
 function updateLEDMessage(category) {
-  const text = category === "single"
-    ? "SINGLE · THE SINGLE COLLECTION"
-    : "ALBUM · THE ALBUM COLLECTION";
+
+  const text =
+    category === "single"
+      ? "SINGLE · THE SINGLE COLLECTION"
+      : "ALBUM · THE ALBUM COLLECTION";
 
   ledCanvas.setAttribute(
     "aria-label",
     text
   );
 
-  ledColumns = buildLEDText(text);
-  ledOffset = 0;
+  ledColumns =
+    buildLEDText(text);
+
+  /* Bei jedem Wechsel startet
+     der Text wieder links */
+
+  ledPosition = 0;
+  ledDirection = 1;
+
+  calculateLEDLayout();
 }
+
+/* =========================
+   LED-BREITE BERECHNEN
+========================= */
+
+function calculateLEDLayout() {
+
+  const width =
+    ledCanvas.clientWidth;
+
+  const height =
+    ledCanvas.clientHeight;
+
+  const columns =
+    Math.max(1,ledColumns.length);
+
+  /* Seitliche Sicherheitsabstände */
+
+  const padding = 12;
+
+  /* Gesamter Schriftzug soll
+     höchstens 75 % der
+     Leistenbreite einnehmen.
+
+     Dadurch bleibt links und
+     rechts genug Weg zum Pendeln. */
+
+  const maxTextWidth =
+    Math.max(
+      1,
+      (width - padding*2)*0.75
+    );
+
+  /* LED-Punktabstand anpassen */
+
+  ledPitch = Math.min(
+    9.4,
+    (height - 16)/7,
+    maxTextWidth/columns
+  );
+
+  ledTextWidth =
+    columns*ledPitch;
+
+  const maxPosition = Math.max(
+    0,
+    width - padding*2 - ledTextWidth
+  );
+
+  ledPosition = Math.min(
+    ledPosition,
+    maxPosition
+  );
+}
+
+/* =========================
+   CANVAS AUFLÖSUNG
+========================= */
 
 function resizeLEDCanvas() {
-  const rect = ledCanvas.getBoundingClientRect();
-  const dpr = window.devicePixelRatio || 1;
+
+  const rect =
+    ledCanvas.getBoundingClientRect();
+
+  const dpr =
+    window.devicePixelRatio || 1;
 
   ledCanvas.width =
-    Math.round(rect.width * dpr);
+    Math.round(rect.width*dpr);
 
   ledCanvas.height =
-    Math.round(rect.height * dpr);
+    Math.round(rect.height*dpr);
 
-  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.setTransform(
+    dpr,0,0,dpr,0,0
+  );
+
+  calculateLEDLayout();
 }
 
+/* =========================
+   LED-ZEICHNUNG
+========================= */
+
 function drawLED(time) {
-  const width = ledCanvas.clientWidth;
-  const height = ledCanvas.clientHeight;
 
-  ctx.clearRect(0,0,width,height);
+  const width =
+    ledCanvas.clientWidth;
+
+  const height =
+    ledCanvas.clientHeight;
+
+  ctx.clearRect(
+    0,0,width,height
+  );
+
   ctx.fillStyle = "#07111b";
-  ctx.fillRect(0,0,width,height);
-
-  const paddingX = 14;
-  const pitch = Math.min(
-    9.4,
-    (height - 16) / 7
+  ctx.fillRect(
+    0,0,width,height
   );
 
-  const radius = pitch * 0.27;
-  const usedHeight = 7 * pitch;
-  const startY = (height - usedHeight) / 2;
+  const padding = 12;
 
-  const visibleColumns = Math.ceil(
-    (width - 2 * paddingX) / pitch
-  );
+  const usedHeight =
+    7*ledPitch;
 
-  /* Das Raster bewegt sich flüssig,
-     auch zwischen den einzelnen Punkten. */
+  const startY =
+    (height-usedHeight)/2;
 
-  const totalColumns = Math.max(
-    1,
-    ledColumns.length
-  );
+  const radius =
+    Math.max(0.35,ledPitch*0.29);
 
-  const whole = Math.floor(ledOffset);
-  const fraction = ledOffset - whole;
+  /* Linke Textkante */
 
-  for (let i=0;i<visibleColumns+1;i++) {
+  const startX =
+    padding+ledPosition;
 
-    const index =
-      (whole+i) % totalColumns;
+  /* Alle LED-Buchstaben zeichnen */
+
+  for (
+    let columnIndex=0;
+    columnIndex<ledColumns.length;
+    columnIndex++
+  ) {
 
     const column =
-      ledColumns[index] || blankColumn();
+      ledColumns[columnIndex];
 
-    for (let row=0;row<7;row++) {
+    for (
+      let row=0;
+      row<7;
+      row++
+    ) {
 
       const x =
-        paddingX +
-        i*pitch -
-        fraction*pitch +
-        pitch/2;
+        startX+
+        columnIndex*ledPitch+
+        ledPitch/2;
 
       const y =
-        startY +
-        row*pitch +
-        pitch/2;
-
-      if (x < paddingX || x > width-paddingX) {
-        continue;
-      }
+        startY+
+        row*ledPitch+
+        ledPitch/2;
 
       /* Dunkler LED-Punkt */
 
       ctx.beginPath();
-      ctx.arc(x,y,radius,0,Math.PI*2);
+
+      ctx.arc(
+        x,y,
+        radius,
+        0,
+        Math.PI*2
+      );
+
       ctx.fillStyle =
-        "rgba(125,165,205,0.11)";
+        "rgba(125,165,205,0.12)";
+
       ctx.fill();
 
-      /* Heller silber-blauer LED-Punkt */
+      /* Leuchtender LED-Punkt */
 
       if (column[row]) {
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "#63baff";
+
+        ctx.shadowBlur =
+          Math.max(3,ledPitch*1.1);
+
+        ctx.shadowColor =
+          "#65bdff";
 
         ctx.beginPath();
-        ctx.arc(x,y,radius,0,Math.PI*2);
-        ctx.fillStyle = "#d9f2ff";
+
+        ctx.arc(
+          x,y,
+          radius,
+          0,
+          Math.PI*2
+        );
+
+        ctx.fillStyle =
+          "#d9f2ff";
+
         ctx.fill();
 
         ctx.shadowBlur = 0;
@@ -1785,28 +2394,75 @@ function drawLED(time) {
     }
   }
 
-  if (!reduceMotion && !document.hidden) {
+  /* =========================
+     PENDELBEWEGUNG
+  ========================= */
+
+  if (
+    !reduceMotion &&
+    !document.hidden
+  ) {
+
     if (ledLastTime) {
+
       const delta = Math.min(
         0.05,
         (time-ledLastTime)/1000
       );
 
-      ledOffset += LED_SPEED*delta;
+      const maxPosition =
+        Math.max(
+          0,
+          width-padding*2-ledTextWidth
+        );
 
-      if (ledOffset >= totalColumns) {
-        ledOffset %= totalColumns;
+      /* Bewegen */
+
+      ledPosition +=
+        LED_SPEED*
+        delta*
+        ledDirection;
+
+      /* Rechter Anschlag:
+         Richtung nach links */
+
+      if (
+        ledPosition >= maxPosition
+      ) {
+
+        ledPosition = maxPosition;
+        ledDirection = -1;
+      }
+
+      /* Linker Anschlag:
+         Richtung nach rechts */
+
+      if (
+        ledPosition <= 0
+      ) {
+
+        ledPosition = 0;
+        ledDirection = 1;
       }
     }
   }
 
   ledLastTime = time;
-  requestAnimationFrame(drawLED);
+
+  requestAnimationFrame(
+    drawLED
+  );
 }
 
-resizeLEDCanvas();
+/* LED starten */
+
 updateLEDMessage("single");
-requestAnimationFrame(drawLED);
+
+resizeLEDCanvas();
+
+requestAnimationFrame(
+  drawLED
+);
 
 window.addEventListener(
   "resize",
@@ -1814,17 +2470,11 @@ window.addEventListener(
 );
 
 /* =========================
-   GALERIE
+   MUSIKGALERIE
 ========================= */
 
 const gallery =
   document.getElementById("gallery");
-
-const sectionTitle =
-  document.getElementById("sectionTitle");
-
-const sectionSubtitle =
-  document.getElementById("sectionSubtitle");
 
 const moreButton =
   document.getElementById("moreButton");
@@ -1838,7 +2488,10 @@ const videoFrame =
 const closeVideo =
   document.getElementById("closeVideo");
 
+/* HTML absichern */
+
 function escapeHTML(value) {
+
   return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
@@ -1847,8 +2500,12 @@ function escapeHTML(value) {
     .replace(/'/g,"&#039;");
 }
 
+/* Links prüfen */
+
 function safeURL(value) {
+
   try {
+
     const url = new URL(
       value,
       window.location.href
@@ -1857,53 +2514,82 @@ function safeURL(value) {
     if (
       url.protocol === "https:" ||
       url.protocol === "http:"
-    ) return url.href;
+    ) {
+      return url.href;
+    }
 
   } catch {}
 
   return "";
 }
 
+/* Datum formatieren */
+
 function formatDate(value) {
-  if (!value) return "";
+
+  if (!value) {
+    return "";
+  }
 
   const date = new Date(
-    String(value).slice(0,10)+"T12:00:00"
+    String(value).slice(0,10)+
+    "T12:00:00"
   );
 
-  if (Number.isNaN(date.getTime())) return "";
+  if (
+    Number.isNaN(date.getTime())
+  ) {
+    return "";
+  }
 
-  return date.toLocaleDateString("de-DE",{
-    day:"2-digit",
-    month:"2-digit",
-    year:"numeric"
-  });
+  return date.toLocaleDateString(
+    "de-DE",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric"
+    }
+  );
 }
 
+/* Single oder Album */
+
 function categoryOf(item) {
+
   const category = String(
     item.type ||
     item.category ||
     "single"
   ).toLowerCase();
 
-  return ["album","albums","lp"].includes(category)
+  return [
+    "album",
+    "albums",
+    "lp"
+  ].includes(category)
     ? "album"
     : "single";
 }
 
-function getYoutubeId(item) {
-  const value = String(
-    item.youtube || ""
-  ).trim();
+/* YouTube-ID */
 
-  if (/^[A-Za-z0-9_-]{11}$/.test(value)) {
+function getYoutubeId(item) {
+
+  const value =
+    String(item.youtube || "").trim();
+
+  if (
+    /^[A-Za-z0-9_-]{11}$/.test(value)
+  ) {
     return value;
   }
 
   try {
+
     const url = new URL(value);
-    const hostname = url.hostname.toLowerCase();
+
+    const hostname =
+      url.hostname.toLowerCase();
 
     if (
       hostname === "youtu.be" ||
@@ -1922,21 +2608,31 @@ function getYoutubeId(item) {
         return url.searchParams.get("v") || "";
       }
 
-      const parts = url.pathname.split("/");
+      const parts =
+        url.pathname.split("/");
 
       if (
-        ["shorts","embed","live"].includes(parts[1])
+        ["shorts","embed","live"]
+          .includes(parts[1])
       ) {
         return parts[2] || "";
       }
     }
+
   } catch {}
 
   return "";
 }
 
+/* =========================
+   VIDEOFENSTER
+========================= */
+
 function openVideo(videoId) {
-  if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+
+  if (
+    !/^[A-Za-z0-9_-]{11}$/.test(videoId)
+  ) {
     return;
   }
 
@@ -1945,11 +2641,17 @@ function openVideo(videoId) {
     videoId +
     "?autoplay=1";
 
-  videoModal.classList.add("open");
+  videoModal.classList.add(
+    "open"
+  );
 }
 
 function closeVideoPlayer() {
-  videoModal.classList.remove("open");
+
+  videoModal.classList.remove(
+    "open"
+  );
+
   videoFrame.src = "";
 }
 
@@ -1958,34 +2660,45 @@ closeVideo.addEventListener(
   closeVideoPlayer
 );
 
-videoModal.addEventListener("click",event => {
-  if (event.target === videoModal) {
-    closeVideoPlayer();
-  }
-});
+videoModal.addEventListener(
+  "click",
+  event => {
 
-document.addEventListener("keydown",event => {
-  if (event.key === "Escape") {
-    closeVideoPlayer();
+    if (
+      event.target === videoModal
+    ) {
+      closeVideoPlayer();
+    }
   }
-});
+);
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "Escape"
+    ) {
+      closeVideoPlayer();
+    }
+  }
+);
+
+/* =========================
+   SONGS UND ALBEN ANZEIGEN
+========================= */
 
 function renderMusic() {
+
   const isSingle =
     activeCategory === "single";
 
-  sectionTitle.textContent =
-    isSingle ? "SINGLES" : "ALBUMS";
-
-  sectionSubtitle.textContent =
-    isSingle
-      ? "The Singles Collection"
-      : "The Album Collection";
-
   const items = allMusic
+
     .filter(item =>
       categoryOf(item) === activeCategory
     )
+
     .sort((a,b) =>
       String(b.releaseDate || "")
         .localeCompare(
@@ -1995,7 +2708,12 @@ function renderMusic() {
 
   gallery.innerHTML = "";
 
-  if (items.length === 0) {
+  /* Noch keine Alben/Singles */
+
+  if (
+    items.length === 0
+  ) {
+
     gallery.innerHTML = `
       <div class="empty-message">
         ${
@@ -2007,108 +2725,144 @@ function renderMusic() {
     `;
 
     moreButton.hidden = true;
+
     return;
   }
 
-  items.slice(0,visibleCount).forEach(item => {
-    const videoId = getYoutubeId(item);
+  /* Cover erstellen */
 
-    const validVideoId =
-      /^[A-Za-z0-9_-]{11}$/.test(videoId)
-        ? videoId
-        : "";
+  items
+    .slice(0,visibleCount)
+    .forEach(item => {
 
-    const cover =
-      safeURL(item.cover) ||
-      (
-        validVideoId
-          ? "https://img.youtube.com/vi/" +
-            validVideoId +
-            "/hqdefault.jpg"
-          : ""
-      );
+      const videoId =
+        getYoutubeId(item);
 
-    const spotify = safeURL(item.spotify);
-    const amazon = safeURL(item.amazon);
-    const date = formatDate(item.releaseDate);
+      const validVideoId =
+        /^[A-Za-z0-9_-]{11}$/.test(videoId)
+          ? videoId
+          : "";
 
-    const card = document.createElement("article");
-    card.className = "music-card";
+      const cover =
+        safeURL(item.cover) ||
+        (
+          validVideoId
+            ? "https://img.youtube.com/vi/" +
+              validVideoId +
+              "/hqdefault.jpg"
+            : ""
+        );
 
-    card.innerHTML = `
-      <button
-        type="button"
-        class="cover-button"
-        ${validVideoId ? "" : "disabled"}
-        aria-label="Video öffnen"
-      >
-        <img
-          class="cover"
-          src="${escapeHTML(cover)}"
-          alt="${escapeHTML(item.title || "R.M.B.")}"
-          loading="lazy"
+      const spotify =
+        safeURL(item.spotify);
+
+      const amazon =
+        safeURL(item.amazon);
+
+      const date =
+        formatDate(item.releaseDate);
+
+      const card =
+        document.createElement(
+          "article"
+        );
+
+      card.className =
+        "music-card";
+
+      card.innerHTML = `
+
+        <button
+          type="button"
+          class="cover-button"
+          ${validVideoId ? "" : "disabled"}
+          aria-label="Video öffnen"
         >
-      </button>
 
-      <div class="track-title">
-        ${escapeHTML(item.title || "R.M.B.")}
-      </div>
+          <img
+            class="cover"
+            src="${escapeHTML(cover)}"
+            alt="${escapeHTML(item.title || "R.M.B.")}"
+            loading="lazy"
+          >
 
-      <div class="track-version">
-        ${escapeHTML(item.version || "")}
-      </div>
+        </button>
 
-      ${
-        date
-          ? `<div class="track-date">
-               ${escapeHTML(date)}
-             </div>`
-          : ""
+        <div class="track-title">
+          ${escapeHTML(item.title || "R.M.B.")}
+        </div>
+
+        <div class="track-version">
+          ${escapeHTML(item.version || "")}
+        </div>
+
+        ${
+          date
+            ? `
+              <div class="track-date">
+                ${escapeHTML(date)}
+              </div>
+            `
+            : ""
+        }
+
+        <div class="music-links">
+
+          ${
+            validVideoId
+              ? `
+                <a
+                  href="https://www.youtube.com/watch?v=${validVideoId}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >YouTube</a>
+              `
+              : ""
+          }
+
+          ${
+            spotify
+              ? `
+                <a
+                  href="${escapeHTML(spotify)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Spotify</a>
+              `
+              : ""
+          }
+
+          ${
+            amazon
+              ? `
+                <a
+                  href="${escapeHTML(amazon)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Amazon</a>
+              `
+              : ""
+          }
+
+        </div>
+      `;
+
+      if (
+        validVideoId
+      ) {
+
+        card
+          .querySelector(".cover-button")
+          .addEventListener(
+            "click",
+            () => openVideo(validVideoId)
+          );
       }
 
-      <div class="music-links">
-        ${
-          validVideoId
-            ? `<a
-                 href="https://www.youtube.com/watch?v=${validVideoId}"
-                 target="_blank"
-                 rel="noopener noreferrer"
-               >YouTube</a>`
-            : ""
-        }
+      gallery.appendChild(card);
+    });
 
-        ${
-          spotify
-            ? `<a
-                 href="${escapeHTML(spotify)}"
-                 target="_blank"
-                 rel="noopener noreferrer"
-               >Spotify</a>`
-            : ""
-        }
-
-        ${
-          amazon
-            ? `<a
-                 href="${escapeHTML(amazon)}"
-                 target="_blank"
-                 rel="noopener noreferrer"
-               >Amazon</a>`
-            : ""
-        }
-      </div>
-    `;
-
-    if (validVideoId) {
-      card.querySelector(".cover-button")
-        .addEventListener(
-          "click",
-          () => openVideo(validVideoId)
-        );
-    }
-
-    gallery.appendChild(card);
-  });
+  /* Weitere Cover anzeigen */
 
   moreButton.hidden =
     items.length <= visibleCount;
@@ -2119,14 +2873,29 @@ function renderMusic() {
       : "WEITERE ALBEN ANZEIGEN";
 }
 
-moreButton.addEventListener("click",() => {
-  visibleCount += 10;
-  renderMusic();
-});
+/* Weitere Songs laden */
+
+moreButton.addEventListener(
+  "click",
+  () => {
+
+    visibleCount += 10;
+    renderMusic();
+  }
+);
+
+/* =========================
+   SONGS.JSON LADEN
+========================= */
 
 fetch("songs.json")
+
   .then(response => {
-    if (!response.ok) {
+
+    if (
+      !response.ok
+    ) {
+
       throw new Error(
         "songs.json nicht gefunden"
       );
@@ -2134,14 +2903,23 @@ fetch("songs.json")
 
     return response.json();
   })
+
   .then(data => {
-    allMusic = Array.isArray(data) ? data : [];
+
+    allMusic =
+      Array.isArray(data)
+        ? data
+        : [];
+
     renderMusic();
   })
+
   .catch(error => {
+
     gallery.innerHTML = `
       <div class="empty-message">
-        Die Musikdaten konnten nicht geladen werden.
+        Die Musikdaten konnten
+        nicht geladen werden.
       </div>
     `;
 
@@ -2149,5 +2927,6 @@ fetch("songs.json")
   });
 
 </script>
+
 </body>
 </html>
