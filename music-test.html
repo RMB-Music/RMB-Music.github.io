@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>R.M.B. | MUSIC TEST</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
@@ -37,61 +36,16 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* R.M.B. BANNER */
-/* AUTOMATISCH VOLLE BILDSCHIRMBREITE */
-
-header {
-  width: 100%;
-  background: var(--background);
-  padding: 20px 0 0;
-  text-align: center;
-}
-
-.rmb-banner {
-  display: block;
-  width: 100%;
-  max-width: none;
-  height: auto;
-  margin: 0 auto;
-}
-
-/* NAVIGATION */
-
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px 26px;
-  padding: 24px 10px 16px;
-}
-
-nav a {
-  color: var(--silver);
-  font-family: "Michroma", Arial, sans-serif;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-decoration: none;
-}
-
-nav a:hover,
-nav a.active {
-  color: #ffffff;
-  text-shadow: 0 0 12px #75b8ff;
-}
-
-/* MUSIC-BEREICH */
-/* KEINE SEITLICHEN ABSTÄNDE */
+/* MUSIKBEREICH */
+/* KEIN WEISSER R.M.B.-BANNER */
 
 .music-hero {
   position: relative;
   overflow: hidden;
+  padding: 14px 0 35px;
   background: var(--background);
   text-align: center;
-  padding: 10px 0 35px;
 }
-
-/* DEZENTER LICHTSCHEIN */
 
 .music-hero::before {
   content: "";
@@ -99,50 +53,42 @@ nav a.active {
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  width: min(1000px, 100%);
-  height: 440px;
+  width: 100%;
+  height: 540px;
+  pointer-events: none;
+
   background: radial-gradient(
     ellipse,
-    rgba(56, 94, 135, 0.15) 0%,
-    rgba(30, 52, 75, 0.07) 45%,
+    rgba(56, 94, 135, .15) 0%,
+    rgba(30, 52, 75, .07) 45%,
     transparent 75%
   );
-  pointer-events: none;
 }
 
-/* SKYLINE UND MUSIC ÜBEREINANDER */
-/* VOLLE VERFÜGBARE BREITE */
+/* SKYLINE UND MUSIC */
 
 .music-composition {
   position: relative;
   width: 100%;
-  max-width: none;
-  height: 305px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: clamp(325px, 37vw, 475px);
   isolation: isolate;
 }
 
-/* FRANKFURTER SKYLINE */
-/* AUTOMATISCH 100 PROZENT BREITE */
-/* KEINE MAXIMALE PIXELBEGRENZUNG */
+/* SKYLINE */
+/* AUTOMATISCH VOLLE BILDSCHIRMBREITE */
 
 .skyline {
   position: absolute;
   z-index: 0;
+  left: 0;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: block;
 
+  display: block;
   width: 100%;
   max-width: none;
-  min-width: 0;
-
   height: auto;
-  opacity: 0.28;
+
+  opacity: .28;
 
   filter:
     brightness(0)
@@ -151,27 +97,276 @@ nav a.active {
   pointer-events: none;
 }
 
-/* MUSIC-SCHRIFTZUG VOR DER SKYLINE */
-/* LEICHT VERGRÖSSERT */
-/* MAXIMAL 480 PIXEL */
-/* PROPORTIONAL AUF KLEINEREN DISPLAYS */
+/* MUSIC-SCHRIFTZUG */
+/* UM 50 PROZENT VERGROESSERT */
+/* MAXIMAL 720 PIXEL */
+/* SEITENVERHAELTNIS BLEIBT ERHALTEN */
 
 .music-heading {
-  position: relative;
+  position: absolute;
   z-index: 2;
+
+  left: 50%;
+  top: clamp(122px, 12vw, 158px);
+
+  transform: translateX(-50%);
+
   display: block;
 
-  width: min(480px, 90%);
-  max-width: 480px;
+  width: min(720px, 92%);
+  max-width: 720px;
   height: auto;
-
-  margin: -10px auto 0;
 
   mix-blend-mode: screen;
 
   filter: drop-shadow(
-    0 0 8px rgba(95, 165, 255, 0.15)
+    0 0 8px rgba(95, 165, 255, .15)
   );
+
+  pointer-events: none;
+}
+
+/* GEMEINSAMES FUENF-KANAL-MISCHPULT */
+
+.mixer-nav {
+  position: absolute;
+  z-index: 5;
+
+  top: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: min(446px, calc(100% - 20px));
+
+  padding: 10px 11px 12px;
+
+  border: 1px solid #546577;
+  border-radius: 9px;
+
+  background: linear-gradient(
+    160deg,
+    #354250 0%,
+    #202c39 42%,
+    #161f29 100%
+  );
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.16),
+    inset 0 -2px 5px #10151d,
+    0 8px 25px rgba(0,0,0,.35);
+}
+
+/* OBERER MISCHPULTBEREICH */
+
+.mixer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 5px;
+  padding: 0 3px 7px;
+
+  font-family: "Michroma", Arial, sans-serif;
+  font-size: 8px;
+  letter-spacing: .6px;
+
+  color: #91a5ba;
+}
+
+/* KLEINE KONTROLLLEUCHTE */
+
+.mixer-light {
+  display: inline-block;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  margin-right: 5px;
+
+  background: #78c5ff;
+
+  box-shadow: 0 0 8px #3b9aff;
+
+  vertical-align: middle;
+}
+
+/* FUENF KANAELE NEBENEINANDER */
+
+.mixer-channels {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.mixer-channel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 95px;
+  min-width: 0;
+
+  padding: 6px 2px;
+
+  border: 1px solid #354657;
+  border-radius: 4px;
+
+  background: linear-gradient(
+    90deg,
+    #1b2531,
+    #263342 48%,
+    #18222e
+  );
+}
+
+/* FUEHRUNGSSCHIENE */
+/* UNGEFAEHR DOPPELT SO LANG */
+/* WIE DER BEWEGLICHE FADER */
+
+.fader-track {
+  position: relative;
+
+  height: 76px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fader-track::before {
+  content: "";
+
+  position: absolute;
+
+  top: 4px;
+  bottom: 4px;
+
+  width: 7px;
+
+  border-radius: 5px;
+
+  background: linear-gradient(
+    90deg,
+    #06090e,
+    #17202b 45%,
+    #080c12
+  );
+
+  box-shadow:
+    inset 1px 0 2px #000,
+    1px 0 1px rgba(255,255,255,.11);
+}
+
+/* BEWEGLICHER SILBERNER SCHIEBEREGLER */
+
+.fader-handle {
+  --travel: 36px;
+
+  position: absolute;
+
+  top: calc(4px + var(--travel));
+  left: 50%;
+
+  transform: translate(
+    -50%,
+    calc(-1 * var(--drag, 0px))
+  );
+
+  width: calc(100% - 2px);
+  max-width: 72px;
+  height: 36px;
+
+  padding: 0 1px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  border: 1px solid #e4ebf4;
+  border-bottom-color: #61778b;
+  border-radius: 4px;
+
+  background: linear-gradient(
+    180deg,
+    #f0f4f8 0%,
+    #b4c3d3 17%,
+    #d0dce8 45%,
+    #899caf 53%,
+    #b9c8d7 78%,
+    #8194a8 100%
+  );
+
+  color: #162333;
+
+  box-shadow:
+    0 3px 5px rgba(0,0,0,.7),
+    inset 0 1px 1px white;
+
+  cursor: grab;
+  touch-action: none;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  font-family: "Michroma", Arial, sans-serif;
+  font-size: clamp(6px, .8vw, 8px);
+  font-weight: bold;
+  letter-spacing: -.3px;
+
+  white-space: nowrap;
+}
+
+/* QUERRILLE AUF DEM FADER */
+
+.fader-handle::after {
+  content: "";
+
+  display: block;
+
+  width: 63%;
+  height: 3px;
+
+  border-top: 1px solid #3b5167;
+  border-bottom: 1px solid #f4f7fc;
+
+  background: #70879e;
+}
+
+/* FADER WAEHREND DES SCHIEBENS */
+
+.fader-handle.dragging {
+  cursor: grabbing;
+
+  box-shadow:
+    0 4px 9px rgba(0,0,0,.75),
+    0 0 12px rgba(117,184,255,.22);
+}
+
+/* AUTOMATISCHES ZURUECKGLEITEN */
+
+.fader-handle.returning {
+  transition: transform .19s ease-out;
+}
+
+.fader-handle:focus-visible {
+  outline: 2px solid #78c5ff;
+  outline-offset: 3px;
+}
+
+/* AKTIVER MUSIC-KANAL */
+
+.fader-handle[aria-current="page"] {
+  border-color: #8ac8ff;
+
+  box-shadow:
+    0 3px 6px #000,
+    0 0 7px rgba(109,177,255,.4);
 }
 
 /* MUSIKRICHTUNGEN */
@@ -179,10 +374,12 @@ nav a.active {
 .music-style {
   position: relative;
   z-index: 3;
-  margin: 8px auto 28px;
+
+  margin: 10px auto 28px;
 
   font-size: 11px;
   letter-spacing: 2px;
+
   color: #adc0d6;
   text-transform: uppercase;
 }
@@ -201,8 +398,6 @@ nav a.active {
   margin: 0 auto;
 }
 
-/* VINYL-BUTTONS */
-
 .vinyl-button {
   display: flex;
   flex-direction: column;
@@ -217,11 +412,11 @@ nav a.active {
   color: #dce7f3;
   cursor: pointer;
 
-  opacity: 0.76;
+  opacity: .76;
 
   transition:
-    opacity 0.25s,
-    transform 0.25s;
+    opacity .25s,
+    transform .25s;
 }
 
 .vinyl-button:hover {
@@ -247,8 +442,10 @@ nav a.active {
 
 .disc-container {
   position: relative;
+
   width: 100%;
   aspect-ratio: 1;
+
   border-radius: 50%;
 }
 
@@ -257,6 +454,7 @@ nav a.active {
   z-index: 2;
 
   display: block;
+
   width: 100%;
   height: 100%;
 
@@ -264,14 +462,18 @@ nav a.active {
   border-radius: 50%;
 
   filter: drop-shadow(
-    0 5px 10px rgba(0, 0, 0, 0.5)
+    0 5px 10px rgba(0,0,0,.5)
   );
 }
 
 .vinyl-button.active img {
   filter:
-    drop-shadow(0 0 10px rgba(91, 169, 255, 0.32))
-    drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+    drop-shadow(
+      0 0 10px rgba(91,169,255,.32)
+    )
+    drop-shadow(
+      0 5px 10px rgba(0,0,0,.5)
+    );
 }
 
 /* ERSATZPLATTE BEI LADEFEHLER */
@@ -282,6 +484,7 @@ nav a.active {
 
   display: grid;
   place-items: center;
+
   overflow: hidden;
 
   border-radius: 50%;
@@ -292,7 +495,7 @@ nav a.active {
       circle,
       transparent 0px,
       transparent 5px,
-      rgba(175, 200, 225, 0.13) 6px,
+      rgba(175,200,225,.13) 6px,
       #090d13 8px
     ),
     conic-gradient(
@@ -325,6 +528,7 @@ nav a.active {
 
 .vinyl-label {
   color: #b6c9df;
+
   font-family: "Michroma", Arial, sans-serif;
   font-size: 10px;
   letter-spacing: 1px;
@@ -335,7 +539,7 @@ nav a.active {
   text-shadow: 0 0 10px #518ccc;
 }
 
-/* SONG- UND ALBUM-GALERIE */
+/* SONG- UND ALBUMGALERIE */
 
 .content {
   width: 100%;
@@ -361,26 +565,31 @@ nav a.active {
   margin: 0 0 35px;
 
   color: #91a7be;
+
   font-size: 13px;
   letter-spacing: 1px;
 }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
   gap: 24px;
   text-align: center;
 }
 
 .music-card {
   min-width: 0;
+
   padding: 12px;
 
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
 
-  transition: transform 0.2s;
+  transition: transform .2s;
 }
 
 .music-card:hover {
@@ -389,11 +598,13 @@ nav a.active {
 
 .cover-button {
   display: block;
+
   width: 100%;
   padding: 0;
 
   background: transparent;
   border: 0;
+
   cursor: pointer;
 }
 
@@ -403,8 +614,10 @@ nav a.active {
 
 .cover {
   display: block;
+
   width: 100%;
   aspect-ratio: 1;
+
   object-fit: cover;
 
   background: #090d13;
@@ -413,6 +626,7 @@ nav a.active {
 
 .track-title {
   margin: 14px 0 5px;
+
   font-size: 14px;
   font-weight: bold;
   line-height: 1.5;
@@ -420,12 +634,14 @@ nav a.active {
 
 .track-version {
   margin-bottom: 8px;
+
   color: #9bafc5;
   font-size: 12px;
 }
 
 .track-date {
   margin-bottom: 10px;
+
   color: #8197ae;
   font-size: 11px;
 }
@@ -471,12 +687,15 @@ nav a.active {
   padding: 13px 22px;
 
   background: #263c52;
+
   border: 1px solid #6587aa;
   border-radius: 7px;
 
   color: white;
+
   font-family: "Michroma", Arial, sans-serif;
   font-size: 10px;
+
   cursor: pointer;
 }
 
@@ -488,13 +707,14 @@ nav a.active {
 
 .video-modal {
   display: none;
+
   position: fixed;
   inset: 0;
   z-index: 1000;
 
   padding: 25px;
 
-  background: rgba(0, 0, 0, 0.94);
+  background: rgba(0,0,0,.94);
 
   align-items: center;
   justify-content: center;
@@ -519,6 +739,7 @@ nav a.active {
 
 .close-video {
   position: absolute;
+
   right: 0;
   top: -48px;
 
@@ -527,6 +748,7 @@ nav a.active {
 
   color: white;
   font-size: 34px;
+
   cursor: pointer;
 }
 
@@ -547,16 +769,16 @@ footer {
 @media (max-width: 1050px) {
 
   .gallery {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
   }
 
   .music-composition {
-    height: 270px;
+    height: clamp(300px, 43vw, 410px);
   }
 
   .music-heading {
-    width: min(460px, 80%);
-    max-width: 460px;
+    width: min(690px, 92%);
   }
 
 }
@@ -565,45 +787,48 @@ footer {
 
 @media (max-width: 600px) {
 
-  header {
-    padding: 12px 0 0;
-  }
-
-  .rmb-banner {
-    width: 100%;
-  }
-
-  nav {
-    gap: 13px 15px;
-    padding: 20px 0 10px;
-  }
-
-  nav a {
-    font-size: 9px;
-  }
-
   .music-hero {
-    padding: 8px 0 30px;
+    padding: 9px 0 30px;
   }
 
   .music-composition {
-    height: 190px;
+    height: 300px;
+  }
+
+  .mixer-nav {
+    width: min(420px, calc(100% - 12px));
+    padding: 7px 6px 9px;
+  }
+
+  .mixer-channels {
+    gap: 3px;
+  }
+
+  .mixer-channel {
+    padding: 5px 1px;
+    height: 89px;
+  }
+
+  .mixer-top {
+    font-size: 7px;
+  }
+
+  .fader-handle {
+    font-size: clamp(5px, 1.55vw, 8px);
   }
 
   .music-heading {
-    width: min(350px, 88%);
-    max-width: 350px;
-    margin-top: 0;
+    top: 133px;
+    width: min(525px, 94%);
   }
 
   .skyline {
-    width: 100%;
-    max-width: none;
-    opacity: 0.24;
+    opacity: .24;
   }
 
   .music-style {
     margin: 8px auto 24px;
+
     font-size: 9px;
     letter-spacing: 1px;
   }
@@ -629,7 +854,9 @@ footer {
   }
 
   .gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
     gap: 12px;
   }
 
@@ -648,33 +875,16 @@ footer {
 
 <body>
 
-<!-- R.M.B. BANNER -->
-
-<header>
-
-  <img
-    class="rmb-banner"
-    src="rmb-banner.png"
-    alt="R.M.B. Logo"
-  >
-
-  <nav>
-    <a href="index.html">HOME</a>
-    <a href="music-test.html" class="active">MUSIC</a>
-    <a href="music.html">RELEASES</a>
-    <a href="about.html">ABOUT</a>
-    <a href="contact.html">CONTACT</a>
-  </nav>
-
-</header>
-
-<!-- MUSIC MIT SKYLINE -->
+<!--
+  MIXER-NAVIGATION, SKYLINE UND MUSIC
+  OHNE WEISSEN R.M.B.-BANNER
+-->
 
 <section class="music-hero">
 
   <div class="music-composition">
 
-    <!-- SKYLINE IM HINTERGRUND -->
+    <!-- SKYLINE ÜBER VOLLE BREITE -->
 
     <img
       class="skyline"
@@ -682,7 +892,107 @@ footer {
       alt=""
     >
 
-    <!-- MUSIC DAVOR -->
+    <!-- FÜNF-KANAL-MISCHPULT -->
+
+    <nav
+      class="mixer-nav"
+      aria-label="Hauptnavigation: Fader nach oben schieben"
+    >
+
+      <div class="mixer-top">
+
+        <span>R.M.B. · MIXER</span>
+
+        <span>
+          <span class="mixer-light"></span>
+          5 CHANNEL
+        </span>
+
+      </div>
+
+      <div class="mixer-channels">
+
+        <!-- HOME -->
+
+        <div class="mixer-channel">
+          <div class="fader-track">
+
+            <button
+              class="fader-handle"
+              type="button"
+              data-url="index.html"
+              aria-label="HOME: Regler nach oben schieben"
+            >HOME</button>
+
+          </div>
+        </div>
+
+        <!-- MUSIC -->
+
+        <div class="mixer-channel">
+          <div class="fader-track">
+
+            <button
+              class="fader-handle"
+              type="button"
+              data-url="music-test.html"
+              aria-current="page"
+              aria-label="MUSIC: Regler nach oben schieben"
+            >MUSIC</button>
+
+          </div>
+        </div>
+
+        <!-- RELEASES -->
+
+        <div class="mixer-channel">
+          <div class="fader-track">
+
+            <button
+              class="fader-handle"
+              type="button"
+              data-url="music.html"
+              aria-label="RELEASES: Regler nach oben schieben"
+            >RELEASES</button>
+
+          </div>
+        </div>
+
+        <!-- ABOUT -->
+
+        <div class="mixer-channel">
+          <div class="fader-track">
+
+            <button
+              class="fader-handle"
+              type="button"
+              data-url="about.html"
+              aria-label="ABOUT: Regler nach oben schieben"
+            >ABOUT</button>
+
+          </div>
+        </div>
+
+        <!-- CONTACT -->
+
+        <div class="mixer-channel">
+          <div class="fader-track">
+
+            <button
+              class="fader-handle"
+              type="button"
+              data-url="contact.html"
+              aria-label="CONTACT: Regler nach oben schieben"
+            >CONTACT</button>
+
+          </div>
+        </div>
+
+      </div>
+
+    </nav>
+
+    <!-- MUSIC-SCHRIFTZUG -->
 
     <img
       class="music-heading"
@@ -696,11 +1006,11 @@ footer {
     90s Eurodance · EDM · Trance
   </p>
 
-  <!-- VINYLPLATTEN -->
+  <!-- VINYL-AUSWAHL -->
 
   <div class="vinyl-selector">
 
-    <!-- SINGLE -->
+    <!-- SINGLES -->
 
     <button
       type="button"
@@ -729,7 +1039,7 @@ footer {
 
     </button>
 
-    <!-- ALBUM -->
+    <!-- ALBUMS -->
 
     <button
       type="button"
@@ -769,18 +1079,17 @@ footer {
   <h1
     class="section-heading"
     id="sectionTitle"
-  >
-    SINGLES
-  </h1>
+  >SINGLES</h1>
 
   <p
     class="section-subtitle"
     id="sectionSubtitle"
-  >
-    The Singles Collection
-  </p>
+  >The Singles Collection</p>
 
-  <div class="gallery" id="gallery">
+  <div
+    class="gallery"
+    id="gallery"
+  >
 
     <div class="empty-message">
       Musik wird geladen ...
@@ -793,17 +1102,17 @@ footer {
     id="moreButton"
     class="more-button"
     hidden
-  >
-    WEITERE SONGS ANZEIGEN
-  </button>
+  >WEITERE SONGS ANZEIGEN</button>
 
 </main>
+
+<!-- FUSSZEILE -->
 
 <footer>
   © R.M.B. MUSIC · FRANKFURT AM MAIN
 </footer>
 
-<!-- VIDEOFENSTER -->
+<!-- YOUTUBE-VIDEOFENSTER -->
 
 <div class="video-modal" id="videoModal">
 
@@ -814,9 +1123,7 @@ footer {
       class="close-video"
       id="closeVideo"
       aria-label="Video schließen"
-    >
-      &times;
-    </button>
+    >&times;</button>
 
     <iframe
       id="videoFrame"
@@ -832,7 +1139,168 @@ footer {
 
 <script>
 
-/* ELEMENTE */
+/* MISCHPULT-MECHANIK */
+/* EINE FADERLAENGE HOCHSCHIEBEN */
+
+for (
+  const handle of
+  document.querySelectorAll(".fader-handle")
+) {
+
+  let startY = null;
+  let distance = 0;
+  let pointerId = null;
+
+  const travel = 36;
+
+  const reset = () => {
+
+    startY = null;
+    pointerId = null;
+    distance = 0;
+
+    handle.classList.remove("dragging");
+    handle.classList.add("returning");
+
+    handle.style.setProperty(
+      "--drag",
+      "0px"
+    );
+
+  };
+
+  /* SCHIEBEN BEGINNEN */
+
+  handle.addEventListener(
+    "pointerdown",
+    event => {
+
+      if (
+        event.button !== 0 &&
+        event.pointerType === "mouse"
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+
+      handle.classList.remove(
+        "returning"
+      );
+
+      pointerId = event.pointerId;
+      startY = event.clientY;
+      distance = 0;
+
+      handle.classList.add(
+        "dragging"
+      );
+
+      handle.setPointerCapture(
+        event.pointerId
+      );
+
+    }
+  );
+
+  /* REGLER BEWEGEN */
+
+  handle.addEventListener(
+    "pointermove",
+    event => {
+
+      if (
+        startY === null ||
+        event.pointerId !== pointerId
+      ) {
+        return;
+      }
+
+      distance = Math.min(
+        travel,
+        Math.max(
+          0,
+          startY - event.clientY
+        )
+      );
+
+      handle.style.setProperty(
+        "--drag",
+        distance + "px"
+      );
+
+    }
+  );
+
+  /* REGLER LOSLASSEN */
+
+  handle.addEventListener(
+    "pointerup",
+    event => {
+
+      if (
+        startY === null ||
+        event.pointerId !== pointerId
+      ) {
+        return;
+      }
+
+      const reached =
+        distance >= travel * 0.85;
+
+      reset();
+
+      if (reached) {
+
+        window.location.assign(
+          handle.dataset.url
+        );
+
+      }
+
+    }
+  );
+
+  /* BEWEGUNG ABBRECHEN */
+
+  handle.addEventListener(
+    "pointercancel",
+    reset
+  );
+
+  handle.addEventListener(
+    "lostpointercapture",
+    () => {
+
+      if (startY !== null) {
+        reset();
+      }
+
+    }
+  );
+
+  /* TASTATUR-ALTERNATIVE */
+
+  handle.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "ArrowUp") {
+
+        event.preventDefault();
+
+        window.location.assign(
+          handle.dataset.url
+        );
+
+      }
+
+    }
+  );
+
+}
+
+/* ELEMENTE DER MUSIKGALERIE */
 
 const gallery =
   document.getElementById("gallery");
@@ -861,13 +1329,13 @@ const videoFrame =
 const closeVideo =
   document.getElementById("closeVideo");
 
-/* DATEN */
+/* MUSIKDATEN */
 
 let allMusic = [];
 let activeCategory = "single";
 let visibleCount = 10;
 
-/* TEXT ABSICHERN */
+/* HTML-TEXT ABSICHERN */
 
 function escapeHTML(value) {
 
@@ -904,25 +1372,29 @@ function safeURL(value) {
 
 }
 
-/* DATUM ANZEIGEN */
+/* DATUM FORMATIEREN */
 
 function formatDate(value) {
 
   if (!value) return "";
 
   const date = new Date(
-    String(value).slice(0, 10) + "T12:00:00"
+    String(value).slice(0, 10) +
+    "T12:00:00"
   );
 
   if (Number.isNaN(date.getTime())) {
     return "";
   }
 
-  return date.toLocaleDateString("de-DE", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric"
-  });
+  return date.toLocaleDateString(
+    "de-DE",
+    {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    }
+  );
 
 }
 
@@ -931,10 +1403,16 @@ function formatDate(value) {
 function categoryOf(item) {
 
   const category = String(
-    item.type || item.category || "single"
+    item.type ||
+    item.category ||
+    "single"
   ).toLowerCase();
 
-  return ["album", "albums", "lp"].includes(category)
+  return [
+    "album",
+    "albums",
+    "lp"
+  ].includes(category)
     ? "album"
     : "single";
 
@@ -944,16 +1422,20 @@ function categoryOf(item) {
 
 function getYoutubeId(item) {
 
-  const value =
-    String(item.youtube || "").trim();
+  const value = String(
+    item.youtube || ""
+  ).trim();
 
-  if (/^[A-Za-z0-9_-]{11}$/.test(value)) {
+  if (
+    /^[A-Za-z0-9_-]{11}$/.test(value)
+  ) {
     return value;
   }
 
   try {
 
     const url = new URL(value);
+
     const hostname =
       url.hostname.toLowerCase();
 
@@ -962,7 +1444,9 @@ function getYoutubeId(item) {
       hostname === "www.youtu.be"
     ) {
 
-      return url.pathname.split("/")[1] || "";
+      return (
+        url.pathname.split("/")[1] || ""
+      );
 
     }
 
@@ -973,17 +1457,26 @@ function getYoutubeId(item) {
     ) {
 
       if (url.pathname === "/watch") {
-        return url.searchParams.get("v") || "";
+
+        return (
+          url.searchParams.get("v") || ""
+        );
+
       }
 
-      const parts = url.pathname.split("/");
+      const parts =
+        url.pathname.split("/");
 
       if (
-        parts[1] === "shorts" ||
-        parts[1] === "embed" ||
-        parts[1] === "live"
+        [
+          "shorts",
+          "embed",
+          "live"
+        ].includes(parts[1])
       ) {
+
         return parts[2] || "";
+
       }
 
     }
@@ -998,7 +1491,9 @@ function getYoutubeId(item) {
 
 function openVideo(videoId) {
 
-  if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+  if (
+    !/^[A-Za-z0-9_-]{11}$/.test(videoId)
+  ) {
     return;
   }
 
@@ -1007,7 +1502,9 @@ function openVideo(videoId) {
     videoId +
     "?autoplay=1";
 
-  videoModal.classList.add("open");
+  videoModal.classList.add(
+    "open"
+  );
 
 }
 
@@ -1015,7 +1512,10 @@ function openVideo(videoId) {
 
 function closeVideoPlayer() {
 
-  videoModal.classList.remove("open");
+  videoModal.classList.remove(
+    "open"
+  );
+
   videoFrame.src = "";
 
 }
@@ -1029,7 +1529,9 @@ videoModal.addEventListener(
   "click",
   event => {
 
-    if (event.target === videoModal) {
+    if (
+      event.target === videoModal
+    ) {
       closeVideoPlayer();
     }
 
@@ -1040,7 +1542,9 @@ document.addEventListener(
   "keydown",
   event => {
 
-    if (event.key === "Escape") {
+    if (
+      event.key === "Escape"
+    ) {
       closeVideoPlayer();
     }
 
@@ -1055,7 +1559,9 @@ function renderMusic() {
     activeCategory === "single";
 
   sectionTitle.textContent =
-    isSingle ? "SINGLES" : "ALBUMS";
+    isSingle
+      ? "SINGLES"
+      : "ALBUMS";
 
   sectionSubtitle.textContent =
     isSingle
@@ -1083,13 +1589,18 @@ function renderMusic() {
   );
 
   const items = allMusic
-    .filter(item =>
-      categoryOf(item) === activeCategory
+    .filter(
+      item =>
+        categoryOf(item) === activeCategory
     )
-    .sort((a, b) =>
-      String(b.releaseDate || "")
-        .localeCompare(
-          String(a.releaseDate || "")
+    .sort(
+      (a, b) =>
+        String(
+          b.releaseDate || ""
+        ).localeCompare(
+          String(
+            a.releaseDate || ""
+          )
         )
     );
 
@@ -1108,126 +1619,151 @@ function renderMusic() {
     `;
 
     moreButton.hidden = true;
+
     return;
 
   }
 
-  items.slice(0, visibleCount).forEach(item => {
+  items
+    .slice(0, visibleCount)
+    .forEach(item => {
 
-    const videoId = getYoutubeId(item);
+      const videoId =
+        getYoutubeId(item);
 
-    const validVideoId =
-      /^[A-Za-z0-9_-]{11}$/.test(videoId)
-        ? videoId
-        : "";
+      const validVideoId =
+        /^[A-Za-z0-9_-]{11}$/.test(videoId)
+          ? videoId
+          : "";
 
-    const cover =
-      safeURL(item.cover) ||
-      (
-        validVideoId
-          ? "https://img.youtube.com/vi/" +
-            validVideoId +
-            "/hqdefault.jpg"
-          : ""
-      );
+      const cover =
+        safeURL(item.cover) ||
+        (
+          validVideoId
+            ? "https://img.youtube.com/vi/" +
+              validVideoId +
+              "/hqdefault.jpg"
+            : ""
+        );
 
-    const spotify =
-      safeURL(item.spotify);
+      const spotify =
+        safeURL(item.spotify);
 
-    const amazon =
-      safeURL(item.amazon);
+      const amazon =
+        safeURL(item.amazon);
 
-    const date =
-      formatDate(item.releaseDate);
+      const date =
+        formatDate(item.releaseDate);
 
-    const card =
-      document.createElement("article");
+      const card =
+        document.createElement(
+          "article"
+        );
 
-    card.className = "music-card";
+      card.className =
+        "music-card";
 
-    card.innerHTML = `
+      card.innerHTML = `
 
-      <button
-        type="button"
-        class="cover-button"
-        ${validVideoId ? "" : "disabled"}
-        aria-label="Video öffnen"
-      >
-
-        <img
-          class="cover"
-          src="${escapeHTML(cover)}"
-          alt="${escapeHTML(item.title || "R.M.B.")}"
-          loading="lazy"
+        <button
+          type="button"
+          class="cover-button"
+          ${
+            validVideoId
+              ? ""
+              : "disabled"
+          }
+          aria-label="Video öffnen"
         >
 
-      </button>
+          <img
+            class="cover"
+            src="${escapeHTML(cover)}"
+            alt="${escapeHTML(
+              item.title || "R.M.B."
+            )}"
+            loading="lazy"
+          >
 
-      <div class="track-title">
-        ${escapeHTML(item.title || "R.M.B.")}
-      </div>
+        </button>
 
-      <div class="track-version">
-        ${escapeHTML(item.version || "")}
-      </div>
+        <div class="track-title">
+          ${escapeHTML(
+            item.title || "R.M.B."
+          )}
+        </div>
 
-      ${
-        date
-          ? `<div class="track-date">
-               ${escapeHTML(date)}
-             </div>`
-          : ""
+        <div class="track-version">
+          ${escapeHTML(
+            item.version || ""
+          )}
+        </div>
+
+        ${
+          date
+            ? `
+              <div class="track-date">
+                ${escapeHTML(date)}
+              </div>
+            `
+            : ""
+        }
+
+        <div class="music-links">
+
+          ${
+            validVideoId
+              ? `
+                <a
+                  href="https://www.youtube.com/watch?v=${validVideoId}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >YouTube</a>
+              `
+              : ""
+          }
+
+          ${
+            spotify
+              ? `
+                <a
+                  href="${escapeHTML(spotify)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Spotify</a>
+              `
+              : ""
+          }
+
+          ${
+            amazon
+              ? `
+                <a
+                  href="${escapeHTML(amazon)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Amazon</a>
+              `
+              : ""
+          }
+
+        </div>
+      `;
+
+      if (validVideoId) {
+
+        card.querySelector(
+          ".cover-button"
+        ).addEventListener(
+          "click",
+          () => openVideo(validVideoId)
+        );
+
       }
 
-      <div class="music-links">
+      gallery.appendChild(card);
 
-        ${
-          validVideoId
-            ? `<a
-                 href="https://www.youtube.com/watch?v=${validVideoId}"
-                 target="_blank"
-                 rel="noopener noreferrer"
-               >YouTube</a>`
-            : ""
-        }
-
-        ${
-          spotify
-            ? `<a
-                 href="${escapeHTML(spotify)}"
-                 target="_blank"
-                 rel="noopener noreferrer"
-               >Spotify</a>`
-            : ""
-        }
-
-        ${
-          amazon
-            ? `<a
-                 href="${escapeHTML(amazon)}"
-                 target="_blank"
-                 rel="noopener noreferrer"
-               >Amazon</a>`
-            : ""
-        }
-
-      </div>
-    `;
-
-    if (validVideoId) {
-
-      card.querySelector(
-        ".cover-button"
-      ).addEventListener(
-        "click",
-        () => openVideo(validVideoId)
-      );
-
-    }
-
-    gallery.appendChild(card);
-
-  });
+    });
 
   moreButton.hidden =
     items.length <= visibleCount;
@@ -1239,7 +1775,7 @@ function renderMusic() {
 
 }
 
-/* SINGLE ANKLICKEN */
+/* SINGLE AUSWÄHLEN */
 
 singlesButton.addEventListener(
   "click",
@@ -1247,12 +1783,13 @@ singlesButton.addEventListener(
 
     activeCategory = "single";
     visibleCount = 10;
+
     renderMusic();
 
   }
 );
 
-/* ALBUM ANKLICKEN */
+/* ALBUM AUSWÄHLEN */
 
 albumsButton.addEventListener(
   "click",
@@ -1260,18 +1797,20 @@ albumsButton.addEventListener(
 
     activeCategory = "album";
     visibleCount = 10;
+
     renderMusic();
 
   }
 );
 
-/* WEITERE TITEL LADEN */
+/* WEITERE TITEL ANZEIGEN */
 
 moreButton.addEventListener(
   "click",
   () => {
 
     visibleCount += 10;
+
     renderMusic();
 
   }
@@ -1284,9 +1823,11 @@ fetch("songs.json")
   .then(response => {
 
     if (!response.ok) {
+
       throw new Error(
         "songs.json nicht gefunden"
       );
+
     }
 
     return response.json();
@@ -1296,7 +1837,9 @@ fetch("songs.json")
   .then(data => {
 
     allMusic =
-      Array.isArray(data) ? data : [];
+      Array.isArray(data)
+        ? data
+        : [];
 
     renderMusic();
 
