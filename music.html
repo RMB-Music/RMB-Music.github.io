@@ -599,6 +599,21 @@
       version.textContent = song.version || "";
       card.appendChild(version);
 
+
+if (song.releaseDate) {
+  const releaseDate = document.createElement("div");
+  releaseDate.className = "version";
+
+  const date = new Date(song.releaseDate + "T12:00:00");
+
+  if (!Number.isNaN(date.getTime())) {
+    releaseDate.textContent =
+      "📅 " + date.toLocaleDateString("de-DE");
+
+    card.appendChild(releaseDate);
+  }
+}
+      
       const links = document.createElement("div");
       links.className = "links";
 
@@ -661,7 +676,13 @@
 
         musicGrid.replaceChildren();
 
-        allSongs = [...songs].reverse();
+        
+allSongs = [...songs].sort(function(a, b) {
+  return (b.releaseDate || "").localeCompare(
+    a.releaseDate || ""
+  );
+});
+
         visibleCount = 0;
 
         if (allSongs.length === 0) {
