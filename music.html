@@ -3,14 +3,10 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>R.M.B. – Music</title>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -22,6 +18,10 @@
       background: #121820;
       color: #ffffff;
       font-family: 'Michroma', sans-serif;
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     header {
@@ -55,14 +55,14 @@
     }
 
     main {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 25px 18px 70px;
     }
 
     .intro {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 35px;
     }
 
     h1 {
@@ -77,92 +77,103 @@
       line-height: 2.2;
     }
 
+    /* MUSIKGALERIE */
+
     .music-grid {
       display: grid;
-      grid-template-columns:
-        repeat(auto-fit, minmax(230px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
     }
 
     .music-card {
+      min-width: 0;
       background: #1c2530;
       border: 1px solid #303d4d;
-      border-radius: 14px;
-      padding: 17px;
-      min-width: 0;
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
     }
 
-    .music-card img {
+    .cover-button {
       display: block;
       width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: contain;
+      padding: 0;
+      border: 0;
       background: #111820;
-      border-radius: 9px;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .cover-button img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.25s ease;
+    }
+
+    .cover-button:hover img {
+      transform: scale(1.05);
+    }
+
+    .cover-button:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+    }
+
+    .play-symbol {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 43px;
+      height: 43px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: rgba(10, 17, 26, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      color: white;
+      font-size: 18px;
+      pointer-events: none;
     }
 
     .music-card h2 {
-      font-size: 13px;
-      line-height: 1.8;
-      margin: 17px 0 6px;
+      font-size: 10px;
+      line-height: 1.7;
+      margin: 12px 0 4px;
+      overflow-wrap: anywhere;
     }
 
     .version {
-      font-size: 10px;
-      line-height: 1.8;
+      font-size: 9px;
+      line-height: 1.7;
       color: #a4b5c9;
-      min-height: 20px;
-    }
-
-    .play-button {
-      display: block;
-      width: 100%;
-      margin-top: 18px;
-      padding: 13px 8px;
-      background: #344a60;
-      color: white;
-      border: 1px solid #536a82;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 10px;
-      cursor: pointer;
-    }
-
-    .play-button:hover {
-      background: #49647f;
-    }
-
-    .player {
-      margin-top: 15px;
-      aspect-ratio: 16 / 9;
-      background: #080b10;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .player iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
+      margin-bottom: 10px;
+      overflow-wrap: anywhere;
     }
 
     .links {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 15px;
+      gap: 5px;
+      margin-top: auto;
     }
 
     .links a {
-      flex: 1;
-      min-width: 70px;
-      padding: 11px 6px;
+      flex: 1 1 auto;
+      padding: 8px 5px;
       border: 1px solid #405166;
-      border-radius: 7px;
+      border-radius: 6px;
       color: #c7d9ef;
       text-align: center;
       text-decoration: none;
-      font-size: 9px;
+      font-size: 7px;
     }
 
     .links a:hover {
@@ -177,6 +188,93 @@
       line-height: 2;
     }
 
+    /* WEITERE SONGS */
+
+    .more-container {
+      text-align: center;
+      margin-top: 35px;
+    }
+
+    .more-button {
+      padding: 15px 24px;
+      background: #344a60;
+      color: #ffffff;
+      border: 1px solid #536a82;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .more-button:hover {
+      background: #49647f;
+    }
+
+    /* SEPARATES PLAYER-FENSTER */
+
+    .player-modal[hidden] {
+      display: none;
+    }
+
+    .player-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.88);
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 850px;
+      background: #1c2530;
+      border: 1px solid #405166;
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .modal-title {
+      font-size: 12px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .close-button {
+      flex-shrink: 0;
+      background: #344a60;
+      color: #ffffff;
+      border: 1px solid #536a82;
+      border-radius: 7px;
+      padding: 10px 13px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .video-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #080b10;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
     footer {
       padding: 25px 15px;
       text-align: center;
@@ -184,6 +282,17 @@
       font-size: 9px;
       border-top: 1px solid #263341;
     }
+
+    /* MITTELGROSSE BILDSCHIRME */
+
+    @media (max-width: 900px) {
+      .music-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 15px;
+      }
+    }
+
+    /* SMARTPHONES */
 
     @media (max-width: 600px) {
       nav {
@@ -199,25 +308,37 @@
       }
 
       .music-grid {
-        grid-template-columns:
-          repeat(auto-fit, minmax(145px, 1fr));
-        gap: 13px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
       }
 
       .music-card {
-        padding: 11px;
+        padding: 8px;
       }
 
       .music-card h2 {
-        font-size: 10px;
-      }
-
-      .version {
         font-size: 9px;
       }
 
-      .links a {
+      .version {
         font-size: 8px;
+      }
+
+      .links a {
+        font-size: 7px;
+      }
+
+      .modal-content {
+        padding: 12px;
+      }
+
+      .modal-title {
+        font-size: 10px;
+      }
+
+      .play-symbol {
+        width: 36px;
+        height: 36px;
       }
     }
   </style>
@@ -226,9 +347,7 @@
 <body>
 
   <header>
-    <img
-      src="rmb-banner.png"
-      alt="R.M.B. Music Logo">
+    <img src="rmb-banner.png" alt="R.M.B. Music Logo">
   </header>
 
   <nav>
@@ -253,18 +372,68 @@
 
     <div class="music-grid" id="musicGrid"></div>
 
+    <div class="more-container" id="moreContainer" hidden>
+      <button class="more-button" id="moreButton" type="button">
+        WEITERE SONGS ANZEIGEN
+      </button>
+    </div>
+
   </main>
 
   <footer>
     © R.M.B. · FRANKFURT · ELECTRONIC ROOTS
   </footer>
 
-  <script>
-    const musicGrid =
-      document.getElementById("musicGrid");
+  <!-- PLAYER-FENSTER -->
 
-    const message =
-      document.getElementById("message");
+  <div
+    class="player-modal"
+    id="playerModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+    hidden
+  >
+    <div class="modal-content">
+
+      <div class="modal-top">
+        <div class="modal-title" id="modalTitle">
+          R.M.B.
+        </div>
+
+        <button
+          class="close-button"
+          id="closePlayer"
+          type="button"
+          aria-label="Player schließen"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="video-container" id="videoContainer"></div>
+
+    </div>
+  </div>
+
+  <script>
+
+    const musicGrid = document.getElementById("musicGrid");
+    const message = document.getElementById("message");
+
+    const moreContainer = document.getElementById("moreContainer");
+    const moreButton = document.getElementById("moreButton");
+
+    const playerModal = document.getElementById("playerModal");
+    const videoContainer = document.getElementById("videoContainer");
+    const modalTitle = document.getElementById("modalTitle");
+    const closePlayerButton = document.getElementById("closePlayer");
+
+    const SONGS_PER_PAGE = 10;
+
+    let allSongs = [];
+    let visibleCount = 0;
+    let previousFocus = null;
 
     function validUrl(value) {
       if (!value) return "";
@@ -283,12 +452,17 @@
       return "";
     }
 
+    function validVideoId(value) {
+      return /^[A-Za-z0-9_-]{11}$/.test(value || "");
+    }
+
     function addLink(container, name, address) {
       const url = validUrl(address);
 
       if (!url) return;
 
       const link = document.createElement("a");
+
       link.href = url;
       link.textContent = name;
       link.target = "_blank";
@@ -297,15 +471,124 @@
       container.appendChild(link);
     }
 
+    /* YOUTUBE-PLAYER ÖFFNEN */
+
+    function openPlayer(song) {
+      if (!validVideoId(song.youtube)) return;
+
+      previousFocus = document.activeElement;
+
+      modalTitle.textContent =
+        (song.title || "R.M.B.") +
+        (song.version ? " – " + song.version : "");
+
+      videoContainer.replaceChildren();
+
+      const iframe = document.createElement("iframe");
+
+      iframe.src =
+        "https://www.youtube.com/embed/" +
+        song.youtube +
+        "?autoplay=1";
+
+      iframe.title = "YouTube: " + (song.title || "R.M.B.");
+
+      iframe.allow =
+        "autoplay; encrypted-media; picture-in-picture; web-share";
+
+      iframe.allowFullscreen = true;
+
+      videoContainer.appendChild(iframe);
+
+      playerModal.hidden = false;
+      document.body.classList.add("modal-open");
+
+      closePlayerButton.focus();
+    }
+
+    /* YOUTUBE-PLAYER SCHLIESSEN */
+
+    function closePlayer() {
+      videoContainer.replaceChildren();
+
+      playerModal.hidden = true;
+      document.body.classList.remove("modal-open");
+
+      if (previousFocus) {
+        previousFocus.focus();
+      }
+    }
+
+    closePlayerButton.addEventListener("click", closePlayer);
+
+    playerModal.addEventListener("click", function(event) {
+      if (event.target === playerModal) {
+        closePlayer();
+      }
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (playerModal.hidden) return;
+
+      if (event.key === "Escape") {
+        closePlayer();
+      }
+
+      if (event.key === "Tab") {
+        event.preventDefault();
+        closePlayerButton.focus();
+      }
+    });
+
+    /* SONG-KARTE ERSTELLEN */
+
     function createMusicCard(song) {
+
       const card = document.createElement("article");
       card.className = "music-card";
 
+      const coverButton = document.createElement("button");
+      coverButton.className = "cover-button";
+      coverButton.type = "button";
+
+      coverButton.setAttribute(
+        "aria-label",
+        "Song abspielen: " + (song.title || "R.M.B.")
+      );
+
       const cover = document.createElement("img");
-      cover.src = song.cover || "";
+
+      cover.src =
+        validUrl(song.cover) ||
+        (validVideoId(song.youtube)
+          ? "https://img.youtube.com/vi/" +
+            song.youtube +
+            "/hqdefault.jpg"
+          : "");
+
       cover.alt = "Cover: " + (song.title || "R.M.B.");
       cover.loading = "lazy";
-      card.appendChild(cover);
+
+      coverButton.appendChild(cover);
+
+      if (validVideoId(song.youtube)) {
+
+        const playSymbol = document.createElement("span");
+        playSymbol.className = "play-symbol";
+        playSymbol.textContent = "▶";
+
+        coverButton.appendChild(playSymbol);
+
+        coverButton.addEventListener("click", function() {
+          openPlayer(song);
+        });
+
+      } else {
+        coverButton.disabled = true;
+        coverButton.style.cursor = "default";
+      }
+
+      card.appendChild(coverButton);
 
       const title = document.createElement("h2");
       title.textContent = song.title || "R.M.B.";
@@ -316,57 +599,14 @@
       version.textContent = song.version || "";
       card.appendChild(version);
 
-      const videoId = song.youtube || "";
-
-      if (/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
-        const button = document.createElement("button");
-        button.className = "play-button";
-        button.textContent = "▶ PLAY ON YOUTUBE";
-
-        const player = document.createElement("div");
-        player.className = "player";
-        player.hidden = true;
-
-        button.addEventListener("click", () => {
-          if (player.hidden) {
-            const iframe = document.createElement("iframe");
-
-            iframe.src =
-              "https://www.youtube.com/embed/" +
-              videoId +
-              "?autoplay=1";
-
-            iframe.title =
-              "YouTube: " + (song.title || "R.M.B.");
-
-            iframe.allow =
-              "autoplay; encrypted-media; " +
-              "picture-in-picture; web-share";
-
-            iframe.allowFullscreen = true;
-
-            player.appendChild(iframe);
-            player.hidden = false;
-            button.textContent = "■ CLOSE PLAYER";
-          } else {
-            player.replaceChildren();
-            player.hidden = true;
-            button.textContent = "▶ PLAY ON YOUTUBE";
-          }
-        });
-
-        card.appendChild(button);
-        card.appendChild(player);
-      }
-
       const links = document.createElement("div");
       links.className = "links";
 
-      if (/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+      if (validVideoId(song.youtube)) {
         addLink(
           links,
           "YOUTUBE",
-          "https://www.youtube.com/watch?v=" + videoId
+          "https://www.youtube.com/watch?v=" + song.youtube
         );
       }
 
@@ -378,12 +618,36 @@
       return card;
     }
 
+    /* SONGS ANZEIGEN */
+
+    function showMoreSongs() {
+
+      const nextSongs = allSongs.slice(
+        visibleCount,
+        visibleCount + SONGS_PER_PAGE
+      );
+
+      nextSongs.forEach(function(song) {
+        musicGrid.appendChild(createMusicCard(song));
+      });
+
+      visibleCount += nextSongs.length;
+
+      moreContainer.hidden =
+        visibleCount >= allSongs.length;
+    }
+
+    moreButton.addEventListener("click", showMoreSongs);
+
+    /* SONGS.JSON LADEN */
+
     async function loadMusic() {
+
       try {
-        const response = await fetch(
-          "songs.json",
-          { cache: "no-store" }
-        );
+
+        const response = await fetch("songs.json", {
+          cache: "no-store"
+        });
 
         if (!response.ok) {
           throw new Error("Musikliste nicht gefunden");
@@ -397,27 +661,30 @@
 
         musicGrid.replaceChildren();
 
-        if (songs.length === 0) {
+        allSongs = [...songs].reverse();
+        visibleCount = 0;
+
+        if (allSongs.length === 0) {
           message.textContent =
             "Noch keine Songs eingetragen.";
           return;
         }
 
-        // Neueste Einträge zuerst anzeigen.
-        [...songs].reverse().forEach(song => {
-          musicGrid.appendChild(createMusicCard(song));
-        });
-
         message.hidden = true;
 
+        showMoreSongs();
+
       } catch (error) {
+
         message.textContent =
-          "Die Musikliste konnte noch nicht geladen " +
-          "werden. Bitte songs.json überprüfen.";
+          "Die Musikliste konnte nicht geladen werden. " +
+          "Bitte songs.json überprüfen.";
+
       }
     }
 
     loadMusic();
+
   </script>
 
 </body>
