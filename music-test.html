@@ -5,77 +5,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>R.M.B. | MUSIC TEST</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
 
 <style>
-
-/* =========================
-   GRUNDEINSTELLUNGEN
-========================= */
-
 :root {
-  --background: #101720;
+  --bg: #101720;
   --card: #1c2530;
-  --silver: #b8c8db;
   --line: #304052;
-  --blue: #7ec8ff;
+  --blue: #82d2ff;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
-  padding: 0;
   min-height: 100%;
-  background: var(--background);
+  background: var(--bg);
 }
 
 body {
-  color: #e6edf7;
   font-family: Arial, sans-serif;
+  color: #e6edf7;
   overflow-x: hidden;
 }
 
-button {
-  -webkit-tap-highlight-color: transparent;
-}
+button, input { font: inherit; }
 
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid #89d1ff;
+  outline: 2px solid var(--blue);
   outline-offset: 3px;
 }
 
-/* =========================
-   MUSIC UND FRANKFURT
-========================= */
+/* MUSIC UND FRANKFURTER SKYLINE */
 
 .music-hero {
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding: 0;
-  background: var(--background);
+  background: var(--bg);
 }
 
 .music-hero::before {
   content: "";
   position: absolute;
-  left: 50%;
   top: 0;
-  transform: translateX(-50%);
+  left: 0;
   width: 100%;
-  height: 520px;
+  height: 530px;
   pointer-events: none;
-
   background: radial-gradient(
-    ellipse,
-    rgba(56,94,135,0.16),
-    rgba(30,52,75,0.07) 45%,
-    transparent 75%
+    ellipse at 50% 45%,
+    rgba(56,94,135,.14),
+    transparent 72%
   );
 }
 
@@ -91,11 +73,10 @@ input:focus-visible {
   left: 0;
   bottom: -68px;
   z-index: 0;
-  display: block;
   width: 100%;
-  max-width: none;
   height: auto;
-  opacity: 0.28;
+  display: block;
+  opacity: .28;
   filter: brightness(0) invert(1);
   pointer-events: none;
 }
@@ -106,77 +87,65 @@ input:focus-visible {
   top: clamp(14px,1.8vw,28px);
   transform: translateX(-50%);
   z-index: 2;
-  display: block;
   width: min(720px,92%);
-  max-width: 720px;
   height: auto;
   mix-blend-mode: screen;
   filter: drop-shadow(
-    0 0 10px rgba(95,165,255,0.18)
+    0 0 10px rgba(95,165,255,.18)
   );
   pointer-events: none;
 }
 
-/* =========================
-   DJ-AUFBAU
-========================= */
+/* DJ-AUFBAU */
 
 .dj-setup {
+  --device-height: 260px;
   position: relative;
   z-index: 5;
-  width: min(1180px,96%);
+  width: min(1360px,98%);
   margin: 6px auto 0;
-
   display: grid;
   grid-template-columns:
-    minmax(0,1.08fr)
-    minmax(0,1.7fr)
-    minmax(0,1.08fr);
-
+    minmax(0,330px)
+    minmax(0,1fr)
+    minmax(0,330px);
   gap: 10px;
   align-items: stretch;
-  --device-height: 260px;
 }
-
-/* Genretext über dem Mischpult */
 
 .music-style-top {
   position: absolute;
-  z-index: 8;
   left: 50%;
   top: -31px;
+  z-index: 8;
   transform: translateX(-50%);
-  width: max-content;
-  max-width: 96%;
   margin: 0;
-  padding: 0;
   color: #b9d3ee;
-  font-family: "Michroma", Arial, sans-serif;
-  font-size: 11px;
+  font: 11px Michroma,Arial,sans-serif;
   letter-spacing: 2px;
-  text-transform: uppercase;
   white-space: nowrap;
   text-shadow:
-    0 0 8px rgba(126,200,255,0.24);
+    0 0 8px rgba(126,200,255,.24);
   pointer-events: none;
 }
 
-/* =========================
-   TURNTABLES
-========================= */
+/* TURNTABLES */
 
-.turntable {
+.turntable,
+.mixer {
   position: relative;
   min-width: 0;
   width: 100%;
   height: var(--device-height);
   overflow: hidden;
-  border: 1px solid #667b91;
   border-radius: 6px;
-  background: #cbd5df;
   box-shadow:
-    0 8px 20px rgba(0,0,0,0.45),
-    0 0 12px rgba(120,180,255,0.08);
+    0 8px 20px rgba(0,0,0,.45);
+}
+
+.turntable {
+  border: 1px solid #667b91;
+  background: #cbd5df;
 }
 
 .turntable-image {
@@ -186,24 +155,16 @@ input:focus-visible {
   object-fit: fill;
 }
 
-/* =========================
-   MISCHPULT
-========================= */
+/* MIXER */
 
 .mixer {
-  position: relative;
-  min-width: 0;
-  width: 100%;
-  height: var(--device-height);
-  padding: 10px 12px 9px;
+  padding: 9px 12px 7px;
   border: 1px solid #708299;
-  border-radius: 7px;
-  overflow: hidden;
 
   background:
     linear-gradient(
       135deg,
-      rgba(255,255,255,0.12),
+      rgba(255,255,255,.12),
       transparent 30%
     ),
     linear-gradient(
@@ -214,84 +175,81 @@ input:focus-visible {
     );
 
   box-shadow:
-    inset 0 1px 2px rgba(255,255,255,0.25),
-    inset 0 -3px 6px rgba(0,0,0,0.5),
-    0 8px 20px rgba(0,0,0,0.45);
+    inset 0 1px 2px rgba(255,255,255,.25),
+    inset 0 -3px 6px rgba(0,0,0,.5),
+    0 8px 20px rgba(0,0,0,.45);
 }
 
 .mixer-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 6px;
   height: 19px;
   margin-bottom: 5px;
   color: #bfcedd;
-  font-family: "Michroma", Arial, sans-serif;
-  font-size: 8px;
-  letter-spacing: 0.3px;
+  font: 8px Michroma,Arial,sans-serif;
   white-space: nowrap;
 }
 
 .power-indicator {
   display: inline-flex;
-  align-items: center;
   gap: 5px;
+  align-items: center;
 }
 
 .power-led {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #82d2ff;
-  box-shadow: 0 0 7px #6bc5ff;
+  box-shadow: 0 0 8px #6bc5ff;
 }
 
 .mixer-panel {
   display: grid;
   grid-template-columns:
-    minmax(0,0.78fr)
-    minmax(0,3.3fr)
-    minmax(0,0.78fr);
-  gap: 8px;
-  height: calc(100% - 77px);
+    minmax(0,76px)
+    minmax(0,1fr)
+    minmax(0,76px);
+  gap: 9px;
+  height: calc(100% - 91px);
+  min-width: 0;
 }
 
-/* =========================
-   EQ-BEDIENFELDER
-========================= */
+/* EQ */
 
 .eq-panel {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  gap: 3px;
   min-width: 0;
   padding: 5px;
   border: 1px solid #405265;
   border-radius: 4px;
-  background: rgba(6,13,20,0.23);
+  background: rgba(6,13,20,.23);
 }
 
 .eq-title {
   color: #abc1d5;
-  font-family: "Michroma", sans-serif;
-  font-size: 7px;
+  font: 7px Michroma,Arial,sans-serif;
 }
 
 .eq-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  min-width: 0;
 }
 
 .eq-knob {
   position: relative;
   flex-shrink: 0;
-  width: 19px;
-  height: 19px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: 2px solid #8d9fb0;
-
   background: conic-gradient(
     #263c51,
     #e2eaf1,
@@ -299,9 +257,8 @@ input:focus-visible {
     #c0ccd8,
     #263c51
   );
-
   box-shadow:
-    0 2px 3px rgba(0,0,0,0.5),
+    0 2px 3px rgba(0,0,0,.5),
     inset 0 1px 2px #ffffffaa;
 }
 
@@ -313,26 +270,20 @@ input:focus-visible {
   width: 2px;
   height: 6px;
   background: #172432;
-  border-radius: 2px;
 }
 
 .eq-name {
   color: #acbed0;
-  font-family: "Michroma", sans-serif;
-  font-size: clamp(5px,0.56vw,7px);
+  font: 7px Michroma,Arial,sans-serif;
 }
 
-/* =========================
-   VU-METER UND MENÜFADER
-========================= */
+/* VU-METER */
 
 .mixer-center {
   display: grid;
   grid-template-columns:
-    10px
-    minmax(0,1fr)
-    10px;
-  gap: 4px;
+    11px minmax(0,1fr) 11px;
+  gap: 5px;
   min-width: 0;
 }
 
@@ -347,25 +298,16 @@ input:focus-visible {
 }
 
 .vu-led {
-  width: 100%;
   flex: 1;
   min-height: 2px;
-  border-radius: 1px;
   background: #14241f;
-  opacity: 0.28;
+  opacity: .28;
+  border-radius: 1px;
 }
 
-.vu-led.green {
-  --lit: #3dec83;
-}
-
-.vu-led.yellow {
-  --lit: #efdb54;
-}
-
-.vu-led.red {
-  --lit: #ff6a60;
-}
+.vu-led.green { --lit: #3dec83; }
+.vu-led.yellow { --lit: #efdb54; }
+.vu-led.red { --lit: #ff6a60; }
 
 .vu-led.on {
   background: var(--lit);
@@ -373,9 +315,12 @@ input:focus-visible {
   box-shadow: 0 0 4px var(--lit);
 }
 
+/* FÜNF FLACHBAHNREGLER */
+
 .mixer-channels {
   display: grid;
-  grid-template-columns: repeat(5,minmax(0,1fr));
+  grid-template-columns:
+    repeat(5,minmax(0,1fr));
   gap: 5px;
   min-width: 0;
 }
@@ -385,7 +330,6 @@ input:focus-visible {
   min-width: 0;
   border: 1px solid #3c4e61;
   border-radius: 3px;
-
   background: linear-gradient(
     90deg,
     #192532,
@@ -396,14 +340,14 @@ input:focus-visible {
 
 .fader-track {
   position: absolute;
-  inset: 5px 2px;
+  inset: 4px 2px;
 }
 
 .fader-track::before {
   content: "";
   position: absolute;
-  top: 4px;
-  bottom: 4px;
+  top: 0;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 6px;
@@ -411,43 +355,43 @@ input:focus-visible {
   background: #060b11;
 }
 
+/* Identische Fadergriffe: Höhe = doppelte Breite */
+
 .fader-handle {
   position: absolute;
-  top: 57%;
   left: 50%;
+  top: 0;
+  transform: translateX(-50%);
 
-  transform:
-    translate(-50%,calc(-1 * var(--drag,0px)));
-
-  width: calc(100% - 1px);
-  min-width: 0;
-  height: 35px;
-  padding: 0 1px;
+  width: min(60px,calc(100% - 2px));
+  aspect-ratio: 1 / 2;
+  height: auto;
+  min-height: 0;
 
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  gap: 3px;
 
-  border: 1px solid #ecf3fa;
-  border-radius: 3px;
+  padding: 15px 1px 0;
+
+  border: 1px solid #eef5fc;
+  border-radius: 4px;
 
   background: linear-gradient(
-    180deg,
-    #f2f6fa,
-    #b5c3d1 22%,
-    #dce6ef 46%,
-    #7c93a8 54%,
-    #a9bbcd 82%,
-    #71879b
+    90deg,
+    #92a9bc 0%,
+    #f0f5fa 13%,
+    #c5d4e2 45%,
+    #839bb0 85%,
+    #dfeaf3 100%
   );
 
-  color: #152433;
-  font-family: "Michroma", Arial, sans-serif;
-  font-size: clamp(4.5px,0.55vw,7px);
+  color: #1b3043;
+  font: clamp(5px,.49vw,7px)
+        Michroma,Arial,sans-serif;
   font-weight: bold;
-  letter-spacing: -0.3px;
+  letter-spacing: -.4px;
+  white-space: nowrap;
 
   cursor: grab;
   touch-action: none;
@@ -455,16 +399,35 @@ input:focus-visible {
   -webkit-user-select: none;
 
   box-shadow:
-    0 3px 5px rgba(0,0,0,0.65),
+    0 4px 6px rgba(0,0,0,.65),
     inset 0 1px 1px #fff;
+
+  will-change: top;
 }
+
+/* Rillen im metallischen Fadergriff */
 
 .fader-handle::after {
   content: "";
-  display: block;
+  position: absolute;
+  top: 44%;
+  left: 15%;
   width: 70%;
-  height: 3px;
-  background: #7890a5;
+  height: 27%;
+
+  border-top: 2px solid #70889e;
+  border-bottom: 2px solid #70889e;
+
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 4px,
+    #536d82 4px 6px,
+    #dce6ef 6px 9px
+  );
+
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.65);
+  border-radius: 2px;
 }
 
 .fader-handle.dragging {
@@ -472,93 +435,84 @@ input:focus-visible {
 }
 
 .fader-handle.returning {
-  transition: transform 0.2s ease-out;
+  transition: top .22s ease-out;
 }
 
 .fader-handle[aria-current="page"] {
-  border-color: #85c4ff;
-
+  border-color: #9dd9ff;
   box-shadow:
-    0 3px 5px #000,
-    0 0 8px rgba(105,177,255,0.45);
+    0 4px 6px #000,
+    0 0 9px rgba(105,177,255,.4);
 }
 
-/* =========================
-   NEU: SLIDE ME
-========================= */
-
-/*
-   Bedienhinweis für beide Reglertypen.
-
-   Mittig zwischen den fünf
-   vertikalen Menüfadern und
-   dem horizontalen Crossfader.
-
-   Absolute Positionierung:
-   Die Mischpulthöhe bleibt gleich.
-*/
+/* SLIDE ME – PULSIEREND */
 
 .slide-me {
   position: absolute;
-  z-index: 3;
-
+  z-index: 4;
   left: 50%;
-  bottom: 49px;
-
+  bottom: 36px;
   transform: translateX(-50%);
-
   margin: 0;
-  padding: 0;
-
-  font-family: "Michroma", Arial, sans-serif;
-  font-size: 8px;
-  font-weight: normal;
-  letter-spacing: 1.5px;
-  line-height: 1.2;
 
   color: #c9eaff;
-
-  text-shadow:
-    0 0 3px #ffffff,
-    0 0 7px #82d2ff,
-    0 0 12px rgba(107,197,255,0.45);
-
+  font: 8px Michroma,Arial,sans-serif;
+  letter-spacing: 1.3px;
+  line-height: 1;
   white-space: nowrap;
   pointer-events: none;
+
+  text-shadow:
+    0 0 3px #fff,
+    0 0 7px #82d2ff,
+    0 0 12px rgba(107,197,255,.5);
+
+  animation:
+    slidePulse 2s ease-in-out infinite;
 }
 
-/* =========================
-   CROSSFADER
-========================= */
+@keyframes slidePulse {
+  0%,100% {
+    opacity: .55;
+    text-shadow: 0 0 3px #82d2ff;
+  }
+
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 3px #fff,
+      0 0 9px #82d2ff,
+      0 0 18px #6bc5ff;
+  }
+}
+
+/* CROSSFADER */
 
 .crossfader-section {
-  position: relative;
-  width: min(80%,410px);
-  margin: 6px auto 0;
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%);
+  width: min(80%,460px);
+  margin: 0;
 }
 
 .crossfader-labels {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
-
   color: #9cb2c7;
-  font-family: "Michroma", sans-serif;
-  font-size: 8px;
+  font: 8px Michroma,Arial,sans-serif;
   letter-spacing: 1px;
 }
 
-/* Aktiver Single-/Album-Schriftzug
-   leuchtet wie die POWER-LED */
-
 .crossfader-labels .active {
   color: #e2f6ff;
-
   text-shadow:
-    0 0 3px #ffffff,
+    0 0 3px #fff,
     0 0 7px #82d2ff,
     0 0 14px #6bc5ff,
-    0 0 22px rgba(107,197,255,0.65);
+    0 0 22px rgba(107,197,255,.65);
 }
 
 .crossfader-slider {
@@ -566,10 +520,8 @@ input:focus-visible {
   width: 100%;
   height: 20px;
   margin: 0;
-
   appearance: none;
   -webkit-appearance: none;
-
   background: transparent;
   cursor: ew-resize;
   touch-action: pan-y;
@@ -589,11 +541,9 @@ input:focus-visible {
 .crossfader-slider::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
-
   width: 38px;
   height: 18px;
   margin-top: -7px;
-
   border: 1px solid #e5edf4;
   border-radius: 3px;
 
@@ -624,23 +574,18 @@ input:focus-visible {
 
 .crossfader-title {
   display: block;
-  margin-top: 0;
-
   color: #7f9ab1;
-  font-family: "Michroma", sans-serif;
-  font-size: 7px;
+  font: 7px Michroma,Arial,sans-serif;
   letter-spacing: 1px;
   text-align: center;
 }
 
-/* =========================
-   SILBER-BLAUE LED-LEISTE
-========================= */
+/* LED-LICHTLEISTE */
 
 .led-display-wrap {
   position: relative;
   z-index: 6;
-  width: min(1180px,96%);
+  width: min(1360px,98%);
   margin: 12px auto 0;
 }
 
@@ -650,38 +595,21 @@ input:focus-visible {
   padding: 8px 12px;
   overflow: hidden;
 
-  border: 1px solid rgba(170,210,250,0.55);
+  border: 1px solid rgba(170,210,250,.55);
   border-radius: 10px;
 
   background:
     linear-gradient(
       180deg,
-      rgba(215,235,255,0.12),
-      rgba(40,65,95,0.10)
+      rgba(215,235,255,.12),
+      rgba(40,65,95,.1)
     ),
     #142231;
 
   box-shadow:
-    inset 0 1px 1px rgba(255,255,255,0.24),
-    inset 0 -1px 2px rgba(0,0,0,0.45),
-    0 0 15px rgba(110,185,255,0.14);
-}
-
-.led-display::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-
-  background: linear-gradient(
-    90deg,
-    rgba(170,210,255,0.06),
-    transparent 28%,
-    rgba(180,220,255,0.08) 50%,
-    transparent 72%,
-    rgba(170,210,255,0.06)
-  );
+    inset 0 1px 1px rgba(255,255,255,.24),
+    inset 0 -1px 2px rgba(0,0,0,.45),
+    0 0 15px rgba(110,185,255,.14);
 }
 
 .led-canvas {
@@ -695,21 +623,14 @@ input:focus-visible {
   background: #07111b;
 }
 
-/* =========================
-   MUSIKCOVER
-========================= */
+/* MUSIKCOVER */
 
 .content {
-  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-
-  /* Kleiner Abstand zur LED-Leiste */
-
   padding: 14px 24px 75px;
-
-  background: var(--background);
   text-align: center;
+  background: var(--bg);
 }
 
 .gallery {
@@ -717,19 +638,16 @@ input:focus-visible {
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
-  text-align: center;
 }
 
 .music-card {
   width: min(220px,100%);
   min-width: 180px;
   padding: 12px;
-
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
-
-  transition: transform 0.2s;
+  transition: transform .2s;
 }
 
 .music-card:hover {
@@ -740,7 +658,7 @@ input:focus-visible {
   display: block;
   width: 100%;
   padding: 0;
-  background: transparent;
+  background: none;
   border: 0;
   cursor: pointer;
 }
@@ -789,7 +707,6 @@ input:focus-visible {
   padding: 8px 10px;
   background: #293d53;
   border-radius: 6px;
-
   color: #d6e9fc;
   text-decoration: none;
   font-size: 11px;
@@ -802,7 +719,6 @@ input:focus-visible {
 .empty-message {
   width: min(420px,100%);
   padding: 38px 18px;
-
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -812,14 +728,11 @@ input:focus-visible {
 .more-button {
   margin-top: 35px;
   padding: 13px 22px;
-
   background: #263c52;
   border: 1px solid #6587aa;
   border-radius: 7px;
-
   color: white;
-  font-family: "Michroma", Arial, sans-serif;
-  font-size: 10px;
+  font: 10px Michroma,Arial,sans-serif;
   cursor: pointer;
 }
 
@@ -827,9 +740,7 @@ input:focus-visible {
   display: none;
 }
 
-/* =========================
-   YOUTUBE-VIDEOFENSTER
-========================= */
+/* VIDEOFENSTER */
 
 .video-modal {
   display: none;
@@ -837,8 +748,7 @@ input:focus-visible {
   inset: 0;
   z-index: 1000;
   padding: 25px;
-
-  background: rgba(0,0,0,0.94);
+  background: rgba(0,0,0,.94);
   align-items: center;
   justify-content: center;
 }
@@ -854,7 +764,7 @@ input:focus-visible {
 
 .video-frame {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16/9;
   border: 0;
   background: black;
 }
@@ -863,51 +773,53 @@ input:focus-visible {
   position: absolute;
   right: 0;
   top: -48px;
-
-  background: none;
   border: 0;
+  background: none;
   color: white;
   font-size: 34px;
   cursor: pointer;
 }
 
-/* =========================
-   FUSSZEILE
-========================= */
-
 footer {
   padding: 30px 15px 35px;
-  background: var(--background);
-
+  background: var(--bg);
   color: #7d91a7;
   text-align: center;
   font-size: 12px;
 }
 
-/* =========================
-   TABLET
-========================= */
+/* TABLET */
 
-@media (max-width:1080px) {
-
+@media(max-width:1120px) {
   .dj-setup {
-    width: 98%;
+    grid-template-columns:
+      minmax(0,25%)
+      minmax(0,1fr)
+      minmax(0,25%);
+    --device-height: clamp(195px,23.2vw,260px);
     gap: 7px;
-    --device-height: clamp(180px,21.5vw,250px);
   }
 
   .mixer {
-    padding: 7px 8px 6px;
+    padding: 7px 8px;
   }
 
   .mixer-panel {
+    grid-template-columns:
+      minmax(0,57px)
+      minmax(0,1fr)
+      minmax(0,57px);
     gap: 5px;
-    height: calc(100% - 65px);
+    height: calc(100% - 82px);
   }
 
   .eq-knob {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
+  }
+
+  .eq-name {
+    font-size: 5px;
   }
 
   .mixer-channels {
@@ -915,27 +827,24 @@ footer {
   }
 
   .fader-handle {
-    height: 30px;
+    width: min(46px,calc(100% - 2px));
     font-size: 5px;
+    padding-top: 10px;
   }
 
   .slide-me {
-    bottom: 43px;
+    bottom: 36px;
     font-size: 7px;
-    letter-spacing: 1.2px;
   }
 
-  .led-display-wrap {
-    width: 98%;
+  .music-style-top {
+    font-size: 10px;
   }
 }
 
-/* =========================
-   SMARTPHONE
-========================= */
+/* SMARTPHONE */
 
-@media (max-width:700px) {
-
+@media(max-width:700px) {
   .music-composition {
     height: 178px;
   }
@@ -947,19 +856,14 @@ footer {
 
   .skyline {
     bottom: -30px;
-    opacity: 0.24;
+    opacity: .24;
   }
 
   .dj-setup {
     width: min(470px,96%);
-    margin-top: 5px;
-
     grid-template-columns:
       repeat(2,minmax(0,1fr));
-
     gap: 10px;
-    align-items: stretch;
-
     --device-height: 170px;
   }
 
@@ -970,10 +874,10 @@ footer {
   }
 
   .mixer {
-    grid-column: 1 / -1;
+    grid-column: 1/-1;
     grid-row: 1;
-    height: 230px;
-    padding: 10px;
+    height: 260px;
+    padding: 9px;
   }
 
   .turntable.single {
@@ -987,35 +891,28 @@ footer {
   }
 
   .mixer-panel {
-    height: calc(100% - 65px);
-  }
-
-  .mixer-header {
-    font-size: 8px;
-  }
-
-  .eq-knob {
-    width: 18px;
-    height: 18px;
+    grid-template-columns:
+      65px minmax(0,1fr) 65px;
+    height: calc(100% - 91px);
   }
 
   .eq-name {
-    font-size: 7px;
+    font-size: 6px;
+  }
+
+  .mixer-channels {
+    gap: 4px;
   }
 
   .fader-handle {
-    font-size: clamp(6px,1.5vw,8px);
-    height: 35px;
+    width: min(52px,calc(100% - 2px));
+    font-size: 6px;
+    padding-top: 12px;
   }
 
   .slide-me {
-    bottom: 46px;
-    font-size: 8px;
-    letter-spacing: 1.5px;
-  }
-
-  .crossfader-labels {
-    font-size: 9px;
+    bottom: 36px;
+    font-size: 7px;
   }
 
   .led-display-wrap {
@@ -1039,16 +936,17 @@ footer {
     min-width: 150px;
     padding: 9px;
   }
-
-  .track-title {
-    font-size: 12px;
-  }
 }
 
-@media (max-width:420px) {
-
+@media(max-width:420px) {
   .mixer-header {
     font-size: 6px;
+  }
+
+  .mixer-panel {
+    grid-template-columns:
+      51px minmax(0,1fr) 51px;
+    gap: 3px;
   }
 
   .eq-row {
@@ -1056,8 +954,8 @@ footer {
   }
 
   .eq-knob {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
   }
 
   .eq-name {
@@ -1065,8 +963,10 @@ footer {
   }
 
   .fader-handle {
-    height: 27px;
-    font-size: 5px;
+    width: min(38px,calc(100% - 1px));
+    font-size: 4.7px;
+    padding-top: 9px;
+    letter-spacing: -.5px;
   }
 
   .crossfader-section {
@@ -1078,26 +978,24 @@ footer {
   }
 }
 
-@media (prefers-reduced-motion:reduce) {
+@media(prefers-reduced-motion:reduce) {
+  .slide-me {
+    animation: none;
+    opacity: 1;
+  }
 
-  .fader-handle {
-    transition: none !important;
+  .fader-handle.returning {
+    transition: none;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     MUSIC UND SKYLINE
-========================= -->
-
 <section class="music-hero">
 
   <div class="music-composition">
-
     <img
       class="skyline"
       src="images/frankfurt-skyline.png"
@@ -1109,12 +1007,7 @@ footer {
       src="images/music-schriftzug.png"
       alt="MUSIC – THE SOUND OF R.M.B."
     >
-
   </div>
-
-  <!-- =========================
-       DJ-AUFBAU
-  ========================= -->
 
   <div class="dj-setup">
 
@@ -1122,35 +1015,27 @@ footer {
       90s Eurodance · EDM · Trance
     </p>
 
-    <!-- LINKER BAUSYS-TEM -->
+    <!-- LINKER PLATTENSPIELER -->
 
     <div class="turntable single">
-
       <img
         class="turntable-image"
         src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
         alt="Bausys-tem Turntable links"
       >
-
     </div>
 
-    <!-- =========================
-         MISCHPULT
-    ========================= -->
+    <!-- MISCHPULT -->
 
     <div class="mixer">
 
       <div class="mixer-header">
-
-        <span>
-          R.M.B. · 5 CHANNEL DJ MIXER
-        </span>
+        <span>R.M.B. · 5 CHANNEL DJ MIXER</span>
 
         <span class="power-indicator">
           <span class="power-led"></span>
           POWER
         </span>
-
       </div>
 
       <div class="mixer-panel">
@@ -1158,10 +1043,7 @@ footer {
         <!-- EQ LINKS -->
 
         <div class="eq-panel">
-
-          <span class="eq-title">
-            CH A
-          </span>
+          <span class="eq-title">CH A</span>
 
           <div class="eq-row">
             <span class="eq-knob"></span>
@@ -1182,10 +1064,9 @@ footer {
             <span class="eq-knob"></span>
             <span class="eq-name">BASS</span>
           </div>
-
         </div>
 
-        <!-- MITTE: VU-METER UND 5 FADER -->
+        <!-- MENÜFADER -->
 
         <div class="mixer-center">
 
@@ -1200,89 +1081,59 @@ footer {
             aria-label="DJ-Mischpult Navigation"
           >
 
-            <!-- HOME -->
-
             <div class="mixer-channel">
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="index.html"
                   aria-label="HOME nach oben schieben"
-                >
-                  HOME
-                </button>
-
+                >HOME</button>
               </div>
             </div>
 
-            <!-- MUSIC -->
-
             <div class="mixer-channel">
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="music-test.html"
                   aria-current="page"
-                  aria-label="MUSIC nach oben schieben"
-                >
-                  MUSIC
-                </button>
-
+                  aria-label="MUSIC ist aktiv"
+                >MUSIC</button>
               </div>
             </div>
 
-            <!-- RELEASES -->
-
             <div class="mixer-channel">
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="music.html"
                   aria-label="RELEASES nach oben schieben"
-                >
-                  RELEASES
-                </button>
-
+                >RELEASES</button>
               </div>
             </div>
 
-            <!-- ABOUT -->
-
             <div class="mixer-channel">
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="about.html"
                   aria-label="ABOUT nach oben schieben"
-                >
-                  ABOUT
-                </button>
-
+                >ABOUT</button>
               </div>
             </div>
 
-            <!-- CONTACT -->
-
             <div class="mixer-channel">
               <div class="fader-track">
-
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="contact.html"
                   aria-label="CONTACT nach oben schieben"
-                >
-                  CONTACT
-                </button>
-
+                >CONTACT</button>
               </div>
             </div>
 
@@ -1299,10 +1150,7 @@ footer {
         <!-- EQ RECHTS -->
 
         <div class="eq-panel">
-
-          <span class="eq-title">
-            CH B
-          </span>
+          <span class="eq-title">CH B</span>
 
           <div class="eq-row">
             <span class="eq-knob"></span>
@@ -1323,38 +1171,26 @@ footer {
             <span class="eq-knob"></span>
             <span class="eq-name">BASS</span>
           </div>
-
         </div>
 
       </div>
 
-      <!-- =========================
-           NEU: SLIDE ME
-      ========================= -->
+      <!-- PULSIERENDER BEDIENHINWEIS -->
 
-      <div class="slide-me">
-        SLIDE ME
-      </div>
+      <div class="slide-me">SLIDE ME</div>
 
-      <!-- =========================
-           CROSSFADER
-      ========================= -->
+      <!-- CROSSFADER -->
 
       <div class="crossfader-section">
 
         <div class="crossfader-labels">
-
-          <span
-            id="singleLabel"
-            class="active"
-          >
+          <span id="singleLabel" class="active">
             SINGLE
           </span>
 
           <span id="albumLabel">
             ALBUM
           </span>
-
         </div>
 
         <input
@@ -1373,59 +1209,43 @@ footer {
         </span>
 
       </div>
-
     </div>
 
-    <!-- RECHTER BAUSYS-TEM -->
+    <!-- RECHTER PLATTENSPIELER -->
 
     <div class="turntable album">
-
       <img
         class="turntable-image"
         src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
         alt="Bausys-tem Turntable rechts"
       >
-
     </div>
 
   </div>
 
-  <!-- =========================
-       LED-LICHTLAUFLEISTE
-  ========================= -->
+  <!-- LED-ANZEIGE -->
 
   <div class="led-display-wrap">
-
     <div class="led-display">
-
       <canvas
         id="ledCanvas"
         class="led-canvas"
-        width="1200"
-        height="80"
         role="img"
-        aria-label="SINGLE – THE SINGLE COLLECTION"
+        aria-label="SINGLE · THE SINGLE COLLECTION"
       ></canvas>
-
     </div>
-
   </div>
 
 </section>
 
-<!-- =========================
-     MUSIKCOVER
-     OHNE EXTRA ÜBERSCHRIFT
-========================= -->
+<!-- MUSIKCOVER -->
 
 <main class="content">
 
   <div class="gallery" id="gallery">
-
     <div class="empty-message">
       Musik wird geladen ...
     </div>
-
   </div>
 
   <button
@@ -1439,8 +1259,6 @@ footer {
 
 </main>
 
-<!-- FUSSZEILE -->
-
 <footer>
   © R.M.B. MUSIC · FRANKFURT AM MAIN
 </footer>
@@ -1448,7 +1266,6 @@ footer {
 <!-- YOUTUBE-VIDEOFENSTER -->
 
 <div class="video-modal" id="videoModal">
-
   <div class="video-window">
 
     <button
@@ -1456,9 +1273,7 @@ footer {
       class="close-video"
       id="closeVideo"
       aria-label="Video schließen"
-    >
-      &times;
-    </button>
+    >&times;</button>
 
     <iframe
       id="videoFrame"
@@ -1469,169 +1284,261 @@ footer {
     ></iframe>
 
   </div>
-
 </div>
 
 <script>
 
 /* =========================
-   FADER-NAVIGATION
+   GEGENLÄUFIGE MENÜFADER
 ========================= */
 
-document
-  .querySelectorAll(".fader-handle")
-  .forEach(handle => {
+const faders = [
+  ...document.querySelectorAll(
+    '.fader-handle'
+  )
+];
 
-    let startY = null;
-    let pointerId = null;
-    let distance = 0;
+const activeFader =
+  document.querySelector(
+    '.fader-handle[aria-current="page"]'
+  );
 
-    function getTravel() {
+let dragging = null;
+let navigationStarted = false;
 
-      const track = handle.parentElement;
+const clamp = (n,low,high) =>
+  Math.min(high,Math.max(low,n));
 
-      return Math.max(
-        10,
-        Math.min(
-          handle.offsetTop - 8,
-          track.clientHeight * 0.65
-        )
-      );
-    }
+function maxTravel(handle) {
+  return Math.max(
+    0,
+    handle.parentElement.clientHeight -
+    handle.offsetHeight
+  );
+}
 
-    function reset() {
+function faderPosition(handle,progress) {
+  const travel = maxTravel(handle);
 
-      startY = null;
-      pointerId = null;
-      distance = 0;
+  handle.style.top =
+    (
+      travel *
+      (1-clamp(progress,0,1))
+    ) + 'px';
+}
 
-      handle.classList.remove("dragging");
-      handle.classList.add("returning");
+/* Grundstellung:
+   MUSIC oben, alle anderen unten */
 
-      handle.style.setProperty(
-        "--drag",
-        "0px"
-      );
-    }
+function initializeFaders() {
+  if (dragging) return;
 
-    handle.addEventListener(
-      "pointerdown",
-      event => {
+  faders.forEach(handle => {
+    handle.classList.remove('returning');
 
-        if (
-          event.pointerType === "mouse" &&
-          event.button !== 0
-        ) {
-          return;
-        }
-
-        event.preventDefault();
-
-        startY = event.clientY;
-        pointerId = event.pointerId;
-        distance = 0;
-
-        handle.classList.remove("returning");
-        handle.classList.add("dragging");
-
-        handle.setPointerCapture(
-          event.pointerId
-        );
-      }
+    faderPosition(
+      handle,
+      handle === activeFader ? 1 : 0
     );
-
-    handle.addEventListener(
-      "pointermove",
-      event => {
-
-        if (
-          startY === null ||
-          pointerId !== event.pointerId
-        ) {
-          return;
-        }
-
-        distance = Math.min(
-          getTravel(),
-          Math.max(
-            0,
-            startY - event.clientY
-          )
-        );
-
-        handle.style.setProperty(
-          "--drag",
-          distance + "px"
-        );
-      }
-    );
-
-    handle.addEventListener(
-      "pointerup",
-      event => {
-
-        if (
-          startY === null ||
-          pointerId !== event.pointerId
-        ) {
-          return;
-        }
-
-        const reached =
-          distance >= getTravel() * 0.85;
-
-        const destination =
-          handle.dataset.url;
-
-        reset();
-
-        if (reached && destination) {
-          window.location.assign(
-            destination
-          );
-        }
-      }
-    );
-
-    handle.addEventListener(
-      "pointercancel",
-      reset
-    );
-
-    handle.addEventListener(
-      "lostpointercapture",
-      () => {
-
-        if (startY !== null) {
-          reset();
-        }
-      }
-    );
-
-    handle.addEventListener(
-      "keydown",
-      event => {
-
-        if (
-          event.key === "ArrowUp" ||
-          event.key === "Enter"
-        ) {
-
-          event.preventDefault();
-
-          const destination =
-            handle.dataset.url;
-
-          if (destination) {
-            window.location.assign(
-              destination
-            );
-          }
-        }
-      }
-    );
-
   });
+}
+
+/* Vorzeitig losgelassen:
+   beide fahren wieder zurück */
+
+function restoreFaders() {
+  faders.forEach(handle =>
+    handle.classList.add('returning')
+  );
+
+  faders.forEach(handle =>
+    faderPosition(
+      handle,
+      handle === activeFader ? 1 : 0
+    )
+  );
+}
+
+/* Erst am vollständigen
+   oberen Anschlag navigieren */
+
+function finishNavigation(handle) {
+  if (
+    navigationStarted ||
+    handle === activeFader
+  ) return;
+
+  navigationStarted = true;
+
+  faderPosition(handle,1);
+  faderPosition(activeFader,0);
+
+  window.location.assign(
+    handle.dataset.url
+  );
+}
+
+/* Bewegungen koppeln */
+
+function moveHandle(event) {
+  if (
+    !dragging ||
+    dragging.pointerId !== event.pointerId
+  ) return;
+
+  const {handle,startY} = dragging;
+
+  const travel = maxTravel(handle);
+
+  if (travel <= 0) return;
+
+  const delta =
+    event.clientY-startY;
+
+  const progress =
+    handle === activeFader
+      ? clamp(1-delta/travel,0,1)
+      : clamp(-delta/travel,0,1);
+
+  faderPosition(handle,progress);
+
+  if (handle !== activeFader) {
+
+    /* Aktiver Regler bewegt sich
+       synchron nach unten */
+
+    faderPosition(
+      activeFader,
+      1-progress
+    );
+
+    if (progress >= 1) {
+      finishNavigation(handle);
+    }
+  }
+}
+
+/* Loslassen */
+
+function releaseHandle(event) {
+  if (
+    !dragging ||
+    dragging.pointerId !== event.pointerId
+  ) return;
+
+  const handle = dragging.handle;
+
+  dragging = null;
+
+  handle.classList.remove('dragging');
+
+  if (!navigationStarted) {
+    restoreFaders();
+  }
+}
+
+/* Ereignisse an alle fünf Regler */
+
+faders.forEach(handle => {
+
+  handle.addEventListener(
+    'pointerdown',
+    event => {
+
+      if (
+        navigationStarted ||
+        dragging ||
+        (
+          event.pointerType === 'mouse' &&
+          event.button !== 0
+        )
+      ) return;
+
+      event.preventDefault();
+
+      faders.forEach(h =>
+        h.classList.remove('returning')
+      );
+
+      dragging = {
+        handle,
+        pointerId: event.pointerId,
+        startY: event.clientY
+      };
+
+      handle.classList.add('dragging');
+
+      handle.setPointerCapture(
+        event.pointerId
+      );
+    }
+  );
+
+  handle.addEventListener(
+    'pointermove',
+    moveHandle
+  );
+
+  handle.addEventListener(
+    'pointerup',
+    releaseHandle
+  );
+
+  handle.addEventListener(
+    'pointercancel',
+    releaseHandle
+  );
+
+  handle.addEventListener(
+    'lostpointercapture',
+    () => {
+      if (
+        dragging?.handle === handle
+      ) {
+        dragging = null;
+
+        handle.classList.remove(
+          'dragging'
+        );
+
+        if (!navigationStarted) {
+          restoreFaders();
+        }
+      }
+    }
+  );
+
+  handle.addEventListener(
+    'keydown',
+    event => {
+
+      if (
+        (
+          event.key === 'Enter' ||
+          event.key === 'ArrowUp'
+        ) &&
+        handle !== activeFader
+      ) {
+        event.preventDefault();
+        finishNavigation(handle);
+      }
+    }
+  );
+});
+
+window.addEventListener(
+  'load',
+  initializeFaders
+);
+
+window.addEventListener(
+  'resize',
+  initializeFaders
+);
+
+requestAnimationFrame(
+  initializeFaders
+);
 
 /* =========================
    VU-METER
@@ -1642,83 +1549,68 @@ function createMeter(id) {
   const meter =
     document.getElementById(id);
 
-  const leds = [];
+  return Array.from(
+    {length:14},
+    (_,i) => {
 
-  for (let i = 0; i < 14; i++) {
+      const led =
+        document.createElement('span');
 
-    const led =
-      document.createElement("span");
+      led.className =
+        'vu-led ' +
+        (
+          i < 8
+            ? 'green'
+            : i < 11
+              ? 'yellow'
+              : 'red'
+        );
 
-    led.className = "vu-led";
+      meter.appendChild(led);
 
-    if (i < 8) {
-      led.classList.add("green");
-    } else if (i < 11) {
-      led.classList.add("yellow");
-    } else {
-      led.classList.add("red");
+      return led;
     }
-
-    meter.appendChild(led);
-    leds.push(led);
-  }
-
-  return leds;
+  );
 }
 
-const leftLEDs =
-  createMeter("vuLeft");
+const leftLeds =
+  createMeter('vuLeft');
 
-const rightLEDs =
-  createMeter("vuRight");
-
-function updateMeter(leds,level) {
-
-  leds.forEach((led,i) => {
-
-    led.classList.toggle(
-      "on",
-      i < level
-    );
-
-  });
-}
+const rightLeds =
+  createMeter('vuRight');
 
 let leftLevel = 6;
 let rightLevel = 7;
 
 function animateMeters() {
+  if (document.hidden) return;
 
-  if (document.hidden) {
-    return;
-  }
-
-  leftLevel = Math.max(
+  leftLevel = clamp(
+    leftLevel +
+    Math.floor(Math.random()*7)-3,
     2,
-    Math.min(
-      14,
-      leftLevel +
-      Math.floor(Math.random()*7)-3
+    14
+  );
+
+  rightLevel = clamp(
+    rightLevel +
+    Math.floor(Math.random()*7)-3,
+    2,
+    14
+  );
+
+  leftLeds.forEach((led,i) =>
+    led.classList.toggle(
+      'on',
+      i < leftLevel
     )
   );
 
-  rightLevel = Math.max(
-    2,
-    Math.min(
-      14,
-      rightLevel +
-      Math.floor(Math.random()*7)-3
+  rightLeds.forEach((led,i) =>
+    led.classList.toggle(
+      'on',
+      i < rightLevel
     )
-  );
-
-  updateMeter(
-    leftLEDs,
-    leftLevel
-  );
-
-  updateMeter(
-    rightLEDs,
-    rightLevel
   );
 }
 
@@ -1726,30 +1618,27 @@ animateMeters();
 
 const reduceMotion =
   window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
+    '(prefers-reduced-motion: reduce)'
   ).matches;
 
 if (!reduceMotion) {
-  setInterval(
-    animateMeters,
-    170
-  );
+  setInterval(animateMeters,170);
 }
 
 /* =========================
-   CROSSFADER / KATEGORIEN
+   CROSSFADER
 ========================= */
 
 const crossfader =
-  document.getElementById("crossfader");
+  document.getElementById('crossfader');
 
 const singleLabel =
-  document.getElementById("singleLabel");
+  document.getElementById('singleLabel');
 
 const albumLabel =
-  document.getElementById("albumLabel");
+  document.getElementById('albumLabel');
 
-let activeCategory = "single";
+let activeCategory = 'single';
 let allMusic = [];
 let visibleCount = 10;
 
@@ -1762,347 +1651,242 @@ function chooseCategory(category) {
   activeCategory = category;
   visibleCount = 10;
 
-  const isSingle =
-    category === "single";
-
   singleLabel.classList.toggle(
-    "active",
-    isSingle
+    'active',
+    category === 'single'
   );
 
   albumLabel.classList.toggle(
-    "active",
-    !isSingle
+    'active',
+    category === 'album'
   );
 
   updateLEDMessage(category);
   renderMusic();
 }
 
-/* Crossfader umschalten */
-
 crossfader.addEventListener(
-  "input",
+  'input',
   () => {
-
     chooseCategory(
       Number(crossfader.value) < 50
-        ? "single"
-        : "album"
+        ? 'single'
+        : 'album'
     );
   }
 );
 
-/* Beim Loslassen einrasten */
-
 crossfader.addEventListener(
-  "change",
+  'change',
   () => {
 
     const isSingle =
       Number(crossfader.value) < 50;
 
     crossfader.value =
-      isSingle ? "0" : "100";
+      isSingle ? '0' : '100';
 
     chooseCategory(
-      isSingle ? "single" : "album"
+      isSingle ? 'single' : 'album'
     );
   }
 );
 
 /* =========================
-   LED-PUNKTESCHRIFT
+   LED-MATRIX
 ========================= */
 
 const ledCanvas =
-  document.getElementById("ledCanvas");
+  document.getElementById('ledCanvas');
 
 const ctx =
-  ledCanvas.getContext("2d");
+  ledCanvas.getContext('2d');
 
-/* 5x7 LED-Punktmatrix */
+const FONT = {
 
-const LED_FONT = {
-
-  "A":[
-    "01110",
-    "10001",
-    "10001",
-    "11111",
-    "10001",
-    "10001",
-    "10001"
+  A: [
+    '01110','10001','10001',
+    '11111','10001','10001','10001'
   ],
 
-  "B":[
-    "11110",
-    "10001",
-    "10001",
-    "11110",
-    "10001",
-    "10001",
-    "11110"
+  B: [
+    '11110','10001','10001',
+    '11110','10001','10001','11110'
   ],
 
-  "C":[
-    "01111",
-    "10000",
-    "10000",
-    "10000",
-    "10000",
-    "10000",
-    "01111"
+  C: [
+    '01111','10000','10000',
+    '10000','10000','10000','01111'
   ],
 
-  "D":[
-    "11110",
-    "10001",
-    "10001",
-    "10001",
-    "10001",
-    "10001",
-    "11110"
+  D: [
+    '11110','10001','10001',
+    '10001','10001','10001','11110'
   ],
 
-  "E":[
-    "11111",
-    "10000",
-    "10000",
-    "11110",
-    "10000",
-    "10000",
-    "11111"
+  E: [
+    '11111','10000','10000',
+    '11110','10000','10000','11111'
   ],
 
-  "G":[
-    "01111",
-    "10000",
-    "10000",
-    "10111",
-    "10001",
-    "10001",
-    "01111"
+  G: [
+    '01111','10000','10000',
+    '10111','10001','10001','01111'
   ],
 
-  "H":[
-    "10001",
-    "10001",
-    "10001",
-    "11111",
-    "10001",
-    "10001",
-    "10001"
+  H: [
+    '10001','10001','10001',
+    '11111','10001','10001','10001'
   ],
 
-  "I":[
-    "11111",
-    "00100",
-    "00100",
-    "00100",
-    "00100",
-    "00100",
-    "11111"
+  I: [
+    '11111','00100','00100',
+    '00100','00100','00100','11111'
   ],
 
-  "L":[
-    "10000",
-    "10000",
-    "10000",
-    "10000",
-    "10000",
-    "10000",
-    "11111"
+  L: [
+    '10000','10000','10000',
+    '10000','10000','10000','11111'
   ],
 
-  "M":[
-    "10001",
-    "11011",
-    "10101",
-    "10101",
-    "10001",
-    "10001",
-    "10001"
+  M: [
+    '10001','11011','10101',
+    '10101','10001','10001','10001'
   ],
 
-  "N":[
-    "10001",
-    "11001",
-    "10101",
-    "10011",
-    "10001",
-    "10001",
-    "10001"
+  N: [
+    '10001','11001','10101',
+    '10011','10001','10001','10001'
   ],
 
-  "O":[
-    "01110",
-    "10001",
-    "10001",
-    "10001",
-    "10001",
-    "10001",
-    "01110"
+  O: [
+    '01110','10001','10001',
+    '10001','10001','10001','01110'
   ],
 
-  "P":[
-    "11110",
-    "10001",
-    "10001",
-    "11110",
-    "10000",
-    "10000",
-    "10000"
+  P: [
+    '11110','10001','10001',
+    '11110','10000','10000','10000'
   ],
 
-  "R":[
-    "11110",
-    "10001",
-    "10001",
-    "11110",
-    "10100",
-    "10010",
-    "10001"
+  R: [
+    '11110','10001','10001',
+    '11110','10100','10010','10001'
   ],
 
-  "S":[
-    "01111",
-    "10000",
-    "10000",
-    "01110",
-    "00001",
-    "00001",
-    "11110"
+  S: [
+    '01111','10000','10000',
+    '01110','00001','00001','11110'
   ],
 
-  "T":[
-    "11111",
-    "00100",
-    "00100",
-    "00100",
-    "00100",
-    "00100",
-    "00100"
+  T: [
+    '11111','00100','00100',
+    '00100','00100','00100','00100'
   ],
 
-  "U":[
-    "10001",
-    "10001",
-    "10001",
-    "10001",
-    "10001",
-    "10001",
-    "01110"
+  U: [
+    '10001','10001','10001',
+    '10001','10001','10001','01110'
   ],
 
-  "Y":[
-    "10001",
-    "10001",
-    "01010",
-    "00100",
-    "00100",
-    "00100",
-    "00100"
+  Y: [
+    '10001','10001','01010',
+    '00100','00100','00100','00100'
   ],
 
-  " ":[
-    "00000",
-    "00000",
-    "00000",
-    "00000",
-    "00000",
-    "00000",
-    "00000"
+  ' ': [
+    '00000','00000','00000',
+    '00000','00000','00000','00000'
   ],
 
-  "·":[
-    "00000",
-    "00000",
-    "00100",
-    "00000",
-    "00100",
-    "00000",
-    "00000"
+  '·': [
+    '00000','00000','00100',
+    '00000','00100','00000','00000'
   ]
-
 };
-
-/* =========================
-   LED-ANIMATION
-   PENDLE LINKS / RECHTS
-========================= */
 
 let ledColumns = [];
 let ledPosition = 0;
 let ledDirection = 1;
-
-/* Geschwindigkeit in Pixel/Sekunde */
+let ledLastTime = 0;
+let ledPitch = 8;
+let ledTextWidth = 0;
 
 const LED_SPEED = 85;
 
-let ledLastTime = 0;
-let ledPitch = 7;
-let ledTextWidth = 0;
-
-function blankColumn() {
-  return [0,0,0,0,0,0,0];
-}
-
-/* Text in LED-Spalten umwandeln */
+/* Text in LED-Spalten */
 
 function buildLEDText(text) {
 
-  const result = [];
+  const cols = [];
 
   for (
-    const character of text.toUpperCase()
+    const ch of text.toUpperCase()
   ) {
 
     const pattern =
-      LED_FONT[character] ||
-      LED_FONT[" "];
+      FONT[ch] || FONT[' '];
 
-    for (
-      let column = 0;
-      column < 5;
-      column++
-    ) {
+    for (let c=0;c<5;c++) {
 
-      const pixels = [];
-
-      for (
-        let row = 0;
-        row < 7;
-        row++
-      ) {
-
-        pixels.push(
-          pattern[row][column] === "1"
-            ? 1
-            : 0
-        );
-      }
-
-      result.push(pixels);
+      cols.push(
+        Array.from(
+          {length:7},
+          (_,r) =>
+            pattern[r][c] === '1'
+        )
+      );
     }
 
-    result.push(blankColumn());
+    cols.push(
+      [false,false,false,false,false,false,false]
+    );
   }
 
-  return result;
+  return cols;
 }
 
-/* Kategorienachricht wechseln */
+/* Punktgröße anhand der Breite */
+
+function calculateLEDLayout() {
+
+  const width =
+    ledCanvas.clientWidth;
+
+  const height =
+    ledCanvas.clientHeight;
+
+  ledPitch = Math.min(
+    9.4,
+    (height-16)/7,
+    Math.max(1,(width-24)*.75) /
+      Math.max(1,ledColumns.length)
+  );
+
+  ledTextWidth =
+    ledPitch * ledColumns.length;
+
+  ledPosition = clamp(
+    ledPosition,
+    0,
+    Math.max(
+      0,
+      width-24-ledTextWidth
+    )
+  );
+}
+
+/* SINGLE / ALBUM */
 
 function updateLEDMessage(category) {
 
   const text =
-    category === "single"
-      ? "SINGLE · THE SINGLE COLLECTION"
-      : "ALBUM · THE ALBUM COLLECTION";
+    category === 'single'
+      ? 'SINGLE · THE SINGLE COLLECTION'
+      : 'ALBUM · THE ALBUM COLLECTION';
 
   ledCanvas.setAttribute(
-    "aria-label",
+    'aria-label',
     text
   );
 
@@ -2115,55 +1899,7 @@ function updateLEDMessage(category) {
   calculateLEDLayout();
 }
 
-/* =========================
-   LED-BREITE BERECHNEN
-========================= */
-
-function calculateLEDLayout() {
-
-  const width =
-    ledCanvas.clientWidth;
-
-  const height =
-    ledCanvas.clientHeight;
-
-  const columns =
-    Math.max(1,ledColumns.length);
-
-  const padding = 12;
-
-  /* Schrift nimmt maximal
-     75 Prozent der Leiste ein */
-
-  const maxTextWidth =
-    Math.max(
-      1,
-      (width - padding*2)*0.75
-    );
-
-  ledPitch = Math.min(
-    9.4,
-    (height - 16)/7,
-    maxTextWidth/columns
-  );
-
-  ledTextWidth =
-    columns*ledPitch;
-
-  const maxPosition = Math.max(
-    0,
-    width - padding*2 - ledTextWidth
-  );
-
-  ledPosition = Math.min(
-    ledPosition,
-    maxPosition
-  );
-}
-
-/* =========================
-   CANVAS-AUFLÖSUNG
-========================= */
+/* Canvas-Größe */
 
 function resizeLEDCanvas() {
 
@@ -2186,9 +1922,27 @@ function resizeLEDCanvas() {
   calculateLEDLayout();
 }
 
-/* =========================
-   LED ZEICHNEN
-========================= */
+/* Einzelne LED */
+
+function dot(x,y,r,color,glow=false) {
+
+  ctx.beginPath();
+  ctx.arc(x,y,r,0,Math.PI*2);
+
+  ctx.fillStyle = color;
+
+  if (glow) {
+    ctx.shadowBlur =
+      Math.max(3,ledPitch*1.1);
+
+    ctx.shadowColor = '#65bdff';
+  }
+
+  ctx.fill();
+  ctx.shadowBlur = 0;
+}
+
+/* Gesamte LED-Matrix zeichnen */
 
 function drawLED(time) {
 
@@ -2198,453 +1952,368 @@ function drawLED(time) {
   const height =
     ledCanvas.clientHeight;
 
-  ctx.clearRect(
-    0,0,width,height
-  );
+  ctx.clearRect(0,0,width,height);
 
-  ctx.fillStyle = "#07111b";
-
-  ctx.fillRect(
-    0,0,width,height
-  );
+  ctx.fillStyle = '#07111b';
+  ctx.fillRect(0,0,width,height);
 
   const padding = 12;
 
-  const usedHeight =
-    7*ledPitch;
-
   const startY =
-    (height-usedHeight)/2;
+    (height-7*ledPitch)/2;
 
   const radius =
-    Math.max(0.35,ledPitch*0.29);
+    Math.max(.35,ledPitch*.29);
+
+  const columnsVisible =
+    Math.floor(
+      (width-2*padding)/ledPitch
+    );
 
   const startX =
     padding+ledPosition;
 
+  /* Vollständiges Raster
+     aus ausgeschalteten LEDs */
+
   for (
-    let columnIndex=0;
-    columnIndex<ledColumns.length;
-    columnIndex++
+    let c=0;
+    c<=columnsVisible;
+    c++
   ) {
 
-    const column =
-      ledColumns[columnIndex];
+    const x =
+      padding+(c+.5)*ledPitch;
 
-    for (
-      let row=0;
-      row<7;
-      row++
-    ) {
+    if (x>width-padding) break;
 
-      const x =
-        startX+
-        columnIndex*ledPitch+
-        ledPitch/2;
+    for (let row=0;row<7;row++) {
 
-      const y =
-        startY+
-        row*ledPitch+
-        ledPitch/2;
-
-      /* Dunkler LED-Punkt */
-
-      ctx.beginPath();
-
-      ctx.arc(
-        x,y,
+      dot(
+        x,
+        startY+(row+.5)*ledPitch,
         radius,
-        0,
-        Math.PI*2
+        'rgba(125,165,205,0.15)'
       );
+    }
+  }
 
-      ctx.fillStyle =
-        "rgba(125,165,205,0.12)";
+  /* Helle Buchstaben auf dem
+     festen LED-Raster */
 
-      ctx.fill();
+  const startColumn =
+    Math.round(
+      (startX-padding)/ledPitch
+    );
 
-      /* Leuchtender LED-Punkt */
+  for (
+    let c=0;
+    c<ledColumns.length;
+    c++
+  ) {
 
-      if (column[row]) {
+    const displayColumn =
+      startColumn+c;
 
-        ctx.shadowBlur =
-          Math.max(3,ledPitch*1.1);
+    if (
+      displayColumn<0 ||
+      displayColumn>columnsVisible
+    ) continue;
 
-        ctx.shadowColor =
-          "#65bdff";
+    const x =
+      padding+
+      (displayColumn+.5)*ledPitch;
 
-        ctx.beginPath();
+    if (x>width-padding) continue;
 
-        ctx.arc(
-          x,y,
+    for (let row=0;row<7;row++) {
+
+      if (ledColumns[c][row]) {
+
+        dot(
+          x,
+          startY+(row+.5)*ledPitch,
           radius,
-          0,
-          Math.PI*2
+          '#d9f2ff',
+          true
         );
-
-        ctx.fillStyle =
-          "#d9f2ff";
-
-        ctx.fill();
-
-        ctx.shadowBlur = 0;
       }
     }
   }
 
-  /* =========================
-     PENDELBEWEGUNG
-  ========================= */
+  /* Pendelbewegung */
 
   if (
     !reduceMotion &&
-    !document.hidden
+    !document.hidden &&
+    ledLastTime
   ) {
 
-    if (ledLastTime) {
+    const delta = Math.min(
+      .05,
+      (time-ledLastTime)/1000
+    );
 
-      const delta = Math.min(
-        0.05,
-        (time-ledLastTime)/1000
+    const maxPosition =
+      Math.max(
+        0,
+        width-24-ledTextWidth
       );
 
-      const maxPosition =
-        Math.max(
-          0,
-          width-padding*2-ledTextWidth
-        );
+    ledPosition +=
+      LED_SPEED*
+      delta*
+      ledDirection;
 
-      ledPosition +=
-        LED_SPEED*
-        delta*
-        ledDirection;
+    if (ledPosition>=maxPosition) {
+      ledPosition = maxPosition;
+      ledDirection = -1;
+    }
 
-      /* Rechter Anschlag */
-
-      if (
-        ledPosition >= maxPosition
-      ) {
-
-        ledPosition = maxPosition;
-        ledDirection = -1;
-      }
-
-      /* Linker Anschlag */
-
-      if (
-        ledPosition <= 0
-      ) {
-
-        ledPosition = 0;
-        ledDirection = 1;
-      }
+    if (ledPosition<=0) {
+      ledPosition = 0;
+      ledDirection = 1;
     }
   }
 
   ledLastTime = time;
 
-  requestAnimationFrame(
-    drawLED
-  );
+  requestAnimationFrame(drawLED);
 }
 
-/* LED starten */
-
-updateLEDMessage("single");
-
+updateLEDMessage('single');
 resizeLEDCanvas();
-
-requestAnimationFrame(
-  drawLED
-);
+requestAnimationFrame(drawLED);
 
 window.addEventListener(
-  "resize",
+  'resize',
   resizeLEDCanvas
 );
 
 /* =========================
-   MUSIKGALERIE
+   SONGS.JSON UND GALERIE
 ========================= */
 
 const gallery =
-  document.getElementById("gallery");
+  document.getElementById('gallery');
 
 const moreButton =
-  document.getElementById("moreButton");
+  document.getElementById('moreButton');
 
 const videoModal =
-  document.getElementById("videoModal");
+  document.getElementById('videoModal');
 
 const videoFrame =
-  document.getElementById("videoFrame");
+  document.getElementById('videoFrame');
 
 const closeVideo =
-  document.getElementById("closeVideo");
-
-/* HTML absichern */
+  document.getElementById('closeVideo');
 
 function escapeHTML(value) {
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(value??'')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
 }
-
-/* Links prüfen */
 
 function safeURL(value) {
-
   try {
-
-    const url = new URL(
+    const u = new URL(
       value,
-      window.location.href
+      location.href
     );
 
-    if (
-      url.protocol === "https:" ||
-      url.protocol === "http:"
-    ) {
-      return url.href;
-    }
-
-  } catch {}
-
-  return "";
+    return ['https:','http:']
+      .includes(u.protocol)
+      ? u.href
+      : '';
+  } catch {
+    return '';
+  }
 }
 
-/* Datum formatieren */
-
 function formatDate(value) {
-
-  if (!value) {
-    return "";
-  }
+  if (!value) return '';
 
   const date = new Date(
     String(value).slice(0,10)+
-    "T12:00:00"
+    'T12:00:00'
   );
 
-  if (
-    Number.isNaN(date.getTime())
-  ) {
-    return "";
-  }
-
-  return date.toLocaleDateString(
-    "de-DE",
-    {
-      day:"2-digit",
-      month:"2-digit",
-      year:"numeric"
-    }
-  );
+  return isNaN(date.getTime())
+    ? ''
+    : date.toLocaleDateString(
+        'de-DE',
+        {
+          day:'2-digit',
+          month:'2-digit',
+          year:'numeric'
+        }
+      );
 }
 
-/* Single oder Album */
-
 function categoryOf(item) {
-
   const category = String(
     item.type ||
     item.category ||
-    "single"
+    'single'
   ).toLowerCase();
 
   return [
-    "album",
-    "albums",
-    "lp"
+    'album','albums','lp'
   ].includes(category)
-    ? "album"
-    : "single";
+    ? 'album'
+    : 'single';
 }
-
-/* YouTube-ID */
 
 function getYoutubeId(item) {
 
   const value =
-    String(item.youtube || "").trim();
+    String(item.youtube||'').trim();
 
   if (
     /^[A-Za-z0-9_-]{11}$/.test(value)
-  ) {
-    return value;
-  }
+  ) return value;
 
   try {
-
     const url = new URL(value);
-
-    const hostname =
+    const host =
       url.hostname.toLowerCase();
 
     if (
-      hostname === "youtu.be" ||
-      hostname === "www.youtu.be"
+      ['youtu.be','www.youtu.be']
+        .includes(host)
     ) {
-      return url.pathname.split("/")[1] || "";
+      return url.pathname.split('/')[1]||'';
     }
 
     if (
-      hostname === "youtube.com" ||
-      hostname === "www.youtube.com" ||
-      hostname === "m.youtube.com"
+      [
+        'youtube.com',
+        'www.youtube.com',
+        'm.youtube.com'
+      ].includes(host)
     ) {
-
-      if (url.pathname === "/watch") {
-        return url.searchParams.get("v") || "";
+      if (url.pathname==='/watch') {
+        return url.searchParams.get('v')||'';
       }
 
       const parts =
-        url.pathname.split("/");
+        url.pathname.split('/');
 
       if (
-        ["shorts","embed","live"]
+        ['shorts','embed','live']
           .includes(parts[1])
       ) {
-        return parts[2] || "";
+        return parts[2]||'';
       }
     }
-
   } catch {}
 
-  return "";
+  return '';
 }
 
-/* =========================
-   VIDEOFENSTER
-========================= */
+/* VIDEOFENSTER */
 
-function openVideo(videoId) {
+function openVideo(id) {
 
   if (
-    !/^[A-Za-z0-9_-]{11}$/.test(videoId)
-  ) {
-    return;
-  }
+    !/^[A-Za-z0-9_-]{11}$/.test(id)
+  ) return;
 
   videoFrame.src =
-    "https://www.youtube-nocookie.com/embed/" +
-    videoId +
-    "?autoplay=1";
+    'https://www.youtube-nocookie.com/embed/' +
+    id +
+    '?autoplay=1';
 
-  videoModal.classList.add(
-    "open"
-  );
+  videoModal.classList.add('open');
 }
 
 function closeVideoPlayer() {
-
-  videoModal.classList.remove(
-    "open"
-  );
-
-  videoFrame.src = "";
+  videoModal.classList.remove('open');
+  videoFrame.src = '';
 }
 
 closeVideo.addEventListener(
-  "click",
+  'click',
   closeVideoPlayer
 );
 
 videoModal.addEventListener(
-  "click",
-  event => {
-
-    if (
-      event.target === videoModal
-    ) {
+  'click',
+  e => {
+    if (e.target===videoModal) {
       closeVideoPlayer();
     }
   }
 );
 
 document.addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      event.key === "Escape"
-    ) {
+  'keydown',
+  e => {
+    if (e.key==='Escape') {
       closeVideoPlayer();
     }
   }
 );
 
-/* =========================
-   SONGS UND ALBEN ANZEIGEN
-========================= */
+/* MUSIKCOVER DARSTELLEN */
 
 function renderMusic() {
 
   const isSingle =
-    activeCategory === "single";
+    activeCategory==='single';
 
   const items = allMusic
-
     .filter(item =>
-      categoryOf(item) === activeCategory
+      categoryOf(item)===activeCategory
     )
-
     .sort((a,b) =>
-      String(b.releaseDate || "")
+      String(b.releaseDate||'')
         .localeCompare(
-          String(a.releaseDate || "")
+          String(a.releaseDate||'')
         )
     );
 
-  gallery.innerHTML = "";
+  gallery.innerHTML = '';
 
-  /* Noch keine Alben/Singles */
+  if (!items.length) {
 
-  if (
-    items.length === 0
-  ) {
-
-    gallery.innerHTML = `
-      <div class="empty-message">
-        ${
-          isSingle
-            ? "Hier erscheinen deine R.M.B.-Singles."
-            : "Hier erscheinen deine R.M.B.-Alben."
-        }
-      </div>
-    `;
+    gallery.innerHTML =
+      '<div class="empty-message">' +
+      (
+        isSingle
+          ? 'Hier erscheinen deine R.M.B.-Singles.'
+          : 'Hier erscheinen deine R.M.B.-Alben.'
+      ) +
+      '</div>';
 
     moreButton.hidden = true;
-
     return;
   }
-
-  /* Cover erstellen */
 
   items
     .slice(0,visibleCount)
     .forEach(item => {
 
-      const videoId =
+      const id =
         getYoutubeId(item);
 
-      const validVideoId =
-        /^[A-Za-z0-9_-]{11}$/.test(videoId)
-          ? videoId
-          : "";
+      const valid =
+        /^[A-Za-z0-9_-]{11}$/.test(id)
+          ? id
+          : '';
 
       const cover =
         safeURL(item.cover) ||
         (
-          validVideoId
-            ? "https://img.youtube.com/vi/" +
-              validVideoId +
-              "/hqdefault.jpg"
-            : ""
+          valid
+            ? 'https://img.youtube.com/vi/' +
+              valid +
+              '/hqdefault.jpg'
+            : ''
         );
 
       const spotify =
@@ -2657,149 +2326,116 @@ function renderMusic() {
         formatDate(item.releaseDate);
 
       const card =
-        document.createElement(
-          "article"
-        );
+        document.createElement('article');
 
-      card.className =
-        "music-card";
+      card.className = 'music-card';
 
       card.innerHTML = `
-
         <button
           type="button"
           class="cover-button"
-          ${validVideoId ? "" : "disabled"}
+          ${valid?'':'disabled'}
           aria-label="Video öffnen"
         >
-
           <img
             class="cover"
             src="${escapeHTML(cover)}"
-            alt="${escapeHTML(item.title || "R.M.B.")}"
+            alt="${escapeHTML(item.title||'R.M.B.')}"
             loading="lazy"
           >
-
         </button>
 
         <div class="track-title">
-          ${escapeHTML(item.title || "R.M.B.")}
+          ${escapeHTML(item.title||'R.M.B.')}
         </div>
 
         <div class="track-version">
-          ${escapeHTML(item.version || "")}
+          ${escapeHTML(item.version||'')}
         </div>
 
         ${
           date
-            ? `
-              <div class="track-date">
-                ${escapeHTML(date)}
-              </div>
-            `
-            : ""
+            ? `<div class="track-date">
+                 ${escapeHTML(date)}
+               </div>`
+            : ''
         }
 
         <div class="music-links">
-
           ${
-            validVideoId
-              ? `
-                <a
-                  href="https://www.youtube.com/watch?v=${validVideoId}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >YouTube</a>
-              `
-              : ""
+            valid
+              ? `<a
+                   href="https://www.youtube.com/watch?v=${valid}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                 >YouTube</a>`
+              : ''
           }
 
           ${
             spotify
-              ? `
-                <a
-                  href="${escapeHTML(spotify)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >Spotify</a>
-              `
-              : ""
+              ? `<a
+                   href="${escapeHTML(spotify)}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                 >Spotify</a>`
+              : ''
           }
 
           ${
             amazon
-              ? `
-                <a
-                  href="${escapeHTML(amazon)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >Amazon</a>
-              `
-              : ""
+              ? `<a
+                   href="${escapeHTML(amazon)}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                 >Amazon</a>`
+              : ''
           }
-
         </div>
       `;
 
-      if (
-        validVideoId
-      ) {
-
-        card
-          .querySelector(".cover-button")
-          .addEventListener(
-            "click",
-            () => openVideo(validVideoId)
-          );
+      if (valid) {
+        card.querySelector(
+          '.cover-button'
+        ).addEventListener(
+          'click',
+          () => openVideo(valid)
+        );
       }
 
       gallery.appendChild(card);
     });
 
-  /* Weitere Cover anzeigen */
-
   moreButton.hidden =
-    items.length <= visibleCount;
+    items.length<=visibleCount;
 
   moreButton.textContent =
     isSingle
-      ? "WEITERE SONGS ANZEIGEN"
-      : "WEITERE ALBEN ANZEIGEN";
+      ? 'WEITERE SONGS ANZEIGEN'
+      : 'WEITERE ALBEN ANZEIGEN';
 }
 
-/* Weitere Songs laden */
-
 moreButton.addEventListener(
-  "click",
+  'click',
   () => {
-
-    visibleCount += 10;
+    visibleCount+=10;
     renderMusic();
   }
 );
 
-/* =========================
-   SONGS.JSON LADEN
-========================= */
+/* MUSIKDATEN LADEN */
 
-fetch("songs.json")
-
-  .then(response => {
-
-    if (
-      !response.ok
-    ) {
-
+fetch('songs.json')
+  .then(r => {
+    if (!r.ok) {
       throw new Error(
-        "songs.json nicht gefunden"
+        'songs.json nicht gefunden'
       );
     }
 
-    return response.json();
+    return r.json();
   })
-
   .then(data => {
-
     allMusic =
       Array.isArray(data)
         ? data
@@ -2807,20 +2443,15 @@ fetch("songs.json")
 
     renderMusic();
   })
-
   .catch(error => {
-
-    gallery.innerHTML = `
-      <div class="empty-message">
-        Die Musikdaten konnten
-        nicht geladen werden.
-      </div>
-    `;
+    gallery.innerHTML =
+      '<div class="empty-message">' +
+      'Die Musikdaten konnten nicht geladen werden.' +
+      '</div>';
 
     console.error(error);
   });
 
 </script>
-
 </body>
 </html>
