@@ -107,8 +107,7 @@ nav a.active {
   pointer-events: none;
 }
 
-/* GEMEINSAME FLÄCHE FÜR
-   SKYLINE UND MUSIC-SCHRIFTZUG */
+/* SKYLINE UND MUSIC ÜBEREINANDER */
 
 .music-composition {
   position: relative;
@@ -122,7 +121,8 @@ nav a.active {
   isolation: isolate;
 }
 
-/* SKYLINE IM HINTERGRUND */
+/* FRANKFURTER SKYLINE
+   NEU: MAXIMAL 850 PIXEL BREIT */
 
 .skyline {
   position: absolute;
@@ -131,9 +131,11 @@ nav a.active {
   left: 50%;
   transform: translateX(-50%);
   display: block;
-  width: 100%;
-  min-width: 750px;
-  max-width: 1250px;
+
+  width: min(850px, 96%);
+  max-width: 850px;
+  min-width: 0;
+
   height: auto;
   opacity: 0.28;
 
@@ -144,7 +146,7 @@ nav a.active {
   pointer-events: none;
 }
 
-/* CHROM-MUSIC IM VORDERGRUND */
+/* MUSIC-SCHRIFTZUG VOR DER SKYLINE */
 
 .music-heading {
   position: relative;
@@ -190,7 +192,7 @@ nav a.active {
   margin: 0 auto;
 }
 
-/* BUTTONS */
+/* VINYL-BUTTONS */
 
 .vinyl-button {
   display: flex;
@@ -207,6 +209,7 @@ nav a.active {
   cursor: pointer;
 
   opacity: 0.76;
+
   transition:
     opacity 0.25s,
     transform 0.25s;
@@ -221,19 +224,17 @@ nav a.active {
   opacity: 1;
 }
 
-/* SINGLE KLEINER */
+/* SINGLE KLEINER ALS ALBUM */
 
 .vinyl-button.single {
   width: 105px;
 }
 
-/* ALBUM ETWAS GRÖSSER */
-
 .vinyl-button.album {
   width: 130px;
 }
 
-/* PLATTENGRAFIK */
+/* VINYL-GRAFIKEN */
 
 .disc-container {
   position: relative;
@@ -241,8 +242,6 @@ nav a.active {
   aspect-ratio: 1;
   border-radius: 50%;
 }
-
-/* ORIGINAL-PNG */
 
 .disc-container img {
   position: relative;
@@ -266,8 +265,7 @@ nav a.active {
     drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
 }
 
-/* ERSATZPLATTE,
-   FALLS BILD NICHT GELADEN WIRD */
+/* ERSATZPLATTE BEI LADEFEHLER */
 
 .fallback-vinyl {
   position: absolute;
@@ -275,7 +273,6 @@ nav a.active {
 
   display: grid;
   place-items: center;
-
   overflow: hidden;
 
   border-radius: 50%;
@@ -315,7 +312,7 @@ nav a.active {
   font-size: 7px;
 }
 
-/* TEXT UNTER DER PLATTE */
+/* TEXT UNTER VINYL */
 
 .vinyl-label {
   color: #b6c9df;
@@ -552,9 +549,7 @@ footer {
     width: min(420px, 76%);
   }
 
-  .skyline {
-    min-width: 700px;
-  }
+  /* Keine Mindestbreite mehr für Skyline */
 
 }
 
@@ -593,7 +588,6 @@ footer {
   }
 
   .skyline {
-    min-width: 570px;
     opacity: 0.24;
   }
 
@@ -669,7 +663,7 @@ footer {
 
   <div class="music-composition">
 
-    <!-- SKYLINE HINTEN -->
+    <!-- SKYLINE IM HINTERGRUND -->
 
     <img
       class="skyline"
@@ -677,7 +671,7 @@ footer {
       alt=""
     >
 
-    <!-- MUSIC VORNE -->
+    <!-- MUSIC DAVOR -->
 
     <img
       class="music-heading"
