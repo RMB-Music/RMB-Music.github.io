@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>R.M.B. | MUSIC TEST</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
@@ -27,8 +26,7 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   min-height: 100%;
@@ -59,7 +57,7 @@ input:focus-visible {
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding: 0 0 0;
+  padding: 0;
   background: var(--background);
 }
 
@@ -88,26 +86,19 @@ input:focus-visible {
   isolation: isolate;
 }
 
-/* Skyline bleibt bündig */
-
 .skyline {
   position: absolute;
   left: 0;
   bottom: -68px;
   z-index: 0;
-
   display: block;
   width: 100%;
   max-width: none;
   height: auto;
-
   opacity: 0.28;
   filter: brightness(0) invert(1);
-
   pointer-events: none;
 }
-
-/* Großer MUSIC-Schriftzug */
 
 .music-heading {
   position: absolute;
@@ -115,18 +106,14 @@ input:focus-visible {
   top: clamp(14px,1.8vw,28px);
   transform: translateX(-50%);
   z-index: 2;
-
   display: block;
   width: min(720px,92%);
   max-width: 720px;
   height: auto;
-
   mix-blend-mode: screen;
-
   filter: drop-shadow(
     0 0 10px rgba(95,165,255,0.18)
   );
-
   pointer-events: none;
 }
 
@@ -137,12 +124,10 @@ input:focus-visible {
 .dj-setup {
   position: relative;
   z-index: 5;
-
   width: min(1180px,96%);
   margin: 6px auto 0;
 
   display: grid;
-
   grid-template-columns:
     minmax(0,1.08fr)
     minmax(0,1.7fr)
@@ -150,59 +135,45 @@ input:focus-visible {
 
   gap: 10px;
   align-items: stretch;
-
   --device-height: 260px;
 }
 
-/* Genretext in vorhandener Lücke */
+/* Genretext über dem Mischpult */
 
 .music-style-top {
   position: absolute;
   z-index: 8;
-
   left: 50%;
   top: -31px;
   transform: translateX(-50%);
-
   width: max-content;
   max-width: 96%;
-
   margin: 0;
   padding: 0;
-
   color: #b9d3ee;
-
-  font-family: "Michroma",Arial,sans-serif;
+  font-family: "Michroma", Arial, sans-serif;
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-
   white-space: nowrap;
-
   text-shadow:
     0 0 8px rgba(126,200,255,0.24);
-
   pointer-events: none;
 }
 
 /* =========================
-   BAUSYS-TEM TURNTABLES
+   TURNTABLES
 ========================= */
 
 .turntable {
   position: relative;
   min-width: 0;
-
   width: 100%;
   height: var(--device-height);
-
   overflow: hidden;
-
   border: 1px solid #667b91;
   border-radius: 6px;
-
   background: #cbd5df;
-
   box-shadow:
     0 8px 20px rgba(0,0,0,0.45),
     0 0 12px rgba(120,180,255,0.08);
@@ -210,10 +181,8 @@ input:focus-visible {
 
 .turntable-image {
   display: block;
-
   width: 100%;
   height: 100%;
-
   object-fit: fill;
 }
 
@@ -224,15 +193,11 @@ input:focus-visible {
 .mixer {
   position: relative;
   min-width: 0;
-
   width: 100%;
   height: var(--device-height);
-
   padding: 10px 12px 9px;
-
   border: 1px solid #708299;
   border-radius: 7px;
-
   overflow: hidden;
 
   background:
@@ -254,24 +219,17 @@ input:focus-visible {
     0 8px 20px rgba(0,0,0,0.45);
 }
 
-/* Mixer-Überschrift */
-
 .mixer-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 6px;
-
   height: 19px;
   margin-bottom: 5px;
-
   color: #bfcedd;
-
-  font-family: "Michroma",Arial,sans-serif;
+  font-family: "Michroma", Arial, sans-serif;
   font-size: 8px;
   letter-spacing: 0.3px;
-
   white-space: nowrap;
 }
 
@@ -284,48 +242,39 @@ input:focus-visible {
 .power-led {
   width: 6px;
   height: 6px;
-
   border-radius: 50%;
-
   background: #82d2ff;
   box-shadow: 0 0 7px #6bc5ff;
 }
 
-/* Bedienfeld */
-
 .mixer-panel {
   display: grid;
-
   grid-template-columns:
     minmax(0,0.78fr)
     minmax(0,3.3fr)
     minmax(0,0.78fr);
-
   gap: 8px;
-
   height: calc(100% - 77px);
 }
 
-/* EQ links und rechts */
+/* =========================
+   EQ-BEDIENFELDER
+========================= */
 
 .eq-panel {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
   min-width: 0;
   padding: 5px;
-
   border: 1px solid #405265;
   border-radius: 4px;
-
   background: rgba(6,13,20,0.23);
 }
 
 .eq-title {
   color: #abc1d5;
-
-  font-family: "Michroma",sans-serif;
+  font-family: "Michroma", sans-serif;
   font-size: 7px;
 }
 
@@ -338,10 +287,8 @@ input:focus-visible {
 .eq-knob {
   position: relative;
   flex-shrink: 0;
-
   width: 19px;
   height: 19px;
-
   border-radius: 50%;
   border: 2px solid #8d9fb0;
 
@@ -361,36 +308,30 @@ input:focus-visible {
 .eq-knob::after {
   content: "";
   position: absolute;
-
   left: calc(50% - 1px);
   top: 1px;
-
   width: 2px;
   height: 6px;
-
   background: #172432;
   border-radius: 2px;
 }
 
 .eq-name {
   color: #acbed0;
-
-  font-family: "Michroma",sans-serif;
+  font-family: "Michroma", sans-serif;
   font-size: clamp(5px,0.56vw,7px);
 }
 
 /* =========================
-   VU-METER UND FADER
+   VU-METER UND MENÜFADER
 ========================= */
 
 .mixer-center {
   display: grid;
-
   grid-template-columns:
     10px
     minmax(0,1fr)
     10px;
-
   gap: 4px;
   min-width: 0;
 }
@@ -399,11 +340,8 @@ input:focus-visible {
   display: flex;
   flex-direction: column-reverse;
   gap: 2px;
-
   padding: 4px 1px;
-
   background: #080e14;
-
   border: 1px solid #405063;
   border-radius: 3px;
 }
@@ -412,9 +350,7 @@ input:focus-visible {
   width: 100%;
   flex: 1;
   min-height: 2px;
-
   border-radius: 1px;
-
   background: #14241f;
   opacity: 0.28;
 }
@@ -434,18 +370,12 @@ input:focus-visible {
 .vu-led.on {
   background: var(--lit);
   opacity: 1;
-
   box-shadow: 0 0 4px var(--lit);
 }
 
-/* Fünf Menükanäle */
-
 .mixer-channels {
   display: grid;
-
-  grid-template-columns:
-    repeat(5,minmax(0,1fr));
-
+  grid-template-columns: repeat(5,minmax(0,1fr));
   gap: 5px;
   min-width: 0;
 }
@@ -453,7 +383,6 @@ input:focus-visible {
 .mixer-channel {
   position: relative;
   min-width: 0;
-
   border: 1px solid #3c4e61;
   border-radius: 3px;
 
@@ -473,24 +402,17 @@ input:focus-visible {
 .fader-track::before {
   content: "";
   position: absolute;
-
   top: 4px;
   bottom: 4px;
   left: 50%;
-
   transform: translateX(-50%);
-
   width: 6px;
-
   border-radius: 4px;
   background: #060b11;
 }
 
-/* Echte Menüfader */
-
 .fader-handle {
   position: absolute;
-
   top: 57%;
   left: 50%;
 
@@ -500,14 +422,12 @@ input:focus-visible {
   width: calc(100% - 1px);
   min-width: 0;
   height: 35px;
-
   padding: 0 1px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   gap: 3px;
 
   border: 1px solid #ecf3fa;
@@ -524,15 +444,13 @@ input:focus-visible {
   );
 
   color: #152433;
-
-  font-family: "Michroma",Arial,sans-serif;
+  font-family: "Michroma", Arial, sans-serif;
   font-size: clamp(4.5px,0.55vw,7px);
   font-weight: bold;
   letter-spacing: -0.3px;
 
   cursor: grab;
   touch-action: none;
-
   user-select: none;
   -webkit-user-select: none;
 
@@ -543,11 +461,9 @@ input:focus-visible {
 
 .fader-handle::after {
   content: "";
-
   display: block;
   width: 70%;
   height: 3px;
-
   background: #7890a5;
 }
 
@@ -568,12 +484,55 @@ input:focus-visible {
 }
 
 /* =========================
+   NEU: SLIDE ME
+========================= */
+
+/*
+   Bedienhinweis für beide Reglertypen.
+
+   Mittig zwischen den fünf
+   vertikalen Menüfadern und
+   dem horizontalen Crossfader.
+
+   Absolute Positionierung:
+   Die Mischpulthöhe bleibt gleich.
+*/
+
+.slide-me {
+  position: absolute;
+  z-index: 3;
+
+  left: 50%;
+  bottom: 49px;
+
+  transform: translateX(-50%);
+
+  margin: 0;
+  padding: 0;
+
+  font-family: "Michroma", Arial, sans-serif;
+  font-size: 8px;
+  font-weight: normal;
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+
+  color: #c9eaff;
+
+  text-shadow:
+    0 0 3px #ffffff,
+    0 0 7px #82d2ff,
+    0 0 12px rgba(107,197,255,0.45);
+
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* =========================
    CROSSFADER
 ========================= */
 
 .crossfader-section {
   position: relative;
-
   width: min(80%,410px);
   margin: 6px auto 0;
 }
@@ -581,15 +540,16 @@ input:focus-visible {
 .crossfader-labels {
   display: flex;
   justify-content: space-between;
-
   margin-bottom: 5px;
 
   color: #9cb2c7;
-
-  font-family: "Michroma",sans-serif;
+  font-family: "Michroma", sans-serif;
   font-size: 8px;
   letter-spacing: 1px;
 }
+
+/* Aktiver Single-/Album-Schriftzug
+   leuchtet wie die POWER-LED */
 
 .crossfader-labels .active {
   color: #e2f6ff;
@@ -600,10 +560,9 @@ input:focus-visible {
     0 0 14px #6bc5ff,
     0 0 22px rgba(107,197,255,0.65);
 }
-   
+
 .crossfader-slider {
   display: block;
-
   width: 100%;
   height: 20px;
   margin: 0;
@@ -612,27 +571,20 @@ input:focus-visible {
   -webkit-appearance: none;
 
   background: transparent;
-
   cursor: ew-resize;
   touch-action: pan-y;
 }
 
-/* Crossfader-Schiene */
-
 .crossfader-slider::-webkit-slider-runnable-track {
   height: 7px;
-
   border-radius: 5px;
   border: 1px solid #51677b;
-
   background: #090f17;
 
   box-shadow:
     inset 0 1px 3px #000,
     0 1px 1px #7a8ca0;
 }
-
-/* Crossfader-Schieber */
 
 .crossfader-slider::-webkit-slider-thumb {
   appearance: none;
@@ -665,10 +617,8 @@ input:focus-visible {
 .crossfader-slider::-moz-range-thumb {
   width: 38px;
   height: 18px;
-
   border-radius: 3px;
   border: 1px solid #e5edf4;
-
   background: #aebfd0;
 }
 
@@ -677,11 +627,9 @@ input:focus-visible {
   margin-top: 0;
 
   color: #7f9ab1;
-
-  font-family: "Michroma",sans-serif;
+  font-family: "Michroma", sans-serif;
   font-size: 7px;
   letter-spacing: 1px;
-
   text-align: center;
 }
 
@@ -692,17 +640,14 @@ input:focus-visible {
 .led-display-wrap {
   position: relative;
   z-index: 6;
-
   width: min(1180px,96%);
   margin: 12px auto 0;
 }
 
 .led-display {
   position: relative;
-
   width: 100%;
   padding: 8px 12px;
-
   overflow: hidden;
 
   border: 1px solid rgba(170,210,250,0.55);
@@ -726,7 +671,6 @@ input:focus-visible {
   content: "";
   position: absolute;
   inset: 0;
-
   pointer-events: none;
   border-radius: inherit;
 
@@ -743,29 +687,24 @@ input:focus-visible {
 .led-canvas {
   position: relative;
   display: block;
-
   width: 100%;
   height: 80px;
 
   border: 1px solid #344e69;
   border-radius: 7px;
-
   background: #07111b;
 }
 
 /* =========================
-   MUSIKCOVER DIREKT UNTER LED
+   MUSIKCOVER
 ========================= */
-
-/* Nur ein kleiner Abstand:
-   keine Überschrift,
-   kein zusätzlicher Untertitel */
 
 .content {
   width: 100%;
   max-width: 1400px;
-
   margin: 0 auto;
+
+  /* Kleiner Abstand zur LED-Leiste */
 
   padding: 14px 24px 75px;
 
@@ -773,13 +712,10 @@ input:focus-visible {
   text-align: center;
 }
 
-/* Cover-Galerie */
-
 .gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
   gap: 24px;
   text-align: center;
 }
@@ -787,11 +723,9 @@ input:focus-visible {
 .music-card {
   width: min(220px,100%);
   min-width: 180px;
-
   padding: 12px;
 
   background: var(--card);
-
   border: 1px solid var(--line);
   border-radius: 12px;
 
@@ -804,13 +738,10 @@ input:focus-visible {
 
 .cover-button {
   display: block;
-
   width: 100%;
   padding: 0;
-
   background: transparent;
   border: 0;
-
   cursor: pointer;
 }
 
@@ -820,19 +751,15 @@ input:focus-visible {
 
 .cover {
   display: block;
-
   width: 100%;
   aspect-ratio: 1;
-
   object-fit: cover;
-
   background: #090d13;
   border-radius: 7px;
 }
 
 .track-title {
   margin: 14px 0 5px;
-
   font-size: 14px;
   font-weight: bold;
   line-height: 1.5;
@@ -840,14 +767,12 @@ input:focus-visible {
 
 .track-version {
   margin-bottom: 8px;
-
   color: #9bafc5;
   font-size: 12px;
 }
 
 .track-date {
   margin-bottom: 10px;
-
   color: #8197ae;
   font-size: 11px;
 }
@@ -856,14 +781,12 @@ input:focus-visible {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-
   gap: 7px;
   margin-top: 12px;
 }
 
 .music-links a {
   padding: 8px 10px;
-
   background: #293d53;
   border-radius: 6px;
 
@@ -878,19 +801,16 @@ input:focus-visible {
 
 .empty-message {
   width: min(420px,100%);
-
   padding: 38px 18px;
 
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
-
   color: #aebfd2;
 }
 
 .more-button {
   margin-top: 35px;
-
   padding: 13px 22px;
 
   background: #263c52;
@@ -898,10 +818,8 @@ input:focus-visible {
   border-radius: 7px;
 
   color: white;
-
-  font-family: "Michroma",Arial,sans-serif;
+  font-family: "Michroma", Arial, sans-serif;
   font-size: 10px;
-
   cursor: pointer;
 }
 
@@ -910,20 +828,17 @@ input:focus-visible {
 }
 
 /* =========================
-   YOUTUBE-VIDEO
+   YOUTUBE-VIDEOFENSTER
 ========================= */
 
 .video-modal {
   display: none;
-
   position: fixed;
   inset: 0;
   z-index: 1000;
-
   padding: 25px;
 
   background: rgba(0,0,0,0.94);
-
   align-items: center;
   justify-content: center;
 }
@@ -940,7 +855,6 @@ input:focus-visible {
 .video-frame {
   width: 100%;
   aspect-ratio: 16 / 9;
-
   border: 0;
   background: black;
 }
@@ -952,10 +866,8 @@ input:focus-visible {
 
   background: none;
   border: 0;
-
   color: white;
   font-size: 34px;
-
   cursor: pointer;
 }
 
@@ -965,10 +877,9 @@ input:focus-visible {
 
 footer {
   padding: 30px 15px 35px;
-
   background: var(--background);
-  color: #7d91a7;
 
+  color: #7d91a7;
   text-align: center;
   font-size: 12px;
 }
@@ -982,9 +893,7 @@ footer {
   .dj-setup {
     width: 98%;
     gap: 7px;
-
-    --device-height:
-      clamp(180px,21.5vw,250px);
+    --device-height: clamp(180px,21.5vw,250px);
   }
 
   .mixer {
@@ -1010,10 +919,15 @@ footer {
     font-size: 5px;
   }
 
+  .slide-me {
+    bottom: 43px;
+    font-size: 7px;
+    letter-spacing: 1.2px;
+  }
+
   .led-display-wrap {
     width: 98%;
   }
-
 }
 
 /* =========================
@@ -1038,7 +952,6 @@ footer {
 
   .dj-setup {
     width: min(470px,96%);
-
     margin-top: 5px;
 
     grid-template-columns:
@@ -1052,7 +965,6 @@ footer {
 
   .music-style-top {
     top: -24px;
-
     font-size: 8px;
     letter-spacing: 1px;
   }
@@ -1060,7 +972,6 @@ footer {
   .mixer {
     grid-column: 1 / -1;
     grid-row: 1;
-
     height: 230px;
     padding: 10px;
   }
@@ -1097,6 +1008,12 @@ footer {
     height: 35px;
   }
 
+  .slide-me {
+    bottom: 46px;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
   .crossfader-labels {
     font-size: 9px;
   }
@@ -1120,14 +1037,12 @@ footer {
   .music-card {
     width: calc(50% - 6px);
     min-width: 150px;
-
     padding: 9px;
   }
 
   .track-title {
     font-size: 12px;
   }
-
 }
 
 @media (max-width:420px) {
@@ -1161,7 +1076,6 @@ footer {
   .music-card {
     width: 100%;
   }
-
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -1169,8 +1083,8 @@ footer {
   .fader-handle {
     transition: none !important;
   }
-
 }
+
 </style>
 </head>
 
@@ -1271,7 +1185,7 @@ footer {
 
         </div>
 
-        <!-- FADER + VU-METER -->
+        <!-- MITTE: VU-METER UND 5 FADER -->
 
         <div class="mixer-center">
 
@@ -1412,6 +1326,14 @@ footer {
 
         </div>
 
+      </div>
+
+      <!-- =========================
+           NEU: SLIDE ME
+      ========================= -->
+
+      <div class="slide-me">
+        SLIDE ME
       </div>
 
       <!-- =========================
@@ -2111,15 +2033,7 @@ const LED_FONT = {
 ========================= */
 
 let ledColumns = [];
-
-/* Position der Laufschrift */
-
 let ledPosition = 0;
-
-/* Richtung:
-   1 nach rechts
-  -1 nach links */
-
 let ledDirection = 1;
 
 /* Geschwindigkeit in Pixel/Sekunde */
@@ -2127,10 +2041,6 @@ let ledDirection = 1;
 const LED_SPEED = 85;
 
 let ledLastTime = 0;
-
-/* Maße werden automatisch
-   an die Fensterbreite angepasst */
-
 let ledPitch = 7;
 let ledTextWidth = 0;
 
@@ -2176,9 +2086,6 @@ function buildLEDText(text) {
       result.push(pixels);
     }
 
-    /* Eine Leer-Spalte
-       zwischen den Buchstaben */
-
     result.push(blankColumn());
   }
 
@@ -2202,9 +2109,6 @@ function updateLEDMessage(category) {
   ledColumns =
     buildLEDText(text);
 
-  /* Bei jedem Wechsel startet
-     der Text wieder links */
-
   ledPosition = 0;
   ledDirection = 1;
 
@@ -2226,24 +2130,16 @@ function calculateLEDLayout() {
   const columns =
     Math.max(1,ledColumns.length);
 
-  /* Seitliche Sicherheitsabstände */
-
   const padding = 12;
 
-  /* Gesamter Schriftzug soll
-     höchstens 75 % der
-     Leistenbreite einnehmen.
-
-     Dadurch bleibt links und
-     rechts genug Weg zum Pendeln. */
+  /* Schrift nimmt maximal
+     75 Prozent der Leiste ein */
 
   const maxTextWidth =
     Math.max(
       1,
       (width - padding*2)*0.75
     );
-
-  /* LED-Punktabstand anpassen */
 
   ledPitch = Math.min(
     9.4,
@@ -2266,7 +2162,7 @@ function calculateLEDLayout() {
 }
 
 /* =========================
-   CANVAS AUFLÖSUNG
+   CANVAS-AUFLÖSUNG
 ========================= */
 
 function resizeLEDCanvas() {
@@ -2291,7 +2187,7 @@ function resizeLEDCanvas() {
 }
 
 /* =========================
-   LED-ZEICHNUNG
+   LED ZEICHNEN
 ========================= */
 
 function drawLED(time) {
@@ -2307,6 +2203,7 @@ function drawLED(time) {
   );
 
   ctx.fillStyle = "#07111b";
+
   ctx.fillRect(
     0,0,width,height
   );
@@ -2322,12 +2219,8 @@ function drawLED(time) {
   const radius =
     Math.max(0.35,ledPitch*0.29);
 
-  /* Linke Textkante */
-
   const startX =
     padding+ledPosition;
-
-  /* Alle LED-Buchstaben zeichnen */
 
   for (
     let columnIndex=0;
@@ -2421,15 +2314,12 @@ function drawLED(time) {
           width-padding*2-ledTextWidth
         );
 
-      /* Bewegen */
-
       ledPosition +=
         LED_SPEED*
         delta*
         ledDirection;
 
-      /* Rechter Anschlag:
-         Richtung nach links */
+      /* Rechter Anschlag */
 
       if (
         ledPosition >= maxPosition
@@ -2439,8 +2329,7 @@ function drawLED(time) {
         ledDirection = -1;
       }
 
-      /* Linker Anschlag:
-         Richtung nach rechts */
+      /* Linker Anschlag */
 
       if (
         ledPosition <= 0
