@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact R.M.B. and find official music streaming and social media links.">
+  <title>Contact & Social Media | R.M.B.</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #121820;
+      color: #f2f4f8;
+      font-family: 'Michroma', sans-serif;
+    }
+
+    /* BANNER */
+    .banner {
+      width: 100%;
+      background: #fff;
+    }
+
+    .banner img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* NAVIGATION */
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 28px;
+      background: #262b35;
+      padding: 22px 12px;
+      border-bottom: 1px solid #48515f;
+    }
+
+    nav a {
+      color: #cbd2dd;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav a:hover,
+    nav a:focus-visible,
+    nav a.active {
+      color: #fff;
+    }
+
+    /* SEITENINHALT */
+    main {
+      width: min(100%, 950px);
+      margin: 0 auto;
+      padding: 42px 22px 56px;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    h1 {
+      font-size: clamp(19px, 3.5vw, 31px);
+      line-height: 1.6;
+      letter-spacing: 1px;
+      margin: 0 0 10px;
+    }
+
+    .heading p {
+      font-size: 12px;
+      color: #b9c5d4;
+      margin: 0;
+    }
+
+    .section {
+      margin-top: 33px;
+    }
+
+    h2 {
+      font-size: 15px;
+      margin: 0 0 15px;
+      line-height: 1.6;
+    }
+
+    /* KONTAKT-KACHELN */
+    .tile {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      min-height: 76px;
+      padding: 20px;
+      border-radius: 9px;
+      background: #252e3b;
+      border: 1px solid #354150;
+      text-decoration: none;
+      color: #f2f4f8;
+      transition: background .2s, transform .2s;
+    }
+
+    .tile:hover,
+    .tile:focus-visible {
+      background: #344255;
+      transform: translateY(-2px);
+    }
+
+    .symbol {
+      flex: 0 0 36px;
+      width: 36px;
+      text-align: center;
+      font-size: 25px;
+      font-family: Arial, sans-serif;
+      color: #d2deeb;
+    }
+
+    .tile-content {
+      min-width: 0;
+    }
+
+    .tile-title {
+      display: block;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .tile-sub {
+      display: block;
+      color: #b9c5d4;
+      font-size: 10px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    /* SOCIAL MEDIA */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    /* MUSIKPLATTFORMEN */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .platform-grid .tile {
+      justify-content: center;
+      text-align: center;
+      min-height: 70px;
+    }
+
+    /* DISTROKID HYPERFOLLOW */
+    .hyperfollow {
+      background: #344255;
+      border-color: #788ba3;
+      margin-top: 14px;
+    }
+
+    .hyperfollow:hover,
+    .hyperfollow:focus-visible {
+      background: #435670;
+    }
+
+    .arrow {
+      margin-left: auto;
+      font-size: 20px;
+      color: #d2deeb;
+    }
+
+    /* FUSSZEILE */
+    footer {
+      margin-top: 25px;
+      padding: 25px 14px;
+      text-align: center;
+      background: #252a34;
+      color: #b9c2cf;
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    a:focus-visible {
+      outline: 2px solid #d4e4ff;
+      outline-offset: 3px;
+    }
+
+    /* SMARTPHONE */
+    @media (max-width: 650px) {
+      nav {
+        gap: 15px;
+        padding: 18px 10px;
+      }
+
+      nav a {
+        font-size: 10px;
+      }
+
+      main {
+        padding: 28px 14px 42px;
+      }
+
+      .social-grid,
+      .platform-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tile {
+        padding: 17px;
+      }
+
+      .tile-title {
+        font-size: 11px;
+      }
+
+      .tile-sub {
+        font-size: 9px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tile {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- R.M.B. DIAMANT-BANNER -->
+  <header class="banner">
+    <a href="index.html" aria-label="R.M.B. Startseite">
+      <img src="rmb-banner.png" alt="R.M.B. Diamond Logo">
+    </a>
+  </header>
+
+  <!-- MENÜ MITTIG -->
+  <nav aria-label="Main navigation">
+    <a href="index.html">HOME</a>
+    <a href="music.html">MUSIC</a>
+    <a href="releases.html">RELEASES</a>
+    <a href="about.html">ABOUT</a>
+    <a class="active" aria-current="page" href="contact.html">CONTACT</a>
+  </nav>
+
+  <main>
+
+    <!-- ÜBERSCHRIFT -->
+    <div class="heading">
+      <h1>CONTACT &amp; SOCIAL MEDIA</h1>
+      <p>Connect with R.M.B.</p>
+    </div>
+
+    <!-- E-MAIL -->
+    <section class="section" aria-labelledby="touch">
+      <h2 id="touch">Get in Touch</h2>
+
+      <a class="tile" href="mailto:R1XLMB@aol.com">
+        <span class="symbol" aria-hidden="true">✉</span>
+
+        <span class="tile-content">
+          <span class="tile-title">E-Mail</span>
+          <span class="tile-sub">R1XLMB@aol.com</span>
+        </span>
+
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    </section>
+
+    <!-- SOCIAL MEDIA -->
+    <section class="section" aria-labelledby="social">
+      <h2 id="social">Follow R.M.B.</h2>
+
+      <div class="social-grid">
+
+        <!-- TIKTOK -->
+        <a class="tile"
+           href="https://www.tiktok.com/@r.m.b2240"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <span class="symbol" aria-hidden="true">♫</span>
+          <span class="tile-title">TikTok</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <!-- INSTAGRAM -->
+        <a class="tile"
+           href="https://www.instagram.com/ronny.m.b/"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <span class="symbol" aria-hidden="true">◎</span>
+          <span class="tile-title">Instagram</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <!-- FACEBOOK -->
+        <a class="tile"
+           href="https://www.facebook.com/R.M.B.FFM"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <span class="symbol" aria-hidden="true">f</span>
+          <span class="tile-title">Facebook</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+
+        <!-- YOUTUBE -->
+        <a class="tile"
+           href="https://www.youtube.com/@r1xlmb"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <span class="symbol" aria-hidden="true">▶</span>
+          <span class="tile-title">YouTube</span>
+          <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- MUSIKPLATTFORMEN -->
+    <section class="section" aria-labelledby="listen">
+      <h2 id="listen">Listen to R.M.B.</h2>
+
+      <div class="platform-grid">
+
+        <!-- SPOTIFY -->
+        <a class="tile"
+           href="https://open.spotify.com/artist/6dj271I9iX2SNRuQ5QL2iV"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <span class="tile-title">Spotify ↗</span>
+        </a>
+
+        <!-- AMAZON MUSIC -->
+        <a class="tile"
+           href="https://music.amazon.de/artists/B0GTWVM9XX/r-m-b"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <span class="tile-title">Amazon Music ↗</span>
+        </a>
+
+        <!-- APPLE MUSIC -->
+        <a class="tile"
+           href="https://music.apple.com/de/artist/r-m-b/1886133179"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <span class="tile-title">Apple Music ↗</span>
+        </a>
+
+      </div>
+
+      <!-- DISTROKID HYPERFOLLOW -->
+      <a class="tile hyperfollow"
+         href="https://hyperfollow.com/rmb13"
+         target="_blank"
+         rel="noopener noreferrer">
+
+        <span class="symbol" aria-hidden="true">♫</span>
+
+        <span class="tile-content">
+          <span class="tile-title">
+            R.M.B. – HyperFollow
+          </span>
+
+          <span class="tile-sub">
+            All music links in one place
+          </span>
+        </span>
+
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+
+    </section>
+
+  </main>
+
+  <!-- FUSSZEILE -->
+  <footer>
+    R.M.B. · Independent Electronic Music
+  </footer>
+
+</body>
+</html>
