@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>R.M.B. – Music</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #121820;
+      color: #ffffff;
+      font-family: 'Michroma', sans-serif;
+    }
+
+    header {
+      background: #ffffff;
+    }
+
+    header img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 22px;
+      padding: 23px 12px;
+    }
+
+    nav a {
+      color: #a4b5c9;
+      text-decoration: none;
+      font-size: 11px;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #ffffff;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 25px 18px 70px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 27px;
+      letter-spacing: 3px;
+      margin: 15px 0;
+    }
+
+    .intro p {
+      color: #a4b5c9;
+      font-size: 11px;
+      line-height: 2.2;
+    }
+
+    .music-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+    }
+
+    .music-card {
+      background: #1c2530;
+      border: 1px solid #303d4d;
+      border-radius: 14px;
+      padding: 17px;
+      min-width: 0;
+    }
+
+    .music-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #111820;
+      border-radius: 9px;
+    }
+
+    .music-card h2 {
+      font-size: 13px;
+      line-height: 1.8;
+      margin: 17px 0 6px;
+    }
+
+    .version {
+      font-size: 10px;
+      line-height: 1.8;
+      color: #a4b5c9;
+      min-height: 20px;
+    }
+
+    .play-button {
+      display: block;
+      width: 100%;
+      margin-top: 18px;
+      padding: 13px 8px;
+      background: #344a60;
+      color: white;
+      border: 1px solid #536a82;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .play-button:hover {
+      background: #49647f;
+    }
+
+    .player {
+      margin-top: 15px;
+      aspect-ratio: 16 / 9;
+      background: #080b10;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .player iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .links a {
+      flex: 1;
+      min-width: 70px;
+      padding: 11px 6px;
+      border: 1px solid #405166;
+      border-radius: 7px;
+      color: #c7d9ef;
+      text-align: center;
+      text-decoration: none;
+      font-size: 9px;
+    }
+
+    .links a:hover {
+      background: #344a60;
+      color: #ffffff;
+    }
+
+    #message {
+      color: #a4b5c9;
+      text-align: center;
+      font-size: 11px;
+      line-height: 2;
+    }
+
+    footer {
+      padding: 25px 15px;
+      text-align: center;
+      color: #8697ab;
+      font-size: 9px;
+      border-top: 1px solid #263341;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        gap: 14px;
+      }
+
+      nav a {
+        font-size: 9px;
+      }
+
+      h1 {
+        font-size: 21px;
+      }
+
+      .music-grid {
+        grid-template-columns:
+          repeat(auto-fit, minmax(145px, 1fr));
+        gap: 13px;
+      }
+
+      .music-card {
+        padding: 11px;
+      }
+
+      .music-card h2 {
+        font-size: 10px;
+      }
+
+      .version {
+        font-size: 9px;
+      }
+
+      .links a {
+        font-size: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img
+      src="rmb-banner.png"
+      alt="R.M.B. Music Logo">
+  </header>
+
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="music.html" class="active">MUSIC</a>
+    <a href="releases.html">RELEASES</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+
+  <main>
+
+    <section class="intro">
+      <h1>MUSIC</h1>
+      <p>
+        THE SOUND OF R.M.B.<br>
+        90s Eurodance · Techno · Trance · EDM
+      </p>
+    </section>
+
+    <p id="message">Musik wird geladen ...</p>
+
+    <div class="music-grid" id="musicGrid"></div>
+
+  </main>
+
+  <footer>
+    © R.M.B. · FRANKFURT · ELECTRONIC ROOTS
+  </footer>
+
+  <script>
+    const musicGrid =
+      document.getElementById("musicGrid");
+
+    const message =
+      document.getElementById("message");
+
+    function validUrl(value) {
+      if (!value) return "";
+
+      try {
+        const url = new URL(value);
+
+        if (
+          url.protocol === "https:" ||
+          url.protocol === "http:"
+        ) {
+          return url.href;
+        }
+      } catch (error) {}
+
+      return "";
+    }
+
+    function addLink(container, name, address) {
+      const url = validUrl(address);
+
+      if (!url) return;
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.textContent = name;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+
+      container.appendChild(link);
+    }
+
+    function createMusicCard(song) {
+      const card = document.createElement("article");
+      card.className = "music-card";
+
+      const cover = document.createElement("img");
+      cover.src = song.cover || "";
+      cover.alt = "Cover: " + (song.title || "R.M.B.");
+      cover.loading = "lazy";
+      card.appendChild(cover);
+
+      const title = document.createElement("h2");
+      title.textContent = song.title || "R.M.B.";
+      card.appendChild(title);
+
+      const version = document.createElement("div");
+      version.className = "version";
+      version.textContent = song.version || "";
+      card.appendChild(version);
+
+      const videoId = song.youtube || "";
+
+      if (/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+        const button = document.createElement("button");
+        button.className = "play-button";
+        button.textContent = "▶ PLAY ON YOUTUBE";
+
+        const player = document.createElement("div");
+        player.className = "player";
+        player.hidden = true;
+
+        button.addEventListener("click", () => {
+          if (player.hidden) {
+            const iframe = document.createElement("iframe");
+
+            iframe.src =
+              "https://www.youtube.com/embed/" +
+              videoId +
+              "?autoplay=1";
+
+            iframe.title =
+              "YouTube: " + (song.title || "R.M.B.");
+
+            iframe.allow =
+              "autoplay; encrypted-media; " +
+              "picture-in-picture; web-share";
+
+            iframe.allowFullscreen = true;
+
+            player.appendChild(iframe);
+            player.hidden = false;
+            button.textContent = "■ CLOSE PLAYER";
+          } else {
+            player.replaceChildren();
+            player.hidden = true;
+            button.textContent = "▶ PLAY ON YOUTUBE";
+          }
+        });
+
+        card.appendChild(button);
+        card.appendChild(player);
+      }
+
+      const links = document.createElement("div");
+      links.className = "links";
+
+      if (/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+        addLink(
+          links,
+          "YOUTUBE",
+          "https://www.youtube.com/watch?v=" + videoId
+        );
+      }
+
+      addLink(links, "SPOTIFY", song.spotify);
+      addLink(links, "AMAZON", song.amazon);
+
+      card.appendChild(links);
+
+      return card;
+    }
+
+    async function loadMusic() {
+      try {
+        const response = await fetch(
+          "songs.json",
+          { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+          throw new Error("Musikliste nicht gefunden");
+        }
+
+        const songs = await response.json();
+
+        if (!Array.isArray(songs)) {
+          throw new Error("Musikliste ist ungültig");
+        }
+
+        musicGrid.replaceChildren();
+
+        if (songs.length === 0) {
+          message.textContent =
+            "Noch keine Songs eingetragen.";
+          return;
+        }
+
+        // Neueste Einträge zuerst anzeigen.
+        [...songs].reverse().forEach(song => {
+          musicGrid.appendChild(createMusicCard(song));
+        });
+
+        message.hidden = true;
+
+      } catch (error) {
+        message.textContent =
+          "Die Musikliste konnte noch nicht geladen " +
+          "werden. Bitte songs.json überprüfen.";
+      }
+    }
+
+    loadMusic();
+  </script>
+
+</body>
+</html>
