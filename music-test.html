@@ -53,19 +53,6 @@ a:focus-visible {
 
 /* ====================================
    GEMEINSAMER MASTER-CONTAINER
-
-   1360 PIXEL GRUNDBREITE.
-
-   ALLES IM CONTAINER WIRD SPÄTER
-   MIT DEM GLEICHEN FAKTOR SKALIERT:
-
-   - MUSIC
-   - FRANKFURTER SKYLINE
-   - GENREZEILE
-   - PLATTENSPIELER
-   - MISCHPULT
-   - LED-LEISTE
-   - SÄMTLICHE ABSTÄNDE
 ==================================== */
 
 .master-shell {
@@ -85,12 +72,6 @@ a:focus-visible {
 
 /* ====================================
    MUSIC / SKYLINE
-
-   DER VERTIKALE ABSTAND ZUR
-   DJ-ANLAGE WURDE VERKLEINERT.
-
-   DIE AUSRICHTUNG VON SCHRIFTZUG
-   UND SKYLINE BLEIBT ERHALTEN.
 ==================================== */
 
 .music-composition {
@@ -103,19 +84,9 @@ a:focus-visible {
 .skyline {
   position:absolute;
   left:0;
-
-  /*
-    Der vorherige Abstand
-    wurde um 35px verringert.
-
-    Gleichzeitig bleibt die Skyline
-    relativ zum MUSIC-Schriftzug
-    an ihrer bisherigen Position.
-  */
-
   bottom:-103px;
-
   z-index:0;
+
   display:block;
   width:1360px;
   height:auto;
@@ -161,14 +132,12 @@ a:focus-visible {
 
 .genre-line {
   margin:0;
-
   color:#b9d3ee;
 
   font-family:Michroma,Arial,sans-serif;
   font-size:11px;
   letter-spacing:1.4px;
   line-height:1;
-
   white-space:nowrap;
 
   text-shadow:
@@ -181,10 +150,7 @@ a:focus-visible {
 
 .dj-setup {
   display:grid;
-
-  grid-template-columns:
-    330px 680px 330px;
-
+  grid-template-columns:330px 680px 330px;
   gap:10px;
 
   width:1360px;
@@ -194,10 +160,8 @@ a:focus-visible {
 
 .turntable,.mixer {
   position:relative;
-
   width:100%;
   height:260px;
-
   overflow:hidden;
   border-radius:6px;
 
@@ -225,25 +189,16 @@ a:focus-visible {
 
 /* ====================================
    VINYLPLATTEN
-
-   GRÖSSE UND POSITION BLEIBEN
-   UNVERÄNDERT.
-
-   DER MASTER-CONTAINER SKALIERT
-   BEIDES PROPORTIONAL.
 ==================================== */
 
 .vinyl-position {
   position:absolute;
-
   left:38.4%;
   top:46.4%;
-
   width:61%;
   aspect-ratio:1 / 1;
 
   transform:translate(-50%,-50%);
-
   z-index:2;
   pointer-events:none;
 
@@ -262,14 +217,11 @@ a:focus-visible {
 
 .vinyl-record {
   display:block;
-
   width:100%;
   height:100%;
-
   aspect-ratio:1 / 1;
   object-fit:contain;
   border-radius:50%;
-
   transform-origin:center;
 
   filter:drop-shadow(
@@ -278,7 +230,6 @@ a:focus-visible {
 
   animation:
     vinylRotation 2.4s linear infinite;
-
   animation-play-state:paused;
 }
 
@@ -302,7 +253,6 @@ a:focus-visible {
 
 .mixer {
   padding:9px 12px 7px;
-
   border:1px solid #708299;
 
   background:
@@ -328,13 +278,11 @@ a:focus-visible {
   display:flex;
   justify-content:space-between;
   align-items:center;
-
   gap:6px;
   height:19px;
   margin-bottom:5px;
 
   color:#bfcedd;
-
   font-family:Michroma,Arial,sans-serif;
   font-size:8px;
   white-space:nowrap;
@@ -348,13 +296,10 @@ a:focus-visible {
 
 .power-led {
   display:inline-block;
-
   width:7px;
   height:7px;
-
   border-radius:50%;
   background:#82d2ff;
-
   box-shadow:0 0 8px #6bc5ff;
 }
 
@@ -364,10 +309,8 @@ a:focus-visible {
 
 .mixer-panel {
   display:grid;
-
   grid-template-columns:
     112px minmax(0,1fr) 112px;
-
   gap:9px;
 
   width:100%;
@@ -383,14 +326,12 @@ a:focus-visible {
   display:grid;
   grid-template-columns:
     minmax(0,1fr) minmax(0,1fr);
-
   gap:4px;
   min-width:0;
   padding:5px 4px;
 
   border:1px solid #405265;
   border-radius:4px;
-
   background:rgba(6,13,20,.23);
 }
 
@@ -399,7 +340,6 @@ a:focus-visible {
   flex-direction:column;
   justify-content:space-around;
   align-items:center;
-
   gap:2px;
   min-width:0;
 }
@@ -414,7 +354,6 @@ a:focus-visible {
   flex-direction:column;
   align-items:center;
   justify-content:center;
-
   gap:3px;
   width:100%;
   min-height:35px;
@@ -424,7 +363,6 @@ a:focus-visible {
   position:relative;
   display:block;
   flex-shrink:0;
-
   width:18px;
   height:18px;
 
@@ -446,11 +384,9 @@ a:focus-visible {
 
 .eq-knob::after {
   content:"";
-
   position:absolute;
   left:calc(50% - 1px);
   top:0;
-
   width:2px;
   height:6px;
   background:#172432;
@@ -458,9 +394,7 @@ a:focus-visible {
 
 .eq-label {
   display:block;
-
   color:#b8cadd;
-
   font-family:Michroma,Arial,sans-serif;
   font-size:6px;
   line-height:1.2;
@@ -474,10 +408,8 @@ a:focus-visible {
 
 .mixer-center {
   display:grid;
-
   grid-template-columns:
     11px minmax(0,1fr) 11px;
-
   gap:5px;
   min-width:0;
   min-height:0;
@@ -486,7 +418,6 @@ a:focus-visible {
 .vu-meter {
   display:flex;
   flex-direction:column-reverse;
-
   gap:2px;
   padding:4px 1px;
 
@@ -498,7 +429,6 @@ a:focus-visible {
 .vu-led {
   flex:1;
   min-height:2px;
-
   border-radius:1px;
   background:#14241f;
   opacity:.28;
@@ -530,18 +460,14 @@ a:focus-visible {
   display:grid;
   grid-template-columns:
     repeat(5,minmax(0,1fr));
-
   gap:6px;
-
   min-width:0;
   min-height:0;
-
   padding:0 4px;
 }
 
 .mixer-channel {
   position:relative;
-
   min-width:0;
   min-height:0;
 
@@ -557,39 +483,24 @@ a:focus-visible {
 }
 
 /* ====================================
-   NEUE KANALBESCHRIFTUNGEN
-
-   HOME
-   MUSIC
-   RELEASES
-   ABOUT
-   CONTACT
-
-   WAAGRECHT ÜBER JEDEM FADER.
-
-   AKTIV = GRÜN.
-   INAKTIV = ROT.
+   KANALBESCHRIFTUNGEN
 ==================================== */
 
 .channel-label {
   position:absolute;
-
   top:3px;
   left:50%;
   z-index:4;
 
   transform:translateX(-50%);
-
   width:max-content;
   max-width:100%;
 
   color:var(--red);
-
   font-family:Michroma,Arial,sans-serif;
   font-size:7px;
   line-height:1.2;
   letter-spacing:-.35px;
-
   white-space:nowrap;
   text-align:center;
 
@@ -600,8 +511,7 @@ a:focus-visible {
   pointer-events:none;
 }
 
-.mixer-channel.active-channel
-.channel-label {
+.mixer-channel.active-channel .channel-label {
   color:var(--green);
 
   text-shadow:
@@ -611,20 +521,15 @@ a:focus-visible {
 }
 
 /* ====================================
-   FADERSCHIENE
-
-   OBEN PLATZ FÜR BESCHRIFTUNG.
-   DER GRIFF BERÜHRT NICHT DEN TEXT.
+   FADERSCHIENEN
 ==================================== */
 
 .fader-track {
   position:absolute;
-
   top:18px;
   right:2px;
   bottom:4px;
   left:2px;
-
   min-height:0;
 }
 
@@ -638,7 +543,6 @@ a:focus-visible {
 
   width:5px;
   transform:translateX(-50%);
-
   border-radius:4px;
   background:#060b11;
 
@@ -649,14 +553,10 @@ a:focus-visible {
 
 /* ====================================
    SILBERNE FADERGRIFFE
-
-   KEINE BESCHRIFTUNG MEHR
-   AUF DEN GRIFFEN.
 ==================================== */
 
 .fader-handle {
   position:absolute;
-
   top:0;
   left:50%;
 
@@ -689,7 +589,6 @@ a:focus-visible {
 
   user-select:none;
   -webkit-user-select:none;
-
   z-index:2;
 }
 
@@ -702,14 +601,10 @@ a:focus-visible {
   transition:top .23s ease-out;
 }
 
-/* Metallrillen */
-
 .fader-handle::before {
   content:"";
-
   position:absolute;
   inset:4px 3px;
-
   border-radius:2px;
 
   background:repeating-linear-gradient(
@@ -721,8 +616,6 @@ a:focus-visible {
 
   pointer-events:none;
 }
-
-/* Aktiver Griff */
 
 .fader-handle[aria-current="page"] {
   border-color:#a2dbff;
@@ -736,15 +629,16 @@ a:focus-visible {
 /* ====================================
    CROSSFADER
 
-   SINGLE / SLIDE ME / ALBUM
-   EIN PAAR PIXEL TIEFER.
+   NEU:
+   CROSSFADER OBEN.
+   SINGLE - SLIDE ME - ALBUM UNTEN.
 
-   SCHIEBESCHIENE BLEIBT ERHALTEN.
+   DIE SCHIEBESCHIENE BLEIBT
+   EXAKT AN IHRER ALTEN POSITION.
 ==================================== */
 
 .crossfader-section {
   position:absolute;
-
   left:50%;
   bottom:6px;
 
@@ -754,27 +648,114 @@ a:focus-visible {
   transform:translateX(-50%);
 }
 
+/* ====================================
+   OBERE ZEILE: CROSSFADER
+
+   DIESER SCHRIFTZUG STEHT
+   MITTIG ÜBER DEM WAGRECHTEN
+   SCHIEBEREGLER.
+==================================== */
+
+.crossfader-title {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  height:17px;
+  margin-bottom:4px;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:7px;
+  letter-spacing:1px;
+  line-height:1;
+
+  color:#7f9ab1;
+  text-align:center;
+  white-space:nowrap;
+}
+
+/* ====================================
+   WAGRECHTER CROSSFADER
+
+   UNVERÄNDERTE SCHIEBESCHIENE.
+==================================== */
+
+.crossfader-slider {
+  display:block;
+  width:100%;
+  height:20px;
+  margin:0;
+
+  appearance:none;
+  -webkit-appearance:none;
+  background:transparent;
+
+  cursor:ew-resize;
+  touch-action:pan-y;
+}
+
+.crossfader-slider::-webkit-slider-runnable-track {
+  height:7px;
+  border:1px solid #51677b;
+  border-radius:5px;
+  background:#090f17;
+
+  box-shadow:
+    inset 0 1px 3px #000,
+    0 1px 1px #7a8ca0;
+}
+
+.crossfader-slider::-webkit-slider-thumb {
+  appearance:none;
+  -webkit-appearance:none;
+
+  width:38px;
+  height:18px;
+  margin-top:-7px;
+
+  border:1px solid #e5edf4;
+  border-radius:3px;
+
+  background:linear-gradient(
+    #eff4f8,
+    #aebfd0 48%,
+    #71879d
+  );
+
+  box-shadow:
+    0 3px 5px #000,
+    inset 0 1px 1px #fff;
+}
+
+.crossfader-slider::-moz-range-track {
+  height:7px;
+  border-radius:5px;
+  background:#090f17;
+}
+
+.crossfader-slider::-moz-range-thumb {
+  width:38px;
+  height:18px;
+  border:1px solid #e5edf4;
+  border-radius:3px;
+  background:#aebfd0;
+}
+
+/* ====================================
+   UNTERE ZEILE:
+
+   SINGLE - SLIDE ME - ALBUM
+
+   GEMEINSAM AUF EINER LINIE.
+==================================== */
+
 .crossfader-labels {
   display:grid;
-
   grid-template-columns:
     1fr auto 1fr;
-
   align-items:center;
 
-  min-height:17px;
-
-  /*
-    Die Beschriftungen werden
-    4 Pixel nach unten verschoben.
-
-    Die Crossfader-Schiene selbst
-    bleibt an ihrer Position.
-  */
-
-  transform:translateY(4px);
-
-  margin-bottom:4px;
+  height:10px;
 
   font-family:Michroma,Arial,sans-serif;
   font-size:8px;
@@ -795,20 +776,36 @@ a:focus-visible {
   justify-self:end;
 }
 
+/* ====================================
+   AKTIVE SINGLE-/ALBUM-FARBE
+
+   NEU:
+   MEHR HELLBLAU, WENIGER WEISS.
+
+   KRÄFTIGER BLAUER NEONSCHEIN,
+   OHNE WEISSLICH HELLER ZU WERDEN.
+==================================== */
+
 .crossfader-labels .active {
-  color:#e2f6ff;
+  color:#69baff;
 
   text-shadow:
-    0 0 3px #fff,
-    0 0 7px #82d2ff,
-    0 0 14px #6bc5ff;
+    0 0 3px rgba(58,143,255,.8),
+    0 0 7px rgba(37,130,255,.75),
+    0 0 13px rgba(30,103,235,.55),
+    0 0 20px rgba(24,88,205,.3);
 }
+
+/* ====================================
+   SLIDE ME
+
+   SANFTES SILBERBLAUES PULSIEREN.
+==================================== */
 
 .slide-me {
   justify-self:center;
 
   color:#c9eaff;
-
   font-family:Michroma,Arial,sans-serif;
   font-size:7px;
 
@@ -839,87 +836,6 @@ a:focus-visible {
   }
 }
 
-/* Vollständige Crossfader-Schiene */
-
-.crossfader-slider {
-  display:block;
-
-  width:100%;
-  height:20px;
-  margin:0;
-
-  appearance:none;
-  -webkit-appearance:none;
-
-  background:transparent;
-
-  cursor:ew-resize;
-  touch-action:pan-y;
-}
-
-.crossfader-slider::-webkit-slider-runnable-track {
-  height:7px;
-
-  border:1px solid #51677b;
-  border-radius:5px;
-
-  background:#090f17;
-
-  box-shadow:
-    inset 0 1px 3px #000,
-    0 1px 1px #7a8ca0;
-}
-
-.crossfader-slider::-webkit-slider-thumb {
-  appearance:none;
-  -webkit-appearance:none;
-
-  width:38px;
-  height:18px;
-
-  margin-top:-7px;
-
-  border:1px solid #e5edf4;
-  border-radius:3px;
-
-  background:linear-gradient(
-    #eff4f8,
-    #aebfd0 48%,
-    #71879d
-  );
-
-  box-shadow:
-    0 3px 5px #000,
-    inset 0 1px 1px #fff;
-}
-
-.crossfader-slider::-moz-range-track {
-  height:7px;
-  border-radius:5px;
-  background:#090f17;
-}
-
-.crossfader-slider::-moz-range-thumb {
-  width:38px;
-  height:18px;
-
-  border:1px solid #e5edf4;
-  border-radius:3px;
-
-  background:#aebfd0;
-}
-
-.crossfader-title {
-  display:block;
-
-  font-family:Michroma,Arial,sans-serif;
-  font-size:7px;
-  letter-spacing:1px;
-
-  color:#7f9ab1;
-  text-align:center;
-}
-
 /* ====================================
    LED-LAUFLEISTE
 ==================================== */
@@ -934,7 +850,6 @@ a:focus-visible {
   padding:8px 12px;
 
   overflow:hidden;
-
   border:1px solid rgba(170,210,250,.55);
   border-radius:10px;
 
@@ -954,13 +869,11 @@ a:focus-visible {
 
 .led-canvas {
   display:block;
-
   width:100%;
   height:80px;
 
   border:1px solid #344e69;
   border-radius:7px;
-
   background:#07111b;
 }
 
@@ -973,7 +886,6 @@ a:focus-visible {
   margin:0 auto;
 
   padding:14px 24px 75px;
-
   background:var(--bg);
   text-align:center;
 }
@@ -988,14 +900,11 @@ a:focus-visible {
 .music-card {
   width:min(220px,100%);
   min-width:180px;
-
   padding:12px;
 
   background:#1c2530;
-
   border:1px solid #304052;
   border-radius:12px;
-
   transition:transform .2s;
 }
 
@@ -1019,10 +928,8 @@ a:focus-visible {
 
 .cover {
   display:block;
-
   width:100%;
   aspect-ratio:1;
-
   object-fit:cover;
 
   background:#090d13;
@@ -1031,7 +938,6 @@ a:focus-visible {
 
 .track-title {
   margin:14px 0 5px;
-
   font-size:14px;
   font-weight:bold;
   line-height:1.5;
@@ -1039,14 +945,12 @@ a:focus-visible {
 
 .track-version {
   margin-bottom:8px;
-
   color:#9bafc5;
   font-size:12px;
 }
 
 .track-date {
   margin-bottom:10px;
-
   color:#8197ae;
   font-size:11px;
 }
@@ -1056,13 +960,11 @@ a:focus-visible {
   justify-content:center;
   flex-wrap:wrap;
   gap:7px;
-
   margin-top:12px;
 }
 
 .music-links a {
   padding:8px 10px;
-
   background:#293d53;
   border-radius:6px;
 
@@ -1082,7 +984,6 @@ a:focus-visible {
   background:#1c2530;
   border:1px solid #304052;
   border-radius:12px;
-
   color:#aebfd2;
 }
 
@@ -1091,7 +992,6 @@ a:focus-visible {
   padding:13px 22px;
 
   background:#263c52;
-
   border:1px solid #6587aa;
   border-radius:7px;
 
@@ -1099,7 +999,6 @@ a:focus-visible {
 
   font-family:Michroma,Arial,sans-serif;
   font-size:10px;
-
   cursor:pointer;
 }
 
@@ -1137,14 +1036,12 @@ a:focus-visible {
 .video-frame {
   width:100%;
   aspect-ratio:16 / 9;
-
   border:0;
   background:black;
 }
 
 .close-video {
   position:absolute;
-
   right:0;
   top:-48px;
 
@@ -1158,19 +1055,17 @@ a:focus-visible {
 
 footer {
   padding:30px 15px 35px;
-
   background:var(--bg);
   color:#7d91a7;
-
   text-align:center;
   font-size:12px;
 }
 
 /* ====================================
-   MOBILE MUSIKGALERIE
+   RESPONSIVE MUSIKGALERIE
 
-   DER MASTER-CONTAINER WIRD NICHT
-   UMGEBROCHEN ODER VERZERRT.
+   DIE DJ-ANLAGE SELBST BLEIBT
+   EINHEITLICH PROPORTIONAL SKALIERT.
 ==================================== */
 
 @media(max-width:700px) {
@@ -1216,7 +1111,7 @@ footer {
 <body>
 
 <!-- ====================================
-     MASTER-CONTAINER
+     PROPORTIONALER MASTER-CONTAINER
 ==================================== -->
 
 <section
@@ -1538,9 +1433,39 @@ footer {
 
         </div>
 
-        <!-- CROSSFADER -->
+        <!-- ====================================
+             CROSSFADER
+
+             NUR DIE BEIDEN TEXTZEILEN
+             WURDEN VERTAUSCHT.
+
+             OBEN: CROSSFADER
+             DARUNTER: SCHIEBEREGLER
+             UNTEN: SINGLE SLIDE ME ALBUM
+        ==================================== -->
 
         <div class="crossfader-section">
+
+          <!-- OBERE BESCHRIFTUNG -->
+
+          <span class="crossfader-title">
+            CROSSFADER
+          </span>
+
+          <!-- UNVERÄNDERTER SCHIEBEREGLER -->
+
+          <input
+            type="range"
+            class="crossfader-slider"
+            id="crossfader"
+            min="0"
+            max="100"
+            step="1"
+            value="0"
+            aria-label="Crossfader zwischen Singles und Alben"
+          >
+
+          <!-- UNTERE BESCHRIFTUNGEN -->
 
           <div class="crossfader-labels">
 
@@ -1560,21 +1485,6 @@ footer {
             </span>
 
           </div>
-
-          <input
-            type="range"
-            class="crossfader-slider"
-            id="crossfader"
-            min="0"
-            max="100"
-            step="1"
-            value="0"
-            aria-label="Crossfader zwischen Singles und Alben"
-          >
-
-          <span class="crossfader-title">
-            CROSSFADER
-          </span>
 
         </div>
 
@@ -1733,11 +1643,6 @@ function resizeMasterStage() {
     return;
   }
 
-  /*
-    Ein Faktor für Breite,
-    Höhe und alle Abstände.
-  */
-
   masterScale=Math.min(
     1,
     availableWidth/MASTER_WIDTH
@@ -1799,8 +1704,6 @@ const activeFader=
 let dragging=null;
 let navigationStarted=false;
 
-/* Gesamter Schiebeweg */
-
 function maxTravel(handle) {
 
   const track=handle.parentElement;
@@ -1810,11 +1713,6 @@ function maxTravel(handle) {
     track.clientHeight-handle.offsetHeight
   );
 }
-
-/*
-  0 = unterer Anschlag
-  1 = oberer Anschlag
-*/
 
 function setFaderPosition(
   handle,
@@ -1925,18 +1823,11 @@ function moveFader(event) {
   }
 
   const handle=dragging.handle;
-
   const travel=maxTravel(handle);
 
   if(travel<=0) {
     return;
   }
-
-  /*
-    Skalierte Fingerbewegung
-    auf ursprünglichen Schiebeweg
-    umrechnen.
-  */
 
   const delta=
     (
@@ -1979,7 +1870,6 @@ function releaseFader(event) {
   }
 
   const handle=dragging.handle;
-
   dragging=null;
 
   handle.classList.remove(
