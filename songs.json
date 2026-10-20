@@ -1,12 +1,311 @@
-
 [
+  {
+    "title": "Turn it up",
+    "version": "Dance Edit",
+    "type": "single",
+    "releaseDate": "2026-03-30",
+    "cover": "",
+    "youtube": "https://youtu.be/_TBXMj5wmxc",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Turn it up",
+    "version": "Na Na Mix",
+    "type": "single",
+    "releaseDate": "2026-04-13",
+    "cover": "",
+    "youtube": "https://youtu.be/NHymIj2zL8w",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Turn it up",
+    "version": "Euro-Rap Mix",
+    "type": "single",
+    "releaseDate": "2026-04-06",
+    "cover": "",
+    "youtube": "https://youtu.be/IOdVaeB2zGY",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "LaPalma",
+    "version": "Disco Mix",
+    "type": "single",
+    "releaseDate": "2026-03-25",
+    "cover": "",
+    "youtube": "https://youtu.be/BotxYQyMAlM",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Justine",
+    "version": "Club Edit",
+    "type": "single",
+    "releaseDate": "2026-04-13",
+    "cover": "",
+    "youtube": "https://youtu.be/awBWUTJrsi8",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Justine",
+    "version": "Eurodance Edit",
+    "type": "single",
+    "releaseDate": "2026-03-30",
+    "cover": "",
+    "youtube": "https://youtu.be/aki_G6kkFOo",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Justine",
+    "version": "Drum Edit",
+    "type": "single",
+    "releaseDate": "2026-04-20",
+    "cover": "",
+    "youtube": "https://youtu.be/YuMUOCtBMnQ",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Justine",
+    "version": "EDM Edit",
+    "type": "single",
+    "releaseDate": "2026-04-06",
+    "cover": "",
+    "youtube": "https://youtu.be/RGWqLPv4nvY",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Blitz & Donner",
+    "version": "",
+    "type": "single",
+    "releaseDate": "2026-04-13",
+    "cover": "",
+    "youtube": "https://youtu.be/eHlRYouQR6E",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "R-M-B â¦ are here",
+    "version": "",
+    "type": "single",
+    "releaseDate": "2026-04-20",
+    "cover": "",
+    "youtube": "https://youtu.be/fsgaUsAFrFU",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "R-M-B â¦ are here",
+    "version": "Club Mix",
+    "type": "single",
+    "releaseDate": "2026-04-27",
+    "cover": "",
+    "youtube": "https://youtu.be/pQMGWzQpCpk",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "LaPalma",
+    "version": "Sunset Mix",
+    "type": "single",
+    "releaseDate": "2026-04-13",
+    "cover": "",
+    "youtube": "https://youtu.be/FFgYktT2XBs",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Die Pizza find ich spitza",
+    "version": "",
+    "type": "single",
+    "releaseDate": "2026-04-22",
+    "cover": "",
+    "youtube": "https://youtu.be/fMzJMtK0Tvc",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "No House, No Car, No Boat",
+    "version": "Luckily Mix",
+    "type": "single",
+    "releaseDate": "2026-04-27",
+    "cover": "",
+    "youtube": "https://youtu.be/ViiobhTAHqE",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "BikeânâFun",
+    "version": "Spanisch/Englisch Mix",
+    "type": "single",
+    "releaseDate": "2026-05-22",
+    "cover": "",
+    "youtube": "https://youtu.be/kjAzPH3lTak",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "BikeânâFun",
+    "version": "Spanisch/Englisch Lili Mix",
+    "type": "single",
+    "releaseDate": "2026-05-25",
+    "cover": "",
+    "youtube": "https://youtu.be/5hGBpUnYiSM",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "BikeânâFun",
+    "version": "Spanisch/Englisch Siegmund Rockabilly Mix",
+    "type": "single",
+    "releaseDate": "2026-05-25",
+    "cover": "",
+    "youtube": "https://youtu.be/Ped3sWUE8PY",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Cycleholic",
+    "version": "Energy Mix",
+    "type": "single",
+    "releaseDate": "2026-07-24",
+    "cover": "",
+    "youtube": "https://youtu.be/fuOEw1DDcSM",
+    "spotify": "",
+    "amazon": ""
+  },
   {
     "title": "The Pulse of the Earth",
     "version": "Tribal Flute Mix",
-    "releaseDate": "2026-09-18",
-    "cover": "https://img.youtube.com/vi/kg21wBqmves/hqdefault.jpg",
-    "youtube": "kg21wBqmves",
+    "type": "single",
+    "releaseDate": "2026-08-18",
+    "cover": "",
+    "youtube": "https://youtu.be/kg21wBqmves",
     "spotify": "",
     "amazon": ""
+  },
+  {
+    "title": "LaPalma",
+    "version": "Astral Flow",
+    "type": "single",
+    "releaseDate": "2026-10-05",
+    "cover": "",
+    "youtube": "https://youtu.be/xJInRUzUBcg",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "LaPalma",
+    "version": "Celestial Drift",
+    "type": "single",
+    "releaseDate": "2026-10-14",
+    "cover": "",
+    "youtube": "https://youtu.be/E_onL29z7n0",
+    "spotify": "",
+    "amazon": ""
+  },
+  {
+    "title": "Justine - Seven Heaven",
+    "version": "Album Â· 7 Titel",
+    "type": "album",
+    "releaseDate": "2026-06-08",
+    "cover": "",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_n-9S7-5B3ZsIihnUN05MuYzFh8-0tHmPs",
+    "spotify": "",
+    "amazon": "",
+    "tracks": [
+      "Summer Breeze Club Edit",
+      "Summer Breeze Club Edit V2",
+      "Summer Breeze Club Edit V3",
+      "Summer Breeze Club Edit V4",
+      "Summer Breeze Club Edit V5",
+      "Summer Breeze Club Edit V6",
+      "Summer Breeze Club Edit V7"
+    ]
+  },
+  {
+    "title": "Die Pizza find ich spitza",
+    "version": "Album Â· 3 Titel",
+    "type": "album",
+    "releaseDate": "2026-06-06",
+    "cover": "",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_khdZYLicuoY3Gk2C-C7jgcF-vyFQM86EA",
+    "spotify": "",
+    "amazon": "",
+    "tracks": [
+      "Chili Mix",
+      "KÃ¤se Mix",
+      "Knoblauch Mix"
+    ]
+  },
+  {
+    "title": "Kein Haus, Kein Auto, Kein Bootâ¦ zum GlÃ¼ck",
+    "version": "Album Â· 6 Titel",
+    "type": "album",
+    "releaseDate": "2026-07-10",
+    "cover": "",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_lHKx_4dxxPe29Ttz19A8n8tpB4KPn4vRY",
+    "spotify": "",
+    "amazon": "",
+    "tracks": [
+      "Summer â26 Mix I",
+      "Summer â26 Mix II",
+      "Summer â26 Mix III",
+      "Summer â26 Mix IV",
+      "Summer â26 Mix V",
+      "Summer â26 Mix VI"
+    ]
+  },
+  {
+    "title": "Cycleholic - 10 Gears of Radâl Roll",
+    "version": "Album Â· 10 Titel",
+    "type": "album",
+    "releaseDate": "2026-09-04",
+    "cover": "",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_kXFAdl_C76OUxGOuLr37wZwWtNoDVWbAk",
+    "spotify": "",
+    "amazon": "",
+    "tracks": [
+      "Rockabilly 1st Gear",
+      "Rockabilly 2nd Gear",
+      "Rockabilly 3rd Gear",
+      "Rockabilly 4th Gear",
+      "Jive",
+      "Neo-Rockabilly 1st Gear",
+      "Neo-Rockabilly 2nd Gear",
+      "Neo-Rockabilly 3rd Gear",
+      "Twist-Jive 1st Gear",
+      "Twist-Jive 2nd Gear"
+    ]
+  },
+  {
+    "title": "Cycleholic - 13 Gears Across the Trail",
+    "version": "Album Â· 13 Titel",
+    "type": "album",
+    "releaseDate": "2026-09-07",
+    "cover": "",
+    "youtube": "https://www.youtube.com/playlist?list=OLAK5uy_kLYfDaX2CShAaoWUm0wuU__7Bz8Y9Y994",
+    "spotify": "",
+    "amazon": "",
+    "tracks": [
+      "Rap-Mix",
+      "Hip-Hop-Mix",
+      "NDW Mix",
+      "Breakbeat Mix",
+      "Big Beat Mix",
+      "House Trance Mix",
+      "Stadion Mix",
+      "Rave Mix",
+      "Trance House Mix",
+      "Euro-Rap Mix",
+      "Stadion UK Mix",
+      "Progressive House Mix",
+      "NRG Dance Mix"
+    ]
   }
 ]
