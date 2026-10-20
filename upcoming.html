@@ -1,1 +1,375 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="R.M.B. Upcoming – Vorschau auf kommende Musik, neue Songs und Mixe.">
+
+<title>R.M.B. | UPCOMING</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+
+<style>
+
+/* ====================================
+   GRUNDEINSTELLUNGEN
+==================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #121820;
+  color: #f2f4f8;
+  font-family: 'Michroma', sans-serif;
+}
+
+/* ====================================
+   R.M.B. UPCOMING DIAMANT-BANNER
+==================================== */
+
+.banner {
+  width: 100%;
+  background: #ffffff;
+}
+
+.banner a {
+  display: block;
+  width: 100%;
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ====================================
+   NAVIGATION
+==================================== */
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 28px;
+  padding: 22px 12px;
+
+  background: #262b35;
+  border-bottom: 1px solid #48515f;
+}
+
+nav a {
+  color: #cbd2dd;
+  text-decoration: none;
+
+  font-family: 'Michroma', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  transition:
+    color .2s ease,
+    text-shadow .2s ease;
+}
+
+/* ====================================
+   HOVER-EFFEKT
+==================================== */
+
+nav a:hover,
+nav a:focus-visible {
+  color: #ffffff;
+
+  text-shadow:
+    0 0 4px rgba(255,255,255,.85),
+    0 0 9px rgba(220,235,255,.6);
+}
+
+/* ====================================
+   AKTIVER MENÜPUNKT
+
+   UPCOMING LEUCHTET WEISS
+==================================== */
+
+nav a.active {
+  color: #ffffff;
+
+  text-shadow:
+    0 0 3px #ffffff,
+    0 0 7px rgba(255,255,255,.95),
+    0 0 13px rgba(200,225,255,.75),
+    0 0 20px rgba(170,210,255,.45);
+}
+
+/* ====================================
+   HAUPTBEREICH
+==================================== */
+
+main {
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  padding: 50px 22px 85px;
+}
+
+/* ====================================
+   SEITENÜBERSCHRIFT
+==================================== */
+
+.page-heading {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.page-heading h1 {
+  margin: 0 0 16px;
+
+  color: #f4f8ff;
+  font-size: clamp(19px, 3.5vw, 32px);
+  font-weight: normal;
+  letter-spacing: 2px;
+  line-height: 1.6;
+
+  text-shadow:
+    0 0 8px rgba(190,220,255,.25);
+}
+
+.page-heading p {
+  margin: 0;
+  color: #aebfd2;
+  font-size: 11px;
+  line-height: 2;
+}
+
+/* ====================================
+   PLATZHALTER
+
+   BEREICH FÜR SPÄTERE
+   SONGANKÜNDIGUNGEN UND PREVIEWS
+==================================== */
+
+.upcoming-container {
+  width: 100%;
+  min-height: 280px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 35px 20px;
+
+  background: #1c2530;
+  border: 1px solid #364252;
+  border-radius: 10px;
+}
+
+.placeholder {
+  text-align: center;
+}
+
+.placeholder-title {
+  margin: 0 0 18px;
+
+  color: #dce8f6;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  line-height: 1.8;
+}
+
+.placeholder-text {
+  margin: 0;
+
+  color: #93a8bd;
+  font-size: 11px;
+  line-height: 2.2;
+}
+
+/* ====================================
+   FUSSZEILE
+==================================== */
+
+footer {
+  margin-top: 35px;
+  padding: 25px 14px;
+
+  background: #252a34;
+  color: #b9c2cf;
+
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+/* ====================================
+   TASTATURBEDIENUNG
+==================================== */
+
+a:focus-visible {
+  outline: 2px solid #d4e4ff;
+  outline-offset: 4px;
+}
+
+/* ====================================
+   SMARTPHONE
+==================================== */
+
+@media (max-width: 650px) {
+
+  nav {
+    gap: 15px;
+    padding: 18px 10px;
+  }
+
+  nav a {
+    font-size: 10px;
+  }
+
+  main {
+    padding: 32px 14px 55px;
+  }
+
+  .page-heading {
+    margin-bottom: 28px;
+  }
+
+  .upcoming-container {
+    min-height: 220px;
+    padding: 25px 15px;
+  }
+
+  .placeholder-title {
+    font-size: 12px;
+  }
+
+  .placeholder-text {
+    font-size: 10px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ====================================
+     UPCOMING DIAMANT-BANNER
+==================================== -->
+
+<header class="banner">
+
+  <a href="index.html"
+     aria-label="R.M.B. Startseite">
+
+    <img
+      src="images/F8679BA9-B554-476B-AB92-5A123E0E7C13.png"
+      alt="R.M.B. Diamant-Explosion"
+    >
+
+  </a>
+
+</header>
+
+<!-- ====================================
+     NAVIGATION
+==================================== -->
+
+<nav aria-label="Main navigation">
+
+  <a href="index.html">
+    HOME
+  </a>
+
+  <a href="music.html">
+    MUSIC
+  </a>
+
+  <a
+    class="active"
+    aria-current="page"
+    href="upcoming.html"
+  >
+    UPCOMING
+  </a>
+
+  <a href="about.html">
+    ABOUT
+  </a>
+
+  <a href="contact.html">
+    CONTACT
+  </a>
+
+</nav>
+
+<!-- ====================================
+     UPCOMING HAUPTBEREICH
+==================================== -->
+
+<main>
+
+  <div class="page-heading">
+
+    <h1>
+      UPCOMING
+    </h1>
+
+    <p>
+      The Next Sound of R.M.B.
+    </p>
+
+  </div>
+
+  <!-- ====================================
+       PLATZHALTER
+
+       SPÄTER:
+       SONGCOVER
+       MUSIKPREVIEWS
+       VERÖFFENTLICHUNGSDATEN
+       VIDEOS
+  ==================================== -->
+
+  <section
+    class="upcoming-container"
+    aria-label="Upcoming Music"
+  >
+
+    <div class="placeholder">
+
+      <h2 class="placeholder-title">
+        COMING SOON
+      </h2>
+
+      <p class="placeholder-text">
+        New Music &amp; Upcoming Releases
+      </p>
+
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ====================================
+     FUSSZEILE
+==================================== -->
+
+<footer>
+  R.M.B. · Independent Electronic Music
+</footer>
+
+</body>
+</html>
+
