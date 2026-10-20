@@ -90,7 +90,7 @@
     "amazon": ""
   },
   {
-    "title": "R-M-B ... are here",
+    "title": "R-M-B â¦ are here",
     "version": "",
     "type": "single",
     "releaseDate": "2026-04-20",
@@ -100,7 +100,7 @@
     "amazon": ""
   },
   {
-    "title": "R-M-B ... are here",
+    "title": "R-M-B â¦ are here",
     "version": "Club Mix",
     "type": "single",
     "releaseDate": "2026-04-27",
@@ -140,7 +140,7 @@
     "amazon": ""
   },
   {
-    "title": "Bike'n'Fun",
+    "title": "BikeânâFun",
     "version": "Spanisch/Englisch Mix",
     "type": "single",
     "releaseDate": "2026-05-22",
@@ -150,7 +150,7 @@
     "amazon": ""
   },
   {
-    "title": "Bike'n'Fun",
+    "title": "BikeânâFun",
     "version": "Spanisch/Englisch Lili Mix",
     "type": "single",
     "releaseDate": "2026-05-25",
@@ -160,7 +160,7 @@
     "amazon": ""
   },
   {
-    "title": "Bike'n'Fun",
+    "title": "BikeânâFun",
     "version": "Spanisch/Englisch Siegmund Rockabilly Mix",
     "type": "single",
     "releaseDate": "2026-05-25",
@@ -214,18 +214,18 @@
     "version": "Album 7 Titel",
     "type": "album",
     "releaseDate": "2026-06-08",
-    "cover": "",
+    "cover": "images/justine-sh7-album.jpeg",
     "youtube": "https://youtube.com/playlist?list=OLAK5uy_n-9S7-5B3ZsIihnUN05MuYzFh8-0tHmPs&si=dA3hRkgRgsKAMNf-",
     "spotify": "",
     "amazon": "",
     "tracks": [
       "Summer Breeze Club Edit",
-      "Summer Breeze Club Edit V2",
-      "Summer Breeze Club Edit V3",
-      "Summer Breeze Club Edit V4",
-      "Summer Breeze Club Edit V5",
-      "Summer Breeze Club Edit V6",
-      "Summer Breeze Club Edit V7"
+      "Summer Breeze Club Efit V2",
+      "Summer Breeze Club Efit V3",
+      "Summer Breeze Club Efit V4",
+      "Summer Breeze Club Efit V5",
+      "Summer Breeze Club Efit V6",
+      "Summer Breeze Club Efit V7"
     ]
   },
   {
@@ -233,32 +233,32 @@
     "version": "Tricolori Album, 3 Titel",
     "type": "album",
     "releaseDate": "2026-06-06",
-    "cover": "",
+    "cover": "images/tricolori.jpeg",
     "youtube": "https://youtube.com/playlist?list=OLAK5uy_khdZYLicuoY3Gk2C-C7jgcF-vyFQM86EA&si=YcZnJPenf3ez5glJ",
     "spotify": "",
     "amazon": "",
     "tracks": [
       "Chili Mix",
-      "Käse Mix",
+      "KÃ¤se Mix",
       "Knoblauch Mix"
     ]
   },
   {
-    "title": "Kein Haus, Kein Auto, Kein Boot... zum Glück",
+    "title": "Kein Haus, Kein Auto, Kein Bootâ¦ zum GlÃ¼ck",
     "version": "Summer â26 Mix l-Vl",
     "type": "album",
     "releaseDate": "2026-07-10",
-    "cover": "",
+    "cover": "images/keinhaus-album.jpeg",
     "youtube": "https://youtube.com/playlist?list=OLAK5uy_lHKx_4dxxPe29Ttz19A8n8tpB4KPn4vRY&si=KjeYWJQCfQEivOr4",
     "spotify": "",
     "amazon": ""
   },
   {
-    "title": "Cycleholic - 10 Gears of Rad'l Roll",
+    "title": "Cycleholic - 10 Gears of Radâl Roll",
     "version": "Album 10 Titel",
     "type": "album",
     "releaseDate": "2026-09-04",
-    "cover": "",
+    "cover": "images/cycleholic-10gorr-album.jpeg",
     "youtube": "https://youtube.com/playlist?list=OLAK5uy_kXFAdl_C76OUxGOuLr37wZwWtNoDVWbAk&si=nfYi9_7EPOapYieD",
     "spotify": "",
     "amazon": "",
@@ -280,7 +280,7 @@
     "version": "Album 13 Titel",
     "type": "album",
     "releaseDate": "2026-09-07",
-    "cover": "",
+    "cover": "images/cycleholic-13gatt-album.jpeg",
     "youtube": "https://youtube.com/playlist?list=OLAK5uy_kLYfDaX2CShAaoWUm0wuU__7Bz8Y9Y994&si=jl2pkhR_mTzzJrJs",
     "spotify": "",
     "amazon": "",
