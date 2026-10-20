@@ -490,6 +490,11 @@ a:focus-visible {
 
 /* ====================================
    KANALBESCHRIFTUNGEN
+
+   UNVERÄNDERTE FARBEN.
+   GRÜN WIRD PER JAVASCRIPT
+   AUF DEN BEWEGTEN KANAL
+   ÜBERTRAGEN.
 ==================================== */
 
 .channel-label {
@@ -569,6 +574,7 @@ a:focus-visible {
   height:48px;
 
   transform:translateX(-50%);
+
   display:block;
   padding:0;
 
@@ -633,12 +639,8 @@ a:focus-visible {
 /* ====================================
    CROSSFADER
 
-   DIE SCHIEBESCHIENE UND DER
-   SILBERNE GRIFF BLEIBEN UNVERÄNDERT.
-
-   NEU:
-   - CROSSFADER-SCHRIFT 4 PX TIEFER
-   - DREI STABILE STELLUNGEN
+   SCHIEBESCHIENE, GRIFF UND
+   MITTELSTELLUNG UNVERÄNDERT.
 ==================================== */
 
 .crossfader-section {
@@ -654,9 +656,6 @@ a:focus-visible {
 
 /* ====================================
    CROSSFADER-BESCHRIFTUNG OBEN
-
-   NUR DIE SCHRIFT WIRD UM
-   4 PIXEL NACH UNTEN VERSETZT.
 ==================================== */
 
 .crossfader-title {
@@ -768,7 +767,6 @@ a:focus-visible {
 
   position:relative;
   z-index:3;
-
   pointer-events:none;
 }
 
@@ -1429,7 +1427,6 @@ footer {
              MITTE: SCHIEBEREGLER
              UNTEN: SINGLE SLIDE ME ALBUM
 
-             NEU:
              DREI STABILE POSITIONEN.
         ==================================== -->
 
@@ -1510,7 +1507,7 @@ footer {
           id="ledCanvas"
           class="led-canvas"
           role="img"
-          aria-label="SINGLE · THE SINGLE COLLECTION"
+          aria-label="THE SINGLE COLLECTION"
         ></canvas>
 
       </div>
@@ -1687,6 +1684,36 @@ const activeFader=
 let dragging=null;
 let navigationStarted=false;
 
+/* ====================================
+   NEU: DYNAMISCHER KANAL-FARBWECHSEL
+
+   Der gerade hochgeschobene Kanal
+   bekommt die bisherige grüne
+   Leuchtfarbe.
+
+   Alle anderen Kanalnamen leuchten
+   wie bisher rot.
+
+   Das CSS selbst bleibt unverändert.
+==================================== */
+
+function setActiveChannel(handle) {
+
+  document.querySelectorAll(
+    '.mixer-channel'
+  ).forEach(channel=>{
+
+    channel.classList.toggle(
+      'active-channel',
+      channel.contains(handle)
+    );
+  });
+}
+
+/* ====================================
+   FADER-SCHIEBEWEG
+==================================== */
+
 function maxTravel(handle) {
 
   const track=handle.parentElement;
@@ -1720,6 +1747,10 @@ function resetFaders() {
   dragging=null;
   navigationStarted=false;
 
+  /* MUSIC wieder grün */
+
+  setActiveChannel(activeFader);
+
   faders.forEach(handle=>{
 
     handle.classList.remove(
@@ -1752,9 +1783,16 @@ window.addEventListener(
 
 requestAnimationFrame(resetFaders);
 
-/* Vorzeitig losgelassen */
+/* ====================================
+   VORZEITIG LOSGELASSEN
+
+   Die Fader fahren wie bisher zurück.
+   MUSIC bekommt wieder Grün.
+==================================== */
 
 function restoreFaders() {
+
+  setActiveChannel(activeFader);
 
   faders.forEach(handle=>{
     handle.classList.add('returning');
@@ -1783,6 +1821,10 @@ function finishNavigation(handle) {
   }
 
   navigationStarted=true;
+
+  /* Der gewählte Kanal bleibt grün */
+
+  setActiveChannel(handle);
 
   setFaderPosition(handle,1);
   setFaderPosition(activeFader,0);
@@ -1835,13 +1877,34 @@ function moveFader(event) {
       1-progress
     );
 
+    /* ====================================
+       NEU: SOFORTIGER FARBWECHSEL
+
+       Sobald der andere Fader
+       nach oben bewegt wird,
+       wird sein Kanalname grün.
+
+       MUSIC wird gleichzeitig rot.
+    ==================================== */
+
+    if(progress>0) {
+
+      setActiveChannel(handle);
+
+    } else {
+
+      setActiveChannel(activeFader);
+    }
+
     if(progress>=1) {
       finishNavigation(handle);
     }
   }
 }
 
-/* Loslassen */
+/* ====================================
+   LOSLASSEN
+==================================== */
 
 function releaseFader(event) {
 
