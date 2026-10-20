@@ -3,163 +3,249 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>R.M.B. | MUSIC TEST</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #101720;
-  --card: #1c2530;
-  --line: #304052;
-  --blue: #82d2ff;
+:root{
+  --bg:#101720;
+  --blue:#8ad2ff;
+  --silver:#cbd7e3;
+  --line:#465e76;
 }
 
-* { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  min-height: 100%;
-  background: var(--bg);
+*{
+  box-sizing:border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  color: #e6edf7;
-  overflow-x: hidden;
+html{
+  background:var(--bg);
 }
 
-button, input { font: inherit; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:#e7edf5;
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+button,input{
+  font:inherit;
+}
 
 button:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 3px;
+input:focus-visible{
+  outline:2px solid var(--blue);
+  outline-offset:3px;
 }
 
-/* MUSIC UND FRANKFURTER SKYLINE */
+/* ==============================
+   MUSIC / FRANKFURTER SKYLINE
+============================== */
 
-.music-hero {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  background: var(--bg);
+.music-hero{
+  position:relative;
+  text-align:center;
+  background:var(--bg);
+  overflow:hidden;
 }
 
-.music-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 530px;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at 50% 45%,
-    rgba(56,94,135,.14),
-    transparent 72%
-  );
+.music-composition{
+  position:relative;
+  height:clamp(190px,21vw,280px);
+  isolation:isolate;
 }
 
-.music-composition {
-  position: relative;
-  width: 100%;
-  height: clamp(190px,21vw,280px);
-  isolation: isolate;
+.skyline{
+  position:absolute;
+  left:0;
+  bottom:-68px;
+  z-index:0;
+  display:block;
+  width:100%;
+  height:auto;
+  opacity:.28;
+  filter:brightness(0) invert(1);
+  pointer-events:none;
 }
 
-.skyline {
-  position: absolute;
-  left: 0;
-  bottom: -68px;
-  z-index: 0;
-  width: 100%;
-  height: auto;
-  display: block;
-  opacity: .28;
-  filter: brightness(0) invert(1);
-  pointer-events: none;
-}
-
-.music-heading {
-  position: absolute;
-  left: 50%;
-  top: clamp(14px,1.8vw,28px);
-  transform: translateX(-50%);
-  z-index: 2;
-  width: min(720px,92%);
-  height: auto;
-  mix-blend-mode: screen;
-  filter: drop-shadow(
+.music-heading{
+  position:absolute;
+  top:clamp(14px,1.8vw,28px);
+  left:50%;
+  z-index:2;
+  width:min(720px,92%);
+  height:auto;
+  transform:translateX(-50%);
+  mix-blend-mode:screen;
+  filter:drop-shadow(
     0 0 10px rgba(95,165,255,.18)
   );
-  pointer-events: none;
+  pointer-events:none;
 }
 
-/* DJ-AUFBAU */
+/* ==============================
+   KOMPLETTE DJ-ANLAGE
+============================== */
 
-.dj-setup {
-  --device-height: 260px;
-  position: relative;
-  z-index: 5;
-  width: min(1360px,98%);
-  margin: 6px auto 0;
-  display: grid;
+.dj-setup{
+  --device-height:260px;
+
+  position:relative;
+  z-index:5;
+
+  width:min(1360px,98%);
+  margin:6px auto 0;
+
+  display:grid;
   grid-template-columns:
     minmax(0,330px)
     minmax(0,1fr)
     minmax(0,330px);
-  gap: 10px;
-  align-items: stretch;
+
+  gap:10px;
+  align-items:stretch;
 }
 
-.music-style-top {
-  position: absolute;
-  left: 50%;
-  top: -31px;
-  z-index: 8;
-  transform: translateX(-50%);
-  margin: 0;
-  color: #b9d3ee;
-  font: 11px Michroma,Arial,sans-serif;
-  letter-spacing: 2px;
-  white-space: nowrap;
+.genre-line{
+  position:absolute;
+  top:-32px;
+  left:50%;
+  z-index:8;
+
+  width:max-content;
+  max-width:100%;
+  margin:0;
+
+  transform:translateX(-50%);
+  white-space:nowrap;
+
+  color:#b9d3ee;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:clamp(7px,.8vw,11px);
+  letter-spacing:1.4px;
+
   text-shadow:
     0 0 8px rgba(126,200,255,.24);
-  pointer-events: none;
+
+  pointer-events:none;
 }
 
-/* TURNTABLES */
-
 .turntable,
-.mixer {
-  position: relative;
-  min-width: 0;
-  width: 100%;
-  height: var(--device-height);
-  overflow: hidden;
-  border-radius: 6px;
+.mixer{
+  position:relative;
+  width:100%;
+  min-width:0;
+  height:var(--device-height);
+  overflow:hidden;
+
+  border-radius:6px;
   box-shadow:
     0 8px 20px rgba(0,0,0,.45);
 }
 
-.turntable {
-  border: 1px solid #667b91;
-  background: #cbd5df;
+/* ==============================
+   PLATTENSPIELER
+============================== */
+
+.turntable{
+  border:1px solid #667b91;
+  background:#cbd5df;
+  isolation:isolate;
 }
 
-.turntable-image {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
+.turntable-image{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:fill;
 }
 
-/* MIXER */
+/*
+  Die Vinylplatte liegt innerhalb
+  des jeweiligen Plattenspielers.
 
-.mixer {
-  padding: 9px 12px 7px;
-  border: 1px solid #708299;
+  Position und Größe sind relativ
+  zum Plattenspielerbild definiert.
+
+  Dadurch wandert die Platte
+  bei Größenänderungen mit.
+*/
+
+.vinyl-position{
+  position:absolute;
+
+  left:38.4%;
+  top:46.4%;
+
+  width:61%;
+  height:77%;
+
+  transform:translate(-50%,-50%);
+
+  z-index:2;
+  pointer-events:none;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:
+    opacity .35s ease,
+    visibility .35s ease;
+}
+
+.turntable.playing .vinyl-position{
+  opacity:1;
+  visibility:visible;
+}
+
+.vinyl-record{
+  display:block;
+
+  width:100%;
+  height:100%;
+
+  object-fit:fill;
+  border-radius:50%;
+
+  transform-origin:50% 50%;
+
+  filter:drop-shadow(
+    1px 2px 3px rgba(0,0,0,.6)
+  );
+
+  animation:
+    vinylRotation 2.4s linear infinite;
+
+  animation-play-state:paused;
+}
+
+.turntable.playing .vinyl-record{
+  animation-play-state:running;
+}
+
+@keyframes vinylRotation{
+  from{
+    transform:rotate(0deg);
+  }
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* ==============================
+   MISCHPULT-GEHÄUSE
+============================== */
+
+.mixer{
+  padding:9px 12px 7px;
+  border:1px solid #708299;
 
   background:
     linear-gradient(
@@ -180,157 +266,234 @@ input:focus-visible {
     0 8px 20px rgba(0,0,0,.45);
 }
 
-.mixer-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 6px;
-  height: 19px;
-  margin-bottom: 5px;
-  color: #bfcedd;
-  font: 8px Michroma,Arial,sans-serif;
-  white-space: nowrap;
+.mixer-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:6px;
+
+  height:19px;
+  margin-bottom:5px;
+
+  color:#bfcedd;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:8px;
+  white-space:nowrap;
 }
 
-.power-indicator {
-  display: inline-flex;
-  gap: 5px;
-  align-items: center;
+.power-indicator{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
 }
 
-.power-led {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #82d2ff;
-  box-shadow: 0 0 8px #6bc5ff;
+.power-led{
+  display:inline-block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+
+  background:#82d2ff;
+  box-shadow:0 0 8px #6bc5ff;
 }
 
-.mixer-panel {
-  display: grid;
+/* ==============================
+   MISCHPULT-INNENBEREICH
+============================== */
+
+.mixer-panel{
+  display:grid;
+
   grid-template-columns:
-    minmax(0,76px)
+    minmax(0,112px)
     minmax(0,1fr)
-    minmax(0,76px);
-  gap: 9px;
-  height: calc(100% - 91px);
-  min-width: 0;
+    minmax(0,112px);
+
+  gap:9px;
+
+  min-width:0;
+  height:calc(100% - 88px);
 }
 
-/* EQ */
+/* ==============================
+   ZWEI VERSETZTE DREHREGLER-
+   REIHEN PRO SEITE
+============================== */
 
-.eq-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 3px;
-  min-width: 0;
-  padding: 5px;
-  border: 1px solid #405265;
-  border-radius: 4px;
-  background: rgba(6,13,20,.23);
+.eq-panel{
+  min-width:0;
+
+  display:grid;
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(0,1fr);
+
+  gap:4px;
+
+  padding:5px 4px;
+
+  border:1px solid #405265;
+  border-radius:4px;
+
+  background:rgba(6,13,20,.23);
 }
 
-.eq-title {
-  color: #abc1d5;
-  font: 7px Michroma,Arial,sans-serif;
+.eq-column{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  align-items:center;
+  gap:2px;
+  min-width:0;
 }
 
-.eq-row {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  min-width: 0;
+.eq-column.offset{
+  padding-top:19px;
+  padding-bottom:4px;
 }
 
-.eq-knob {
-  position: relative;
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid #8d9fb0;
-  background: conic-gradient(
+.eq-unit{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+
+  min-height:35px;
+  width:100%;
+}
+
+.eq-knob{
+  position:relative;
+  display:block;
+  flex-shrink:0;
+
+  width:18px;
+  height:18px;
+
+  border:2px solid #8d9fb0;
+  border-radius:50%;
+
+  background:conic-gradient(
     #263c51,
     #e2eaf1,
     #687f94,
     #c0ccd8,
     #263c51
   );
+
   box-shadow:
     0 2px 3px rgba(0,0,0,.5),
-    inset 0 1px 2px #ffffffaa;
+    inset 0 1px 2px rgba(255,255,255,.7);
 }
 
-.eq-knob::after {
-  content: "";
-  position: absolute;
-  left: calc(50% - 1px);
-  top: 1px;
-  width: 2px;
-  height: 6px;
-  background: #172432;
+.eq-knob::after{
+  content:"";
+
+  position:absolute;
+  left:calc(50% - 1px);
+  top:0;
+
+  width:2px;
+  height:6px;
+
+  background:#172432;
 }
 
-.eq-name {
-  color: #acbed0;
-  font: 7px Michroma,Arial,sans-serif;
+.eq-label{
+  display:block;
+  color:#b8cadd;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:6px;
+  line-height:1.2;
+
+  text-align:center;
+  white-space:nowrap;
 }
 
-/* VU-METER */
+/* ==============================
+   MITTELTEIL / VU-METER
+============================== */
 
-.mixer-center {
-  display: grid;
+.mixer-center{
+  display:grid;
+
   grid-template-columns:
     11px minmax(0,1fr) 11px;
-  gap: 5px;
-  min-width: 0;
+
+  gap:5px;
+  min-width:0;
+  min-height:0;
 }
 
-.vu-meter {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 2px;
-  padding: 4px 1px;
-  background: #080e14;
-  border: 1px solid #405063;
-  border-radius: 3px;
+.vu-meter{
+  display:flex;
+  flex-direction:column-reverse;
+  gap:2px;
+
+  padding:4px 1px;
+
+  border:1px solid #405063;
+  border-radius:3px;
+  background:#080e14;
 }
 
-.vu-led {
-  flex: 1;
-  min-height: 2px;
-  background: #14241f;
-  opacity: .28;
-  border-radius: 1px;
+.vu-led{
+  flex:1;
+  min-height:2px;
+  border-radius:1px;
+
+  background:#14241f;
+  opacity:.28;
 }
 
-.vu-led.green { --lit: #3dec83; }
-.vu-led.yellow { --lit: #efdb54; }
-.vu-led.red { --lit: #ff6a60; }
-
-.vu-led.on {
-  background: var(--lit);
-  opacity: 1;
-  box-shadow: 0 0 4px var(--lit);
+.vu-led.green{
+  --lit:#3dec83;
 }
 
-/* FÜNF FLACHBAHNREGLER */
+.vu-led.yellow{
+  --lit:#efdb54;
+}
 
-.mixer-channels {
-  display: grid;
+.vu-led.red{
+  --lit:#ff6a60;
+}
+
+.vu-led.on{
+  background:var(--lit);
+  opacity:1;
+  box-shadow:0 0 4px var(--lit);
+}
+
+/* ==============================
+   FÜNF SCHMALE FADER
+============================== */
+
+.mixer-channels{
+  display:grid;
+
   grid-template-columns:
     repeat(5,minmax(0,1fr));
-  gap: 5px;
-  min-width: 0;
+
+  gap:6px;
+  min-width:0;
+  min-height:0;
+
+  padding:0 4px;
 }
 
-.mixer-channel {
-  position: relative;
-  min-width: 0;
-  border: 1px solid #3c4e61;
-  border-radius: 3px;
-  background: linear-gradient(
+.mixer-channel{
+  position:relative;
+
+  min-width:0;
+  min-height:0;
+
+  border:1px solid #3c4e61;
+  border-radius:3px;
+
+  background:linear-gradient(
     90deg,
     #192532,
     #304356 50%,
@@ -338,147 +501,229 @@ input:focus-visible {
   );
 }
 
-.fader-track {
-  position: absolute;
-  inset: 4px 2px;
+.fader-track{
+  position:absolute;
+
+  top:4px;
+  right:2px;
+  bottom:4px;
+  left:2px;
+
+  min-height:0;
 }
 
-.fader-track::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  border-radius: 4px;
-  background: #060b11;
+.fader-track::before{
+  content:"";
+
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:50%;
+
+  width:5px;
+
+  transform:translateX(-50%);
+
+  border-radius:4px;
+  background:#060b11;
+
+  box-shadow:
+    inset 0 0 2px #000,
+    0 0 1px #93a7b8;
 }
 
-/* Identische Fadergriffe: Höhe = doppelte Breite */
+/*
+  Schmaler Griff:
+  26px breit,
+  48px hoch.
 
-.fader-handle {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
+  Bei 174px Schienenhöhe bleiben
+  126px Weg = 2,625 Griffhöhen.
+*/
 
-  width: min(60px,calc(100% - 2px));
-  aspect-ratio: 1 / 2;
-  height: auto;
-  min-height: 0;
+.fader-handle{
+  position:absolute;
 
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  top:0;
+  left:50%;
 
-  padding: 15px 1px 0;
+  width:min(26px,calc(100% - 2px));
+  height:48px;
 
-  border: 1px solid #eef5fc;
-  border-radius: 4px;
+  transform:translateX(-50%);
 
-  background: linear-gradient(
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:2px 0;
+
+  border:1px solid #e9f3fc;
+  border-radius:4px;
+
+  background:linear-gradient(
     90deg,
-    #92a9bc 0%,
-    #f0f5fa 13%,
-    #c5d4e2 45%,
-    #839bb0 85%,
-    #dfeaf3 100%
+    #8199ad 0%,
+    #e6f1f8 18%,
+    #c7d8e6 48%,
+    #8fa6b9 85%,
+    #dce8f2 100%
   );
-
-  color: #1b3043;
-  font: clamp(5px,.49vw,7px)
-        Michroma,Arial,sans-serif;
-  font-weight: bold;
-  letter-spacing: -.4px;
-  white-space: nowrap;
-
-  cursor: grab;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
 
   box-shadow:
     0 4px 6px rgba(0,0,0,.65),
     inset 0 1px 1px #fff;
 
-  will-change: top;
+  cursor:grab;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+
+  z-index:2;
 }
 
-/* Rillen im metallischen Fadergriff */
+.fader-handle.dragging{
+  cursor:grabbing;
+  z-index:5;
+}
 
-.fader-handle::after {
-  content: "";
-  position: absolute;
-  top: 44%;
-  left: 15%;
-  width: 70%;
-  height: 27%;
+.fader-handle.returning{
+  transition:top .23s ease-out;
+}
 
-  border-top: 2px solid #70889e;
-  border-bottom: 2px solid #70889e;
+/* Senkrecht, Buchstabe für Buchstabe */
 
-  background: repeating-linear-gradient(
+.fader-name{
+  position:relative;
+  z-index:3;
+
+  display:block;
+
+  writing-mode:vertical-rl;
+  text-orientation:upright;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:5px;
+  font-weight:bold;
+
+  letter-spacing:-1.5px;
+  line-height:1;
+
+  white-space:nowrap;
+  color:#21384b;
+
+  pointer-events:none;
+}
+
+/* Metallrillen im Hintergrund */
+
+.fader-handle::before{
+  content:"";
+
+  position:absolute;
+  inset:4px 3px;
+
+  border-radius:2px;
+
+  background:repeating-linear-gradient(
     to bottom,
-    transparent 0 4px,
-    #536d82 4px 6px,
-    #dce6ef 6px 9px
+    transparent 0 5px,
+    rgba(61,89,112,.28) 5px 6px,
+    rgba(255,255,255,.28) 6px 8px
   );
 
+  pointer-events:none;
+}
+
+.fader-handle[aria-current="page"]{
+  border-color:#a2dbff;
+
   box-shadow:
-    inset 0 1px rgba(255,255,255,.65);
-  border-radius: 2px;
+    0 4px 6px rgba(0,0,0,.7),
+    0 0 7px rgba(100,180,255,.4),
+    inset 0 1px 1px #fff;
 }
 
-.fader-handle.dragging {
-  cursor: grabbing;
+/* ==============================
+   SINGLE / SLIDE ME / ALBUM
+   EXAKT EINE HORIZONTALE ZEILE
+============================== */
+
+.crossfader-section{
+  position:absolute;
+
+  left:50%;
+  bottom:6px;
+
+  width:min(80%,460px);
+
+  transform:translateX(-50%);
 }
 
-.fader-handle.returning {
-  transition: top .22s ease-out;
+.crossfader-labels{
+  display:grid;
+
+  grid-template-columns:
+    1fr auto 1fr;
+
+  align-items:center;
+
+  min-height:17px;
+  margin-bottom:4px;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:8px;
+  letter-spacing:1px;
+  line-height:1;
+
+  color:#9cb2c7;
 }
 
-.fader-handle[aria-current="page"] {
-  border-color: #9dd9ff;
-  box-shadow:
-    0 4px 6px #000,
-    0 0 9px rgba(105,177,255,.4);
+#singleLabel{
+  justify-self:start;
 }
 
-/* SLIDE ME – PULSIEREND */
+#albumLabel{
+  justify-self:end;
+}
 
-.slide-me {
-  position: absolute;
-  z-index: 4;
-  left: 50%;
-  bottom: 36px;
-  transform: translateX(-50%);
-  margin: 0;
-
-  color: #c9eaff;
-  font: 8px Michroma,Arial,sans-serif;
-  letter-spacing: 1.3px;
-  line-height: 1;
-  white-space: nowrap;
-  pointer-events: none;
+.crossfader-labels .active{
+  color:#e2f6ff;
 
   text-shadow:
     0 0 3px #fff,
     0 0 7px #82d2ff,
-    0 0 12px rgba(107,197,255,.5);
+    0 0 14px #6bc5ff;
+}
+
+.slide-me{
+  justify-self:center;
+
+  color:#c9eaff;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:7px;
+
+  letter-spacing:1px;
+  white-space:nowrap;
+
+  text-shadow:
+    0 0 4px #fff,
+    0 0 8px #82d2ff;
 
   animation:
     slidePulse 2s ease-in-out infinite;
 }
 
-@keyframes slidePulse {
-  0%,100% {
-    opacity: .55;
-    text-shadow: 0 0 3px #82d2ff;
+@keyframes slidePulse{
+  0%,100%{
+    opacity:.5;
+    text-shadow:0 0 3px #82d2ff;
   }
 
-  50% {
-    opacity: 1;
+  50%{
+    opacity:1;
+
     text-shadow:
       0 0 3px #fff,
       0 0 9px #82d2ff,
@@ -486,68 +731,49 @@ input:focus-visible {
   }
 }
 
-/* CROSSFADER */
+/* ==============================
+   CROSSFADER
+============================== */
 
-.crossfader-section {
-  position: absolute;
-  left: 50%;
-  bottom: 6px;
-  transform: translateX(-50%);
-  width: min(80%,460px);
-  margin: 0;
+.crossfader-slider{
+  display:block;
+  width:100%;
+  height:20px;
+  margin:0;
+
+  appearance:none;
+  -webkit-appearance:none;
+
+  background:transparent;
+  cursor:ew-resize;
+  touch-action:pan-y;
 }
 
-.crossfader-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  color: #9cb2c7;
-  font: 8px Michroma,Arial,sans-serif;
-  letter-spacing: 1px;
-}
+.crossfader-slider::-webkit-slider-runnable-track{
+  height:7px;
 
-.crossfader-labels .active {
-  color: #e2f6ff;
-  text-shadow:
-    0 0 3px #fff,
-    0 0 7px #82d2ff,
-    0 0 14px #6bc5ff,
-    0 0 22px rgba(107,197,255,.65);
-}
+  border:1px solid #51677b;
+  border-radius:5px;
 
-.crossfader-slider {
-  display: block;
-  width: 100%;
-  height: 20px;
-  margin: 0;
-  appearance: none;
-  -webkit-appearance: none;
-  background: transparent;
-  cursor: ew-resize;
-  touch-action: pan-y;
-}
-
-.crossfader-slider::-webkit-slider-runnable-track {
-  height: 7px;
-  border-radius: 5px;
-  border: 1px solid #51677b;
-  background: #090f17;
+  background:#090f17;
 
   box-shadow:
     inset 0 1px 3px #000,
     0 1px 1px #7a8ca0;
 }
 
-.crossfader-slider::-webkit-slider-thumb {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 38px;
-  height: 18px;
-  margin-top: -7px;
-  border: 1px solid #e5edf4;
-  border-radius: 3px;
+.crossfader-slider::-webkit-slider-thumb{
+  appearance:none;
+  -webkit-appearance:none;
 
-  background: linear-gradient(
+  width:38px;
+  height:18px;
+  margin-top:-7px;
+
+  border:1px solid #e5edf4;
+  border-radius:3px;
+
+  background:linear-gradient(
     #eff4f8,
     #aebfd0 48%,
     #71879d
@@ -558,45 +784,53 @@ input:focus-visible {
     inset 0 1px 1px #fff;
 }
 
-.crossfader-slider::-moz-range-track {
-  height: 7px;
-  border-radius: 5px;
-  background: #090f17;
+.crossfader-slider::-moz-range-track{
+  height:7px;
+  border-radius:5px;
+  background:#090f17;
 }
 
-.crossfader-slider::-moz-range-thumb {
-  width: 38px;
-  height: 18px;
-  border-radius: 3px;
-  border: 1px solid #e5edf4;
-  background: #aebfd0;
+.crossfader-slider::-moz-range-thumb{
+  width:38px;
+  height:18px;
+
+  border:1px solid #e5edf4;
+  border-radius:3px;
+
+  background:#aebfd0;
 }
 
-.crossfader-title {
-  display: block;
-  color: #7f9ab1;
-  font: 7px Michroma,Arial,sans-serif;
-  letter-spacing: 1px;
-  text-align: center;
+.crossfader-title{
+  display:block;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:7px;
+  letter-spacing:1px;
+
+  color:#7f9ab1;
+  text-align:center;
 }
 
-/* LED-LICHTLEISTE */
+/* ==============================
+   LED-LAUFLEISTE
+============================== */
 
-.led-display-wrap {
-  position: relative;
-  z-index: 6;
-  width: min(1360px,98%);
-  margin: 12px auto 0;
+.led-display-wrap{
+  position:relative;
+  z-index:6;
+
+  width:min(1360px,98%);
+  margin:12px auto 0;
 }
 
-.led-display {
-  position: relative;
-  width: 100%;
-  padding: 8px 12px;
-  overflow: hidden;
+.led-display{
+  width:100%;
+  padding:8px 12px;
 
-  border: 1px solid rgba(170,210,250,.55);
-  border-radius: 10px;
+  overflow:hidden;
+
+  border:1px solid rgba(170,210,250,.55);
+  border-radius:10px;
 
   background:
     linear-gradient(
@@ -612,380 +846,475 @@ input:focus-visible {
     0 0 15px rgba(110,185,255,.14);
 }
 
-.led-canvas {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 80px;
+.led-canvas{
+  display:block;
 
-  border: 1px solid #344e69;
-  border-radius: 7px;
-  background: #07111b;
+  width:100%;
+  height:80px;
+
+  border:1px solid #344e69;
+  border-radius:7px;
+
+  background:#07111b;
 }
 
-/* MUSIKCOVER */
+/* ==============================
+   MUSIKCOVER
+============================== */
 
-.content {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 14px 24px 75px;
-  text-align: center;
-  background: var(--bg);
+.content{
+  max-width:1400px;
+  margin:0 auto;
+
+  padding:14px 24px 75px;
+
+  background:var(--bg);
+  text-align:center;
 }
 
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
+.gallery{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:24px;
 }
 
-.music-card {
-  width: min(220px,100%);
-  min-width: 180px;
-  padding: 12px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  transition: transform .2s;
+.music-card{
+  width:min(220px,100%);
+  min-width:180px;
+
+  padding:12px;
+
+  background:#1c2530;
+  border:1px solid #304052;
+  border-radius:12px;
+
+  transition:transform .2s;
 }
 
-.music-card:hover {
-  transform: translateY(-4px);
+.music-card:hover{
+  transform:translateY(-4px);
 }
 
-.cover-button {
-  display: block;
-  width: 100%;
-  padding: 0;
-  background: none;
-  border: 0;
-  cursor: pointer;
+.cover-button{
+  display:block;
+  width:100%;
+  padding:0;
+
+  border:0;
+  background:none;
+
+  cursor:pointer;
 }
 
-.cover-button:disabled {
-  cursor: default;
+.cover-button:disabled{
+  cursor:default;
 }
 
-.cover {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  background: #090d13;
-  border-radius: 7px;
+.cover{
+  display:block;
+
+  width:100%;
+  aspect-ratio:1;
+
+  object-fit:cover;
+
+  background:#090d13;
+  border-radius:7px;
 }
 
-.track-title {
-  margin: 14px 0 5px;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.5;
+.track-title{
+  margin:14px 0 5px;
+
+  font-size:14px;
+  font-weight:bold;
+  line-height:1.5;
 }
 
-.track-version {
-  margin-bottom: 8px;
-  color: #9bafc5;
-  font-size: 12px;
+.track-version{
+  margin-bottom:8px;
+
+  color:#9bafc5;
+  font-size:12px;
 }
 
-.track-date {
-  margin-bottom: 10px;
-  color: #8197ae;
-  font-size: 11px;
+.track-date{
+  margin-bottom:10px;
+
+  color:#8197ae;
+  font-size:11px;
 }
 
-.music-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 12px;
+.music-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:7px;
+
+  margin-top:12px;
 }
 
-.music-links a {
-  padding: 8px 10px;
-  background: #293d53;
-  border-radius: 6px;
-  color: #d6e9fc;
-  text-decoration: none;
-  font-size: 11px;
+.music-links a{
+  padding:8px 10px;
+
+  background:#293d53;
+  border-radius:6px;
+
+  color:#d6e9fc;
+  text-decoration:none;
+  font-size:11px;
 }
 
-.music-links a:hover {
-  background: #405c78;
+.music-links a:hover{
+  background:#405c78;
 }
 
-.empty-message {
-  width: min(420px,100%);
-  padding: 38px 18px;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  color: #aebfd2;
+.empty-message{
+  width:min(420px,100%);
+
+  padding:38px 18px;
+
+  background:#1c2530;
+  border:1px solid #304052;
+  border-radius:12px;
+
+  color:#aebfd2;
 }
 
-.more-button {
-  margin-top: 35px;
-  padding: 13px 22px;
-  background: #263c52;
-  border: 1px solid #6587aa;
-  border-radius: 7px;
-  color: white;
-  font: 10px Michroma,Arial,sans-serif;
-  cursor: pointer;
+.more-button{
+  margin-top:35px;
+  padding:13px 22px;
+
+  background:#263c52;
+  border:1px solid #6587aa;
+  border-radius:7px;
+
+  color:#fff;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:10px;
+
+  cursor:pointer;
 }
 
-.more-button[hidden] {
-  display: none;
+.more-button[hidden]{
+  display:none;
 }
 
-/* VIDEOFENSTER */
+/* ==============================
+   YOUTUBE-VIDEOFENSTER
+============================== */
 
-.video-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  padding: 25px;
-  background: rgba(0,0,0,.94);
-  align-items: center;
-  justify-content: center;
+.video-modal{
+  display:none;
+
+  position:fixed;
+  inset:0;
+  z-index:1000;
+
+  padding:25px;
+
+  background:rgba(0,0,0,.94);
+
+  align-items:center;
+  justify-content:center;
 }
 
-.video-modal.open {
-  display: flex;
+.video-modal.open{
+  display:flex;
 }
 
-.video-window {
-  position: relative;
-  width: min(900px,100%);
+.video-window{
+  position:relative;
+  width:min(900px,100%);
 }
 
-.video-frame {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border: 0;
-  background: black;
+.video-frame{
+  width:100%;
+  aspect-ratio:16/9;
+
+  border:0;
+  background:black;
 }
 
-.close-video {
-  position: absolute;
-  right: 0;
-  top: -48px;
-  border: 0;
-  background: none;
-  color: white;
-  font-size: 34px;
-  cursor: pointer;
+.close-video{
+  position:absolute;
+  top:-48px;
+  right:0;
+
+  border:0;
+  background:none;
+
+  color:white;
+  font-size:34px;
+  cursor:pointer;
 }
 
-footer {
-  padding: 30px 15px 35px;
-  background: var(--bg);
-  color: #7d91a7;
-  text-align: center;
-  font-size: 12px;
+footer{
+  padding:30px 15px 35px;
+
+  background:var(--bg);
+  color:#7d91a7;
+
+  text-align:center;
+  font-size:12px;
 }
 
-/* TABLET */
+/* ==============================
+   RESPONSIVES TABLET-LAYOUT
+============================== */
 
-@media(max-width:1120px) {
-  .dj-setup {
+@media(max-width:1120px){
+
+  .dj-setup{
+    --device-height:
+      clamp(195px,23.2vw,260px);
+
     grid-template-columns:
       minmax(0,25%)
       minmax(0,1fr)
       minmax(0,25%);
-    --device-height: clamp(195px,23.2vw,260px);
-    gap: 7px;
+
+    gap:7px;
   }
 
-  .mixer {
-    padding: 7px 8px;
+  .mixer{
+    padding:7px 8px;
   }
 
-  .mixer-panel {
+  .mixer-panel{
     grid-template-columns:
-      minmax(0,57px)
+      minmax(0,82px)
       minmax(0,1fr)
-      minmax(0,57px);
-    gap: 5px;
-    height: calc(100% - 82px);
+      minmax(0,82px);
+
+    gap:5px;
+    height:calc(100% - 82px);
   }
 
-  .eq-knob {
-    width: 15px;
-    height: 15px;
+  .eq-panel{
+    gap:1px;
+    padding:3px 2px;
   }
 
-  .eq-name {
-    font-size: 5px;
+  .eq-knob{
+    width:15px;
+    height:15px;
   }
 
-  .mixer-channels {
-    gap: 3px;
+  .eq-label{
+    font-size:5px;
   }
 
-  .fader-handle {
-    width: min(46px,calc(100% - 2px));
-    font-size: 5px;
-    padding-top: 10px;
+  .eq-unit{
+    min-height:30px;
+    gap:2px;
   }
 
-  .slide-me {
-    bottom: 36px;
-    font-size: 7px;
+  .mixer-channels{
+    gap:3px;
+    padding:0 2px;
   }
 
-  .music-style-top {
-    font-size: 10px;
+  .fader-handle{
+    width:min(22px,calc(100% - 1px));
+    height:42px;
+  }
+
+  .fader-name{
+    font-size:4.7px;
+    letter-spacing:-1.5px;
+  }
+
+  .crossfader-labels{
+    font-size:7px;
+  }
+
+  .slide-me{
+    font-size:6px;
   }
 }
 
-/* SMARTPHONE */
+/* ==============================
+   SMARTPHONE
+============================== */
 
-@media(max-width:700px) {
-  .music-composition {
-    height: 178px;
+@media(max-width:700px){
+
+  .music-composition{
+    height:178px;
   }
 
-  .music-heading {
-    top: 18px;
-    width: 94%;
+  .music-heading{
+    top:18px;
+    width:94%;
   }
 
-  .skyline {
-    bottom: -30px;
-    opacity: .24;
+  .skyline{
+    bottom:-30px;
+    opacity:.24;
   }
 
-  .dj-setup {
-    width: min(470px,96%);
+  .dj-setup{
+    --device-height:170px;
+
+    width:min(470px,96%);
+
     grid-template-columns:
       repeat(2,minmax(0,1fr));
-    gap: 10px;
-    --device-height: 170px;
+
+    gap:10px;
   }
 
-  .music-style-top {
-    top: -24px;
-    font-size: 8px;
-    letter-spacing: 1px;
+  .genre-line{
+    top:-27px;
+    font-size:clamp(5px,1.3vw,8px);
+    letter-spacing:.45px;
   }
 
-  .mixer {
-    grid-column: 1/-1;
-    grid-row: 1;
-    height: 260px;
-    padding: 9px;
+  .mixer{
+    grid-column:1/-1;
+    grid-row:1;
+
+    height:270px;
+    padding:9px;
   }
 
-  .turntable.single {
-    grid-column: 1;
-    grid-row: 2;
+  .turntable.single{
+    grid-column:1;
+    grid-row:2;
   }
 
-  .turntable.album {
-    grid-column: 2;
-    grid-row: 2;
+  .turntable.album{
+    grid-column:2;
+    grid-row:2;
   }
 
-  .mixer-panel {
+  .mixer-panel{
     grid-template-columns:
-      65px minmax(0,1fr) 65px;
-    height: calc(100% - 91px);
+      minmax(0,90px)
+      minmax(0,1fr)
+      minmax(0,90px);
+
+    gap:5px;
+    height:calc(100% - 88px);
   }
 
-  .eq-name {
-    font-size: 6px;
+  .eq-knob{
+    width:17px;
+    height:17px;
   }
 
-  .mixer-channels {
-    gap: 4px;
+  .eq-label{
+    font-size:5.5px;
   }
 
-  .fader-handle {
-    width: min(52px,calc(100% - 2px));
-    font-size: 6px;
-    padding-top: 12px;
+  .eq-unit{
+    min-height:33px;
   }
 
-  .slide-me {
-    bottom: 36px;
-    font-size: 7px;
+  .mixer-channels{
+    gap:4px;
   }
 
-  .led-display-wrap {
-    width: min(470px,96%);
+  .fader-handle{
+    width:min(25px,calc(100% - 2px));
+    height:47px;
   }
 
-  .led-canvas {
-    height: 65px;
+  .fader-name{
+    font-size:5px;
   }
 
-  .content {
-    padding: 12px 12px 65px;
+  .led-display-wrap{
+    width:min(470px,96%);
   }
 
-  .gallery {
-    gap: 12px;
+  .led-canvas{
+    height:65px;
   }
 
-  .music-card {
-    width: calc(50% - 6px);
-    min-width: 150px;
-    padding: 9px;
+  .content{
+    padding:12px 12px 65px;
+  }
+
+  .gallery{
+    gap:12px;
+  }
+
+  .music-card{
+    width:calc(50% - 6px);
+    min-width:150px;
+    padding:9px;
   }
 }
 
-@media(max-width:420px) {
-  .mixer-header {
-    font-size: 6px;
+@media(max-width:420px){
+
+  .mixer-header{
+    font-size:6px;
   }
 
-  .mixer-panel {
+  .mixer-panel{
     grid-template-columns:
-      51px minmax(0,1fr) 51px;
-    gap: 3px;
+      64px minmax(0,1fr) 64px;
+    gap:3px;
   }
 
-  .eq-row {
-    gap: 3px;
+  .eq-knob{
+    width:14px;
+    height:14px;
   }
 
-  .eq-knob {
-    width: 13px;
-    height: 13px;
+  .eq-label{
+    font-size:4.6px;
   }
 
-  .eq-name {
-    font-size: 5px;
+  .eq-panel{
+    padding:2px 1px;
   }
 
-  .fader-handle {
-    width: min(38px,calc(100% - 1px));
-    font-size: 4.7px;
-    padding-top: 9px;
-    letter-spacing: -.5px;
+  .eq-unit{
+    min-height:31px;
   }
 
-  .crossfader-section {
-    width: 85%;
+  .mixer-channels{
+    gap:2px;
+    padding:0 1px;
   }
 
-  .music-card {
-    width: 100%;
+  .fader-handle{
+    width:min(22px,calc(100% - 1px));
+    height:44px;
+  }
+
+  .fader-name{
+    font-size:4.5px;
+    letter-spacing:-1.6px;
+  }
+
+  .crossfader-section{
+    width:85%;
+  }
+
+  .music-card{
+    width:100%;
   }
 }
 
-@media(prefers-reduced-motion:reduce) {
-  .slide-me {
-    animation: none;
-    opacity: 1;
+@media(prefers-reduced-motion:reduce){
+
+  .slide-me{
+    animation:none;
+    opacity:1;
   }
 
-  .fader-handle.returning {
-    transition: none;
+  .fader-handle.returning{
+    transition:none;
+  }
+
+  .vinyl-record{
+    animation-duration:8s;
   }
 }
 </style>
@@ -995,7 +1324,10 @@ footer {
 
 <section class="music-hero">
 
+  <!-- MUSIKSCHRIFTZUG UND SKYLINE -->
+
   <div class="music-composition">
+
     <img
       class="skyline"
       src="images/frankfurt-skyline.png"
@@ -1007,22 +1339,40 @@ footer {
       src="images/music-schriftzug.png"
       alt="MUSIC – THE SOUND OF R.M.B."
     >
+
   </div>
+
+  <!-- KOMPLETTE DJ-ANLAGE -->
 
   <div class="dj-setup">
 
-    <p class="music-style-top">
-      90s Eurodance · EDM · Trance
+    <p class="genre-line">
+      90s Eurodance · EDM · Trance · House · Techno · Goa
     </p>
 
     <!-- LINKER PLATTENSPIELER -->
 
-    <div class="turntable single">
+    <div
+      class="turntable single playing"
+      id="singleTurntable"
+    >
+
       <img
         class="turntable-image"
         src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
-        alt="Bausys-tem Turntable links"
+        alt="Bausys-tem Plattenspieler links"
       >
+
+      <div class="vinyl-position">
+
+        <img
+          class="vinyl-record"
+          src="images/6E5C2868-0282-4435-95E7-678E8971E477.png"
+          alt="Drehende SINGLES-Schallplatte"
+        >
+
+      </div>
+
     </div>
 
     <!-- MISCHPULT -->
@@ -1030,43 +1380,70 @@ footer {
     <div class="mixer">
 
       <div class="mixer-header">
-        <span>R.M.B. · 5 CHANNEL DJ MIXER</span>
+
+        <span>
+          R.M.B. · 5 CHANNEL DJ MIXER
+        </span>
 
         <span class="power-indicator">
           <span class="power-led"></span>
           POWER
         </span>
+
       </div>
 
       <div class="mixer-panel">
 
-        <!-- EQ LINKS -->
+        <!-- LINKE DREHREGLER -->
 
         <div class="eq-panel">
-          <span class="eq-title">CH A</span>
 
-          <div class="eq-row">
-            <span class="eq-knob"></span>
-            <span class="eq-name">GAIN</span>
+          <div class="eq-column">
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">GAIN</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">HIGH</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">MID</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">BASS</span>
+            </div>
+
           </div>
 
-          <div class="eq-row">
-            <span class="eq-knob"></span>
-            <span class="eq-name">HIGH</span>
+          <div class="eq-column offset">
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">MIC</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">ECHO</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">FX</span>
+            </div>
+
           </div>
 
-          <div class="eq-row">
-            <span class="eq-knob"></span>
-            <span class="eq-name">MID</span>
-          </div>
-
-          <div class="eq-row">
-            <span class="eq-knob"></span>
-            <span class="eq-name">BASS</span>
-          </div>
         </div>
 
-        <!-- MENÜFADER -->
+        <!-- MITTELTEIL -->
 
         <div class="mixer-center">
 
@@ -1076,6 +1453,8 @@ footer {
             aria-hidden="true"
           ></div>
 
+          <!-- FÜNF NAVIGATIONSFADER -->
+
           <nav
             class="mixer-channels"
             aria-label="DJ-Mischpult Navigation"
@@ -1083,57 +1462,87 @@ footer {
 
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="index.html"
                   aria-label="HOME nach oben schieben"
-                >HOME</button>
+                >
+                  <span class="fader-name">
+                    HOME
+                  </span>
+                </button>
+
               </div>
             </div>
 
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="music-test.html"
                   aria-current="page"
                   aria-label="MUSIC ist aktiv"
-                >MUSIC</button>
+                >
+                  <span class="fader-name">
+                    MUSIC
+                  </span>
+                </button>
+
               </div>
             </div>
 
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="music.html"
                   aria-label="RELEASES nach oben schieben"
-                >RELEASES</button>
+                >
+                  <span class="fader-name">
+                    RELEASES
+                  </span>
+                </button>
+
               </div>
             </div>
 
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="about.html"
                   aria-label="ABOUT nach oben schieben"
-                >ABOUT</button>
+                >
+                  <span class="fader-name">
+                    ABOUT
+                  </span>
+                </button>
+
               </div>
             </div>
 
             <div class="mixer-channel">
               <div class="fader-track">
+
                 <button
                   type="button"
                   class="fader-handle"
                   data-url="contact.html"
                   aria-label="CONTACT nach oben schieben"
-                >CONTACT</button>
+                >
+                  <span class="fader-name">
+                    CONTACT
+                  </span>
+                </button>
+
               </div>
             </div>
 
@@ -1147,50 +1556,80 @@ footer {
 
         </div>
 
-        <!-- EQ RECHTS -->
+        <!-- RECHTE DREHREGLER -->
 
         <div class="eq-panel">
-          <span class="eq-title">CH B</span>
 
-          <div class="eq-row">
-            <span class="eq-knob"></span>
-            <span class="eq-name">GAIN</span>
+          <div class="eq-column">
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">GAIN</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">HIGH</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">MID</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">BASS</span>
+            </div>
+
           </div>
 
-          <div class="eq-row">
-            <span class="eq-knob"></span>
-            <span class="eq-name">HIGH</span>
+          <div class="eq-column offset">
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">MIC</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">ECHO</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">FX</span>
+            </div>
+
           </div>
 
-          <div class="eq-row">
-            <span class="eq-knob"></span>
-            <span class="eq-name">MID</span>
-          </div>
-
-          <div class="eq-row">
-            <span class="eq-knob"></span>
-            <span class="eq-name">BASS</span>
-          </div>
         </div>
 
       </div>
-
-      <!-- PULSIERENDER BEDIENHINWEIS -->
-
-      <div class="slide-me">SLIDE ME</div>
 
       <!-- CROSSFADER -->
 
       <div class="crossfader-section">
 
+        <!-- ALLE DREI IN EINER ZEILE -->
+
         <div class="crossfader-labels">
-          <span id="singleLabel" class="active">
+
+          <span
+            id="singleLabel"
+            class="active"
+          >
             SINGLE
+          </span>
+
+          <span class="slide-me">
+            SLIDE ME
           </span>
 
           <span id="albumLabel">
             ALBUM
           </span>
+
         </div>
 
         <input
@@ -1201,7 +1640,7 @@ footer {
           max="100"
           step="1"
           value="0"
-          aria-label="Crossfader: links Singles, rechts Alben"
+          aria-label="Crossfader zwischen Singles und Alben"
         >
 
         <span class="crossfader-title">
@@ -1209,43 +1648,68 @@ footer {
         </span>
 
       </div>
+
     </div>
 
     <!-- RECHTER PLATTENSPIELER -->
 
-    <div class="turntable album">
+    <div
+      class="turntable album"
+      id="albumTurntable"
+    >
+
       <img
         class="turntable-image"
         src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
-        alt="Bausys-tem Turntable rechts"
+        alt="Bausys-tem Plattenspieler rechts"
       >
+
+      <div class="vinyl-position">
+
+        <img
+          class="vinyl-record"
+          src="images/D1EDD58D-F7A6-4A1B-B4EC-98244E93DDD1.png"
+          alt="Drehende ALBUMS-Schallplatte"
+        >
+
+      </div>
+
     </div>
 
   </div>
 
-  <!-- LED-ANZEIGE -->
+  <!-- LED-LAUFLEISTE -->
 
   <div class="led-display-wrap">
+
     <div class="led-display">
+
       <canvas
         id="ledCanvas"
         class="led-canvas"
         role="img"
         aria-label="SINGLE · THE SINGLE COLLECTION"
       ></canvas>
+
     </div>
+
   </div>
 
 </section>
 
-<!-- MUSIKCOVER -->
+<!-- SONGCOVER -->
 
 <main class="content">
 
-  <div class="gallery" id="gallery">
+  <div
+    class="gallery"
+    id="gallery"
+  >
+
     <div class="empty-message">
       Musik wird geladen ...
     </div>
+
   </div>
 
   <button
@@ -1263,9 +1727,13 @@ footer {
   © R.M.B. MUSIC · FRANKFURT AM MAIN
 </footer>
 
-<!-- YOUTUBE-VIDEOFENSTER -->
+<!-- YOUTUBE-FENSTER -->
 
-<div class="video-modal" id="videoModal">
+<div
+  class="video-modal"
+  id="videoModal"
+>
+
   <div class="video-window">
 
     <button
@@ -1273,7 +1741,9 @@ footer {
       class="close-video"
       id="closeVideo"
       aria-label="Video schließen"
-    >&times;</button>
+    >
+      &times;
+    </button>
 
     <iframe
       id="videoFrame"
@@ -1284,19 +1754,29 @@ footer {
     ></iframe>
 
   </div>
+
 </div>
 
 <script>
 
-/* =========================
-   GEGENLÄUFIGE MENÜFADER
-========================= */
+/* ===========================
+   EINSTELLUNGEN
+=========================== */
 
-const faders = [
-  ...document.querySelectorAll(
+const reduceMotion =
+  window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+/* ===========================
+   FÜNF NAVIGATIONSFADER
+=========================== */
+
+const faders = Array.from(
+  document.querySelectorAll(
     '.fader-handle'
   )
-];
+);
 
 const activeFader =
   document.querySelector(
@@ -1306,113 +1786,194 @@ const activeFader =
 let dragging = null;
 let navigationStarted = false;
 
-const clamp = (n,low,high) =>
-  Math.min(high,Math.max(low,n));
+/* Begrenzung */
 
-function maxTravel(handle) {
+function clamp(value,min,max){
+  return Math.min(
+    max,
+    Math.max(min,value)
+  );
+}
+
+/* Tatsächlicher Schiebeweg */
+
+function maxTravel(handle){
+
+  const track =
+    handle.parentElement;
+
   return Math.max(
     0,
-    handle.parentElement.clientHeight -
+    track.clientHeight -
     handle.offsetHeight
   );
 }
 
-function faderPosition(handle,progress) {
-  const travel = maxTravel(handle);
+/*
+  progress = 0:
+  Regler vollständig unten.
+
+  progress = 1:
+  Regler vollständig oben.
+*/
+
+function setFaderPosition(
+  handle,
+  progress
+){
+
+  const distance =
+    maxTravel(handle);
 
   handle.style.top =
     (
-      travel *
-      (1-clamp(progress,0,1))
-    ) + 'px';
+      distance *
+      (
+        1-clamp(progress,0,1)
+      )
+    )+'px';
 }
 
-/* Grundstellung:
-   MUSIC oben, alle anderen unten */
+/* Startpositionen */
 
-function initializeFaders() {
-  if (dragging) return;
+function initializeFaders(){
 
-  faders.forEach(handle => {
-    handle.classList.remove('returning');
+  if(dragging){
+    return;
+  }
 
-    faderPosition(
-      handle,
-      handle === activeFader ? 1 : 0
+  faders.forEach(handle=>{
+
+    handle.classList.remove(
+      'returning'
     );
+
+    setFaderPosition(
+      handle,
+      handle===activeFader
+        ? 1
+        : 0
+    );
+
   });
 }
 
-/* Vorzeitig losgelassen:
-   beide fahren wieder zurück */
+/* Rückfahrt bei frühem Loslassen */
 
-function restoreFaders() {
-  faders.forEach(handle =>
-    handle.classList.add('returning')
-  );
+function restoreFaders(){
 
-  faders.forEach(handle =>
-    faderPosition(
+  faders.forEach(handle=>{
+    handle.classList.add(
+      'returning'
+    );
+  });
+
+  faders.forEach(handle=>{
+
+    setFaderPosition(
       handle,
-      handle === activeFader ? 1 : 0
-    )
-  );
+      handle===activeFader
+        ? 1
+        : 0
+    );
+
+  });
 }
 
-/* Erst am vollständigen
-   oberen Anschlag navigieren */
+/* Navigation erst am Anschlag */
 
-function finishNavigation(handle) {
-  if (
+function finishNavigation(handle){
+
+  if(
     navigationStarted ||
-    handle === activeFader
-  ) return;
+    handle===activeFader
+  ){
+    return;
+  }
 
-  navigationStarted = true;
+  navigationStarted=true;
 
-  faderPosition(handle,1);
-  faderPosition(activeFader,0);
+  setFaderPosition(handle,1);
+
+  setFaderPosition(
+    activeFader,
+    0
+  );
 
   window.location.assign(
     handle.dataset.url
   );
 }
 
-/* Bewegungen koppeln */
+/* Synchronisierte Bewegung */
 
-function moveHandle(event) {
-  if (
+function moveFader(event){
+
+  if(
     !dragging ||
-    dragging.pointerId !== event.pointerId
-  ) return;
+    dragging.pointerId!==
+      event.pointerId
+  ){
+    return;
+  }
 
-  const {handle,startY} = dragging;
+  const handle =
+    dragging.handle;
 
-  const travel = maxTravel(handle);
+  const travel =
+    maxTravel(handle);
 
-  if (travel <= 0) return;
+  if(travel<=0){
+    return;
+  }
 
   const delta =
-    event.clientY-startY;
+    event.clientY -
+    dragging.startY;
 
-  const progress =
-    handle === activeFader
-      ? clamp(1-delta/travel,0,1)
-      : clamp(-delta/travel,0,1);
+  let progress;
 
-  faderPosition(handle,progress);
+  if(handle===activeFader){
 
-  if (handle !== activeFader) {
+    progress=clamp(
+      1-delta/travel,
+      0,
+      1
+    );
 
-    /* Aktiver Regler bewegt sich
-       synchron nach unten */
+  }else{
 
-    faderPosition(
+    progress=clamp(
+      -delta/travel,
+      0,
+      1
+    );
+  }
+
+  setFaderPosition(
+    handle,
+    progress
+  );
+
+  /*
+    Wenn ein anderer Regler
+    hochgeschoben wird,
+    fährt MUSIC synchron runter.
+  */
+
+  if(handle!==activeFader){
+
+    setFaderPosition(
       activeFader,
       1-progress
     );
 
-    if (progress >= 1) {
+    /*
+      Nur bei 100 Prozent,
+      nie bei 85 oder 90.
+    */
+
+    if(progress>=1){
       finishNavigation(handle);
     }
   }
@@ -1420,53 +1981,69 @@ function moveHandle(event) {
 
 /* Loslassen */
 
-function releaseHandle(event) {
-  if (
+function releaseFader(event){
+
+  if(
     !dragging ||
-    dragging.pointerId !== event.pointerId
-  ) return;
+    dragging.pointerId!==
+      event.pointerId
+  ){
+    return;
+  }
 
-  const handle = dragging.handle;
+  const handle =
+    dragging.handle;
 
-  dragging = null;
+  dragging=null;
 
-  handle.classList.remove('dragging');
+  handle.classList.remove(
+    'dragging'
+  );
 
-  if (!navigationStarted) {
+  if(!navigationStarted){
     restoreFaders();
   }
 }
 
-/* Ereignisse an alle fünf Regler */
+/* Bedienung anbringen */
 
-faders.forEach(handle => {
+faders.forEach(handle=>{
 
   handle.addEventListener(
     'pointerdown',
-    event => {
+    event=>{
 
-      if (
+      if(
         navigationStarted ||
-        dragging ||
-        (
-          event.pointerType === 'mouse' &&
-          event.button !== 0
-        )
-      ) return;
+        dragging
+      ){
+        return;
+      }
+
+      if(
+        event.pointerType==='mouse' &&
+        event.button!==0
+      ){
+        return;
+      }
 
       event.preventDefault();
 
-      faders.forEach(h =>
-        h.classList.remove('returning')
-      );
+      faders.forEach(h=>{
+        h.classList.remove(
+          'returning'
+        );
+      });
 
-      dragging = {
+      dragging={
         handle,
-        pointerId: event.pointerId,
-        startY: event.clientY
+        pointerId:event.pointerId,
+        startY:event.clientY
       };
 
-      handle.classList.add('dragging');
+      handle.classList.add(
+        'dragging'
+      );
 
       handle.setPointerCapture(
         event.pointerId
@@ -1476,55 +2053,66 @@ faders.forEach(handle => {
 
   handle.addEventListener(
     'pointermove',
-    moveHandle
+    moveFader
   );
 
   handle.addEventListener(
     'pointerup',
-    releaseHandle
+    releaseFader
   );
 
   handle.addEventListener(
     'pointercancel',
-    releaseHandle
+    releaseFader
   );
 
   handle.addEventListener(
     'lostpointercapture',
-    () => {
-      if (
-        dragging?.handle === handle
-      ) {
-        dragging = null;
+    ()=>{
+      if(
+        dragging &&
+        dragging.handle===handle
+      ){
+
+        dragging=null;
 
         handle.classList.remove(
           'dragging'
         );
 
-        if (!navigationStarted) {
+        if(!navigationStarted){
           restoreFaders();
         }
       }
     }
   );
 
+  /* Tastaturbedienung */
+
   handle.addEventListener(
     'keydown',
-    event => {
+    event=>{
 
-      if (
+      if(
+        handle!==activeFader &&
         (
-          event.key === 'Enter' ||
-          event.key === 'ArrowUp'
-        ) &&
-        handle !== activeFader
-      ) {
+          event.key==='Enter' ||
+          event.key==='ArrowUp'
+        )
+      ){
+
         event.preventDefault();
+
         finishNavigation(handle);
       }
     }
   );
+
 });
+
+requestAnimationFrame(
+  initializeFaders
+);
 
 window.addEventListener(
   'load',
@@ -1536,32 +2124,28 @@ window.addEventListener(
   initializeFaders
 );
 
-requestAnimationFrame(
-  initializeFaders
-);
+/* ===========================
+   ANIMIERTE VU-METER
+=========================== */
 
-/* =========================
-   VU-METER
-========================= */
-
-function createMeter(id) {
+function createMeter(id){
 
   const meter =
     document.getElementById(id);
 
   return Array.from(
     {length:14},
-    (_,i) => {
+    (_,i)=>{
 
       const led =
         document.createElement('span');
 
       led.className =
-        'vu-led ' +
+        'vu-led '+
         (
-          i < 8
+          i<8
             ? 'green'
-            : i < 11
+            : i<11
               ? 'yellow'
               : 'red'
         );
@@ -1579,276 +2163,346 @@ const leftLeds =
 const rightLeds =
   createMeter('vuRight');
 
-let leftLevel = 6;
-let rightLevel = 7;
+let leftLevel=6;
+let rightLevel=7;
 
-function animateMeters() {
-  if (document.hidden) return;
+function animateMeters(){
 
-  leftLevel = clamp(
-    leftLevel +
+  if(document.hidden){
+    return;
+  }
+
+  leftLevel=clamp(
+    leftLevel+
     Math.floor(Math.random()*7)-3,
     2,
     14
   );
 
-  rightLevel = clamp(
-    rightLevel +
+  rightLevel=clamp(
+    rightLevel+
     Math.floor(Math.random()*7)-3,
     2,
     14
   );
 
-  leftLeds.forEach((led,i) =>
+  leftLeds.forEach((led,i)=>{
     led.classList.toggle(
       'on',
-      i < leftLevel
-    )
-  );
+      i<leftLevel
+    );
+  });
 
-  rightLeds.forEach((led,i) =>
+  rightLeds.forEach((led,i)=>{
     led.classList.toggle(
       'on',
-      i < rightLevel
-    )
-  );
+      i<rightLevel
+    );
+  });
 }
 
 animateMeters();
 
-const reduceMotion =
-  window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches;
-
-if (!reduceMotion) {
-  setInterval(animateMeters,170);
+if(!reduceMotion){
+  setInterval(
+    animateMeters,
+    170
+  );
 }
 
-/* =========================
-   CROSSFADER
-========================= */
+/* ===========================
+   SINGLE / ALBUM
+   UND DREHENDE VINYLS
+=========================== */
 
 const crossfader =
-  document.getElementById('crossfader');
+  document.getElementById(
+    'crossfader'
+  );
 
 const singleLabel =
-  document.getElementById('singleLabel');
+  document.getElementById(
+    'singleLabel'
+  );
 
 const albumLabel =
-  document.getElementById('albumLabel');
+  document.getElementById(
+    'albumLabel'
+  );
 
-let activeCategory = 'single';
-let allMusic = [];
-let visibleCount = 10;
+const singleTurntable =
+  document.getElementById(
+    'singleTurntable'
+  );
 
-function chooseCategory(category) {
+const albumTurntable =
+  document.getElementById(
+    'albumTurntable'
+  );
 
-  if (category === activeCategory) {
+let activeCategory='single';
+
+let allMusic=[];
+
+let visibleCount=10;
+
+/*
+  Hier werden Kategorie,
+  Vinyl und LED-Anzeige
+  gemeinsam geschaltet.
+*/
+
+function chooseCategory(category){
+
+  if(category===activeCategory){
     return;
   }
 
-  activeCategory = category;
-  visibleCount = 10;
+  activeCategory=category;
+
+  visibleCount=10;
+
+  /* Leuchtende Beschriftung */
 
   singleLabel.classList.toggle(
     'active',
-    category === 'single'
+    category==='single'
   );
 
   albumLabel.classList.toggle(
     'active',
-    category === 'album'
+    category==='album'
   );
 
+  /* Drehende Schallplatten */
+
+  singleTurntable.classList.toggle(
+    'playing',
+    category==='single'
+  );
+
+  albumTurntable.classList.toggle(
+    'playing',
+    category==='album'
+  );
+
+  /* LED-Laufschrift */
+
   updateLEDMessage(category);
+
+  /* Passende Musikkategorie */
+
   renderMusic();
 }
 
+/* Beim Schieben umschalten */
+
 crossfader.addEventListener(
   'input',
-  () => {
+  ()=>{
+
     chooseCategory(
-      Number(crossfader.value) < 50
+      Number(crossfader.value)<50
         ? 'single'
         : 'album'
     );
+
   }
 );
+
+/* Beim Loslassen einrasten */
 
 crossfader.addEventListener(
   'change',
-  () => {
+  ()=>{
 
     const isSingle =
-      Number(crossfader.value) < 50;
+      Number(crossfader.value)<50;
 
     crossfader.value =
-      isSingle ? '0' : '100';
+      isSingle
+        ? '0'
+        : '100';
 
     chooseCategory(
-      isSingle ? 'single' : 'album'
+      isSingle
+        ? 'single'
+        : 'album'
     );
+
   }
 );
 
-/* =========================
-   LED-MATRIX
-========================= */
+/* ===========================
+   LED-PUNKTMATRIX
+=========================== */
 
 const ledCanvas =
-  document.getElementById('ledCanvas');
+  document.getElementById(
+    'ledCanvas'
+  );
 
 const ctx =
   ledCanvas.getContext('2d');
 
-const FONT = {
+/*
+  Eigene Buchstaben aus
+  echten LED-Punkten.
+*/
 
-  A: [
+const FONT={
+
+  A:[
     '01110','10001','10001',
     '11111','10001','10001','10001'
   ],
 
-  B: [
+  B:[
     '11110','10001','10001',
     '11110','10001','10001','11110'
   ],
 
-  C: [
+  C:[
     '01111','10000','10000',
     '10000','10000','10000','01111'
   ],
 
-  D: [
+  D:[
     '11110','10001','10001',
     '10001','10001','10001','11110'
   ],
 
-  E: [
+  E:[
     '11111','10000','10000',
     '11110','10000','10000','11111'
   ],
 
-  G: [
+  G:[
     '01111','10000','10000',
     '10111','10001','10001','01111'
   ],
 
-  H: [
+  H:[
     '10001','10001','10001',
     '11111','10001','10001','10001'
   ],
 
-  I: [
+  I:[
     '11111','00100','00100',
     '00100','00100','00100','11111'
   ],
 
-  L: [
+  L:[
     '10000','10000','10000',
     '10000','10000','10000','11111'
   ],
 
-  M: [
+  M:[
     '10001','11011','10101',
     '10101','10001','10001','10001'
   ],
 
-  N: [
+  N:[
     '10001','11001','10101',
     '10011','10001','10001','10001'
   ],
 
-  O: [
+  O:[
     '01110','10001','10001',
     '10001','10001','10001','01110'
   ],
 
-  P: [
+  P:[
     '11110','10001','10001',
     '11110','10000','10000','10000'
   ],
 
-  R: [
+  R:[
     '11110','10001','10001',
     '11110','10100','10010','10001'
   ],
 
-  S: [
+  S:[
     '01111','10000','10000',
     '01110','00001','00001','11110'
   ],
 
-  T: [
+  T:[
     '11111','00100','00100',
     '00100','00100','00100','00100'
   ],
 
-  U: [
+  U:[
     '10001','10001','10001',
     '10001','10001','10001','01110'
   ],
 
-  Y: [
+  Y:[
     '10001','10001','01010',
     '00100','00100','00100','00100'
   ],
 
-  ' ': [
-    '00000','00000','00000',
-    '00000','00000','00000','00000'
-  ],
+  ' ':Array(7).fill('00000'),
 
-  '·': [
+  '·':[
     '00000','00000','00100',
     '00000','00100','00000','00000'
   ]
 };
 
-let ledColumns = [];
-let ledPosition = 0;
-let ledDirection = 1;
-let ledLastTime = 0;
-let ledPitch = 8;
-let ledTextWidth = 0;
+let ledColumns=[];
 
-const LED_SPEED = 85;
+let ledPosition=0;
 
-/* Text in LED-Spalten */
+let ledDirection=1;
 
-function buildLEDText(text) {
+let ledLastTime=0;
 
-  const cols = [];
+let ledPitch=8;
 
-  for (
+let ledTextWidth=0;
+
+let ledStartColumn=0;
+
+const LED_SPEED=80;
+
+/* Text in einzelne LED-Spalten */
+
+function buildLEDText(text){
+
+  const cols=[];
+
+  for(
     const ch of text.toUpperCase()
-  ) {
+  ){
 
     const pattern =
-      FONT[ch] || FONT[' '];
+      FONT[ch]||FONT[' '];
 
-    for (let c=0;c<5;c++) {
+    for(let c=0;c<5;c++){
 
       cols.push(
         Array.from(
           {length:7},
-          (_,r) =>
-            pattern[r][c] === '1'
+          (_,row)=>
+            pattern[row][c]==='1'
         )
       );
     }
 
+    /* Abstand zwischen Zeichen */
+
     cols.push(
-      [false,false,false,false,false,false,false]
+      Array(7).fill(false)
     );
   }
 
   return cols;
 }
 
-/* Punktgröße anhand der Breite */
+/* Automatische LED-Größe */
 
-function calculateLEDLayout() {
+function calculateLEDLayout(){
 
   const width =
     ledCanvas.clientWidth;
@@ -1856,17 +2510,17 @@ function calculateLEDLayout() {
   const height =
     ledCanvas.clientHeight;
 
-  ledPitch = Math.min(
+  ledPitch=Math.min(
     9.4,
     (height-16)/7,
-    Math.max(1,(width-24)*.75) /
+    Math.max(1,(width-24)*.75)/
       Math.max(1,ledColumns.length)
   );
 
   ledTextWidth =
-    ledPitch * ledColumns.length;
+    ledPitch*ledColumns.length;
 
-  ledPosition = clamp(
+  ledPosition=clamp(
     ledPosition,
     0,
     Math.max(
@@ -1876,38 +2530,38 @@ function calculateLEDLayout() {
   );
 }
 
-/* SINGLE / ALBUM */
+/* SINGLE-/ALBUM-Laufschrift */
 
-function updateLEDMessage(category) {
+function updateLEDMessage(category){
 
-  const text =
-    category === 'single'
+  const message =
+    category==='single'
       ? 'SINGLE · THE SINGLE COLLECTION'
       : 'ALBUM · THE ALBUM COLLECTION';
 
   ledCanvas.setAttribute(
     'aria-label',
-    text
+    message
   );
 
   ledColumns =
-    buildLEDText(text);
+    buildLEDText(message);
 
-  ledPosition = 0;
-  ledDirection = 1;
+  ledPosition=0;
+  ledDirection=1;
 
   calculateLEDLayout();
 }
 
-/* Canvas-Größe */
+/* Canvas an Pixelgröße anpassen */
 
-function resizeLEDCanvas() {
+function resizeLEDCanvas(){
 
   const rect =
     ledCanvas.getBoundingClientRect();
 
   const dpr =
-    window.devicePixelRatio || 1;
+    window.devicePixelRatio||1;
 
   ledCanvas.width =
     Math.round(rect.width*dpr);
@@ -1922,29 +2576,38 @@ function resizeLEDCanvas() {
   calculateLEDLayout();
 }
 
-/* Einzelne LED */
+/* Eine einzelne LED */
 
-function dot(x,y,r,color,glow=false) {
+function drawDot(
+  x,y,r,color,glow=false
+){
 
   ctx.beginPath();
-  ctx.arc(x,y,r,0,Math.PI*2);
 
-  ctx.fillStyle = color;
+  ctx.arc(
+    x,y,r,
+    0,
+    Math.PI*2
+  );
 
-  if (glow) {
+  ctx.fillStyle=color;
+
+  if(glow){
+
     ctx.shadowBlur =
       Math.max(3,ledPitch*1.1);
 
-    ctx.shadowColor = '#65bdff';
+    ctx.shadowColor='#65bdff';
   }
 
   ctx.fill();
-  ctx.shadowBlur = 0;
+
+  ctx.shadowBlur=0;
 }
 
-/* Gesamte LED-Matrix zeichnen */
+/* Vollständige Anzeige */
 
-function drawLED(time) {
+function drawLED(time){
 
   const width =
     ledCanvas.clientWidth;
@@ -1952,12 +2615,17 @@ function drawLED(time) {
   const height =
     ledCanvas.clientHeight;
 
-  ctx.clearRect(0,0,width,height);
+  ctx.clearRect(
+    0,0,width,height
+  );
 
-  ctx.fillStyle = '#07111b';
-  ctx.fillRect(0,0,width,height);
+  ctx.fillStyle='#07111b';
 
-  const padding = 12;
+  ctx.fillRect(
+    0,0,width,height
+  );
+
+  const padding=12;
 
   const startY =
     (height-7*ledPitch)/2;
@@ -1970,69 +2638,79 @@ function drawLED(time) {
       (width-2*padding)/ledPitch
     );
 
-  const startX =
-    padding+ledPosition;
+  /*
+    Alle nicht leuchtenden
+    LED-Punkte darstellen.
+  */
 
-  /* Vollständiges Raster
-     aus ausgeschalteten LEDs */
-
-  for (
+  for(
     let c=0;
     c<=columnsVisible;
     c++
-  ) {
+  ){
 
     const x =
       padding+(c+.5)*ledPitch;
 
-    if (x>width-padding) break;
+    if(x>width-padding){
+      break;
+    }
 
-    for (let row=0;row<7;row++) {
+    for(let row=0;row<7;row++){
 
-      dot(
+      drawDot(
         x,
-        startY+(row+.5)*ledPitch,
+        startY+
+          (row+.5)*ledPitch,
         radius,
-        'rgba(125,165,205,0.15)'
+        'rgba(125,165,205,.15)'
       );
     }
   }
 
-  /* Helle Buchstaben auf dem
-     festen LED-Raster */
+  /*
+    Aktivierte LED-Punkte:
+    Text wird durch Umschalten
+    der vorhandenen Punkte
+    sichtbar.
+  */
 
-  const startColumn =
-    Math.round(
-      (startX-padding)/ledPitch
-    );
+  ledStartColumn=Math.round(
+    ledPosition/ledPitch
+  );
 
-  for (
+  for(
     let c=0;
     c<ledColumns.length;
     c++
-  ) {
+  ){
 
     const displayColumn =
-      startColumn+c;
+      ledStartColumn+c;
 
-    if (
+    if(
       displayColumn<0 ||
       displayColumn>columnsVisible
-    ) continue;
+    ){
+      continue;
+    }
 
     const x =
       padding+
       (displayColumn+.5)*ledPitch;
 
-    if (x>width-padding) continue;
+    if(x>width-padding){
+      continue;
+    }
 
-    for (let row=0;row<7;row++) {
+    for(let row=0;row<7;row++){
 
-      if (ledColumns[c][row]) {
+      if(ledColumns[c][row]){
 
-        dot(
+        drawDot(
           x,
-          startY+(row+.5)*ledPitch,
+          startY+
+            (row+.5)*ledPitch,
           radius,
           '#d9f2ff',
           true
@@ -2041,15 +2719,18 @@ function drawLED(time) {
     }
   }
 
-  /* Pendelbewegung */
+  /*
+    Pendelbewegung von links
+    nach rechts und zurück.
+  */
 
-  if (
+  if(
     !reduceMotion &&
     !document.hidden &&
     ledLastTime
-  ) {
+  ){
 
-    const delta = Math.min(
+    const delta=Math.min(
       .05,
       (time-ledLastTime)/1000
     );
@@ -2060,56 +2741,79 @@ function drawLED(time) {
         width-24-ledTextWidth
       );
 
-    ledPosition +=
+    ledPosition+=
       LED_SPEED*
       delta*
       ledDirection;
 
-    if (ledPosition>=maxPosition) {
-      ledPosition = maxPosition;
-      ledDirection = -1;
+    if(ledPosition>=maxPosition){
+
+      ledPosition=maxPosition;
+      ledDirection=-1;
     }
 
-    if (ledPosition<=0) {
-      ledPosition = 0;
-      ledDirection = 1;
+    if(ledPosition<=0){
+
+      ledPosition=0;
+      ledDirection=1;
     }
   }
 
-  ledLastTime = time;
+  ledLastTime=time;
 
-  requestAnimationFrame(drawLED);
+  requestAnimationFrame(
+    drawLED
+  );
 }
 
+/* LED starten */
+
 updateLEDMessage('single');
+
 resizeLEDCanvas();
-requestAnimationFrame(drawLED);
+
+requestAnimationFrame(
+  drawLED
+);
 
 window.addEventListener(
   'resize',
   resizeLEDCanvas
 );
 
-/* =========================
-   SONGS.JSON UND GALERIE
-========================= */
+/* ===========================
+   SONGS.JSON
+=========================== */
 
 const gallery =
-  document.getElementById('gallery');
+  document.getElementById(
+    'gallery'
+  );
 
 const moreButton =
-  document.getElementById('moreButton');
+  document.getElementById(
+    'moreButton'
+  );
 
 const videoModal =
-  document.getElementById('videoModal');
+  document.getElementById(
+    'videoModal'
+  );
 
 const videoFrame =
-  document.getElementById('videoFrame');
+  document.getElementById(
+    'videoFrame'
+  );
 
 const closeVideo =
-  document.getElementById('closeVideo');
+  document.getElementById(
+    'closeVideo'
+  );
 
-function escapeHTML(value) {
+/* HTML sicher darstellen */
+
+function escapeHTML(value){
+
   return String(value??'')
     .replace(/&/g,'&amp;')
     .replace(/</g,'&lt;')
@@ -2118,26 +2822,39 @@ function escapeHTML(value) {
     .replace(/'/g,'&#039;');
 }
 
-function safeURL(value) {
-  try {
-    const u = new URL(
+/* Gültige Links */
+
+function safeURL(value){
+
+  try{
+
+    const url=new URL(
       value,
       location.href
     );
 
-    return ['https:','http:']
-      .includes(u.protocol)
-      ? u.href
+    return [
+      'https:',
+      'http:'
+    ].includes(url.protocol)
+      ? url.href
       : '';
-  } catch {
+
+  }catch{
+
     return '';
   }
 }
 
-function formatDate(value) {
-  if (!value) return '';
+/* Veröffentlichungsdatum */
 
-  const date = new Date(
+function formatDate(value){
+
+  if(!value){
+    return '';
+  }
+
+  const date=new Date(
     String(value).slice(0,10)+
     'T12:00:00'
   );
@@ -2154,86 +2871,124 @@ function formatDate(value) {
       );
 }
 
-function categoryOf(item) {
-  const category = String(
-    item.type ||
-    item.category ||
+/* Single oder Album */
+
+function categoryOf(item){
+
+  const value=String(
+    item.type||
+    item.category||
     'single'
   ).toLowerCase();
 
   return [
-    'album','albums','lp'
-  ].includes(category)
+    'album',
+    'albums',
+    'lp'
+  ].includes(value)
     ? 'album'
     : 'single';
 }
 
-function getYoutubeId(item) {
+/* YouTube-ID erkennen */
 
-  const value =
-    String(item.youtube||'').trim();
+function getYoutubeId(item){
 
-  if (
+  const value=String(
+    item.youtube||''
+  ).trim();
+
+  if(
     /^[A-Za-z0-9_-]{11}$/.test(value)
-  ) return value;
+  ){
+    return value;
+  }
 
-  try {
-    const url = new URL(value);
-    const host =
+  try{
+
+    const url=new URL(value);
+
+    const host=
       url.hostname.toLowerCase();
 
-    if (
-      ['youtu.be','www.youtu.be']
-        .includes(host)
-    ) {
-      return url.pathname.split('/')[1]||'';
+    if(
+      [
+        'youtu.be',
+        'www.youtu.be'
+      ].includes(host)
+    ){
+
+      return (
+        url.pathname.split('/')[1]||
+        ''
+      );
     }
 
-    if (
+    if(
       [
         'youtube.com',
         'www.youtube.com',
         'm.youtube.com'
       ].includes(host)
-    ) {
-      if (url.pathname==='/watch') {
-        return url.searchParams.get('v')||'';
+    ){
+
+      if(url.pathname==='/watch'){
+
+        return (
+          url.searchParams.get('v')||
+          ''
+        );
       }
 
-      const parts =
+      const parts=
         url.pathname.split('/');
 
-      if (
-        ['shorts','embed','live']
-          .includes(parts[1])
-      ) {
+      if(
+        [
+          'shorts',
+          'embed',
+          'live'
+        ].includes(parts[1])
+      ){
+
         return parts[2]||'';
       }
     }
-  } catch {}
+
+  }catch{}
 
   return '';
 }
 
-/* VIDEOFENSTER */
+/* ===========================
+   YOUTUBE-FENSTER
+=========================== */
 
-function openVideo(id) {
+function openVideo(id){
 
-  if (
+  if(
     !/^[A-Za-z0-9_-]{11}$/.test(id)
-  ) return;
+  ){
+    return;
+  }
 
   videoFrame.src =
-    'https://www.youtube-nocookie.com/embed/' +
-    id +
+    'https://www.youtube-nocookie.com/embed/'+
+    id+
     '?autoplay=1';
 
-  videoModal.classList.add('open');
+  videoModal.classList.add(
+    'open'
+  );
 }
 
-function closeVideoPlayer() {
-  videoModal.classList.remove('open');
-  videoFrame.src = '';
+function closeVideoPlayer(){
+
+  videoModal.classList.remove(
+    'open'
+  );
+
+  videoFrame.src='';
 }
 
 closeVideo.addEventListener(
@@ -2243,8 +2998,9 @@ closeVideo.addEventListener(
 
 videoModal.addEventListener(
   'click',
-  e => {
-    if (e.target===videoModal) {
+  event=>{
+
+    if(event.target===videoModal){
       closeVideoPlayer();
     }
   }
@@ -2252,206 +3008,265 @@ videoModal.addEventListener(
 
 document.addEventListener(
   'keydown',
-  e => {
-    if (e.key==='Escape') {
+  event=>{
+
+    if(event.key==='Escape'){
       closeVideoPlayer();
     }
   }
 );
 
-/* MUSIKCOVER DARSTELLEN */
+/* ===========================
+   MUSIKKARTEN DARSTELLEN
+=========================== */
 
-function renderMusic() {
+function renderMusic(){
 
   const isSingle =
     activeCategory==='single';
 
-  const items = allMusic
-    .filter(item =>
-      categoryOf(item)===activeCategory
+  const items=allMusic
+
+    .filter(item=>
+      categoryOf(item)===
+        activeCategory
     )
-    .sort((a,b) =>
+
+    .sort((a,b)=>
       String(b.releaseDate||'')
         .localeCompare(
           String(a.releaseDate||'')
         )
     );
 
-  gallery.innerHTML = '';
+  gallery.innerHTML='';
 
-  if (!items.length) {
+  /* Noch keine Veröffentlichungen */
 
-    gallery.innerHTML =
-      '<div class="empty-message">' +
+  if(!items.length){
+
+    gallery.innerHTML=
+      '<div class="empty-message">'+
       (
         isSingle
           ? 'Hier erscheinen deine R.M.B.-Singles.'
           : 'Hier erscheinen deine R.M.B.-Alben.'
-      ) +
+      )+
       '</div>';
 
-    moreButton.hidden = true;
+    moreButton.hidden=true;
+
     return;
   }
 
   items
     .slice(0,visibleCount)
-    .forEach(item => {
+    .forEach(item=>{
 
-      const id =
+      const id=
         getYoutubeId(item);
 
-      const valid =
+      const valid=
         /^[A-Za-z0-9_-]{11}$/.test(id)
           ? id
           : '';
 
-      const cover =
-        safeURL(item.cover) ||
+      const cover=
+        safeURL(item.cover)||
         (
           valid
-            ? 'https://img.youtube.com/vi/' +
-              valid +
+            ? 'https://img.youtube.com/vi/'+
+              valid+
               '/hqdefault.jpg'
             : ''
         );
 
-      const spotify =
+      const spotify=
         safeURL(item.spotify);
 
-      const amazon =
+      const amazon=
         safeURL(item.amazon);
 
-      const date =
+      const date=
         formatDate(item.releaseDate);
 
-      const card =
-        document.createElement('article');
+      const card=
+        document.createElement(
+          'article'
+        );
 
-      card.className = 'music-card';
+      card.className='music-card';
 
-      card.innerHTML = `
+      card.innerHTML=`
+
         <button
           type="button"
           class="cover-button"
           ${valid?'':'disabled'}
           aria-label="Video öffnen"
         >
+
           <img
             class="cover"
             src="${escapeHTML(cover)}"
-            alt="${escapeHTML(item.title||'R.M.B.')}"
+            alt="${escapeHTML(
+              item.title||'R.M.B.'
+            )}"
             loading="lazy"
           >
+
         </button>
 
         <div class="track-title">
-          ${escapeHTML(item.title||'R.M.B.')}
+
+          ${escapeHTML(
+            item.title||'R.M.B.'
+          )}
+
         </div>
 
         <div class="track-version">
-          ${escapeHTML(item.version||'')}
+
+          ${escapeHTML(
+            item.version||''
+          )}
+
         </div>
 
         ${
           date
-            ? `<div class="track-date">
-                 ${escapeHTML(date)}
-               </div>`
+            ? `
+              <div class="track-date">
+                ${escapeHTML(date)}
+              </div>
+              `
             : ''
         }
 
         <div class="music-links">
+
           ${
             valid
-              ? `<a
-                   href="https://www.youtube.com/watch?v=${valid}"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                 >YouTube</a>`
+              ? `
+                <a
+                  href="https://www.youtube.com/watch?v=${valid}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  YouTube
+                </a>
+                `
               : ''
           }
 
           ${
             spotify
-              ? `<a
-                   href="${escapeHTML(spotify)}"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                 >Spotify</a>`
+              ? `
+                <a
+                  href="${escapeHTML(spotify)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Spotify
+                </a>
+                `
               : ''
           }
 
           ${
             amazon
-              ? `<a
-                   href="${escapeHTML(amazon)}"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                 >Amazon</a>`
+              ? `
+                <a
+                  href="${escapeHTML(amazon)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Amazon
+                </a>
+                `
               : ''
           }
+
         </div>
       `;
 
-      if (valid) {
+      if(valid){
+
         card.querySelector(
           '.cover-button'
         ).addEventListener(
           'click',
-          () => openVideo(valid)
+          ()=>openVideo(valid)
         );
       }
 
       gallery.appendChild(card);
     });
 
-  moreButton.hidden =
+  moreButton.hidden=
     items.length<=visibleCount;
 
-  moreButton.textContent =
+  moreButton.textContent=
     isSingle
       ? 'WEITERE SONGS ANZEIGEN'
       : 'WEITERE ALBEN ANZEIGEN';
 }
 
+/* Weitere Veröffentlichungen */
+
 moreButton.addEventListener(
   'click',
-  () => {
+  ()=>{
+
     visibleCount+=10;
+
     renderMusic();
   }
 );
 
-/* MUSIKDATEN LADEN */
+/* ===========================
+   MUSIKDATEN LADEN
+=========================== */
 
 fetch('songs.json')
-  .then(r => {
-    if (!r.ok) {
+
+  .then(response=>{
+
+    if(!response.ok){
+
       throw new Error(
         'songs.json nicht gefunden'
       );
     }
 
-    return r.json();
+    return response.json();
   })
-  .then(data => {
-    allMusic =
+
+  .then(data=>{
+
+    allMusic=
       Array.isArray(data)
         ? data
         : [];
 
     renderMusic();
   })
-  .catch(error => {
-    gallery.innerHTML =
-      '<div class="empty-message">' +
-      'Die Musikdaten konnten nicht geladen werden.' +
+
+  .catch(error=>{
+
+    gallery.innerHTML=
+      '<div class="empty-message">'+
+      'Die Musikdaten konnten nicht geladen werden.'+
       '</div>';
 
     console.error(error);
   });
 
+/* ===========================
+   ENDE
+=========================== */
+
 </script>
+
 </body>
 </html>
