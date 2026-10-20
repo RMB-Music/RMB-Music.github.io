@@ -3209,6 +3209,47 @@ function renderMusic() {
           ? id
           : '';
 
+      /* ====================================
+         NEU: ALBUM-PLAYLIST ERKENNEN
+
+         Der vollständige Original-Link
+         aus songs.json bleibt erhalten.
+      ==================================== */
+
+      let albumURL='';
+
+      if(categoryOf(item)==='album') {
+
+        try {
+
+          const url=new URL(
+            String(item.youtube||'').trim()
+          );
+
+          const host=
+            url.hostname.toLowerCase();
+
+          const playlistId=
+            url.searchParams.get('list');
+
+          if(
+            [
+              'youtube.com',
+              'www.youtube.com',
+              'm.youtube.com'
+            ].includes(host) &&
+            url.pathname==='/playlist' &&
+            /^[A-Za-z0-9_-]+$/.test(
+              playlistId||''
+            )
+          ) {
+
+            albumURL=url.href;
+          }
+
+        } catch {}
+      }
+
       const cover=
         safeURL(item.cover)||
         (
@@ -3237,13 +3278,25 @@ function renderMusic() {
 
       card.className='music-card';
 
+      /* ====================================
+         NEU: ALBUM-COVER ANKLICKBAR
+
+         Bei Singles genügt die Video-ID.
+         Bei Alben genügt die Playlist-URL.
+      ==================================== */
+
+      const canOpen=
+        Boolean(valid||albumURL);
+
       card.innerHTML=`
 
         <button
           type="button"
           class="cover-button"
-          ${valid?'':'disabled'}
-          aria-label="Video öffnen"
+          ${canOpen?'':'disabled'}
+          aria-label="${albumURL
+            ? 'Album auf YouTube öffnen'
+            : 'Video öffnen'}"
         >
           <img
             class="cover"
@@ -3274,17 +3327,27 @@ function renderMusic() {
         <div class="music-links">
 
           ${
-            valid
+            albumURL
               ? `
                 <a
-                  href="https://www.youtube.com/watch?v=${valid}"
+                  href="${escapeHTML(albumURL)}"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   YouTube
                 </a>
               `
-              : ''
+              : valid
+                ? `
+                  <a
+                    href="https://www.youtube.com/watch?v=${valid}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    YouTube
+                  </a>
+                `
+                : ''
           }
 
           ${
@@ -3318,7 +3381,31 @@ function renderMusic() {
         </div>
       `;
 
-      if(valid) {
+      /* ====================================
+         NEU: YOUTUBE-PLAYLIST ÖFFNEN
+
+         ALBUM:
+         Weiterleitung zur vollständigen
+         YouTube-Playlist mit Titelliste.
+
+         SINGLE:
+         Bisheriges Videofenster bleibt.
+      ==================================== */
+
+      if(albumURL) {
+
+        card.querySelector(
+          '.cover-button'
+        ).addEventListener(
+          'click',
+          ()=>{
+            window.location.assign(
+              albumURL
+            );
+          }
+        );
+
+      } else if(valid) {
 
         card.querySelector(
           '.cover-button'
