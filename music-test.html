@@ -3,93 +3,130 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>R.M.B. | MUSIC TEST</title>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
-  rel="stylesheet"
->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
 
 <style>
 
-/* =====================================
+/* ==========================================
    GRUNDEINSTELLUNGEN
-===================================== */
+========================================== */
 
-:root{
-  --bg:#101720;
-  --blue:#8ad2ff;
+:root {
+  --background:#101720;
+  --blue:#82d2ff;
   --silver:#cbd7e3;
-  --line:#465e76;
-
-  /*
-    Eine einzige Skalierung
-    für die gesamte DJ-Anlage.
-  */
-  --stage-scale:1;
+  --stage-width:1360px;
 }
 
-*{
+* {
   box-sizing:border-box;
 }
 
-html{
-  background:var(--bg);
+html {
+  background:var(--background);
 }
 
-body{
+body {
   margin:0;
-
-  background:var(--bg);
+  background:var(--background);
   color:#e7edf5;
-
   font-family:Arial,sans-serif;
-
   overflow-x:hidden;
 }
 
 button,
-input{
+input {
   font:inherit;
 }
 
 button:focus-visible,
 input:focus-visible,
-a:focus-visible{
+a:focus-visible {
   outline:2px solid var(--blue);
   outline-offset:3px;
 }
 
-/* =====================================
-   MUSIC-SCHRIFTZUG UND SKYLINE
-===================================== */
+/* ==========================================
+   PROPORTIONALER MASTER-CONTAINER
 
-.music-hero{
+   ALLE OBEREN ELEMENTE BEFINDEN SICH
+   INNERHALB DIESES EINEN CONTAINERS.
+
+   Grundlage:
+   1360 Pixel Breite.
+
+   JavaScript berechnet einen einzigen
+   Skalierungsfaktor für X UND Y.
+
+   WICHTIG:
+   Keine unterschiedlichen Prozentgrößen
+   für die einzelnen DJ-Geräte.
+========================================== */
+
+.master-shell {
   position:relative;
-  background:var(--bg);
-  text-align:center;
+
+  width:98%;
+  max-width:1360px;
+
+  margin:0 auto;
+
+  /*
+    Ausgangshöhe der gesamten
+    Komposition:
+
+    Header      280px
+    Genre        32px
+    DJ-Geräte   260px
+    LED-Abstand  12px
+    LED-Leiste  100px
+
+    Zusammen etwa 684px.
+
+    JavaScript ermittelt zusätzlich
+    die exakte tatsächliche Höhe.
+  */
+
+  height:auto;
+  aspect-ratio:1360 / 684;
 }
 
-.music-composition{
+.master-stage {
+  position:absolute;
+  top:0;
+  left:0;
+
+  width:1360px;
+
+  transform-origin:top left;
+  transform:scale(1);
+
+  will-change:transform;
+}
+
+/* ==========================================
+   MUSIC-SCHRIFTZUG UND SKYLINE
+
+   BEIDE IM SELBEN KOORDINATENSYSTEM
+========================================== */
+
+.music-composition {
   position:relative;
 
-  width:100%;
-  height:clamp(180px,20vw,280px);
+  width:1360px;
+  height:280px;
 
+  overflow:visible;
   isolation:isolate;
 }
 
-.skyline{
+.skyline {
   position:absolute;
 
   left:0;
@@ -99,7 +136,7 @@ a:focus-visible{
 
   display:block;
 
-  width:100%;
+  width:1360px;
   height:auto;
 
   opacity:.28;
@@ -109,17 +146,17 @@ a:focus-visible{
   pointer-events:none;
 }
 
-.music-heading{
+.music-heading {
   position:absolute;
 
-  top:clamp(14px,1.8vw,28px);
   left:50%;
+  top:28px;
 
   z-index:2;
 
   display:block;
 
-  width:min(720px,92%);
+  width:720px;
   height:auto;
 
   transform:translateX(-50%);
@@ -133,96 +170,55 @@ a:focus-visible{
   pointer-events:none;
 }
 
-/* =====================================
-   GEMEINSAME PROPORTIONALE SKALIERUNG
-
-   WICHTIG:
-
-   Die komplette Anlage besitzt intern
-   eine feste Ausgangsbreite von 1360px.
-
-   JavaScript berechnet später einen
-   einzigen Skalierungsfaktor.
-
-   Breite und Höhe werden dadurch
-   IMMER im gleichen Verhältnis
-   verändert.
-
-   Auch auf kleinen Displays bleiben
-   alle drei Geräte nebeneinander.
-===================================== */
-
-.stage-shell{
-  position:relative;
-
-  width:min(1360px,98%);
-
-  margin:0 auto;
-
-  /*
-    Die tatsächliche Höhe wird durch
-    JavaScript passend zur Skalierung
-    berechnet.
-  */
-
-  min-height:0;
-}
-
-.dj-stage{
-  position:absolute;
-
-  top:0;
-  left:0;
-
-  width:1360px;
-
-  transform:
-    scale(var(--stage-scale));
-
-  transform-origin:top left;
-}
-
-/* =====================================
+/* ==========================================
    GENREZEILE
 
-   Diese befindet sich INNERHALB
-   des skalierbaren DJ-Containers.
+   FEST IM MASTER-CONTAINER,
+   ABER GEMEINSAM SKALIERT.
 
-   Sie kann deshalb nicht mehr
-   unabhängig über die Geräte rutschen.
-===================================== */
+   NICHT ÜBER DEM MISCHPULT
+   ABSOLUT POSITIONIERT.
+========================================== */
 
-.genre-line{
-  display:flex;
-
-  justify-content:center;
-  align-items:center;
+.genre-area {
+  position:relative;
 
   width:1360px;
   height:32px;
 
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.genre-line {
   margin:0;
 
   color:#b9d3ee;
 
-  font-family:
-    Michroma,Arial,sans-serif;
-
+  font-family:Michroma,Arial,sans-serif;
   font-size:11px;
-  letter-spacing:1.4px;
 
+  letter-spacing:1.4px;
   line-height:1;
+
   white-space:nowrap;
 
   text-shadow:
     0 0 8px rgba(126,200,255,.24);
 }
 
-/* =====================================
-   DREI DJ-GERÄTE IN EINER REIHE
-===================================== */
+/* ==========================================
+   DJ-ANLAGE
 
-.dj-setup{
+   IMMER DREI GERÄTE NEBENEINANDER.
+
+   KEIN UMBRUCH IM HOCHFORMAT.
+========================================== */
+
+.dj-setup {
+  position:relative;
+
   display:grid;
 
   grid-template-columns:
@@ -232,14 +228,18 @@ a:focus-visible{
 
   gap:10px;
 
-  align-items:stretch;
-
   width:1360px;
   height:260px;
+
+  align-items:stretch;
 }
 
+/* ==========================================
+   PLATTENSPIELER
+========================================== */
+
 .turntable,
-.mixer{
+.mixer {
   position:relative;
 
   width:100%;
@@ -253,19 +253,14 @@ a:focus-visible{
     0 8px 20px rgba(0,0,0,.45);
 }
 
-/* =====================================
-   PLATTENSPIELER
-===================================== */
-
-.turntable{
+.turntable {
   border:1px solid #667b91;
-
   background:#cbd5df;
 
   isolation:isolate;
 }
 
-.turntable-image{
+.turntable-image {
   display:block;
 
   width:100%;
@@ -276,40 +271,32 @@ a:focus-visible{
   pointer-events:none;
 }
 
-/* =====================================
-   VINYL-OVERLAY
+/* ==========================================
+   DREHENDE VINYLPLATTEN
 
-   Die Position bezieht sich immer
-   auf den jeweiligen Plattenspieler.
+   Die Größen und Positionen bleiben
+   im Bezug auf das Plattenspielerbild
+   unverändert.
 
-   Die Vinylplatte ist QUADRATISCH.
+   Bei Verkleinerung wird der gesamte
+   Plattenspieler einschließlich Vinyl
+   mit demselben Faktor skaliert.
 
-   Die gesamte Anlage wird anschließend
-   gleichmäßig skaliert.
+   Kreis bleibt Kreis.
+========================================== */
 
-   Dadurch bleiben die Platten rund.
-===================================== */
-
-.vinyl-position{
+.vinyl-position {
   position:absolute;
 
   left:38.4%;
   top:46.4%;
 
   width:61%;
-
-  /*
-    Kreis bleibt ein Kreis!
-    Niemals unabhängig
-    Breite und Höhe verzerren.
-  */
+  height:auto;
 
   aspect-ratio:1 / 1;
 
-  height:auto;
-
-  transform:
-    translate(-50%,-50%);
+  transform:translate(-50%,-50%);
 
   z-index:2;
 
@@ -323,13 +310,12 @@ a:focus-visible{
     visibility .35s ease;
 }
 
-.turntable.playing
-.vinyl-position{
+.turntable.playing .vinyl-position {
   opacity:1;
   visibility:visible;
 }
 
-.vinyl-record{
+.vinyl-record {
   display:block;
 
   width:100%;
@@ -341,8 +327,7 @@ a:focus-visible{
 
   border-radius:50%;
 
-  transform-origin:
-    center center;
+  transform-origin:center;
 
   filter:drop-shadow(
     1px 2px 3px rgba(0,0,0,.6)
@@ -354,26 +339,25 @@ a:focus-visible{
   animation-play-state:paused;
 }
 
-.turntable.playing
-.vinyl-record{
+.turntable.playing .vinyl-record {
   animation-play-state:running;
 }
 
-@keyframes vinylRotation{
-  from{
+@keyframes vinylRotation {
+  from {
     transform:rotate(0deg);
   }
 
-  to{
+  to {
     transform:rotate(360deg);
   }
 }
 
-/* =====================================
+/* ==========================================
    MISCHPULT
-===================================== */
+========================================== */
 
-.mixer{
+.mixer {
   padding:9px 12px 7px;
 
   border:1px solid #708299;
@@ -397,7 +381,7 @@ a:focus-visible{
     0 8px 20px rgba(0,0,0,.45);
 }
 
-.mixer-header{
+.mixer-header {
   display:flex;
 
   justify-content:space-between;
@@ -410,23 +394,19 @@ a:focus-visible{
 
   color:#bfcedd;
 
-  font-family:
-    Michroma,Arial,sans-serif;
-
+  font-family:Michroma,Arial,sans-serif;
   font-size:8px;
 
   white-space:nowrap;
 }
 
-.power-indicator{
+.power-indicator {
   display:inline-flex;
-
   align-items:center;
-
   gap:5px;
 }
 
-.power-led{
+.power-led {
   display:inline-block;
 
   width:7px;
@@ -440,11 +420,11 @@ a:focus-visible{
     0 0 8px #6bc5ff;
 }
 
-/* =====================================
+/* ==========================================
    MISCHPULT-INNENBEREICH
-===================================== */
+========================================== */
 
-.mixer-panel{
+.mixer-panel {
   display:grid;
 
   grid-template-columns:
@@ -460,11 +440,11 @@ a:focus-visible{
   min-width:0;
 }
 
-/* =====================================
-   DREHREGLER LINKS UND RECHTS
-===================================== */
+/* ==========================================
+   DREHREGLER
+========================================== */
 
-.eq-panel{
+.eq-panel {
   display:grid;
 
   grid-template-columns:
@@ -480,31 +460,27 @@ a:focus-visible{
   border:1px solid #405265;
   border-radius:4px;
 
-  background:
-    rgba(6,13,20,.23);
+  background:rgba(6,13,20,.23);
 }
 
-.eq-column{
+.eq-column {
   display:flex;
-
   flex-direction:column;
 
   justify-content:space-around;
   align-items:center;
 
   gap:2px;
-
   min-width:0;
 }
 
-.eq-column.offset{
+.eq-column.offset {
   padding-top:19px;
   padding-bottom:4px;
 }
 
-.eq-unit{
+.eq-unit {
   display:flex;
-
   flex-direction:column;
 
   align-items:center;
@@ -512,15 +488,14 @@ a:focus-visible{
 
   gap:3px;
 
-  min-height:35px;
   width:100%;
+  min-height:35px;
 }
 
-.eq-knob{
+.eq-knob {
   position:relative;
 
   display:block;
-
   flex-shrink:0;
 
   width:18px;
@@ -529,21 +504,20 @@ a:focus-visible{
   border:2px solid #8d9fb0;
   border-radius:50%;
 
-  background:
-    conic-gradient(
-      #263c51,
-      #e2eaf1,
-      #687f94,
-      #c0ccd8,
-      #263c51
-    );
+  background:conic-gradient(
+    #263c51,
+    #e2eaf1,
+    #687f94,
+    #c0ccd8,
+    #263c51
+  );
 
   box-shadow:
     0 2px 3px rgba(0,0,0,.5),
     inset 0 1px 2px rgba(255,255,255,.7);
 }
 
-.eq-knob::after{
+.eq-knob::after {
   content:"";
 
   position:absolute;
@@ -557,26 +531,25 @@ a:focus-visible{
   background:#172432;
 }
 
-.eq-label{
+.eq-label {
   display:block;
 
   color:#b8cadd;
 
-  font-family:
-    Michroma,Arial,sans-serif;
-
+  font-family:Michroma,Arial,sans-serif;
   font-size:6px;
-  line-height:1.2;
 
+  line-height:1.2;
   text-align:center;
+
   white-space:nowrap;
 }
 
-/* =====================================
-   VU-METER UND FADERMITTE
-===================================== */
+/* ==========================================
+   VU-METER
+========================================== */
 
-.mixer-center{
+.mixer-center {
   display:grid;
 
   grid-template-columns:
@@ -590,13 +563,11 @@ a:focus-visible{
   min-height:0;
 }
 
-.vu-meter{
+.vu-meter {
   display:flex;
-
   flex-direction:column-reverse;
 
   gap:2px;
-
   padding:4px 1px;
 
   border:1px solid #405063;
@@ -605,44 +576,40 @@ a:focus-visible{
   background:#080e14;
 }
 
-.vu-led{
+.vu-led {
   flex:1;
-
   min-height:2px;
 
   border-radius:1px;
 
   background:#14241f;
-
   opacity:.28;
 }
 
-.vu-led.green{
+.vu-led.green {
   --lit:#3dec83;
 }
 
-.vu-led.yellow{
+.vu-led.yellow {
   --lit:#efdb54;
 }
 
-.vu-led.red{
+.vu-led.red {
   --lit:#ff6a60;
 }
 
-.vu-led.on{
+.vu-led.on {
   background:var(--lit);
-
   opacity:1;
 
-  box-shadow:
-    0 0 4px var(--lit);
+  box-shadow:0 0 4px var(--lit);
 }
 
-/* =====================================
-   FÜNF NAVIGATIONSFADER
-===================================== */
+/* ==========================================
+   FÜNF FLACHBAHNREGLER
+========================================== */
 
-.mixer-channels{
+.mixer-channels {
   display:grid;
 
   grid-template-columns:
@@ -656,7 +623,7 @@ a:focus-visible{
   padding:0 4px;
 }
 
-.mixer-channel{
+.mixer-channel {
   position:relative;
 
   min-width:0;
@@ -665,27 +632,23 @@ a:focus-visible{
   border:1px solid #3c4e61;
   border-radius:3px;
 
-  background:
-    linear-gradient(
-      90deg,
-      #192532,
-      #304356 50%,
-      #182532
-    );
+  background:linear-gradient(
+    90deg,
+    #192532,
+    #304356 50%,
+    #182532
+  );
 }
 
-.fader-track{
+.fader-track {
   position:absolute;
 
-  top:4px;
-  right:2px;
-  bottom:4px;
-  left:2px;
+  inset:4px 2px;
 
   min-height:0;
 }
 
-.fader-track::before{
+.fader-track::before {
   content:"";
 
   position:absolute;
@@ -696,11 +659,9 @@ a:focus-visible{
 
   width:5px;
 
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 
   border-radius:4px;
-
   background:#060b11;
 
   box-shadow:
@@ -708,11 +669,11 @@ a:focus-visible{
     0 0 1px #93a7b8;
 }
 
-/* =====================================
-   SCHMALE SILBERNE FADERGRIFFE
-===================================== */
+/* ==========================================
+   SCHMALE FADERGRIFFE
+========================================== */
 
-.fader-handle{
+.fader-handle {
   position:absolute;
 
   top:0;
@@ -721,8 +682,7 @@ a:focus-visible{
   width:26px;
   height:48px;
 
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 
   display:flex;
 
@@ -734,22 +694,20 @@ a:focus-visible{
   border:1px solid #e9f3fc;
   border-radius:4px;
 
-  background:
-    linear-gradient(
-      90deg,
-      #8199ad 0%,
-      #e6f1f8 18%,
-      #c7d8e6 48%,
-      #8fa6b9 85%,
-      #dce8f2 100%
-    );
+  background:linear-gradient(
+    90deg,
+    #8199ad 0%,
+    #e6f1f8 18%,
+    #c7d8e6 48%,
+    #8fa6b9 85%,
+    #dce8f2 100%
+  );
 
   box-shadow:
     0 4px 6px rgba(0,0,0,.65),
     inset 0 1px 1px #fff;
 
   cursor:grab;
-
   touch-action:none;
 
   user-select:none;
@@ -758,31 +716,25 @@ a:focus-visible{
   z-index:2;
 }
 
-.fader-handle.dragging{
+.fader-handle.dragging {
   cursor:grabbing;
   z-index:5;
 }
 
-.fader-handle.returning{
-  transition:
-    top .23s ease-out;
+.fader-handle.returning {
+  transition:top .23s ease-out;
 }
 
-/* Senkrechte Beschriftung */
-
-.fader-name{
+.fader-name {
   position:relative;
-
   z-index:3;
 
   display:block;
 
   writing-mode:vertical-rl;
-
   text-orientation:upright;
 
-  font-family:
-    Michroma,Arial,sans-serif;
+  font-family:Michroma,Arial,sans-serif;
 
   font-size:5px;
   font-weight:bold;
@@ -797,9 +749,7 @@ a:focus-visible{
   pointer-events:none;
 }
 
-/* Metallrillen */
-
-.fader-handle::before{
+.fader-handle::before {
   content:"";
 
   position:absolute;
@@ -808,22 +758,17 @@ a:focus-visible{
 
   border-radius:2px;
 
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0 5px,
-      rgba(61,89,112,.28) 5px 6px,
-      rgba(255,255,255,.28) 6px 8px
-    );
+  background:repeating-linear-gradient(
+    to bottom,
+    transparent 0 5px,
+    rgba(61,89,112,.28) 5px 6px,
+    rgba(255,255,255,.28) 6px 8px
+  );
 
   pointer-events:none;
 }
 
-/* Aktive Seite */
-
-.fader-handle[
-  aria-current="page"
-]{
+.fader-handle[aria-current="page"] {
   border-color:#a2dbff;
 
   box-shadow:
@@ -832,11 +777,17 @@ a:focus-visible{
     inset 0 1px 1px #fff;
 }
 
-/* =====================================
+/* ==========================================
    CROSSFADER
-===================================== */
 
-.crossfader-section{
+   WICHTIG:
+   KORREKTE CSS-SELEKTOREN.
+
+   SCHIEBESCHIENE UND GRIFF
+   WERDEN WIEDER SICHTBAR.
+========================================== */
+
+.crossfader-section {
   position:absolute;
 
   left:50%;
@@ -845,14 +796,10 @@ a:focus-visible{
   width:80%;
   max-width:460px;
 
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 }
 
-/* SINGLE, SLIDE ME UND ALBUM
-   EXAKT AUF EINER LINIE */
-
-.crossfader-labels{
+.crossfader-labels {
   display:grid;
 
   grid-template-columns:
@@ -864,26 +811,24 @@ a:focus-visible{
 
   margin-bottom:4px;
 
-  font-family:
-    Michroma,Arial,sans-serif;
+  font-family:Michroma,Arial,sans-serif;
 
   font-size:8px;
-
   letter-spacing:1px;
   line-height:1;
 
   color:#9cb2c7;
 }
 
-#singleLabel{
+#singleLabel {
   justify-self:start;
 }
 
-#albumLabel{
+#albumLabel {
   justify-self:end;
 }
 
-.crossfader-labels .active{
+.crossfader-labels .active {
   color:#e2f6ff;
 
   text-shadow:
@@ -892,16 +837,14 @@ a:focus-visible{
     0 0 14px #6bc5ff;
 }
 
-.slide-me{
+.slide-me {
   justify-self:center;
 
   color:#c9eaff;
 
-  font-family:
-    Michroma,Arial,sans-serif;
+  font-family:Michroma,Arial,sans-serif;
 
   font-size:7px;
-
   letter-spacing:1px;
 
   white-space:nowrap;
@@ -914,15 +857,13 @@ a:focus-visible{
     slidePulse 2s ease-in-out infinite;
 }
 
-@keyframes slidePulse{
-  0%,100%{
+@keyframes slidePulse {
+  0%,100% {
     opacity:.5;
-
-    text-shadow:
-      0 0 3px #82d2ff;
+    text-shadow:0 0 3px #82d2ff;
   }
 
-  50%{
+  50% {
     opacity:1;
 
     text-shadow:
@@ -932,7 +873,9 @@ a:focus-visible{
   }
 }
 
-.crossfader-slider{
+/* Vollständige Crossfader-Schiene */
+
+.crossfader-slider {
   display:block;
 
   width:100%;
@@ -949,8 +892,7 @@ a:focus-visible{
   touch-action:pan-y;
 }
 
-.crossfader-slider
-::-webkit-slider-runnable-track{
+.crossfader-slider::-webkit-slider-runnable-track {
   height:7px;
 
   border:1px solid #51677b;
@@ -963,8 +905,7 @@ a:focus-visible{
     0 1px 1px #7a8ca0;
 }
 
-.crossfader-slider
-::-webkit-slider-thumb{
+.crossfader-slider::-webkit-slider-thumb {
   appearance:none;
   -webkit-appearance:none;
 
@@ -976,28 +917,25 @@ a:focus-visible{
   border:1px solid #e5edf4;
   border-radius:3px;
 
-  background:
-    linear-gradient(
-      #eff4f8,
-      #aebfd0 48%,
-      #71879d
-    );
+  background:linear-gradient(
+    #eff4f8,
+    #aebfd0 48%,
+    #71879d
+  );
 
   box-shadow:
     0 3px 5px #000,
     inset 0 1px 1px #fff;
 }
 
-.crossfader-slider
-::-moz-range-track{
+.crossfader-slider::-moz-range-track {
   height:7px;
 
   border-radius:5px;
   background:#090f17;
 }
 
-.crossfader-slider
-::-moz-range-thumb{
+.crossfader-slider::-moz-range-thumb {
   width:38px;
   height:18px;
 
@@ -1007,11 +945,10 @@ a:focus-visible{
   background:#aebfd0;
 }
 
-.crossfader-title{
+.crossfader-title {
   display:block;
 
-  font-family:
-    Michroma,Arial,sans-serif;
+  font-family:Michroma,Arial,sans-serif;
 
   font-size:7px;
   letter-spacing:1px;
@@ -1021,29 +958,29 @@ a:focus-visible{
   text-align:center;
 }
 
-/* =====================================
-   LED-ANZEIGE
+/* ==========================================
+   LED-LICHTLAUFLEISTE
 
-   IST TEIL DER SKALIERBAREN
-   GESAMTANLAGE.
-===================================== */
+   EBENFALLS IM MASTER-CONTAINER.
 
-.led-display-wrap{
+   ABSTAND ZU DEN GERÄTEN BLEIBT
+   BEI JEDER SKALIERUNG PROPORTIONAL.
+========================================== */
+
+.led-display-wrap {
   width:1360px;
 
   margin:12px 0 0;
 }
 
-.led-display{
+.led-display {
   width:100%;
 
   padding:8px 12px;
 
   overflow:hidden;
 
-  border:
-    1px solid rgba(170,210,250,.55);
-
+  border:1px solid rgba(170,210,250,.55);
   border-radius:10px;
 
   background:
@@ -1060,7 +997,7 @@ a:focus-visible{
     0 0 15px rgba(110,185,255,.14);
 }
 
-.led-canvas{
+.led-canvas {
   display:block;
 
   width:100%;
@@ -1072,23 +1009,23 @@ a:focus-visible{
   background:#07111b;
 }
 
-/* =====================================
-   MUSIKCOVER
-===================================== */
+/* ==========================================
+   SONGGALERIE
+========================================== */
 
-.content{
+.content {
   max-width:1400px;
 
   margin:0 auto;
 
   padding:14px 24px 75px;
 
-  background:var(--bg);
+  background:var(--background);
 
   text-align:center;
 }
 
-.gallery{
+.gallery {
   display:flex;
 
   flex-wrap:wrap;
@@ -1097,7 +1034,7 @@ a:focus-visible{
   gap:24px;
 }
 
-.music-card{
+.music-card {
   width:min(220px,100%);
   min-width:180px;
 
@@ -1111,28 +1048,27 @@ a:focus-visible{
   transition:transform .2s;
 }
 
-.music-card:hover{
+.music-card:hover {
   transform:translateY(-4px);
 }
 
-.cover-button{
+.cover-button {
   display:block;
 
   width:100%;
   padding:0;
 
   border:0;
-
   background:none;
 
   cursor:pointer;
 }
 
-.cover-button:disabled{
+.cover-button:disabled {
   cursor:default;
 }
 
-.cover{
+.cover {
   display:block;
 
   width:100%;
@@ -1142,11 +1078,10 @@ a:focus-visible{
   object-fit:cover;
 
   background:#090d13;
-
   border-radius:7px;
 }
 
-.track-title{
+.track-title {
   margin:14px 0 5px;
 
   font-size:14px;
@@ -1155,23 +1090,21 @@ a:focus-visible{
   line-height:1.5;
 }
 
-.track-version{
+.track-version {
   margin-bottom:8px;
 
   color:#9bafc5;
-
   font-size:12px;
 }
 
-.track-date{
+.track-date {
   margin-bottom:10px;
 
   color:#8197ae;
-
   font-size:11px;
 }
 
-.music-links{
+.music-links {
   display:flex;
 
   justify-content:center;
@@ -1182,7 +1115,7 @@ a:focus-visible{
   margin-top:12px;
 }
 
-.music-links a{
+.music-links a {
   padding:8px 10px;
 
   background:#293d53;
@@ -1192,15 +1125,14 @@ a:focus-visible{
   color:#d6e9fc;
 
   text-decoration:none;
-
   font-size:11px;
 }
 
-.music-links a:hover{
+.music-links a:hover {
   background:#405c78;
 }
 
-.empty-message{
+.empty-message {
   width:min(420px,100%);
 
   padding:38px 18px;
@@ -1213,7 +1145,7 @@ a:focus-visible{
   color:#aebfd2;
 }
 
-.more-button{
+.more-button {
   margin-top:35px;
 
   padding:13px 22px;
@@ -1225,23 +1157,21 @@ a:focus-visible{
 
   color:white;
 
-  font-family:
-    Michroma,Arial,sans-serif;
-
+  font-family:Michroma,Arial,sans-serif;
   font-size:10px;
 
   cursor:pointer;
 }
 
-.more-button[hidden]{
+.more-button[hidden] {
   display:none;
 }
 
-/* =====================================
-   YOUTUBE-VIDEOFENSTER
-===================================== */
+/* ==========================================
+   YOUTUBE-FENSTER
+========================================== */
 
-.video-modal{
+.video-modal {
   display:none;
 
   position:fixed;
@@ -1257,131 +1187,98 @@ a:focus-visible{
   justify-content:center;
 }
 
-.video-modal.open{
+.video-modal.open {
   display:flex;
 }
 
-.video-window{
+.video-window {
   position:relative;
-
   width:min(900px,100%);
 }
 
-.video-frame{
+.video-frame {
   width:100%;
-
-  aspect-ratio:16/9;
+  aspect-ratio:16 / 9;
 
   border:0;
-
   background:black;
 }
 
-.close-video{
+.close-video {
   position:absolute;
 
   right:0;
   top:-48px;
 
   border:0;
-
   background:none;
 
   color:white;
-
   font-size:34px;
 
   cursor:pointer;
 }
 
-footer{
+footer {
   padding:30px 15px 35px;
 
-  background:var(--bg);
+  background:var(--background);
 
   color:#7d91a7;
 
   text-align:center;
-
   font-size:12px;
 }
 
-/* =====================================
-   KLEINERE BILDSCHIRME
+/* ==========================================
+   SMARTPHONE
 
-   WICHTIG:
+   KEIN UMBRECHEN DER DJ-ANLAGE.
 
-   KEINE Media Query verändert
-   die Größenverhältnisse der
-   DJ-Geräte.
+   KEINE INDIVIDUELLE ÄNDERUNG
+   VON BREITE ODER HÖHE DER GERÄTE.
 
-   Es gibt absichtlich KEIN
-   zweizeiliges Turntable-Layout.
+   ALLES WIRD ÜBER DEN
+   MASTER-CONTAINER SKALIERT.
+========================================== */
 
-   Die gesamte DJ-Anlage wird
-   stattdessen einheitlich skaliert.
-===================================== */
+@media(max-width:700px) {
 
-@media(max-width:700px){
-
-  .music-composition{
-    height:clamp(
-      100px,
-      28vw,
-      178px
-    );
-  }
-
-  .music-heading{
-    top:12px;
-
-    width:94%;
-  }
-
-  .skyline{
-    bottom:-24px;
-
-    opacity:.24;
-  }
-
-  .content{
+  .content {
     padding:12px 12px 65px;
   }
 
-  .gallery{
+  .gallery {
     gap:12px;
   }
 
-  .music-card{
+  .music-card {
     width:calc(50% - 6px);
-
     min-width:150px;
 
     padding:9px;
   }
 }
 
-@media(max-width:420px){
+@media(max-width:420px) {
 
-  .music-card{
+  .music-card {
     width:100%;
   }
 }
 
-@media(
-  prefers-reduced-motion:reduce
-){
+@media(prefers-reduced-motion:reduce) {
 
-  .slide-me{
+  .slide-me {
     animation:none;
     opacity:1;
   }
 
-  .fader-handle.returning{
+  .fader-handle.returning {
     transition:none;
   }
 
-  .vinyl-record{
+  .vinyl-record {
     animation-duration:8s;
   }
 }
@@ -1391,469 +1288,433 @@ footer{
 
 <body>
 
-<section class="music-hero">
+<!-- =====================================
+     KOMPLETTER MASTER-CONTAINER
 
-  <!-- MUSIC-SCHRIFTZUG -->
+     MUSIC + SKYLINE + GENREZEILE
+     + TURNTABLES + MISCHPULT
+     + LED-LAUFLEISTE
 
-  <div class="music-composition">
+     ALLES WIRD GEMEINSAM SKALIERT.
+===================================== -->
 
-    <img
-      class="skyline"
-      src="images/frankfurt-skyline.png"
-      alt=""
-    >
-
-    <img
-      class="music-heading"
-      src="images/music-schriftzug.png"
-      alt="MUSIC – THE SOUND OF R.M.B."
-    >
-
-  </div>
-
-  <!--
-    GEMEINSAMER SKALIERBARER BEREICH
-
-    Die komplette DJ-Anlage wird
-    innerhalb der stage-shell
-    proportional skaliert.
-  -->
+<section
+  class="master-shell"
+  id="masterShell"
+>
 
   <div
-    class="stage-shell"
-    id="stageShell"
+    class="master-stage"
+    id="masterStage"
   >
 
-    <div
-      class="dj-stage"
-      id="djStage"
-    >
+    <!-- MUSIC UND FRANKFURT -->
 
-      <!-- GENREZEILE -->
+    <div class="music-composition">
+
+      <img
+        class="skyline"
+        src="images/frankfurt-skyline.png"
+        alt=""
+      >
+
+      <img
+        class="music-heading"
+        src="images/music-schriftzug.png"
+        alt="MUSIC – THE SOUND OF R.M.B."
+      >
+
+    </div>
+
+    <!-- GENREZEILE -->
+
+    <div class="genre-area">
 
       <p class="genre-line">
-
         90s Eurodance · EDM · Trance · House · Techno · Goa
-
       </p>
 
-      <!-- DREI DJ-GERÄTE -->
+    </div>
 
-      <div class="dj-setup">
+    <!-- DJ-ANLAGE -->
 
-        <!-- =====================
-             LINKER PLATTENSPIELER
-        ====================== -->
+    <div class="dj-setup">
 
-        <div
-          class="turntable single playing"
-          id="singleTurntable"
+      <!-- LINKER PLATTENSPIELER -->
+
+      <div
+        class="turntable single playing"
+        id="singleTurntable"
+      >
+
+        <img
+          class="turntable-image"
+          src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
+          alt="Bausys-tem Plattenspieler links"
         >
 
-          <img
-            class="turntable-image"
-            src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
-            alt="Bausys-tem Plattenspieler links"
-          >
-
-          <div class="vinyl-position">
-
-            <img
-              class="vinyl-record"
-              src="images/6E5C2868-0282-4435-95E7-678E8971E477.png"
-              alt="Drehende SINGLE-Schallplatte"
-            >
-
-          </div>
-
-        </div>
-
-        <!-- =====================
-             MISCHPULT
-        ====================== -->
-
-        <div class="mixer">
-
-          <div class="mixer-header">
-
-            <span>
-              R.M.B. · 5 CHANNEL DJ MIXER
-            </span>
-
-            <span class="power-indicator">
-
-              <span class="power-led">
-              </span>
-
-              POWER
-
-            </span>
-
-          </div>
-
-          <div class="mixer-panel">
-
-            <!-- LINKE DREHREGLER -->
-
-            <div class="eq-panel">
-
-              <div class="eq-column">
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    GAIN
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    HIGH
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    MID
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    BASS
-                  </span>
-                </div>
-
-              </div>
-
-              <div class="eq-column offset">
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    MIC
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    ECHO
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    FX
-                  </span>
-                </div>
-
-              </div>
-
-            </div>
-
-            <!-- MITTELTEIL -->
-
-            <div class="mixer-center">
-
-              <div
-                class="vu-meter"
-                id="vuLeft"
-                aria-hidden="true"
-              ></div>
-
-              <!-- NAVIGATIONSFADER -->
-
-              <nav
-                class="mixer-channels"
-                aria-label="DJ-Mischpult Navigation"
-              >
-
-                <!-- HOME -->
-
-                <div class="mixer-channel">
-
-                  <div class="fader-track">
-
-                    <button
-                      type="button"
-                      class="fader-handle"
-                      data-url="index.html"
-                      aria-label="HOME nach oben schieben"
-                    >
-
-                      <span class="fader-name">
-                        HOME
-                      </span>
-
-                    </button>
-
-                  </div>
-
-                </div>
-
-                <!-- MUSIC -->
-
-                <div class="mixer-channel">
-
-                  <div class="fader-track">
-
-                    <button
-                      type="button"
-                      class="fader-handle"
-                      data-url="music-test.html"
-                      aria-current="page"
-                      aria-label="MUSIC ist aktiv"
-                    >
-
-                      <span class="fader-name">
-                        MUSIC
-                      </span>
-
-                    </button>
-
-                  </div>
-
-                </div>
-
-                <!-- RELEASES -->
-
-                <div class="mixer-channel">
-
-                  <div class="fader-track">
-
-                    <button
-                      type="button"
-                      class="fader-handle"
-                      data-url="music.html"
-                      aria-label="RELEASES nach oben schieben"
-                    >
-
-                      <span class="fader-name">
-                        RELEASES
-                      </span>
-
-                    </button>
-
-                  </div>
-
-                </div>
-
-                <!-- ABOUT -->
-
-                <div class="mixer-channel">
-
-                  <div class="fader-track">
-
-                    <button
-                      type="button"
-                      class="fader-handle"
-                      data-url="about.html"
-                      aria-label="ABOUT nach oben schieben"
-                    >
-
-                      <span class="fader-name">
-                        ABOUT
-                      </span>
-
-                    </button>
-
-                  </div>
-
-                </div>
-
-                <!-- CONTACT -->
-
-                <div class="mixer-channel">
-
-                  <div class="fader-track">
-
-                    <button
-                      type="button"
-                      class="fader-handle"
-                      data-url="contact.html"
-                      aria-label="CONTACT nach oben schieben"
-                    >
-
-                      <span class="fader-name">
-                        CONTACT
-                      </span>
-
-                    </button>
-
-                  </div>
-
-                </div>
-
-              </nav>
-
-              <div
-                class="vu-meter"
-                id="vuRight"
-                aria-hidden="true"
-              ></div>
-
-            </div>
-
-            <!-- RECHTE DREHREGLER -->
-
-            <div class="eq-panel">
-
-              <div class="eq-column">
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    GAIN
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    HIGH
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    MID
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    BASS
-                  </span>
-                </div>
-
-              </div>
-
-              <div class="eq-column offset">
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    MIC
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    ECHO
-                  </span>
-                </div>
-
-                <div class="eq-unit">
-                  <span class="eq-knob"></span>
-                  <span class="eq-label">
-                    FX
-                  </span>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <!-- CROSSFADER -->
-
-          <div class="crossfader-section">
-
-            <div class="crossfader-labels">
-
-              <span
-                id="singleLabel"
-                class="active"
-              >
-                SINGLE
-              </span>
-
-              <span class="slide-me">
-                SLIDE ME
-              </span>
-
-              <span id="albumLabel">
-                ALBUM
-              </span>
-
-            </div>
-
-            <input
-              type="range"
-              class="crossfader-slider"
-              id="crossfader"
-              min="0"
-              max="100"
-              step="1"
-              value="0"
-              aria-label="Crossfader zwischen Singles und Alben"
-            >
-
-            <span class="crossfader-title">
-              CROSSFADER
-            </span>
-
-          </div>
-
-        </div>
-
-        <!-- =====================
-             RECHTER PLATTENSPIELER
-        ====================== -->
-
-        <div
-          class="turntable album"
-          id="albumTurntable"
-        >
+        <div class="vinyl-position">
 
           <img
-            class="turntable-image"
-            src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
-            alt="Bausys-tem Plattenspieler rechts"
+            class="vinyl-record"
+            src="images/6E5C2868-0282-4435-95E7-678E8971E477.png"
+            alt="Drehende SINGLES-Schallplatte"
           >
-
-          <div class="vinyl-position">
-
-            <img
-              class="vinyl-record"
-              src="images/D1EDD58D-F7A6-4A1B-B4EC-98244E93DDD1.png"
-              alt="Drehende ALBUM-Schallplatte"
-            >
-
-          </div>
 
         </div>
 
       </div>
 
-      <!-- =====================
-           LED-ANZEIGE
+      <!-- MISCHPULT -->
 
-           Ebenfalls innerhalb
-           desselben DJ-Containers.
-      ====================== -->
+      <div class="mixer">
 
-      <div class="led-display-wrap">
+        <div class="mixer-header">
 
-        <div class="led-display">
+          <span>
+            R.M.B. · 5 CHANNEL DJ MIXER
+          </span>
 
-          <canvas
-            id="ledCanvas"
-            class="led-canvas"
-            role="img"
-            aria-label="SINGLE · THE SINGLE COLLECTION"
-          ></canvas>
+          <span class="power-indicator">
+
+            <span class="power-led"></span>
+
+            POWER
+
+          </span>
 
         </div>
+
+        <div class="mixer-panel">
+
+          <!-- LINKE DREHREGLER -->
+
+          <div class="eq-panel">
+
+            <div class="eq-column">
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">GAIN</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">HIGH</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">MID</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">BASS</span>
+              </div>
+
+            </div>
+
+            <div class="eq-column offset">
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">MIC</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">ECHO</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">FX</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- MITTELTEIL -->
+
+          <div class="mixer-center">
+
+            <div
+              class="vu-meter"
+              id="vuLeft"
+              aria-hidden="true"
+            ></div>
+
+            <!-- FÜNF MENÜFADER -->
+
+            <nav
+              class="mixer-channels"
+              aria-label="DJ-Mischpult Navigation"
+            >
+
+              <!-- HOME -->
+
+              <div class="mixer-channel">
+
+                <div class="fader-track">
+
+                  <button
+                    type="button"
+                    class="fader-handle"
+                    data-url="index.html"
+                    aria-label="HOME nach oben schieben"
+                  >
+
+                    <span class="fader-name">
+                      HOME
+                    </span>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+              <!-- MUSIC -->
+
+              <div class="mixer-channel">
+
+                <div class="fader-track">
+
+                  <button
+                    type="button"
+                    class="fader-handle"
+                    data-url="music-test.html"
+                    aria-current="page"
+                    aria-label="MUSIC ist aktiv"
+                  >
+
+                    <span class="fader-name">
+                      MUSIC
+                    </span>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+              <!-- RELEASES -->
+
+              <div class="mixer-channel">
+
+                <div class="fader-track">
+
+                  <button
+                    type="button"
+                    class="fader-handle"
+                    data-url="music.html"
+                    aria-label="RELEASES nach oben schieben"
+                  >
+
+                    <span class="fader-name">
+                      RELEASES
+                    </span>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+              <!-- ABOUT -->
+
+              <div class="mixer-channel">
+
+                <div class="fader-track">
+
+                  <button
+                    type="button"
+                    class="fader-handle"
+                    data-url="about.html"
+                    aria-label="ABOUT nach oben schieben"
+                  >
+
+                    <span class="fader-name">
+                      ABOUT
+                    </span>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+              <!-- CONTACT -->
+
+              <div class="mixer-channel">
+
+                <div class="fader-track">
+
+                  <button
+                    type="button"
+                    class="fader-handle"
+                    data-url="contact.html"
+                    aria-label="CONTACT nach oben schieben"
+                  >
+
+                    <span class="fader-name">
+                      CONTACT
+                    </span>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            </nav>
+
+            <div
+              class="vu-meter"
+              id="vuRight"
+              aria-hidden="true"
+            ></div>
+
+          </div>
+
+          <!-- RECHTE DREHREGLER -->
+
+          <div class="eq-panel">
+
+            <div class="eq-column">
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">GAIN</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">HIGH</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">MID</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">BASS</span>
+              </div>
+
+            </div>
+
+            <div class="eq-column offset">
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">MIC</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">ECHO</span>
+              </div>
+
+              <div class="eq-unit">
+                <span class="eq-knob"></span>
+                <span class="eq-label">FX</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- CROSSFADER -->
+
+        <div class="crossfader-section">
+
+          <!-- EXAKT EINE ZEILE -->
+
+          <div class="crossfader-labels">
+
+            <span
+              id="singleLabel"
+              class="active"
+            >
+              SINGLE
+            </span>
+
+            <span class="slide-me">
+              SLIDE ME
+            </span>
+
+            <span id="albumLabel">
+              ALBUM
+            </span>
+
+          </div>
+
+          <!-- FUNKTIONSFÄHIGER SCHIEBEREGLER -->
+
+          <input
+            type="range"
+            class="crossfader-slider"
+            id="crossfader"
+            min="0"
+            max="100"
+            step="1"
+            value="0"
+            aria-label="Crossfader zwischen Singles und Alben"
+          >
+
+          <span class="crossfader-title">
+            CROSSFADER
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- RECHTER PLATTENSPIELER -->
+
+      <div
+        class="turntable album"
+        id="albumTurntable"
+      >
+
+        <img
+          class="turntable-image"
+          src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
+          alt="Bausys-tem Plattenspieler rechts"
+        >
+
+        <div class="vinyl-position">
+
+          <img
+            class="vinyl-record"
+            src="images/D1EDD58D-F7A6-4A1B-B4EC-98244E93DDD1.png"
+            alt="Drehende ALBUMS-Schallplatte"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- LED-LAUFLEISTE -->
+
+    <div class="led-display-wrap">
+
+      <div class="led-display">
+
+        <canvas
+          id="ledCanvas"
+          class="led-canvas"
+          role="img"
+          aria-label="SINGLE · THE SINGLE COLLECTION"
+        ></canvas>
 
       </div>
 
@@ -1863,9 +1724,9 @@ footer{
 
 </section>
 
-<!-- =====================================
-     MUSIKCOVER
-===================================== -->
+<!-- ==========================================
+     MUSIKGALERIE
+========================================== -->
 
 <main class="content">
 
@@ -1892,14 +1753,12 @@ footer{
 </main>
 
 <footer>
-
   © R.M.B. MUSIC · FRANKFURT AM MAIN
-
 </footer>
 
-<!-- =====================================
-     YOUTUBE-FENSTER
-===================================== -->
+<!-- ==========================================
+     YOUTUBE-VIDEOFENSTER
+========================================== -->
 
 <div
   class="video-modal"
@@ -1931,144 +1790,127 @@ footer{
 
 <script>
 
-/* =====================================
-   PROPORTIONALE SKALIERUNG
+/* ==========================================
+   MASTER-SKALIERUNG
 
-   DIE WICHTIGSTE NEUE FUNKTION
+   ALLE OBEREN ELEMENTE HABEN
+   DIESELBE GRÖSSENÄNDERUNG.
 
-   Ausgangsbreite: 1360 Pixel.
+   BEISPIEL:
 
-   Beispiel:
+   1360px = 100%
+   1020px = 75%
+    680px = 50%
+    340px = 25%
 
-   verfügbare Breite = 680px
+   BREITE UND HÖHE ÄNDERN SICH
+   IMMER MIT DEMSELBEN FAKTOR.
 
-   680 / 1360 = 0,5
+   AUCH ALLE ABSTÄNDE BLEIBEN
+   PROPORTIONAL.
+========================================== */
 
-   Ergebnis:
-   Alles wird auf 50% verkleinert.
+const MASTER_WIDTH=1360;
 
-   Breite UND Höhe:
-   derselbe Skalierungsfaktor.
-===================================== */
-
-const STAGE_BASE_WIDTH=1360;
-
-const stageShell=
+const masterShell=
   document.getElementById(
-    'stageShell'
+    'masterShell'
   );
 
-const djStage=
+const masterStage=
   document.getElementById(
-    'djStage'
+    'masterStage'
   );
 
-let stageScale=1;
+let masterScale=1;
 
-/*
-  Die Skalierung wirkt auf
-  das gesamte DJ-Layout.
+/* ==========================================
+   GRÖSSE BERECHNEN
+========================================== */
 
-  Einzelne Geräte werden
-  NICHT mehr unabhängig
-  in der Breite gestaucht.
-*/
-
-function resizeDJStage(){
+function resizeMasterStage() {
 
   const availableWidth=
-    stageShell.clientWidth;
+    masterShell.clientWidth;
 
-  if(availableWidth<=0){
+  if(availableWidth<=0) {
     return;
   }
 
-  stageScale=Math.min(
+  /*
+    Nur ein einziger Faktor.
+    Kein separates scaleX oder scaleY.
+  */
+
+  masterScale=Math.min(
     1,
-    availableWidth/STAGE_BASE_WIDTH
+    availableWidth/MASTER_WIDTH
   );
 
-  document.documentElement
-    .style.setProperty(
-      '--stage-scale',
-      String(stageScale)
-    );
+  masterStage.style.transform=
+    'scale('+masterScale+')';
 
   /*
-    CSS transform verändert
-    die optische Größe,
-    aber nicht automatisch
-    die Höhe des übergeordneten
-    Containers.
+    CSS-transform verkleinert optisch,
+    verändert aber nicht automatisch
+    die Höhe des Elterncontainers.
 
-    Daher berechnen wir
-    die Höhe ebenfalls.
+    Daher die Gesamthöhe ebenfalls
+    mit genau demselben Faktor
+    berechnen.
   */
 
   const originalHeight=
-    djStage.offsetHeight;
+    masterStage.offsetHeight;
 
-  stageShell.style.height=
+  masterShell.style.height=
     Math.ceil(
-      originalHeight*stageScale
+      originalHeight*masterScale
     )+'px';
-
 }
 
-/*
-  Änderungen der Fenstergröße,
-  iPad-Drehungen oder neue
-  Bildschirmabmessungen
-  werden automatisch erkannt.
-*/
+/* Fenstergröße und Ausrichtung */
 
 window.addEventListener(
   'resize',
-  ()=>{
-    resizeDJStage();
-  }
+  resizeMasterStage
 );
 
 window.addEventListener(
   'orientationchange',
   ()=>{
     requestAnimationFrame(
-      resizeDJStage
+      resizeMasterStage
     );
   }
 );
 
 /*
-  ResizeObserver erkennt auch,
-  wenn sich die Breite des
-  Containers unabhängig von
-  einem normalen Resize ändert.
+  Auch Änderungen der tatsächlichen
+  Containerbreite werden erkannt.
 */
 
 if(
-  typeof ResizeObserver!==
-  'undefined'
-){
+  typeof ResizeObserver!=='undefined'
+) {
 
-  const stageObserver=
+  const masterObserver=
     new ResizeObserver(
-      ()=>{
-        resizeDJStage();
-      }
+      resizeMasterStage
     );
 
-  stageObserver.observe(
-    stageShell
+  masterObserver.observe(
+    masterShell
   );
 }
 
-resizeDJStage();
+resizeMasterStage();
 
-/* =====================================
-   ALLGEMEINE HILFSFUNKTION
-===================================== */
+/* ==========================================
+   HILFSFUNKTION
+========================================== */
 
-function clamp(value,min,max){
+function clamp(value,min,max) {
 
   return Math.min(
     max,
@@ -2076,9 +1918,9 @@ function clamp(value,min,max){
   );
 }
 
-/* =====================================
-   NAVIGATIONSFADER
-===================================== */
+/* ==========================================
+   FÜNF NAVIGATIONSFADER
+========================================== */
 
 const faders=Array.from(
   document.querySelectorAll(
@@ -2095,12 +1937,9 @@ let dragging=null;
 
 let navigationStarted=false;
 
-/*
-  Maximaler Bewegungsweg
-  innerhalb der Faderschiene.
-*/
+/* Maximaler Schiebeweg */
 
-function maxTravel(handle){
+function maxTravel(handle) {
 
   const track=
     handle.parentElement;
@@ -2113,17 +1952,14 @@ function maxTravel(handle){
 }
 
 /*
-  progress = 0:
-  Fader ganz unten.
-
-  progress = 1:
-  Fader ganz oben.
+  progress 0 = ganz unten
+  progress 1 = ganz oben
 */
 
 function setFaderPosition(
   handle,
   progress
-){
+) {
 
   const distance=
     maxTravel(handle);
@@ -2132,24 +1968,19 @@ function setFaderPosition(
     (
       distance*
       (
-        1-clamp(
-          progress,
-          0,
-          1
-        )
+        1-clamp(progress,0,1)
       )
     )+'px';
 }
 
-/* =====================================
-   GRUNDSTELLUNG WIEDERHERSTELLEN
+/* ==========================================
+   GRUNDSTELLUNG
 
-   MUSIC IMMER OBEN.
+   MUSIC OBEN.
+   ALLE ANDEREN UNTEN.
+========================================== */
 
-   ALLE ANDEREN IMMER UNTEN.
-===================================== */
-
-function resetFaders(){
+function resetFaders() {
 
   dragging=null;
 
@@ -2165,13 +1996,6 @@ function resetFaders(){
       'returning'
     );
 
-    /*
-      Bei MUSIC-Test:
-      MUSIC = oben.
-
-      Alle anderen = unten.
-    */
-
     setFaderPosition(
       handle,
       handle===activeFader
@@ -2182,58 +2006,46 @@ function resetFaders(){
   });
 }
 
-/*
-  Wird eine Seite im Browser
-  zurück oder vorwärts geöffnet,
-  stellt Safari sie unter
-  Umständen aus dem Cache
-  wieder her.
+/* ==========================================
+   SAFARI ZURÜCK / VORWÄRTS
 
-  pageshow wird AUCH dann
-  ausgelöst.
-
-  Dadurch bleibt kein zuvor
-  verschobener Fader stehen.
-*/
+   KORREKTE GRUNDSTELLUNG
+   AUCH BEI ZWISCHENGESPEICHERTEN
+   SEITEN.
+========================================== */
 
 window.addEventListener(
   'pageshow',
   ()=>{
 
-    resizeDJStage();
+    resizeMasterStage();
 
     resetFaders();
 
-    /*
-      Eine erneute Korrektur
-      nach dem nächsten
-      Layout-Durchlauf.
-    */
-
     requestAnimationFrame(
       ()=>{
-        resizeDJStage();
+
+        resizeMasterStage();
+
         resetFaders();
+
       }
     );
 
   }
 );
 
-/*
-  Initial ebenfalls in
-  Grundstellung bringen.
-*/
+/* Beim normalen Start */
 
 requestAnimationFrame(
   resetFaders
 );
 
-/* =====================================
+/* ==========================================
    FADER ZURÜCKGLEITEN LASSEN
-===================================== */
+========================================== */
 
-function restoreFaders(){
+function restoreFaders() {
 
   faders.forEach(handle=>{
 
@@ -2255,29 +2067,24 @@ function restoreFaders(){
   });
 }
 
-/* =====================================
+/* ==========================================
    SEITENWECHSEL
 
    NUR AM OBEREN ANSCHLAG
-===================================== */
+========================================== */
 
-function finishNavigation(
-  handle
-){
+function finishNavigation(handle) {
 
   if(
     navigationStarted ||
     handle===activeFader
-  ){
+  ) {
     return;
   }
 
   navigationStarted=true;
 
-  setFaderPosition(
-    handle,
-    1
-  );
+  setFaderPosition(handle,1);
 
   setFaderPosition(
     activeFader,
@@ -2289,27 +2096,23 @@ function finishNavigation(
   );
 }
 
-/* =====================================
-   FADERBEWEGUNG
+/* ==========================================
+   SYNCHRONISIERTE FADERBEWEGUNG
 
-   WICHTIGE VERBESSERUNG:
+   DER SKALIERUNGSFAKTOR
+   WIRD BEIM SCHIEBEN
+   BERÜCKSICHTIGT.
 
-   Die Maus-/Fingerbewegung
-   wird durch den gemeinsamen
-   Skalierungsfaktor geteilt.
+   DAS IST BESONDERS WICHTIG
+   FÜR IPAD HOCHKANT UND HANDY.
+========================================== */
 
-   So funktioniert die
-   Schiebebewegung auch bei
-   stark verkleinerter Anlage.
-===================================== */
-
-function moveFader(event){
+function moveFader(event) {
 
   if(
     !dragging ||
-    dragging.pointerId!==
-      event.pointerId
-  ){
+    dragging.pointerId!==event.pointerId
+  ) {
     return;
   }
 
@@ -2319,20 +2122,16 @@ function moveFader(event){
   const travel=
     maxTravel(handle);
 
-  if(travel<=0){
+  if(travel<=0) {
     return;
   }
 
   /*
-    clientY wird in sichtbaren
-    Bildschirmpixeln gemessen.
+    Fingerbewegung in sichtbaren
+    Bildschirmpixeln.
 
-    Der Fader selbst verwendet
-    seine ursprünglichen
-    Layout-Koordinaten.
-
-    Daher Skalierung
-    berücksichtigen!
+    Umrechnung auf die ursprünglichen
+    1360px-Layoutkoordinaten.
   */
 
   const delta=
@@ -2340,16 +2139,11 @@ function moveFader(event){
       event.clientY-
       dragging.startY
     )/
-    Math.max(
-      stageScale,
-      .001
-    );
+    Math.max(masterScale,.001);
 
   let progress;
 
-  if(
-    handle===activeFader
-  ){
+  if(handle===activeFader) {
 
     progress=clamp(
       1-delta/travel,
@@ -2357,7 +2151,7 @@ function moveFader(event){
       1
     );
 
-  }else{
+  } else {
 
     progress=clamp(
       -delta/travel,
@@ -2372,13 +2166,11 @@ function moveFader(event){
   );
 
   /*
-    Anderer Regler steigt,
-    MUSIC sinkt synchron.
+    Inaktiver Fader geht hoch,
+    MUSIC gleichzeitig runter.
   */
 
-  if(
-    handle!==activeFader
-  ){
+  if(handle!==activeFader) {
 
     setFaderPosition(
       activeFader,
@@ -2386,14 +2178,12 @@ function moveFader(event){
     );
 
     /*
-      Nur am vollständigen
-      oberen Anschlag
-      navigieren.
+      Navigation ausschließlich
+      beim vollständigen
+      oberen Anschlag.
     */
 
-    if(
-      progress>=1
-    ){
+    if(progress>=1) {
 
       finishNavigation(
         handle
@@ -2402,17 +2192,16 @@ function moveFader(event){
   }
 }
 
-/* =====================================
+/* ==========================================
    FADER LOSLASSEN
-===================================== */
+========================================== */
 
-function releaseFader(event){
+function releaseFader(event) {
 
   if(
     !dragging ||
-    dragging.pointerId!==
-      event.pointerId
-  ){
+    dragging.pointerId!==event.pointerId
+  ) {
     return;
   }
 
@@ -2425,14 +2214,14 @@ function releaseFader(event){
     'dragging'
   );
 
-  if(!navigationStarted){
+  if(!navigationStarted) {
     restoreFaders();
   }
 }
 
-/* =====================================
+/* ==========================================
    FADER-EVENTS
-===================================== */
+========================================== */
 
 faders.forEach(handle=>{
 
@@ -2443,14 +2232,14 @@ faders.forEach(handle=>{
       if(
         navigationStarted ||
         dragging
-      ){
+      ) {
         return;
       }
 
       if(
         event.pointerType==='mouse' &&
         event.button!==0
-      ){
+      ) {
         return;
       }
 
@@ -2502,7 +2291,7 @@ faders.forEach(handle=>{
       if(
         dragging &&
         dragging.handle===handle
-      ){
+      ) {
 
         dragging=null;
 
@@ -2510,7 +2299,7 @@ faders.forEach(handle=>{
           'dragging'
         );
 
-        if(!navigationStarted){
+        if(!navigationStarted) {
           restoreFaders();
         }
       }
@@ -2518,8 +2307,8 @@ faders.forEach(handle=>{
   );
 
   /*
-    Tastaturbedienung bleibt
-    ebenfalls möglich.
+    Tastaturbedienung:
+    Enter oder Pfeil nach oben.
   */
 
   handle.addEventListener(
@@ -2532,7 +2321,7 @@ faders.forEach(handle=>{
           event.key==='Enter' ||
           event.key==='ArrowUp'
         )
-      ){
+      ) {
 
         event.preventDefault();
 
@@ -2545,16 +2334,14 @@ faders.forEach(handle=>{
 
 });
 
-/* =====================================
-   VU-METER
-===================================== */
+/* ==========================================
+   ANIMIERTE VU-METER
+========================================== */
 
-function createMeter(id){
+function createMeter(id) {
 
   const meter=
-    document.getElementById(
-      id
-    );
+    document.getElementById(id);
 
   return Array.from(
     {length:14},
@@ -2591,51 +2378,43 @@ const rightLeds=
 let leftLevel=6;
 let rightLevel=7;
 
-function animateMeters(){
+function animateMeters() {
 
-  if(document.hidden){
+  if(document.hidden) {
     return;
   }
 
   leftLevel=clamp(
     leftLevel+
-    Math.floor(
-      Math.random()*7
-    )-3,
+    Math.floor(Math.random()*7)-3,
     2,
     14
   );
 
   rightLevel=clamp(
     rightLevel+
-    Math.floor(
-      Math.random()*7
-    )-3,
+    Math.floor(Math.random()*7)-3,
     2,
     14
   );
 
-  leftLeds.forEach(
-    (led,i)=>{
+  leftLeds.forEach((led,i)=>{
 
-      led.classList.toggle(
-        'on',
-        i<leftLevel
-      );
+    led.classList.toggle(
+      'on',
+      i<leftLevel
+    );
 
-    }
-  );
+  });
 
-  rightLeds.forEach(
-    (led,i)=>{
+  rightLeds.forEach((led,i)=>{
 
-      led.classList.toggle(
-        'on',
-        i<rightLevel
-      );
+    led.classList.toggle(
+      'on',
+      i<rightLevel
+    );
 
-    }
-  );
+  });
 }
 
 animateMeters();
@@ -2645,7 +2424,7 @@ const reduceMotion=
     '(prefers-reduced-motion: reduce)'
   ).matches;
 
-if(!reduceMotion){
+if(!reduceMotion) {
 
   setInterval(
     animateMeters,
@@ -2653,9 +2432,15 @@ if(!reduceMotion){
   );
 }
 
-/* =====================================
-   CROSSFADER UND VINYLPLATTEN
-===================================== */
+/* ==========================================
+   CROSSFADER
+
+   SINGLE LINKS
+   ALBUM RECHTS
+
+   BEIDE VINYLPLATTEN WERDEN
+   DARÜBER GESTEUERT.
+========================================== */
 
 const crossfader=
   document.getElementById(
@@ -2688,17 +2473,13 @@ let allMusic=[];
 
 let visibleCount=10;
 
-/* =====================================
-   SINGLE / ALBUM UMSCHALTEN
-===================================== */
+/* ==========================================
+   KATEGORIE UMSCHALTEN
+========================================== */
 
-function chooseCategory(
-  category
-){
+function chooseCategory(category) {
 
-  if(
-    category===activeCategory
-  ){
+  if(category===activeCategory) {
     return;
   }
 
@@ -2716,13 +2497,7 @@ function chooseCategory(
     category==='album'
   );
 
-  /*
-    Bei SINGLE dreht sich
-    die linke Platte.
-
-    Bei ALBUM dreht sich
-    die rechte Platte.
-  */
+  /* Linke / rechte Vinylplatte */
 
   singleTurntable.classList.toggle(
     'playing',
@@ -2734,21 +2509,25 @@ function chooseCategory(
     category==='album'
   );
 
+  /* LED-Text */
+
   updateLEDMessage(
     category
   );
 
+  /* Musikcover */
+
   renderMusic();
 }
+
+/* Während des Schiebens */
 
 crossfader.addEventListener(
   'input',
   ()=>{
 
     chooseCategory(
-      Number(
-        crossfader.value
-      )<50
+      Number(crossfader.value)<50
         ? 'single'
         : 'album'
     );
@@ -2756,14 +2535,14 @@ crossfader.addEventListener(
   }
 );
 
+/* Beim Loslassen links/rechts einrasten */
+
 crossfader.addEventListener(
   'change',
   ()=>{
 
     const isSingle=
-      Number(
-        crossfader.value
-      )<50;
+      Number(crossfader.value)<50;
 
     crossfader.value=
       isSingle
@@ -2778,9 +2557,9 @@ crossfader.addEventListener(
   }
 );
 
-/* =====================================
+/* ==========================================
    LED-PUNKTMATRIX
-===================================== */
+========================================== */
 
 const ledCanvas=
   document.getElementById(
@@ -2790,208 +2569,108 @@ const ledCanvas=
 const ctx=
   ledCanvas.getContext('2d');
 
+/*
+  5 x 7 Punktschrift.
+*/
+
 const FONT={
 
   A:[
-    '01110',
-    '10001',
-    '10001',
-    '11111',
-    '10001',
-    '10001',
-    '10001'
+    '01110','10001','10001',
+    '11111','10001','10001','10001'
   ],
 
   B:[
-    '11110',
-    '10001',
-    '10001',
-    '11110',
-    '10001',
-    '10001',
-    '11110'
+    '11110','10001','10001',
+    '11110','10001','10001','11110'
   ],
 
   C:[
-    '01111',
-    '10000',
-    '10000',
-    '10000',
-    '10000',
-    '10000',
-    '01111'
+    '01111','10000','10000',
+    '10000','10000','10000','01111'
   ],
 
   D:[
-    '11110',
-    '10001',
-    '10001',
-    '10001',
-    '10001',
-    '10001',
-    '11110'
+    '11110','10001','10001',
+    '10001','10001','10001','11110'
   ],
 
   E:[
-    '11111',
-    '10000',
-    '10000',
-    '11110',
-    '10000',
-    '10000',
-    '11111'
+    '11111','10000','10000',
+    '11110','10000','10000','11111'
   ],
 
   G:[
-    '01111',
-    '10000',
-    '10000',
-    '10111',
-    '10001',
-    '10001',
-    '01111'
+    '01111','10000','10000',
+    '10111','10001','10001','01111'
   ],
 
   H:[
-    '10001',
-    '10001',
-    '10001',
-    '11111',
-    '10001',
-    '10001',
-    '10001'
+    '10001','10001','10001',
+    '11111','10001','10001','10001'
   ],
 
   I:[
-    '11111',
-    '00100',
-    '00100',
-    '00100',
-    '00100',
-    '00100',
-    '11111'
+    '11111','00100','00100',
+    '00100','00100','00100','11111'
   ],
 
   L:[
-    '10000',
-    '10000',
-    '10000',
-    '10000',
-    '10000',
-    '10000',
-    '11111'
+    '10000','10000','10000',
+    '10000','10000','10000','11111'
   ],
 
   M:[
-    '10001',
-    '11011',
-    '10101',
-    '10101',
-    '10001',
-    '10001',
-    '10001'
+    '10001','11011','10101',
+    '10101','10001','10001','10001'
   ],
 
   N:[
-    '10001',
-    '11001',
-    '10101',
-    '10011',
-    '10001',
-    '10001',
-    '10001'
+    '10001','11001','10101',
+    '10011','10001','10001','10001'
   ],
 
   O:[
-    '01110',
-    '10001',
-    '10001',
-    '10001',
-    '10001',
-    '10001',
-    '01110'
+    '01110','10001','10001',
+    '10001','10001','10001','01110'
   ],
 
   P:[
-    '11110',
-    '10001',
-    '10001',
-    '11110',
-    '10000',
-    '10000',
-    '10000'
+    '11110','10001','10001',
+    '11110','10000','10000','10000'
   ],
 
   R:[
-    '11110',
-    '10001',
-    '10001',
-    '11110',
-    '10100',
-    '10010',
-    '10001'
+    '11110','10001','10001',
+    '11110','10100','10010','10001'
   ],
 
   S:[
-    '01111',
-    '10000',
-    '10000',
-    '01110',
-    '00001',
-    '00001',
-    '11110'
+    '01111','10000','10000',
+    '01110','00001','00001','11110'
   ],
 
   T:[
-    '11111',
-    '00100',
-    '00100',
-    '00100',
-    '00100',
-    '00100',
-    '00100'
+    '11111','00100','00100',
+    '00100','00100','00100','00100'
   ],
 
   U:[
-    '10001',
-    '10001',
-    '10001',
-    '10001',
-    '10001',
-    '10001',
-    '01110'
+    '10001','10001','10001',
+    '10001','10001','10001','01110'
   ],
 
   Y:[
-    '10001',
-    '10001',
-    '01010',
-    '00100',
-    '00100',
-    '00100',
-    '00100'
+    '10001','10001','01010',
+    '00100','00100','00100','00100'
   ],
 
-  ' ':[
-    '00000',
-    '00000',
-    '00000',
-    '00000',
-    '00000',
-    '00000',
-    '00000'
-  ],
+  ' ':Array(7).fill('00000'),
 
   '·':[
-    '00000',
-    '00000',
-    '00100',
-    '00000',
-    '00100',
-    '00000',
-    '00000'
+    '00000','00000','00100',
+    '00000','00100','00000','00000'
   ]
-
 };
 
 let ledColumns=[];
@@ -3008,27 +2687,20 @@ let ledTextWidth=0;
 
 const LED_SPEED=80;
 
-/* =====================================
-   TEXT IN LED-SPALTEN UMWANDELN
-===================================== */
+/* ==========================================
+   TEXT IN LED-PUNKTE UMWANDELN
+========================================== */
 
-function buildLEDText(text){
+function buildLEDText(text) {
 
   const cols=[];
 
-  for(
-    const ch of text.toUpperCase()
-  ){
+  for(const ch of text.toUpperCase()) {
 
     const pattern=
-      FONT[ch]||
-      FONT[' '];
+      FONT[ch]||FONT[' '];
 
-    for(
-      let c=0;
-      c<5;
-      c++
-    ){
+    for(let c=0;c<5;c++) {
 
       cols.push(
         Array.from(
@@ -3037,7 +2709,6 @@ function buildLEDText(text){
             pattern[row][c]==='1'
         )
       );
-
     }
 
     cols.push(
@@ -3048,18 +2719,11 @@ function buildLEDText(text){
   return cols;
 }
 
-/* =====================================
-   LED-ABMESSUNGEN
+/* ==========================================
+   LED-PUNKTRASTER BERECHNEN
+========================================== */
 
-   Die Matrix bleibt intern
-   gleich groß.
-
-   Der gemeinsame DJ-Container
-   verkleinert die komplette
-   Anzeige proportional.
-===================================== */
-
-function calculateLEDLayout(){
+function calculateLEDLayout() {
 
   const width=
     ledCanvas.clientWidth;
@@ -3070,19 +2734,12 @@ function calculateLEDLayout(){
   ledPitch=Math.min(
     9.4,
     (height-16)/7,
-    Math.max(
-      1,
-      (width-24)*.75
-    )/
-    Math.max(
-      1,
-      ledColumns.length
-    )
+    Math.max(1,(width-24)*.75)/
+      Math.max(1,ledColumns.length)
   );
 
   ledTextWidth=
-    ledPitch*
-    ledColumns.length;
+    ledPitch*ledColumns.length;
 
   ledPosition=clamp(
     ledPosition,
@@ -3094,13 +2751,11 @@ function calculateLEDLayout(){
   );
 }
 
-/* =====================================
-   LED-NACHRICHT WECHSELN
-===================================== */
+/* ==========================================
+   SINGLE- / ALBUM-LED-TEXT
+========================================== */
 
-function updateLEDMessage(
-  category
-){
+function updateLEDMessage(category) {
 
   const message=
     category==='single'
@@ -3121,20 +2776,18 @@ function updateLEDMessage(
   calculateLEDLayout();
 }
 
-/* =====================================
-   CANVAS ANPASSEN
-===================================== */
+/* ==========================================
+   CANVAS AUFLÖSUNG
 
-function resizeLEDCanvas(){
+   Das Canvas behält intern seine
+   Ausgangsgröße.
 
-  /*
-    clientWidth bleibt die
-    unskalierte Layoutbreite.
+   Die gesamte sichtbare LED-Leiste
+   wird über den Master-Container
+   proportional mitskaliert.
+========================================== */
 
-    Das ist beabsichtigt,
-    denn die Skalierung
-    übernimmt der DJ-Container.
-  */
+function resizeLEDCanvas() {
 
   const width=
     ledCanvas.clientWidth;
@@ -3152,20 +2805,15 @@ function resizeLEDCanvas(){
     Math.round(height*dpr);
 
   ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
+    dpr,0,0,dpr,0,0
   );
 
   calculateLEDLayout();
 }
 
-/* =====================================
+/* ==========================================
    EINZELNE LED ZEICHNEN
-===================================== */
+========================================== */
 
 function drawDot(
   x,
@@ -3173,27 +2821,21 @@ function drawDot(
   radius,
   color,
   glow=false
-){
+) {
 
   ctx.beginPath();
 
   ctx.arc(
-    x,
-    y,
-    radius,
-    0,
-    Math.PI*2
+    x,y,radius,
+    0,Math.PI*2
   );
 
   ctx.fillStyle=color;
 
-  if(glow){
+  if(glow) {
 
     ctx.shadowBlur=
-      Math.max(
-        3,
-        ledPitch*1.1
-      );
+      Math.max(3,ledPitch*1.1);
 
     ctx.shadowColor='#65bdff';
   }
@@ -3203,11 +2845,11 @@ function drawDot(
   ctx.shadowBlur=0;
 }
 
-/* =====================================
-   LED-LAUFSCHRIFT ZEICHNEN
-===================================== */
+/* ==========================================
+   LED-LAUFSCHRIFT
+========================================== */
 
-function drawLED(time){
+function drawLED(time) {
 
   const width=
     ledCanvas.clientWidth;
@@ -3216,72 +2858,44 @@ function drawLED(time){
     ledCanvas.clientHeight;
 
   ctx.clearRect(
-    0,
-    0,
-    width,
-    height
+    0,0,width,height
   );
 
   ctx.fillStyle='#07111b';
 
   ctx.fillRect(
-    0,
-    0,
-    width,
-    height
+    0,0,width,height
   );
 
   const padding=12;
 
   const startY=
-    (
-      height-
-      7*ledPitch
-    )/2;
+    (height-7*ledPitch)/2;
 
   const radius=
-    Math.max(
-      .35,
-      ledPitch*.29
-    );
+    Math.max(.35,ledPitch*.29);
 
   const columnsVisible=
     Math.floor(
-      (
-        width-
-        2*padding
-      )/
-      ledPitch
+      (width-2*padding)/ledPitch
     );
 
-  /* Alle inaktiven Punkte */
+  /* Alle ausgeschalteten Punkte */
 
-  for(
-    let c=0;
-    c<=columnsVisible;
-    c++
-  ){
+  for(let c=0;c<=columnsVisible;c++) {
 
     const x=
-      padding+
-      (c+.5)*ledPitch;
+      padding+(c+.5)*ledPitch;
 
-    if(
-      x>width-padding
-    ){
+    if(x>width-padding) {
       break;
     }
 
-    for(
-      let row=0;
-      row<7;
-      row++
-    ){
+    for(let row=0;row<7;row++) {
 
       drawDot(
         x,
-        startY+
-          (row+.5)*ledPitch,
+        startY+(row+.5)*ledPitch,
         radius,
         'rgba(125,165,205,.15)'
       );
@@ -3295,11 +2909,7 @@ function drawLED(time){
       ledPosition/ledPitch
     );
 
-  for(
-    let c=0;
-    c<ledColumns.length;
-    c++
-  ){
+  for(let c=0;c<ledColumns.length;c++) {
 
     const displayColumn=
       startColumn+c;
@@ -3307,36 +2917,25 @@ function drawLED(time){
     if(
       displayColumn<0 ||
       displayColumn>columnsVisible
-    ){
+    ) {
       continue;
     }
 
     const x=
       padding+
-      (
-        displayColumn+.5
-      )*ledPitch;
+      (displayColumn+.5)*ledPitch;
 
-    if(
-      x>width-padding
-    ){
+    if(x>width-padding) {
       continue;
     }
 
-    for(
-      let row=0;
-      row<7;
-      row++
-    ){
+    for(let row=0;row<7;row++) {
 
-      if(
-        ledColumns[c][row]
-      ){
+      if(ledColumns[c][row]) {
 
         drawDot(
           x,
-          startY+
-            (row+.5)*ledPitch,
+          startY+(row+.5)*ledPitch,
           radius,
           '#d9f2ff',
           true
@@ -3345,28 +2944,23 @@ function drawLED(time){
     }
   }
 
-  /* Links-rechts-Pendeln */
+  /* Text pendelt links/rechts */
 
   if(
     !reduceMotion &&
     !document.hidden &&
     ledLastTime
-  ){
+  ) {
 
     const delta=Math.min(
       .05,
-      (
-        time-
-        ledLastTime
-      )/1000
+      (time-ledLastTime)/1000
     );
 
     const maxPosition=
       Math.max(
         0,
-        width-
-        24-
-        ledTextWidth
+        width-24-ledTextWidth
       );
 
     ledPosition+=
@@ -3374,17 +2968,13 @@ function drawLED(time){
       delta*
       ledDirection;
 
-    if(
-      ledPosition>=maxPosition
-    ){
+    if(ledPosition>=maxPosition) {
 
       ledPosition=maxPosition;
       ledDirection=-1;
     }
 
-    if(
-      ledPosition<=0
-    ){
+    if(ledPosition<=0) {
 
       ledPosition=0;
       ledDirection=1;
@@ -3398,9 +2988,9 @@ function drawLED(time){
   );
 }
 
-updateLEDMessage(
-  'single'
-);
+/* LED-Anzeige starten */
+
+updateLEDMessage('single');
 
 resizeLEDCanvas();
 
@@ -3408,9 +2998,15 @@ requestAnimationFrame(
   drawLED
 );
 
-/* =====================================
-   SONGDATEN UND MUSIKGALERIE
-===================================== */
+/*
+  Bei einer reinen Master-Skalierung
+  ist kein zusätzliches Stauchen
+  der LED-Matrix erforderlich.
+*/
+
+/* ==========================================
+   MUSIKGALERIE
+========================================== */
 
 const gallery=
   document.getElementById(
@@ -3437,45 +3033,23 @@ const closeVideo=
     'closeVideo'
   );
 
-/* Sichere HTML-Texte */
+/* HTML-Sonderzeichen */
 
-function escapeHTML(value){
+function escapeHTML(value) {
 
-  return String(
-    value??''
-  )
-
-  .replace(
-    /&/g,
-    '&amp;'
-  )
-
-  .replace(
-    /</g,
-    '&lt;'
-  )
-
-  .replace(
-    />/g,
-    '&gt;'
-  )
-
-  .replace(
-    /"/g,
-    '&quot;'
-  )
-
-  .replace(
-    /'/g,
-    '&#039;'
-  );
+  return String(value??'')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
 }
 
 /* Links prüfen */
 
-function safeURL(value){
+function safeURL(value) {
 
-  try{
+  try {
 
     const url=new URL(
       value,
@@ -3485,37 +3059,30 @@ function safeURL(value){
     return [
       'https:',
       'http:'
-    ].includes(
-      url.protocol
-    )
+    ].includes(url.protocol)
       ? url.href
       : '';
 
-  }catch{
+  } catch {
 
     return '';
   }
 }
 
-/* Datum formatieren */
+/* Datum */
 
-function formatDate(value){
+function formatDate(value) {
 
-  if(!value){
+  if(!value) {
     return '';
   }
 
   const date=new Date(
-    String(value).slice(
-      0,
-      10
-    )+
+    String(value).slice(0,10)+
     'T12:00:00'
   );
 
-  return isNaN(
-    date.getTime()
-  )
+  return isNaN(date.getTime())
     ? ''
     : date.toLocaleDateString(
         'de-DE',
@@ -3527,11 +3094,11 @@ function formatDate(value){
       );
 }
 
-/* Musikkategorie */
+/* Single oder Album */
 
-function categoryOf(item){
+function categoryOf(item) {
 
-  const value=String(
+  const category=String(
     item.type||
     item.category||
     'single'
@@ -3541,32 +3108,28 @@ function categoryOf(item){
     'album',
     'albums',
     'lp'
-  ].includes(value)
+  ].includes(category)
     ? 'album'
     : 'single';
 }
 
 /* YouTube-ID */
 
-function getYoutubeId(item){
+function getYoutubeId(item) {
 
   const value=String(
     item.youtube||''
   ).trim();
 
   if(
-    /^[A-Za-z0-9_-]{11}$/.test(
-      value
-    )
-  ){
+    /^[A-Za-z0-9_-]{11}$/.test(value)
+  ) {
     return value;
   }
 
-  try{
+  try {
 
-    const url=new URL(
-      value
-    );
+    const url=new URL(value);
 
     const host=
       url.hostname.toLowerCase();
@@ -3576,12 +3139,11 @@ function getYoutubeId(item){
         'youtu.be',
         'www.youtu.be'
       ].includes(host)
-    ){
+    ) {
 
       return (
-        url.pathname.split(
-          '/'
-        )[1]||''
+        url.pathname.split('/')[1]||
+        ''
       );
     }
 
@@ -3591,23 +3153,18 @@ function getYoutubeId(item){
         'www.youtube.com',
         'm.youtube.com'
       ].includes(host)
-    ){
+    ) {
 
-      if(
-        url.pathname==='/watch'
-      ){
+      if(url.pathname==='/watch') {
 
         return (
-          url.searchParams.get(
-            'v'
-          )||''
+          url.searchParams.get('v')||
+          ''
         );
       }
 
       const parts=
-        url.pathname.split(
-          '/'
-        );
+        url.pathname.split('/');
 
       if(
         [
@@ -3615,26 +3172,26 @@ function getYoutubeId(item){
           'embed',
           'live'
         ].includes(parts[1])
-      ){
+      ) {
 
         return parts[2]||'';
       }
     }
 
-  }catch{}
+  } catch {}
 
   return '';
 }
 
-/* =====================================
-   YOUTUBE-FENSTER
-===================================== */
+/* ==========================================
+   YOUTUBE-VIDEOFENSTER
+========================================== */
 
-function openVideo(id){
+function openVideo(id) {
 
   if(
     !/^[A-Za-z0-9_-]{11}$/.test(id)
-  ){
+  ) {
     return;
   }
 
@@ -3648,7 +3205,7 @@ function openVideo(id){
   );
 }
 
-function closeVideoPlayer(){
+function closeVideoPlayer() {
 
   videoModal.classList.remove(
     'open'
@@ -3666,10 +3223,7 @@ videoModal.addEventListener(
   'click',
   event=>{
 
-    if(
-      event.target===videoModal
-    ){
-
+    if(event.target===videoModal) {
       closeVideoPlayer();
     }
   }
@@ -3679,48 +3233,37 @@ document.addEventListener(
   'keydown',
   event=>{
 
-    if(
-      event.key==='Escape'
-    ){
-
+    if(event.key==='Escape') {
       closeVideoPlayer();
     }
   }
 );
 
-/* =====================================
-   SONGKARTEN DARSTELLEN
-===================================== */
+/* ==========================================
+   MUSIKKARTEN ANZEIGEN
+========================================== */
 
-function renderMusic(){
+function renderMusic() {
 
   const isSingle=
     activeCategory==='single';
 
   const items=allMusic
 
-    .filter(
-      item=>
-        categoryOf(item)===
-          activeCategory
+    .filter(item=>
+      categoryOf(item)===activeCategory
     )
 
-    .sort(
-      (a,b)=>
-        String(
-          b.releaseDate||''
-        ).localeCompare(
-          String(
-            a.releaseDate||''
-          )
+    .sort((a,b)=>
+      String(b.releaseDate||'')
+        .localeCompare(
+          String(a.releaseDate||'')
         )
     );
 
   gallery.innerHTML='';
 
-  if(
-    !items.length
-  ){
+  if(!items.length) {
 
     gallery.innerHTML=
       '<div class="empty-message">'+
@@ -3737,162 +3280,136 @@ function renderMusic(){
   }
 
   items
+    .slice(0,visibleCount)
+    .forEach(item=>{
 
-    .slice(
-      0,
-      visibleCount
-    )
+      const id=
+        getYoutubeId(item);
 
-    .forEach(
-      item=>{
+      const valid=
+        /^[A-Za-z0-9_-]{11}$/.test(id)
+          ? id
+          : '';
 
-        const id=
-          getYoutubeId(item);
+      const cover=
+        safeURL(item.cover)||
+        (
+          valid
+            ? 'https://img.youtube.com/vi/'+
+              valid+
+              '/hqdefault.jpg'
+            : ''
+        );
 
-        const valid=
-          /^[A-Za-z0-9_-]{11}$/.test(id)
-            ? id
-            : '';
+      const spotify=
+        safeURL(item.spotify);
 
-        const cover=
-          safeURL(
-            item.cover
-          )||
-          (
-            valid
-              ? 'https://img.youtube.com/vi/'+
-                valid+
-                '/hqdefault.jpg'
-              : ''
-          );
+      const amazon=
+        safeURL(item.amazon);
 
-        const spotify=
-          safeURL(
-            item.spotify
-          );
+      const date=
+        formatDate(item.releaseDate);
 
-        const amazon=
-          safeURL(
-            item.amazon
-          );
+      const card=
+        document.createElement('article');
 
-        const date=
-          formatDate(
-            item.releaseDate
-          );
+      card.className='music-card';
 
-        const card=
-          document.createElement(
-            'article'
-          );
+      card.innerHTML=`
 
-        card.className=
-          'music-card';
+        <button
+          type="button"
+          class="cover-button"
+          ${valid?'':'disabled'}
+          aria-label="Video öffnen"
+        >
 
-        card.innerHTML=`
-
-          <button
-            type="button"
-            class="cover-button"
-            ${valid?'':'disabled'}
-            aria-label="Video öffnen"
+          <img
+            class="cover"
+            src="${escapeHTML(cover)}"
+            alt="${escapeHTML(item.title||'R.M.B.')}"
+            loading="lazy"
           >
 
-            <img
-              class="cover"
-              src="${escapeHTML(cover)}"
-              alt="${escapeHTML(
-                item.title||'R.M.B.'
-              )}"
-              loading="lazy"
-            >
+        </button>
 
-          </button>
+        <div class="track-title">
+          ${escapeHTML(item.title||'R.M.B.')}
+        </div>
 
-          <div class="track-title">
-            ${escapeHTML(
-              item.title||'R.M.B.'
-            )}
-          </div>
+        <div class="track-version">
+          ${escapeHTML(item.version||'')}
+        </div>
 
-          <div class="track-version">
-            ${escapeHTML(
-              item.version||''
-            )}
-          </div>
+        ${
+          date
+            ? `
+              <div class="track-date">
+                ${escapeHTML(date)}
+              </div>
+            `
+            : ''
+        }
+
+        <div class="music-links">
 
           ${
-            date
+            valid
               ? `
-                <div class="track-date">
-                  ${escapeHTML(date)}
-                </div>
+                <a
+                  href="https://www.youtube.com/watch?v=${valid}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  YouTube
+                </a>
               `
               : ''
           }
 
-          <div class="music-links">
+          ${
+            spotify
+              ? `
+                <a
+                  href="${escapeHTML(spotify)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Spotify
+                </a>
+              `
+              : ''
+          }
 
-            ${
-              valid
-                ? `
-                  <a
-                    href="https://www.youtube.com/watch?v=${valid}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    YouTube
-                  </a>
-                `
-                : ''
-            }
+          ${
+            amazon
+              ? `
+                <a
+                  href="${escapeHTML(amazon)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Amazon
+                </a>
+              `
+              : ''
+          }
 
-            ${
-              spotify
-                ? `
-                  <a
-                    href="${escapeHTML(spotify)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Spotify
-                  </a>
-                `
-                : ''
-            }
+        </div>
+      `;
 
-            ${
-              amazon
-                ? `
-                  <a
-                    href="${escapeHTML(amazon)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Amazon
-                  </a>
-                `
-                : ''
-            }
+      if(valid) {
 
-          </div>
-        `;
-
-        if(valid){
-
-          card.querySelector(
-            '.cover-button'
-          ).addEventListener(
-            'click',
-            ()=>openVideo(valid)
-          );
-        }
-
-        gallery.appendChild(
-          card
+        card.querySelector(
+          '.cover-button'
+        ).addEventListener(
+          'click',
+          ()=>openVideo(valid)
         );
       }
-    );
+
+      gallery.appendChild(card);
+    });
 
   moreButton.hidden=
     items.length<=visibleCount;
@@ -3903,7 +3420,7 @@ function renderMusic(){
       : 'WEITERE ALBEN ANZEIGEN';
 }
 
-/* Weitere Titel */
+/* Weitere Musik anzeigen */
 
 moreButton.addEventListener(
   'click',
@@ -3915,63 +3432,53 @@ moreButton.addEventListener(
   }
 );
 
-/* =====================================
+/* ==========================================
    SONGS.JSON LADEN
-===================================== */
+========================================== */
 
 fetch('songs.json')
 
-  .then(
-    response=>{
+  .then(response=>{
 
-      if(
-        !response.ok
-      ){
+    if(!response.ok) {
 
-        throw new Error(
-          'songs.json nicht gefunden'
-        );
-      }
-
-      return response.json();
-    }
-  )
-
-  .then(
-    data=>{
-
-      allMusic=
-        Array.isArray(data)
-          ? data
-          : [];
-
-      renderMusic();
-    }
-  )
-
-  .catch(
-    error=>{
-
-      gallery.innerHTML=
-        '<div class="empty-message">'+
-        'Die Musikdaten konnten nicht geladen werden.'+
-        '</div>';
-
-      console.error(
-        error
+      throw new Error(
+        'songs.json nicht gefunden'
       );
     }
-  );
 
-/* =====================================
-   SEITE STARTEN
-===================================== */
+    return response.json();
+  })
+
+  .then(data=>{
+
+    allMusic=
+      Array.isArray(data)
+        ? data
+        : [];
+
+    renderMusic();
+  })
+
+  .catch(error=>{
+
+    gallery.innerHTML=
+      '<div class="empty-message">'+
+      'Die Musikdaten konnten nicht geladen werden.'+
+      '</div>';
+
+    console.error(error);
+  });
+
+/* ==========================================
+   ABSCHLIESSENDE INITIALISIERUNG
+========================================== */
 
 window.addEventListener(
   'load',
   ()=>{
 
-    resizeDJStage();
+    resizeMasterStage();
 
     resetFaders();
 
