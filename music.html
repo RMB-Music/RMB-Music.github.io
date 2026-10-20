@@ -1146,7 +1146,7 @@ footer {
       <!-- LINKER PLATTENSPIELER -->
 
       <div
-        class="turntable single playing"
+        class="turntable single"
         id="singleTurntable"
       >
 
@@ -1443,16 +1443,13 @@ footer {
             min="0"
             max="100"
             step="1"
-            value="0"
+            value="50"
             aria-label="Crossfader: Single, Mitte oder Album"
           >
 
           <div class="crossfader-labels">
 
-            <span
-              id="singleLabel"
-              class="active"
-            >
+            <span id="singleLabel">
               SINGLE
             </span>
 
@@ -1507,7 +1504,7 @@ footer {
           id="ledCanvas"
           class="led-canvas"
           role="img"
-          aria-label="THE SINGLE COLLECTION"
+          aria-label="THE SOUND OF R.M.B."
         ></canvas>
 
       </div>
@@ -1527,13 +1524,7 @@ footer {
   <div
     class="gallery"
     id="gallery"
-  >
-
-    <div class="empty-message">
-      Musik wird geladen ...
-    </div>
-
-  </div>
+  ></div>
 
   <button
     type="button"
@@ -1685,16 +1676,7 @@ let dragging=null;
 let navigationStarted=false;
 
 /* ====================================
-   NEU: DYNAMISCHER KANAL-FARBWECHSEL
-
-   Der gerade hochgeschobene Kanal
-   bekommt die bisherige grüne
-   Leuchtfarbe.
-
-   Alle anderen Kanalnamen leuchten
-   wie bisher rot.
-
-   Das CSS selbst bleibt unverändert.
+   DYNAMISCHER KANAL-FARBWECHSEL
 ==================================== */
 
 function setActiveChannel(handle) {
@@ -1747,8 +1729,6 @@ function resetFaders() {
   dragging=null;
   navigationStarted=false;
 
-  /* MUSIC wieder grün */
-
   setActiveChannel(activeFader);
 
   faders.forEach(handle=>{
@@ -1785,9 +1765,6 @@ requestAnimationFrame(resetFaders);
 
 /* ====================================
    VORZEITIG LOSGELASSEN
-
-   Die Fader fahren wie bisher zurück.
-   MUSIC bekommt wieder Grün.
 ==================================== */
 
 function restoreFaders() {
@@ -1821,8 +1798,6 @@ function finishNavigation(handle) {
   }
 
   navigationStarted=true;
-
-  /* Der gewählte Kanal bleibt grün */
 
   setActiveChannel(handle);
 
@@ -1876,16 +1851,6 @@ function moveFader(event) {
       activeFader,
       1-progress
     );
-
-    /* ====================================
-       NEU: SOFORTIGER FARBWECHSEL
-
-       Sobald der andere Fader
-       nach oben bewegt wird,
-       wird sein Kanalname grün.
-
-       MUSIC wird gleichzeitig rot.
-    ==================================== */
 
     if(progress>0) {
 
@@ -2111,14 +2076,11 @@ if(!reduceMotion) {
 /* ====================================
    CROSSFADER / VINYL
 
-   DREI STELLUNGEN:
+   STARTPOSITION: MITTE (50)
 
    0   = SINGLE
    50  = MITTE / SLIDE ME
    100 = ALBUM
-
-   DIE MITTE BLEIBT DAUERHAFT
-   ALS EIGENE STELLUNG ERHALTEN.
 ==================================== */
 
 const crossfader=
@@ -2146,23 +2108,9 @@ const albumTurntable=
     'albumTurntable'
   );
 
-let activeCategory='single';
+let activeCategory='middle';
 let allMusic=[];
 let visibleCount=10;
-
-/*
-  Die Mittelzone reicht von
-  38 bis 62 Prozent.
-
-  Beim Loslassen:
-  links  -> 0
-  Mitte  -> 50
-  rechts -> 100
-
-  Dadurch rastet der Crossfader
-  in der Mitte ein, statt immer
-  an einen Rand zu springen.
-*/
 
 const CENTER_LEFT=38;
 const CENTER_RIGHT=62;
@@ -2180,8 +2128,6 @@ function chooseCategory(category) {
   activeCategory=category;
   visibleCount=10;
 
-  /* Beschriftungen */
-
   singleLabel.classList.toggle(
     'active',
     category==='single'
@@ -2192,8 +2138,6 @@ function chooseCategory(category) {
     category==='album'
   );
 
-  /* Vinylplatten */
-
   singleTurntable.classList.toggle(
     'playing',
     category==='single'
@@ -2203,17 +2147,6 @@ function chooseCategory(category) {
     'playing',
     category==='album'
   );
-
-  /*
-    In der Mittelstellung wird
-    keine Vinylplatte eingeblendet.
-
-    Die beiden darunterliegenden
-    Bausys-tem-Plattenteller
-    bleiben sichtbar.
-  */
-
-  /* LED und Musikgalerie */
 
   updateLEDMessage(category);
   renderMusic();
@@ -2238,13 +2171,6 @@ function categoryFromValue(value) {
 
 /* ====================================
    BEIM ZIEHEN
-
-   IM MITTLEREN BEREICH BLEIBT
-   DIE AUSWAHL NEUTRAL.
-
-   WÄHREND DER BEWEGUNG KANN
-   MAN TROTZDEM ZUR ANDEREN
-   SEITE WEITERSCHIEBEN.
 ==================================== */
 
 crossfader.addEventListener(
@@ -2262,11 +2188,6 @@ crossfader.addEventListener(
 
 /* ====================================
    BEIM LOSLASSEN
-
-   EXAKT AUF 0, 50 ODER 100
-   EINRASTEN.
-
-   DIE MITTE BLEIBT BEI 50!
 ==================================== */
 
 function snapCrossfader() {
@@ -2305,12 +2226,6 @@ crossfader.addEventListener(
   'change',
   snapCrossfader
 );
-
-/*
-  Auch bei Touchbedienung
-  auf dem iPad wird nach dem
-  Loslassen korrekt eingerastet.
-*/
 
 crossfader.addEventListener(
   'pointerup',
@@ -2389,9 +2304,6 @@ crossfader.addEventListener(
 
    IN DER MITTE:
    THE SOUND OF R.M.B.
-
-   ALLE BUCHSTABEN UND PUNKTE
-   WERDEN KORREKT DARGESTELLT.
 ==================================== */
 
 const ledCanvas=
@@ -2608,13 +2520,6 @@ function updateLEDMessage(category) {
       'THE ALBUM COLLECTION';
 
   } else {
-
-    /*
-      MITTELSTELLUNG
-
-      EXAKTER KÜNSTLERNAME:
-      R.M.B.
-    */
 
     message=
       'THE SOUND OF R.M.B.';
@@ -2871,7 +2776,7 @@ function drawLED(time) {
 
 /* INITIALISIERUNG LED */
 
-updateLEDMessage('single');
+updateLEDMessage('middle');
 resizeLEDCanvas();
 
 requestAnimationFrame(
@@ -3135,18 +3040,9 @@ document.addEventListener(
 
    MITTELSTELLUNG:
    KEINE SINGLES UND KEINE ALBEN.
-
-   DER PLATZ BLEIBT VORERST FREI
-   FÜR EINE SPÄTERE VIDEOFUNKTION.
 ==================================== */
 
 function renderMusic() {
-
-  /*
-    WICHTIG:
-    In der Mittelstellung
-    bleiben die Cover weg.
-  */
 
   if(
     activeCategory==='middle'
@@ -3209,13 +3105,6 @@ function renderMusic() {
           ? id
           : '';
 
-      /* ====================================
-         NEU: ALBUM-PLAYLIST ERKENNEN
-
-         Der vollständige Original-Link
-         aus songs.json bleibt erhalten.
-      ==================================== */
-
       let albumURL='';
 
       if(categoryOf(item)==='album') {
@@ -3277,13 +3166,6 @@ function renderMusic() {
         );
 
       card.className='music-card';
-
-      /* ====================================
-         NEU: ALBUM-COVER ANKLICKBAR
-
-         Bei Singles genügt die Video-ID.
-         Bei Alben genügt die Playlist-URL.
-      ==================================== */
 
       const canOpen=
         Boolean(valid||albumURL);
@@ -3381,17 +3263,6 @@ function renderMusic() {
         </div>
       `;
 
-      /* ====================================
-         NEU: YOUTUBE-PLAYLIST ÖFFNEN
-
-         ALBUM:
-         Weiterleitung zur vollständigen
-         YouTube-Playlist mit Titelliste.
-
-         SINGLE:
-         Bisheriges Videofenster bleibt.
-      ==================================== */
-
       if(albumURL) {
 
         card.querySelector(
@@ -3473,11 +3344,6 @@ fetch('songs.json')
 
   .catch(error=>{
 
-    /*
-      In der Mittelstellung
-      weiterhin nichts zeigen.
-    */
-
     if(
       activeCategory!=='middle'
     ) {
@@ -3492,6 +3358,29 @@ fetch('songs.json')
   });
 
 /* ====================================
+   STARTSTELLUNG DES CROSSFADERS
+==================================== */
+
+function initializeCrossfader() {
+
+  crossfader.value='50';
+
+  activeCategory='middle';
+  visibleCount=10;
+
+  singleLabel.classList.remove('active');
+  albumLabel.classList.remove('active');
+
+  singleTurntable.classList.remove('playing');
+  albumTurntable.classList.remove('playing');
+
+  updateLEDMessage('middle');
+  renderMusic();
+}
+
+initializeCrossfader();
+
+/* ====================================
    ABSCHLIESSENDE INITIALISIERUNG
 ==================================== */
 
@@ -3501,6 +3390,14 @@ window.addEventListener(
 
     resizeMasterStage();
     resetFaders();
+  }
+);
+
+window.addEventListener(
+  'pageshow',
+  ()=>{
+
+    initializeCrossfader();
   }
 );
 
