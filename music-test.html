@@ -53,6 +53,9 @@ a:focus-visible {
 
 /* ====================================
    GEMEINSAMER MASTER-CONTAINER
+
+   DIE GESAMTE OBERE ANLAGE
+   WIRD PROPORTIONAL SKALIERT.
 ==================================== */
 
 .master-shell {
@@ -71,7 +74,7 @@ a:focus-visible {
 }
 
 /* ====================================
-   MUSIC / SKYLINE
+   MUSIC / FRANKFURTER SKYLINE
 ==================================== */
 
 .music-composition {
@@ -189,6 +192,8 @@ a:focus-visible {
 
 /* ====================================
    VINYLPLATTEN
+
+   POSITION UND GRÖSSE UNVERÄNDERT.
 ==================================== */
 
 .vinyl-position {
@@ -230,6 +235,7 @@ a:focus-visible {
 
   animation:
     vinylRotation 2.4s linear infinite;
+
   animation-play-state:paused;
 }
 
@@ -521,7 +527,7 @@ a:focus-visible {
 }
 
 /* ====================================
-   FADERSCHIENEN
+   SENKRECHTE FADERSCHIENEN
 ==================================== */
 
 .fader-track {
@@ -535,7 +541,6 @@ a:focus-visible {
 
 .fader-track::before {
   content:"";
-
   position:absolute;
   top:0;
   bottom:0;
@@ -564,7 +569,6 @@ a:focus-visible {
   height:48px;
 
   transform:translateX(-50%);
-
   display:block;
   padding:0;
 
@@ -629,12 +633,12 @@ a:focus-visible {
 /* ====================================
    CROSSFADER
 
-   NEU:
-   CROSSFADER OBEN.
-   SINGLE - SLIDE ME - ALBUM UNTEN.
+   DIE SCHIEBESCHIENE UND DER
+   SILBERNE GRIFF BLEIBEN UNVERÄNDERT.
 
-   DIE SCHIEBESCHIENE BLEIBT
-   EXAKT AN IHRER ALTEN POSITION.
+   NEU:
+   - CROSSFADER-SCHRIFT 4 PX TIEFER
+   - DREI STABILE STELLUNGEN
 ==================================== */
 
 .crossfader-section {
@@ -649,11 +653,10 @@ a:focus-visible {
 }
 
 /* ====================================
-   OBERE ZEILE: CROSSFADER
+   CROSSFADER-BESCHRIFTUNG OBEN
 
-   DIESER SCHRIFTZUG STEHT
-   MITTIG ÜBER DEM WAGRECHTEN
-   SCHIEBEREGLER.
+   NUR DIE SCHRIFT WIRD UM
+   4 PIXEL NACH UNTEN VERSETZT.
 ==================================== */
 
 .crossfader-title {
@@ -672,12 +675,13 @@ a:focus-visible {
   color:#7f9ab1;
   text-align:center;
   white-space:nowrap;
+
+  transform:translateY(4px);
+  pointer-events:none;
 }
 
 /* ====================================
    WAGRECHTER CROSSFADER
-
-   UNVERÄNDERTE SCHIEBESCHIENE.
 ==================================== */
 
 .crossfader-slider {
@@ -742,11 +746,9 @@ a:focus-visible {
 }
 
 /* ====================================
-   UNTERE ZEILE:
+   UNTERE BESCHRIFTUNG
 
    SINGLE - SLIDE ME - ALBUM
-
-   GEMEINSAM AUF EINER LINIE.
 ==================================== */
 
 .crossfader-labels {
@@ -766,6 +768,8 @@ a:focus-visible {
 
   position:relative;
   z-index:3;
+
+  pointer-events:none;
 }
 
 #singleLabel {
@@ -776,15 +780,7 @@ a:focus-visible {
   justify-self:end;
 }
 
-/* ====================================
-   AKTIVE SINGLE-/ALBUM-FARBE
-
-   NEU:
-   MEHR HELLBLAU, WENIGER WEISS.
-
-   KRÄFTIGER BLAUER NEONSCHEIN,
-   OHNE WEISSLICH HELLER ZU WERDEN.
-==================================== */
+/* AKTIVE BESCHRIFTUNG BLAU */
 
 .crossfader-labels .active {
   color:#69baff;
@@ -796,11 +792,7 @@ a:focus-visible {
     0 0 20px rgba(24,88,205,.3);
 }
 
-/* ====================================
-   SLIDE ME
-
-   SANFTES SILBERBLAUES PULSIEREN.
-==================================== */
+/* SLIDE ME */
 
 .slide-me {
   justify-self:center;
@@ -1063,9 +1055,6 @@ footer {
 
 /* ====================================
    RESPONSIVE MUSIKGALERIE
-
-   DIE DJ-ANLAGE SELBST BLEIBT
-   EINHEITLICH PROPORTIONAL SKALIERT.
 ==================================== */
 
 @media(max-width:700px) {
@@ -1436,23 +1425,19 @@ footer {
         <!-- ====================================
              CROSSFADER
 
-             NUR DIE BEIDEN TEXTZEILEN
-             WURDEN VERTAUSCHT.
-
              OBEN: CROSSFADER
-             DARUNTER: SCHIEBEREGLER
+             MITTE: SCHIEBEREGLER
              UNTEN: SINGLE SLIDE ME ALBUM
+
+             NEU:
+             DREI STABILE POSITIONEN.
         ==================================== -->
 
         <div class="crossfader-section">
 
-          <!-- OBERE BESCHRIFTUNG -->
-
           <span class="crossfader-title">
             CROSSFADER
           </span>
-
-          <!-- UNVERÄNDERTER SCHIEBEREGLER -->
 
           <input
             type="range"
@@ -1462,10 +1447,8 @@ footer {
             max="100"
             step="1"
             value="0"
-            aria-label="Crossfader zwischen Singles und Alben"
+            aria-label="Crossfader: Single, Mitte oder Album"
           >
-
-          <!-- UNTERE BESCHRIFTUNGEN -->
 
           <div class="crossfader-labels">
 
@@ -2064,6 +2047,15 @@ if(!reduceMotion) {
 
 /* ====================================
    CROSSFADER / VINYL
+
+   DREI STELLUNGEN:
+
+   0   = SINGLE
+   50  = MITTE / SLIDE ME
+   100 = ALBUM
+
+   DIE MITTE BLEIBT DAUERHAFT
+   ALS EIGENE STELLUNG ERHALTEN.
 ==================================== */
 
 const crossfader=
@@ -2095,6 +2087,27 @@ let activeCategory='single';
 let allMusic=[];
 let visibleCount=10;
 
+/*
+  Die Mittelzone reicht von
+  38 bis 62 Prozent.
+
+  Beim Loslassen:
+  links  -> 0
+  Mitte  -> 50
+  rechts -> 100
+
+  Dadurch rastet der Crossfader
+  in der Mitte ein, statt immer
+  an einen Rand zu springen.
+*/
+
+const CENTER_LEFT=38;
+const CENTER_RIGHT=62;
+
+/* ====================================
+   KATEGORIE UND PLATTEN
+==================================== */
+
 function chooseCategory(category) {
 
   if(category===activeCategory) {
@@ -2103,6 +2116,8 @@ function chooseCategory(category) {
 
   activeCategory=category;
   visibleCount=10;
+
+  /* Beschriftungen */
 
   singleLabel.classList.toggle(
     'active',
@@ -2114,6 +2129,8 @@ function chooseCategory(category) {
     category==='album'
   );
 
+  /* Vinylplatten */
+
   singleTurntable.classList.toggle(
     'playing',
     category==='single'
@@ -2124,40 +2141,194 @@ function chooseCategory(category) {
     category==='album'
   );
 
+  /*
+    In der Mittelstellung wird
+    keine Vinylplatte eingeblendet.
+
+    Die beiden darunterliegenden
+    Bausys-tem-Plattenteller
+    bleiben sichtbar.
+  */
+
+  /* LED und Musikgalerie */
+
   updateLEDMessage(category);
   renderMusic();
 }
+
+/* ====================================
+   POSITION ZUORDNEN
+==================================== */
+
+function categoryFromValue(value) {
+
+  if(value<CENTER_LEFT) {
+    return 'single';
+  }
+
+  if(value>CENTER_RIGHT) {
+    return 'album';
+  }
+
+  return 'middle';
+}
+
+/* ====================================
+   BEIM ZIEHEN
+
+   IM MITTLEREN BEREICH BLEIBT
+   DIE AUSWAHL NEUTRAL.
+
+   WÄHREND DER BEWEGUNG KANN
+   MAN TROTZDEM ZUR ANDEREN
+   SEITE WEITERSCHIEBEN.
+==================================== */
 
 crossfader.addEventListener(
   'input',
   ()=>{
 
-    chooseCategory(
-      Number(crossfader.value)<50
-        ? 'single'
-        : 'album'
-    );
-  }
-);
-
-crossfader.addEventListener(
-  'change',
-  ()=>{
-
-    const isSingle=
-      Number(crossfader.value)<50;
-
-    crossfader.value=
-      isSingle?'0':'100';
+    const value=
+      Number(crossfader.value);
 
     chooseCategory(
-      isSingle?'single':'album'
+      categoryFromValue(value)
     );
   }
 );
 
 /* ====================================
+   BEIM LOSLASSEN
+
+   EXAKT AUF 0, 50 ODER 100
+   EINRASTEN.
+
+   DIE MITTE BLEIBT BEI 50!
+==================================== */
+
+function snapCrossfader() {
+
+  const value=
+    Number(crossfader.value);
+
+  let snappedValue;
+
+  if(value<CENTER_LEFT) {
+
+    snappedValue=0;
+
+  } else if(value>CENTER_RIGHT) {
+
+    snappedValue=100;
+
+  } else {
+
+    snappedValue=50;
+  }
+
+  crossfader.value=
+    String(snappedValue);
+
+  chooseCategory(
+    snappedValue===0
+      ? 'single'
+      : snappedValue===100
+        ? 'album'
+        : 'middle'
+  );
+}
+
+crossfader.addEventListener(
+  'change',
+  snapCrossfader
+);
+
+/*
+  Auch bei Touchbedienung
+  auf dem iPad wird nach dem
+  Loslassen korrekt eingerastet.
+*/
+
+crossfader.addEventListener(
+  'pointerup',
+  snapCrossfader
+);
+
+crossfader.addEventListener(
+  'touchend',
+  ()=>{
+    requestAnimationFrame(
+      snapCrossfader
+    );
+  },
+  {passive:true}
+);
+
+/* Tastatur */
+
+crossfader.addEventListener(
+  'keydown',
+  event=>{
+
+    if(
+      event.key==='Home' ||
+      event.key==='End'
+    ) {
+      return;
+    }
+
+    if(
+      event.key==='ArrowLeft' ||
+      event.key==='ArrowRight'
+    ) {
+
+      const current=
+        Number(crossfader.value);
+
+      const positions=[0,50,100];
+
+      let next=current;
+
+      if(event.key==='ArrowRight') {
+
+        next=
+          positions.find(
+            value=>value>current
+          )??100;
+
+      } else {
+
+        next=
+          [...positions]
+            .reverse()
+            .find(
+              value=>value<current
+            )??0;
+      }
+
+      event.preventDefault();
+
+      crossfader.value=String(next);
+
+      chooseCategory(
+        next===0
+          ? 'single'
+          : next===100
+            ? 'album'
+            : 'middle'
+      );
+    }
+  }
+);
+
+/* ====================================
    LED-PUNKTMATRIX
+
+   IN DER MITTE:
+   THE SOUND OF R.M.B.
+
+   ALLE BUCHSTABEN UND PUNKTE
+   WERDEN KORREKT DARGESTELLT.
 ==================================== */
 
 const ledCanvas=
@@ -2192,6 +2363,11 @@ const FONT={
   E:[
     '11111','10000','10000',
     '11110','10000','10000','11111'
+  ],
+
+  F:[
+    '11111','10000','10000',
+    '11110','10000','10000','10000'
   ],
 
   G:[
@@ -2264,6 +2440,11 @@ const FONT={
   '·':[
     '00000','00000','00100',
     '00000','00100','00000','00000'
+  ],
+
+  '.':[
+    '00000','00000','00000',
+    '00000','00000','01100','01100'
   ]
 };
 
@@ -2276,13 +2457,17 @@ let ledTextWidth=0;
 
 const LED_SPEED=80;
 
-/* Text in LED-Spalten */
+/* ====================================
+   LED-TEXT IN SPALTEN UMWANDELN
+==================================== */
 
 function buildLEDText(text) {
 
   const cols=[];
 
-  for(const ch of text.toUpperCase()) {
+  for(
+    const ch of text.toUpperCase()
+  ) {
 
     const pattern=
       FONT[ch]||FONT[' '];
@@ -2306,7 +2491,9 @@ function buildLEDText(text) {
   return cols;
 }
 
-/* LED-Geometrie */
+/* ====================================
+   LED-GEOMETRIE
+==================================== */
 
 function calculateLEDLayout() {
 
@@ -2316,8 +2503,14 @@ function calculateLEDLayout() {
   ledPitch=Math.min(
     9.4,
     (height-16)/7,
-    Math.max(1,(width-24)*.75)/
-      Math.max(1,ledColumns.length)
+    Math.max(
+      1,
+      (width-24)*.75
+    )/
+    Math.max(
+      1,
+      ledColumns.length
+    )
   );
 
   ledTextWidth=
@@ -2333,21 +2526,45 @@ function calculateLEDLayout() {
   );
 }
 
-/* Text umschalten */
+/* ====================================
+   LED-NACHRICHT AUSWÄHLEN
+==================================== */
 
 function updateLEDMessage(category) {
 
-  const message=
-    category==='single'
-      ? 'SINGLE · THE SINGLE COLLECTION'
-      : 'ALBUM · THE ALBUM COLLECTION';
+  let message;
+
+  if(category==='single') {
+
+    message=
+      'SINGLE · THE SINGLE COLLECTION';
+
+  } else if(category==='album') {
+
+    message=
+      'ALBUM · THE ALBUM COLLECTION';
+
+  } else {
+
+    /*
+      MITTELSTELLUNG
+
+      EXAKTER KÜNSTLERNAME:
+      R.M.B.
+    */
+
+    message=
+      'THE SOUND OF R.M.B.';
+  }
 
   ledCanvas.setAttribute(
     'aria-label',
     message
   );
 
-  ledColumns=buildLEDText(message);
+  ledColumns=buildLEDText(
+    message
+  );
 
   ledPosition=0;
   ledDirection=1;
@@ -2355,12 +2572,17 @@ function updateLEDMessage(category) {
   calculateLEDLayout();
 }
 
-/* Canvas-Auflösung */
+/* ====================================
+   CANVAS-AUFLÖSUNG
+==================================== */
 
 function resizeLEDCanvas() {
 
-  const width=ledCanvas.clientWidth;
-  const height=ledCanvas.clientHeight;
+  const width=
+    ledCanvas.clientWidth;
+
+  const height=
+    ledCanvas.clientHeight;
 
   const dpr=
     window.devicePixelRatio||1;
@@ -2378,7 +2600,9 @@ function resizeLEDCanvas() {
   calculateLEDLayout();
 }
 
-/* Einzelner LED-Punkt */
+/* ====================================
+   LED-PUNKT ZEICHNEN
+==================================== */
 
 function drawDot(
   x,y,radius,color,glow=false
@@ -2396,7 +2620,10 @@ function drawDot(
   if(glow) {
 
     ctx.shadowBlur=
-      Math.max(3,ledPitch*1.1);
+      Math.max(
+        3,
+        ledPitch*1.1
+      );
 
     ctx.shadowColor='#65bdff';
   }
@@ -2405,12 +2632,17 @@ function drawDot(
   ctx.shadowBlur=0;
 }
 
-/* LED-Anzeige */
+/* ====================================
+   LED-ANIMATION
+==================================== */
 
 function drawLED(time) {
 
-  const width=ledCanvas.clientWidth;
-  const height=ledCanvas.clientHeight;
+  const width=
+    ledCanvas.clientWidth;
+
+  const height=
+    ledCanvas.clientHeight;
 
   ctx.clearRect(
     0,0,width,height
@@ -2428,14 +2660,18 @@ function drawLED(time) {
     (height-7*ledPitch)/2;
 
   const radius=
-    Math.max(.35,ledPitch*.29);
+    Math.max(
+      .35,
+      ledPitch*.29
+    );
 
   const columnsVisible=
     Math.floor(
-      (width-2*padding)/ledPitch
+      (width-2*padding)/
+      ledPitch
     );
 
-  /* Dunkles LED-Raster */
+  /* DUNKLES RASTER */
 
   for(
     let c=0;
@@ -2444,24 +2680,30 @@ function drawLED(time) {
   ) {
 
     const x=
-      padding+(c+.5)*ledPitch;
+      padding+
+      (c+.5)*ledPitch;
 
     if(x>width-padding) {
       break;
     }
 
-    for(let row=0;row<7;row++) {
+    for(
+      let row=0;
+      row<7;
+      row++
+    ) {
 
       drawDot(
         x,
-        startY+(row+.5)*ledPitch,
+        startY+
+        (row+.5)*ledPitch,
         radius,
         'rgba(125,165,205,.15)'
       );
     }
   }
 
-  /* Helle LED-Buchstaben */
+  /* LEUCHTENDE BUCHSTABEN */
 
   const startColumn=
     Math.round(
@@ -2479,26 +2721,35 @@ function drawLED(time) {
 
     if(
       displayColumn<0 ||
-      displayColumn>columnsVisible
+      displayColumn>
+      columnsVisible
     ) {
       continue;
     }
 
     const x=
       padding+
-      (displayColumn+.5)*ledPitch;
+      (displayColumn+.5)*
+      ledPitch;
 
     if(x>width-padding) {
       continue;
     }
 
-    for(let row=0;row<7;row++) {
+    for(
+      let row=0;
+      row<7;
+      row++
+    ) {
 
-      if(ledColumns[c][row]) {
+      if(
+        ledColumns[c][row]
+      ) {
 
         drawDot(
           x,
-          startY+(row+.5)*ledPitch,
+          startY+
+          (row+.5)*ledPitch,
           radius,
           '#d9f2ff',
           true
@@ -2507,7 +2758,7 @@ function drawLED(time) {
     }
   }
 
-  /* Links-rechts-Bewegung */
+  /* HIN UND HER LAUFEN */
 
   if(
     !reduceMotion &&
@@ -2517,13 +2768,15 @@ function drawLED(time) {
 
     const delta=Math.min(
       .05,
-      (time-ledLastTime)/1000
+      (time-ledLastTime)/
+      1000
     );
 
     const maxPosition=
       Math.max(
         0,
-        width-24-ledTextWidth
+        width-24-
+        ledTextWidth
       );
 
     ledPosition+=
@@ -2531,12 +2784,16 @@ function drawLED(time) {
       delta*
       ledDirection;
 
-    if(ledPosition>=maxPosition) {
+    if(
+      ledPosition>=maxPosition
+    ) {
+
       ledPosition=maxPosition;
       ledDirection=-1;
     }
 
     if(ledPosition<=0) {
+
       ledPosition=0;
       ledDirection=1;
     }
@@ -2544,34 +2801,52 @@ function drawLED(time) {
 
   ledLastTime=time;
 
-  requestAnimationFrame(drawLED);
+  requestAnimationFrame(
+    drawLED
+  );
 }
+
+/* INITIALISIERUNG LED */
 
 updateLEDMessage('single');
 resizeLEDCanvas();
 
-requestAnimationFrame(drawLED);
+requestAnimationFrame(
+  drawLED
+);
 
 /* ====================================
    MUSIKGALERIE
 ==================================== */
 
 const gallery=
-  document.getElementById('gallery');
+  document.getElementById(
+    'gallery'
+  );
 
 const moreButton=
-  document.getElementById('moreButton');
+  document.getElementById(
+    'moreButton'
+  );
 
 const videoModal=
-  document.getElementById('videoModal');
+  document.getElementById(
+    'videoModal'
+  );
 
 const videoFrame=
-  document.getElementById('videoFrame');
+  document.getElementById(
+    'videoFrame'
+  );
 
 const closeVideo=
-  document.getElementById('closeVideo');
+  document.getElementById(
+    'closeVideo'
+  );
 
-/* HTML-Sonderzeichen */
+/* ====================================
+   HTML-SONDERZEICHEN
+==================================== */
 
 function escapeHTML(value) {
 
@@ -2583,7 +2858,9 @@ function escapeHTML(value) {
     .replace(/'/g,'&#039;');
 }
 
-/* Sichere URLs */
+/* ====================================
+   URL-PRÜFUNG
+==================================== */
 
 function safeURL(value) {
 
@@ -2604,7 +2881,9 @@ function safeURL(value) {
   }
 }
 
-/* Datum */
+/* ====================================
+   DATUM
+==================================== */
 
 function formatDate(value) {
 
@@ -2617,7 +2896,9 @@ function formatDate(value) {
     'T12:00:00'
   );
 
-  return isNaN(date.getTime())
+  return isNaN(
+    date.getTime()
+  )
     ? ''
     : date.toLocaleDateString(
         'de-DE',
@@ -2629,7 +2910,9 @@ function formatDate(value) {
       );
 }
 
-/* Musiktyp */
+/* ====================================
+   MUSIKTYP
+==================================== */
 
 function categoryOf(item) {
 
@@ -2640,13 +2923,17 @@ function categoryOf(item) {
   ).toLowerCase();
 
   return [
-    'album','albums','lp'
+    'album',
+    'albums',
+    'lp'
   ].includes(category)
     ? 'album'
     : 'single';
 }
 
-/* YouTube-ID */
+/* ====================================
+   YOUTUBE-ID
+==================================== */
 
 function getYoutubeId(item) {
 
@@ -2655,7 +2942,8 @@ function getYoutubeId(item) {
   ).trim();
 
   if(
-    /^[A-Za-z0-9_-]{11}$/.test(value)
+    /^[A-Za-z0-9_-]{11}$/
+      .test(value)
   ) {
     return value;
   }
@@ -2675,7 +2963,8 @@ function getYoutubeId(item) {
     ) {
 
       return (
-        url.pathname.split('/')[1]||''
+        url.pathname
+          .split('/')[1]||''
       );
     }
 
@@ -2687,9 +2976,13 @@ function getYoutubeId(item) {
       ].includes(host)
     ) {
 
-      if(url.pathname==='/watch') {
+      if(
+        url.pathname==='/watch'
+      ) {
+
         return (
-          url.searchParams.get('v')||''
+          url.searchParams
+            .get('v')||''
         );
       }
 
@@ -2698,9 +2991,12 @@ function getYoutubeId(item) {
 
       if(
         [
-          'shorts','embed','live'
+          'shorts',
+          'embed',
+          'live'
         ].includes(parts[1])
       ) {
+
         return parts[2]||'';
       }
     }
@@ -2717,7 +3013,8 @@ function getYoutubeId(item) {
 function openVideo(id) {
 
   if(
-    !/^[A-Za-z0-9_-]{11}$/.test(id)
+    !/^[A-Za-z0-9_-]{11}$/
+      .test(id)
   ) {
     return;
   }
@@ -2727,12 +3024,17 @@ function openVideo(id) {
     id+
     '?autoplay=1';
 
-  videoModal.classList.add('open');
+  videoModal.classList.add(
+    'open'
+  );
 }
 
 function closeVideoPlayer() {
 
-  videoModal.classList.remove('open');
+  videoModal.classList.remove(
+    'open'
+  );
+
   videoFrame.src='';
 }
 
@@ -2745,7 +3047,9 @@ videoModal.addEventListener(
   'click',
   event=>{
 
-    if(event.target===videoModal) {
+    if(
+      event.target===videoModal
+    ) {
       closeVideoPlayer();
     }
   }
@@ -2755,7 +3059,9 @@ document.addEventListener(
   'keydown',
   event=>{
 
-    if(event.key==='Escape') {
+    if(
+      event.key==='Escape'
+    ) {
       closeVideoPlayer();
     }
   }
@@ -2763,9 +3069,31 @@ document.addEventListener(
 
 /* ====================================
    MUSIKKARTEN
+
+   MITTELSTELLUNG:
+   KEINE SINGLES UND KEINE ALBEN.
+
+   DER PLATZ BLEIBT VORERST FREI
+   FÜR EINE SPÄTERE VIDEOFUNKTION.
 ==================================== */
 
 function renderMusic() {
+
+  /*
+    WICHTIG:
+    In der Mittelstellung
+    bleiben die Cover weg.
+  */
+
+  if(
+    activeCategory==='middle'
+  ) {
+
+    gallery.innerHTML='';
+    moreButton.hidden=true;
+
+    return;
+  }
 
   const isSingle=
     activeCategory==='single';
@@ -2773,14 +3101,18 @@ function renderMusic() {
   const items=allMusic
 
     .filter(item=>
-      categoryOf(item)===activeCategory
+      categoryOf(item)===
+      activeCategory
     )
 
     .sort((a,b)=>
-      String(b.releaseDate||'')
-        .localeCompare(
-          String(a.releaseDate||'')
+      String(
+        b.releaseDate||''
+      ).localeCompare(
+        String(
+          a.releaseDate||''
         )
+      )
     );
 
   gallery.innerHTML='';
@@ -2797,6 +3129,7 @@ function renderMusic() {
       '</div>';
 
     moreButton.hidden=true;
+
     return;
   }
 
@@ -2804,10 +3137,12 @@ function renderMusic() {
     .slice(0,visibleCount)
     .forEach(item=>{
 
-      const id=getYoutubeId(item);
+      const id=
+        getYoutubeId(item);
 
       const valid=
-        /^[A-Za-z0-9_-]{11}$/.test(id)
+        /^[A-Za-z0-9_-]{11}$/
+          .test(id)
           ? id
           : '';
 
@@ -2828,10 +3163,14 @@ function renderMusic() {
         safeURL(item.amazon);
 
       const date=
-        formatDate(item.releaseDate);
+        formatDate(
+          item.releaseDate
+        );
 
       const card=
-        document.createElement('article');
+        document.createElement(
+          'article'
+        );
 
       card.className='music-card';
 
@@ -2926,17 +3265,24 @@ function renderMusic() {
         );
       }
 
-      gallery.appendChild(card);
+      gallery.appendChild(
+        card
+      );
     });
 
   moreButton.hidden=
-    items.length<=visibleCount;
+    items.length<=
+    visibleCount;
 
   moreButton.textContent=
     isSingle
       ? 'WEITERE SONGS ANZEIGEN'
       : 'WEITERE ALBEN ANZEIGEN';
 }
+
+/* ====================================
+   WEITERE SONGS
+==================================== */
 
 moreButton.addEventListener(
   'click',
@@ -2956,6 +3302,7 @@ fetch('songs.json')
   .then(response=>{
 
     if(!response.ok) {
+
       throw new Error(
         'songs.json nicht gefunden'
       );
@@ -2976,10 +3323,20 @@ fetch('songs.json')
 
   .catch(error=>{
 
-    gallery.innerHTML=
-      '<div class="empty-message">'+
-      'Die Musikdaten konnten nicht geladen werden.'+
-      '</div>';
+    /*
+      In der Mittelstellung
+      weiterhin nichts zeigen.
+    */
+
+    if(
+      activeCategory!=='middle'
+    ) {
+
+      gallery.innerHTML=
+        '<div class="empty-message">'+
+        'Die Musikdaten konnten nicht geladen werden.'+
+        '</div>';
+    }
 
     console.error(error);
   });
