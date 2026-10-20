@@ -53,9 +53,17 @@ nav a {
   letter-spacing: 1px;
 }
 
-nav a:hover,
-nav a.active {
+nav a:hover {
   color: white;
+}
+
+/* AKTIVE SEITE - DAUERHAFTES SILBERWEISSES LEUCHTEN */
+nav a.active {
+  color: #ffffff;
+  text-shadow:
+    0 0 5px rgba(255,255,255,0.95),
+    0 0 10px rgba(220,235,255,0.80),
+    0 0 18px rgba(190,215,245,0.55);
 }
 
 /* HAUPTBEREICH */
@@ -263,7 +271,7 @@ footer {
 <nav aria-label="Main navigation">
   <a href="index.html">HOME</a>
   <a href="music.html">MUSIC</a>
-  <a href="releases.html">RELEASES</a>
+  <a href="upcoming.html">UPCOMING</a>
   <a class="active" href="about.html">ABOUT</a>
   <a href="contact.html">CONTACT</a>
 </nav>
