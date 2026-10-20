@@ -3,7 +3,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>R.M.B. | MUSIC TEST</title>
 
@@ -13,35 +13,34 @@
 
 <style>
 
-/* ==========================================
+/* ====================================
    GRUNDEINSTELLUNGEN
-========================================== */
+==================================== */
 
 :root {
-  --background:#101720;
+  --bg:#101720;
   --blue:#82d2ff;
-  --silver:#cbd7e3;
-  --stage-width:1360px;
+  --green:#49ff96;
+  --red:#ff636d;
 }
 
 * {
   box-sizing:border-box;
 }
 
-html {
-  background:var(--background);
+html,body {
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
 }
 
 body {
-  margin:0;
-  background:var(--background);
   color:#e7edf5;
   font-family:Arial,sans-serif;
   overflow-x:hidden;
 }
 
-button,
-input {
+button,input {
   font:inherit;
 }
 
@@ -52,115 +51,91 @@ a:focus-visible {
   outline-offset:3px;
 }
 
-/* ==========================================
-   PROPORTIONALER MASTER-CONTAINER
+/* ====================================
+   GEMEINSAMER MASTER-CONTAINER
 
-   ALLE OBEREN ELEMENTE BEFINDEN SICH
-   INNERHALB DIESES EINEN CONTAINERS.
+   1360 PIXEL GRUNDBREITE.
 
-   Grundlage:
-   1360 Pixel Breite.
+   ALLES IM CONTAINER WIRD SPÄTER
+   MIT DEM GLEICHEN FAKTOR SKALIERT:
 
-   JavaScript berechnet einen einzigen
-   Skalierungsfaktor für X UND Y.
-
-   WICHTIG:
-   Keine unterschiedlichen Prozentgrößen
-   für die einzelnen DJ-Geräte.
-========================================== */
+   - MUSIC
+   - FRANKFURTER SKYLINE
+   - GENREZEILE
+   - PLATTENSPIELER
+   - MISCHPULT
+   - LED-LEISTE
+   - SÄMTLICHE ABSTÄNDE
+==================================== */
 
 .master-shell {
   position:relative;
-
   width:98%;
   max-width:1360px;
-
   margin:0 auto;
-
-  /*
-    Ausgangshöhe der gesamten
-    Komposition:
-
-    Header      280px
-    Genre        32px
-    DJ-Geräte   260px
-    LED-Abstand  12px
-    LED-Leiste  100px
-
-    Zusammen etwa 684px.
-
-    JavaScript ermittelt zusätzlich
-    die exakte tatsächliche Höhe.
-  */
-
-  height:auto;
-  aspect-ratio:1360 / 684;
 }
 
 .master-stage {
   position:absolute;
   top:0;
   left:0;
-
   width:1360px;
-
   transform-origin:top left;
-  transform:scale(1);
-
-  will-change:transform;
 }
 
-/* ==========================================
-   MUSIC-SCHRIFTZUG UND SKYLINE
+/* ====================================
+   MUSIC / SKYLINE
 
-   BEIDE IM SELBEN KOORDINATENSYSTEM
-========================================== */
+   DER VERTIKALE ABSTAND ZUR
+   DJ-ANLAGE WURDE VERKLEINERT.
+
+   DIE AUSRICHTUNG VON SCHRIFTZUG
+   UND SKYLINE BLEIBT ERHALTEN.
+==================================== */
 
 .music-composition {
   position:relative;
-
   width:1360px;
-  height:280px;
-
-  overflow:visible;
+  height:245px;
   isolation:isolate;
 }
 
 .skyline {
   position:absolute;
-
   left:0;
-  bottom:-68px;
+
+  /*
+    Der vorherige Abstand
+    wurde um 35px verringert.
+
+    Gleichzeitig bleibt die Skyline
+    relativ zum MUSIC-Schriftzug
+    an ihrer bisherigen Position.
+  */
+
+  bottom:-103px;
 
   z-index:0;
-
   display:block;
-
   width:1360px;
   height:auto;
 
   opacity:.28;
-
   filter:brightness(0) invert(1);
-
   pointer-events:none;
 }
 
 .music-heading {
   position:absolute;
-
-  left:50%;
   top:28px;
-
+  left:50%;
   z-index:2;
 
   display:block;
-
   width:720px;
   height:auto;
 
   transform:translateX(-50%);
-
   mix-blend-mode:screen;
 
   filter:drop-shadow(
@@ -170,19 +145,12 @@ a:focus-visible {
   pointer-events:none;
 }
 
-/* ==========================================
+/* ====================================
    GENREZEILE
-
-   FEST IM MASTER-CONTAINER,
-   ABER GEMEINSAM SKALIERT.
-
-   NICHT ÜBER DEM MISCHPULT
-   ABSOLUT POSITIONIERT.
-========================================== */
+==================================== */
 
 .genre-area {
   position:relative;
-
   width:1360px;
   height:32px;
 
@@ -198,7 +166,6 @@ a:focus-visible {
 
   font-family:Michroma,Arial,sans-serif;
   font-size:11px;
-
   letter-spacing:1.4px;
   line-height:1;
 
@@ -208,82 +175,63 @@ a:focus-visible {
     0 0 8px rgba(126,200,255,.24);
 }
 
-/* ==========================================
+/* ====================================
    DJ-ANLAGE
-
-   IMMER DREI GERÄTE NEBENEINANDER.
-
-   KEIN UMBRUCH IM HOCHFORMAT.
-========================================== */
+==================================== */
 
 .dj-setup {
-  position:relative;
-
   display:grid;
 
   grid-template-columns:
-    330px
-    680px
-    330px;
+    330px 680px 330px;
 
   gap:10px;
 
   width:1360px;
   height:260px;
-
   align-items:stretch;
 }
 
-/* ==========================================
-   PLATTENSPIELER
-========================================== */
-
-.turntable,
-.mixer {
+.turntable,.mixer {
   position:relative;
 
   width:100%;
   height:260px;
 
   overflow:hidden;
-
   border-radius:6px;
 
   box-shadow:
     0 8px 20px rgba(0,0,0,.45);
 }
 
+/* ====================================
+   PLATTENSPIELER
+==================================== */
+
 .turntable {
   border:1px solid #667b91;
   background:#cbd5df;
-
   isolation:isolate;
 }
 
 .turntable-image {
   display:block;
-
   width:100%;
   height:100%;
-
   object-fit:fill;
-
   pointer-events:none;
 }
 
-/* ==========================================
-   DREHENDE VINYLPLATTEN
+/* ====================================
+   VINYLPLATTEN
 
-   Die Größen und Positionen bleiben
-   im Bezug auf das Plattenspielerbild
-   unverändert.
+   GRÖSSE UND POSITION BLEIBEN
+   UNVERÄNDERT.
 
-   Bei Verkleinerung wird der gesamte
-   Plattenspieler einschließlich Vinyl
-   mit demselben Faktor skaliert.
-
-   Kreis bleibt Kreis.
-========================================== */
+   DER MASTER-CONTAINER SKALIERT
+   BEIDES PROPORTIONAL.
+==================================== */
 
 .vinyl-position {
   position:absolute;
@@ -292,14 +240,11 @@ a:focus-visible {
   top:46.4%;
 
   width:61%;
-  height:auto;
-
   aspect-ratio:1 / 1;
 
   transform:translate(-50%,-50%);
 
   z-index:2;
-
   pointer-events:none;
 
   opacity:0;
@@ -322,9 +267,7 @@ a:focus-visible {
   height:100%;
 
   aspect-ratio:1 / 1;
-
   object-fit:contain;
-
   border-radius:50%;
 
   transform-origin:center;
@@ -353,9 +296,9 @@ a:focus-visible {
   }
 }
 
-/* ==========================================
+/* ====================================
    MISCHPULT
-========================================== */
+==================================== */
 
 .mixer {
   padding:9px 12px 7px;
@@ -383,12 +326,10 @@ a:focus-visible {
 
 .mixer-header {
   display:flex;
-
   justify-content:space-between;
   align-items:center;
 
   gap:6px;
-
   height:19px;
   margin-bottom:5px;
 
@@ -396,7 +337,6 @@ a:focus-visible {
 
   font-family:Michroma,Arial,sans-serif;
   font-size:8px;
-
   white-space:nowrap;
 }
 
@@ -413,48 +353,39 @@ a:focus-visible {
   height:7px;
 
   border-radius:50%;
-
   background:#82d2ff;
 
-  box-shadow:
-    0 0 8px #6bc5ff;
+  box-shadow:0 0 8px #6bc5ff;
 }
 
-/* ==========================================
+/* ====================================
    MISCHPULT-INNENBEREICH
-========================================== */
+==================================== */
 
 .mixer-panel {
   display:grid;
 
   grid-template-columns:
-    112px
-    minmax(0,1fr)
-    112px;
+    112px minmax(0,1fr) 112px;
 
   gap:9px;
 
   width:100%;
   height:172px;
-
   min-width:0;
 }
 
-/* ==========================================
+/* ====================================
    DREHREGLER
-========================================== */
+==================================== */
 
 .eq-panel {
   display:grid;
-
   grid-template-columns:
-    minmax(0,1fr)
-    minmax(0,1fr);
+    minmax(0,1fr) minmax(0,1fr);
 
   gap:4px;
-
   min-width:0;
-
   padding:5px 4px;
 
   border:1px solid #405265;
@@ -466,7 +397,6 @@ a:focus-visible {
 .eq-column {
   display:flex;
   flex-direction:column;
-
   justify-content:space-around;
   align-items:center;
 
@@ -482,19 +412,16 @@ a:focus-visible {
 .eq-unit {
   display:flex;
   flex-direction:column;
-
   align-items:center;
   justify-content:center;
 
   gap:3px;
-
   width:100%;
   min-height:35px;
 }
 
 .eq-knob {
   position:relative;
-
   display:block;
   flex-shrink:0;
 
@@ -521,13 +448,11 @@ a:focus-visible {
   content:"";
 
   position:absolute;
-
   left:calc(50% - 1px);
   top:0;
 
   width:2px;
   height:6px;
-
   background:#172432;
 }
 
@@ -538,27 +463,22 @@ a:focus-visible {
 
   font-family:Michroma,Arial,sans-serif;
   font-size:6px;
-
   line-height:1.2;
   text-align:center;
-
   white-space:nowrap;
 }
 
-/* ==========================================
+/* ====================================
    VU-METER
-========================================== */
+==================================== */
 
 .mixer-center {
   display:grid;
 
   grid-template-columns:
-    11px
-    minmax(0,1fr)
-    11px;
+    11px minmax(0,1fr) 11px;
 
   gap:5px;
-
   min-width:0;
   min-height:0;
 }
@@ -572,7 +492,6 @@ a:focus-visible {
 
   border:1px solid #405063;
   border-radius:3px;
-
   background:#080e14;
 }
 
@@ -581,7 +500,6 @@ a:focus-visible {
   min-height:2px;
 
   border-radius:1px;
-
   background:#14241f;
   opacity:.28;
 }
@@ -601,17 +519,15 @@ a:focus-visible {
 .vu-led.on {
   background:var(--lit);
   opacity:1;
-
   box-shadow:0 0 4px var(--lit);
 }
 
-/* ==========================================
-   FÜNF FLACHBAHNREGLER
-========================================== */
+/* ====================================
+   FÜNF NAVIGATIONSFADER
+==================================== */
 
 .mixer-channels {
   display:grid;
-
   grid-template-columns:
     repeat(5,minmax(0,1fr));
 
@@ -640,10 +556,74 @@ a:focus-visible {
   );
 }
 
+/* ====================================
+   NEUE KANALBESCHRIFTUNGEN
+
+   HOME
+   MUSIC
+   RELEASES
+   ABOUT
+   CONTACT
+
+   WAAGRECHT ÜBER JEDEM FADER.
+
+   AKTIV = GRÜN.
+   INAKTIV = ROT.
+==================================== */
+
+.channel-label {
+  position:absolute;
+
+  top:3px;
+  left:50%;
+  z-index:4;
+
+  transform:translateX(-50%);
+
+  width:max-content;
+  max-width:100%;
+
+  color:var(--red);
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:7px;
+  line-height:1.2;
+  letter-spacing:-.35px;
+
+  white-space:nowrap;
+  text-align:center;
+
+  text-shadow:
+    0 0 3px rgba(255,90,105,.75),
+    0 0 7px rgba(255,55,70,.5);
+
+  pointer-events:none;
+}
+
+.mixer-channel.active-channel
+.channel-label {
+  color:var(--green);
+
+  text-shadow:
+    0 0 3px rgba(130,255,160,.95),
+    0 0 7px rgba(60,255,140,.75),
+    0 0 12px rgba(35,230,110,.35);
+}
+
+/* ====================================
+   FADERSCHIENE
+
+   OBEN PLATZ FÜR BESCHRIFTUNG.
+   DER GRIFF BERÜHRT NICHT DEN TEXT.
+==================================== */
+
 .fader-track {
   position:absolute;
 
-  inset:4px 2px;
+  top:18px;
+  right:2px;
+  bottom:4px;
+  left:2px;
 
   min-height:0;
 }
@@ -652,13 +632,11 @@ a:focus-visible {
   content:"";
 
   position:absolute;
-
   top:0;
   bottom:0;
   left:50%;
 
   width:5px;
-
   transform:translateX(-50%);
 
   border-radius:4px;
@@ -669,9 +647,12 @@ a:focus-visible {
     0 0 1px #93a7b8;
 }
 
-/* ==========================================
-   SCHMALE FADERGRIFFE
-========================================== */
+/* ====================================
+   SILBERNE FADERGRIFFE
+
+   KEINE BESCHRIFTUNG MEHR
+   AUF DEN GRIFFEN.
+==================================== */
 
 .fader-handle {
   position:absolute;
@@ -684,12 +665,8 @@ a:focus-visible {
 
   transform:translateX(-50%);
 
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  padding:2px 0;
+  display:block;
+  padding:0;
 
   border:1px solid #e9f3fc;
   border-radius:4px;
@@ -725,35 +702,12 @@ a:focus-visible {
   transition:top .23s ease-out;
 }
 
-.fader-name {
-  position:relative;
-  z-index:3;
-
-  display:block;
-
-  writing-mode:vertical-rl;
-  text-orientation:upright;
-
-  font-family:Michroma,Arial,sans-serif;
-
-  font-size:5px;
-  font-weight:bold;
-
-  letter-spacing:-1.5px;
-  line-height:1;
-
-  white-space:nowrap;
-
-  color:#21384b;
-
-  pointer-events:none;
-}
+/* Metallrillen */
 
 .fader-handle::before {
   content:"";
 
   position:absolute;
-
   inset:4px 3px;
 
   border-radius:2px;
@@ -768,6 +722,8 @@ a:focus-visible {
   pointer-events:none;
 }
 
+/* Aktiver Griff */
+
 .fader-handle[aria-current="page"] {
   border-color:#a2dbff;
 
@@ -777,15 +733,14 @@ a:focus-visible {
     inset 0 1px 1px #fff;
 }
 
-/* ==========================================
+/* ====================================
    CROSSFADER
 
-   WICHTIG:
-   KORREKTE CSS-SELEKTOREN.
+   SINGLE / SLIDE ME / ALBUM
+   EIN PAAR PIXEL TIEFER.
 
-   SCHIEBESCHIENE UND GRIFF
-   WERDEN WIEDER SICHTBAR.
-========================================== */
+   SCHIEBESCHIENE BLEIBT ERHALTEN.
+==================================== */
 
 .crossfader-section {
   position:absolute;
@@ -809,15 +764,27 @@ a:focus-visible {
 
   min-height:17px;
 
+  /*
+    Die Beschriftungen werden
+    4 Pixel nach unten verschoben.
+
+    Die Crossfader-Schiene selbst
+    bleibt an ihrer Position.
+  */
+
+  transform:translateY(4px);
+
   margin-bottom:4px;
 
   font-family:Michroma,Arial,sans-serif;
-
   font-size:8px;
   letter-spacing:1px;
   line-height:1;
 
   color:#9cb2c7;
+
+  position:relative;
+  z-index:3;
 }
 
 #singleLabel {
@@ -843,10 +810,9 @@ a:focus-visible {
   color:#c9eaff;
 
   font-family:Michroma,Arial,sans-serif;
-
   font-size:7px;
-  letter-spacing:1px;
 
+  letter-spacing:1px;
   white-space:nowrap;
 
   text-shadow:
@@ -880,7 +846,6 @@ a:focus-visible {
 
   width:100%;
   height:20px;
-
   margin:0;
 
   appearance:none;
@@ -930,7 +895,6 @@ a:focus-visible {
 
 .crossfader-slider::-moz-range-track {
   height:7px;
-
   border-radius:5px;
   background:#090f17;
 }
@@ -949,33 +913,24 @@ a:focus-visible {
   display:block;
 
   font-family:Michroma,Arial,sans-serif;
-
   font-size:7px;
   letter-spacing:1px;
 
   color:#7f9ab1;
-
   text-align:center;
 }
 
-/* ==========================================
-   LED-LICHTLAUFLEISTE
-
-   EBENFALLS IM MASTER-CONTAINER.
-
-   ABSTAND ZU DEN GERÄTEN BLEIBT
-   BEI JEDER SKALIERUNG PROPORTIONAL.
-========================================== */
+/* ====================================
+   LED-LAUFLEISTE
+==================================== */
 
 .led-display-wrap {
   width:1360px;
-
   margin:12px 0 0;
 }
 
 .led-display {
   width:100%;
-
   padding:8px 12px;
 
   overflow:hidden;
@@ -1009,28 +964,24 @@ a:focus-visible {
   background:#07111b;
 }
 
-/* ==========================================
-   SONGGALERIE
-========================================== */
+/* ====================================
+   MUSIKGALERIE
+==================================== */
 
 .content {
   max-width:1400px;
-
   margin:0 auto;
 
   padding:14px 24px 75px;
 
-  background:var(--background);
-
+  background:var(--bg);
   text-align:center;
 }
 
 .gallery {
   display:flex;
-
   flex-wrap:wrap;
   justify-content:center;
-
   gap:24px;
 }
 
@@ -1054,13 +1005,11 @@ a:focus-visible {
 
 .cover-button {
   display:block;
-
   width:100%;
   padding:0;
 
   border:0;
   background:none;
-
   cursor:pointer;
 }
 
@@ -1072,7 +1021,6 @@ a:focus-visible {
   display:block;
 
   width:100%;
-
   aspect-ratio:1;
 
   object-fit:cover;
@@ -1086,7 +1034,6 @@ a:focus-visible {
 
   font-size:14px;
   font-weight:bold;
-
   line-height:1.5;
 }
 
@@ -1106,10 +1053,8 @@ a:focus-visible {
 
 .music-links {
   display:flex;
-
   justify-content:center;
   flex-wrap:wrap;
-
   gap:7px;
 
   margin-top:12px;
@@ -1119,11 +1064,9 @@ a:focus-visible {
   padding:8px 10px;
 
   background:#293d53;
-
   border-radius:6px;
 
   color:#d6e9fc;
-
   text-decoration:none;
   font-size:11px;
 }
@@ -1134,11 +1077,9 @@ a:focus-visible {
 
 .empty-message {
   width:min(420px,100%);
-
   padding:38px 18px;
 
   background:#1c2530;
-
   border:1px solid #304052;
   border-radius:12px;
 
@@ -1147,7 +1088,6 @@ a:focus-visible {
 
 .more-button {
   margin-top:35px;
-
   padding:13px 22px;
 
   background:#263c52;
@@ -1167,20 +1107,18 @@ a:focus-visible {
   display:none;
 }
 
-/* ==========================================
-   YOUTUBE-FENSTER
-========================================== */
+/* ====================================
+   YOUTUBE-VIDEOFENSTER
+==================================== */
 
 .video-modal {
   display:none;
 
   position:fixed;
   inset:0;
-
   z-index:1000;
 
   padding:25px;
-
   background:rgba(0,0,0,.94);
 
   align-items:center;
@@ -1215,35 +1153,27 @@ a:focus-visible {
 
   color:white;
   font-size:34px;
-
   cursor:pointer;
 }
 
 footer {
   padding:30px 15px 35px;
 
-  background:var(--background);
-
+  background:var(--bg);
   color:#7d91a7;
 
   text-align:center;
   font-size:12px;
 }
 
-/* ==========================================
-   SMARTPHONE
+/* ====================================
+   MOBILE MUSIKGALERIE
 
-   KEIN UMBRECHEN DER DJ-ANLAGE.
-
-   KEINE INDIVIDUELLE ÄNDERUNG
-   VON BREITE ODER HÖHE DER GERÄTE.
-
-   ALLES WIRD ÜBER DEN
-   MASTER-CONTAINER SKALIERT.
-========================================== */
+   DER MASTER-CONTAINER WIRD NICHT
+   UMGEBROCHEN ODER VERZERRT.
+==================================== */
 
 @media(max-width:700px) {
-
   .content {
     padding:12px 12px 65px;
   }
@@ -1255,20 +1185,17 @@ footer {
   .music-card {
     width:calc(50% - 6px);
     min-width:150px;
-
     padding:9px;
   }
 }
 
 @media(max-width:420px) {
-
   .music-card {
     width:100%;
   }
 }
 
 @media(prefers-reduced-motion:reduce) {
-
   .slide-me {
     animation:none;
     opacity:1;
@@ -1288,15 +1215,9 @@ footer {
 
 <body>
 
-<!-- =====================================
-     KOMPLETTER MASTER-CONTAINER
-
-     MUSIC + SKYLINE + GENREZEILE
-     + TURNTABLES + MISCHPULT
-     + LED-LAUFLEISTE
-
-     ALLES WIRD GEMEINSAM SKALIERT.
-===================================== -->
+<!-- ====================================
+     MASTER-CONTAINER
+==================================== -->
 
 <section
   class="master-shell"
@@ -1308,7 +1229,7 @@ footer {
     id="masterStage"
   >
 
-    <!-- MUSIC UND FRANKFURT -->
+    <!-- MUSIC UND SKYLINE -->
 
     <div class="music-composition">
 
@@ -1336,7 +1257,7 @@ footer {
 
     </div>
 
-    <!-- DJ-ANLAGE -->
+    <!-- DJ-GERÄTE -->
 
     <div class="dj-setup">
 
@@ -1376,11 +1297,8 @@ footer {
           </span>
 
           <span class="power-indicator">
-
             <span class="power-led"></span>
-
             POWER
-
           </span>
 
         </div>
@@ -1457,6 +1375,10 @@ footer {
 
               <div class="mixer-channel">
 
+                <span class="channel-label">
+                  HOME
+                </span>
+
                 <div class="fader-track">
 
                   <button
@@ -1464,13 +1386,7 @@ footer {
                     class="fader-handle"
                     data-url="index.html"
                     aria-label="HOME nach oben schieben"
-                  >
-
-                    <span class="fader-name">
-                      HOME
-                    </span>
-
-                  </button>
+                  ></button>
 
                 </div>
 
@@ -1478,7 +1394,11 @@ footer {
 
               <!-- MUSIC -->
 
-              <div class="mixer-channel">
+              <div class="mixer-channel active-channel">
+
+                <span class="channel-label">
+                  MUSIC
+                </span>
 
                 <div class="fader-track">
 
@@ -1488,13 +1408,7 @@ footer {
                     data-url="music-test.html"
                     aria-current="page"
                     aria-label="MUSIC ist aktiv"
-                  >
-
-                    <span class="fader-name">
-                      MUSIC
-                    </span>
-
-                  </button>
+                  ></button>
 
                 </div>
 
@@ -1504,6 +1418,10 @@ footer {
 
               <div class="mixer-channel">
 
+                <span class="channel-label">
+                  RELEASES
+                </span>
+
                 <div class="fader-track">
 
                   <button
@@ -1511,13 +1429,7 @@ footer {
                     class="fader-handle"
                     data-url="music.html"
                     aria-label="RELEASES nach oben schieben"
-                  >
-
-                    <span class="fader-name">
-                      RELEASES
-                    </span>
-
-                  </button>
+                  ></button>
 
                 </div>
 
@@ -1527,6 +1439,10 @@ footer {
 
               <div class="mixer-channel">
 
+                <span class="channel-label">
+                  ABOUT
+                </span>
+
                 <div class="fader-track">
 
                   <button
@@ -1534,13 +1450,7 @@ footer {
                     class="fader-handle"
                     data-url="about.html"
                     aria-label="ABOUT nach oben schieben"
-                  >
-
-                    <span class="fader-name">
-                      ABOUT
-                    </span>
-
-                  </button>
+                  ></button>
 
                 </div>
 
@@ -1550,6 +1460,10 @@ footer {
 
               <div class="mixer-channel">
 
+                <span class="channel-label">
+                  CONTACT
+                </span>
+
                 <div class="fader-track">
 
                   <button
@@ -1557,13 +1471,7 @@ footer {
                     class="fader-handle"
                     data-url="contact.html"
                     aria-label="CONTACT nach oben schieben"
-                  >
-
-                    <span class="fader-name">
-                      CONTACT
-                    </span>
-
-                  </button>
+                  ></button>
 
                 </div>
 
@@ -1634,8 +1542,6 @@ footer {
 
         <div class="crossfader-section">
 
-          <!-- EXAKT EINE ZEILE -->
-
           <div class="crossfader-labels">
 
             <span
@@ -1654,8 +1560,6 @@ footer {
             </span>
 
           </div>
-
-          <!-- FUNKTIONSFÄHIGER SCHIEBEREGLER -->
 
           <input
             type="range"
@@ -1703,7 +1607,7 @@ footer {
 
     </div>
 
-    <!-- LED-LAUFLEISTE -->
+    <!-- LED-LEISTE -->
 
     <div class="led-display-wrap">
 
@@ -1724,9 +1628,9 @@ footer {
 
 </section>
 
-<!-- ==========================================
+<!-- ====================================
      MUSIKGALERIE
-========================================== -->
+==================================== -->
 
 <main class="content">
 
@@ -1743,8 +1647,8 @@ footer {
 
   <button
     type="button"
-    id="moreButton"
     class="more-button"
+    id="moreButton"
     hidden
   >
     WEITERE SONGS ANZEIGEN
@@ -1756,9 +1660,9 @@ footer {
   © R.M.B. MUSIC · FRANKFURT AM MAIN
 </footer>
 
-<!-- ==========================================
-     YOUTUBE-VIDEOFENSTER
-========================================== -->
+<!-- ====================================
+     YOUTUBE-FENSTER
+==================================== -->
 
 <div
   class="video-modal"
@@ -1790,43 +1694,35 @@ footer {
 
 <script>
 
-/* ==========================================
-   MASTER-SKALIERUNG
+/* ====================================
+   ALLGEMEINE FUNKTIONEN
+==================================== */
 
-   ALLE OBEREN ELEMENTE HABEN
-   DIESELBE GRÖSSENÄNDERUNG.
+function clamp(value,min,max) {
+  return Math.min(
+    max,
+    Math.max(min,value)
+  );
+}
 
-   BEISPIEL:
+const reduceMotion=
+  window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
 
-   1360px = 100%
-   1020px = 75%
-    680px = 50%
-    340px = 25%
-
-   BREITE UND HÖHE ÄNDERN SICH
-   IMMER MIT DEMSELBEN FAKTOR.
-
-   AUCH ALLE ABSTÄNDE BLEIBEN
-   PROPORTIONAL.
-========================================== */
+/* ====================================
+   PROPORTIONALE MASTER-SKALIERUNG
+==================================== */
 
 const MASTER_WIDTH=1360;
 
 const masterShell=
-  document.getElementById(
-    'masterShell'
-  );
+  document.getElementById('masterShell');
 
 const masterStage=
-  document.getElementById(
-    'masterStage'
-  );
+  document.getElementById('masterStage');
 
 let masterScale=1;
-
-/* ==========================================
-   GRÖSSE BERECHNEN
-========================================== */
 
 function resizeMasterStage() {
 
@@ -1838,8 +1734,8 @@ function resizeMasterStage() {
   }
 
   /*
-    Nur ein einziger Faktor.
-    Kein separates scaleX oder scaleY.
+    Ein Faktor für Breite,
+    Höhe und alle Abstände.
   */
 
   masterScale=Math.min(
@@ -1850,16 +1746,6 @@ function resizeMasterStage() {
   masterStage.style.transform=
     'scale('+masterScale+')';
 
-  /*
-    CSS-transform verkleinert optisch,
-    verändert aber nicht automatisch
-    die Höhe des Elterncontainers.
-
-    Daher die Gesamthöhe ebenfalls
-    mit genau demselben Faktor
-    berechnen.
-  */
-
   const originalHeight=
     masterStage.offsetHeight;
 
@@ -1868,8 +1754,6 @@ function resizeMasterStage() {
       originalHeight*masterScale
     )+'px';
 }
-
-/* Fenstergröße und Ausrichtung */
 
 window.addEventListener(
   'resize',
@@ -1885,42 +1769,21 @@ window.addEventListener(
   }
 );
 
-/*
-  Auch Änderungen der tatsächlichen
-  Containerbreite werden erkannt.
-*/
+if(typeof ResizeObserver!=='undefined') {
 
-if(
-  typeof ResizeObserver!=='undefined'
-) {
-
-  const masterObserver=
+  const observer=
     new ResizeObserver(
       resizeMasterStage
     );
 
-  masterObserver.observe(
-    masterShell
-  );
+  observer.observe(masterShell);
 }
 
 resizeMasterStage();
 
-/* ==========================================
-   HILFSFUNKTION
-========================================== */
-
-function clamp(value,min,max) {
-
-  return Math.min(
-    max,
-    Math.max(min,value)
-  );
-}
-
-/* ==========================================
+/* ====================================
    FÜNF NAVIGATIONSFADER
-========================================== */
+==================================== */
 
 const faders=Array.from(
   document.querySelectorAll(
@@ -1934,26 +1797,23 @@ const activeFader=
   );
 
 let dragging=null;
-
 let navigationStarted=false;
 
-/* Maximaler Schiebeweg */
+/* Gesamter Schiebeweg */
 
 function maxTravel(handle) {
 
-  const track=
-    handle.parentElement;
+  const track=handle.parentElement;
 
   return Math.max(
     0,
-    track.clientHeight-
-    handle.offsetHeight
+    track.clientHeight-handle.offsetHeight
   );
 }
 
 /*
-  progress 0 = ganz unten
-  progress 1 = ganz oben
+  0 = unterer Anschlag
+  1 = oberer Anschlag
 */
 
 function setFaderPosition(
@@ -1961,117 +1821,76 @@ function setFaderPosition(
   progress
 ) {
 
-  const distance=
-    maxTravel(handle);
+  const distance=maxTravel(handle);
 
   handle.style.top=
     (
       distance*
-      (
-        1-clamp(progress,0,1)
-      )
+      (1-clamp(progress,0,1))
     )+'px';
 }
 
-/* ==========================================
-   GRUNDSTELLUNG
-
-   MUSIC OBEN.
-   ALLE ANDEREN UNTEN.
-========================================== */
+/* ====================================
+   FADER-GRUNDSTELLUNG
+==================================== */
 
 function resetFaders() {
 
   dragging=null;
-
   navigationStarted=false;
 
   faders.forEach(handle=>{
 
     handle.classList.remove(
-      'dragging'
-    );
-
-    handle.classList.remove(
+      'dragging',
       'returning'
     );
 
     setFaderPosition(
       handle,
-      handle===activeFader
-        ? 1
-        : 0
+      handle===activeFader?1:0
     );
-
   });
 }
 
-/* ==========================================
-   SAFARI ZURÜCK / VORWÄRTS
-
-   KORREKTE GRUNDSTELLUNG
-   AUCH BEI ZWISCHENGESPEICHERTEN
-   SEITEN.
-========================================== */
+/* Safari: zurück / vorwärts */
 
 window.addEventListener(
   'pageshow',
   ()=>{
 
     resizeMasterStage();
-
     resetFaders();
 
-    requestAnimationFrame(
-      ()=>{
-
-        resizeMasterStage();
-
-        resetFaders();
-
-      }
-    );
-
+    requestAnimationFrame(()=>{
+      resizeMasterStage();
+      resetFaders();
+    });
   }
 );
 
-/* Beim normalen Start */
+requestAnimationFrame(resetFaders);
 
-requestAnimationFrame(
-  resetFaders
-);
-
-/* ==========================================
-   FADER ZURÜCKGLEITEN LASSEN
-========================================== */
+/* Vorzeitig losgelassen */
 
 function restoreFaders() {
 
   faders.forEach(handle=>{
-
-    handle.classList.add(
-      'returning'
-    );
-
+    handle.classList.add('returning');
   });
 
   faders.forEach(handle=>{
 
     setFaderPosition(
       handle,
-      handle===activeFader
-        ? 1
-        : 0
+      handle===activeFader?1:0
     );
-
   });
 }
 
-/* ==========================================
+/* ====================================
    SEITENWECHSEL
-
-   NUR AM OBEREN ANSCHLAG
-========================================== */
+==================================== */
 
 function finishNavigation(handle) {
 
@@ -2085,27 +1904,16 @@ function finishNavigation(handle) {
   navigationStarted=true;
 
   setFaderPosition(handle,1);
-
-  setFaderPosition(
-    activeFader,
-    0
-  );
+  setFaderPosition(activeFader,0);
 
   window.location.assign(
     handle.dataset.url
   );
 }
 
-/* ==========================================
-   SYNCHRONISIERTE FADERBEWEGUNG
-
-   DER SKALIERUNGSFAKTOR
-   WIRD BEIM SCHIEBEN
-   BERÜCKSICHTIGT.
-
-   DAS IST BESONDERS WICHTIG
-   FÜR IPAD HOCHKANT UND HANDY.
-========================================== */
+/* ====================================
+   GEGENLÄUFIGE FADERBEWEGUNG
+==================================== */
 
 function moveFader(event) {
 
@@ -2116,59 +1924,35 @@ function moveFader(event) {
     return;
   }
 
-  const handle=
-    dragging.handle;
+  const handle=dragging.handle;
 
-  const travel=
-    maxTravel(handle);
+  const travel=maxTravel(handle);
 
   if(travel<=0) {
     return;
   }
 
   /*
-    Fingerbewegung in sichtbaren
-    Bildschirmpixeln.
-
-    Umrechnung auf die ursprünglichen
-    1360px-Layoutkoordinaten.
+    Skalierte Fingerbewegung
+    auf ursprünglichen Schiebeweg
+    umrechnen.
   */
 
   const delta=
     (
-      event.clientY-
-      dragging.startY
+      event.clientY-dragging.startY
     )/
     Math.max(masterScale,.001);
 
-  let progress;
-
-  if(handle===activeFader) {
-
-    progress=clamp(
-      1-delta/travel,
-      0,
-      1
-    );
-
-  } else {
-
-    progress=clamp(
-      -delta/travel,
-      0,
-      1
-    );
-  }
+  const progress=
+    handle===activeFader
+      ? clamp(1-delta/travel,0,1)
+      : clamp(-delta/travel,0,1);
 
   setFaderPosition(
     handle,
     progress
   );
-
-  /*
-    Inaktiver Fader geht hoch,
-    MUSIC gleichzeitig runter.
-  */
 
   if(handle!==activeFader) {
 
@@ -2177,24 +1961,13 @@ function moveFader(event) {
       1-progress
     );
 
-    /*
-      Navigation ausschließlich
-      beim vollständigen
-      oberen Anschlag.
-    */
-
     if(progress>=1) {
-
-      finishNavigation(
-        handle
-      );
+      finishNavigation(handle);
     }
   }
 }
 
-/* ==========================================
-   FADER LOSLASSEN
-========================================== */
+/* Loslassen */
 
 function releaseFader(event) {
 
@@ -2205,8 +1978,7 @@ function releaseFader(event) {
     return;
   }
 
-  const handle=
-    dragging.handle;
+  const handle=dragging.handle;
 
   dragging=null;
 
@@ -2219,9 +1991,9 @@ function releaseFader(event) {
   }
 }
 
-/* ==========================================
-   FADER-EVENTS
-========================================== */
+/* ====================================
+   FADER-BEDIENUNG
+==================================== */
 
 faders.forEach(handle=>{
 
@@ -2229,10 +2001,7 @@ faders.forEach(handle=>{
     'pointerdown',
     event=>{
 
-      if(
-        navigationStarted ||
-        dragging
-      ) {
+      if(navigationStarted||dragging) {
         return;
       }
 
@@ -2246,11 +2015,9 @@ faders.forEach(handle=>{
       event.preventDefault();
 
       faders.forEach(h=>{
-
         h.classList.remove(
           'returning'
         );
-
       });
 
       dragging={
@@ -2306,11 +2073,6 @@ faders.forEach(handle=>{
     }
   );
 
-  /*
-    Tastaturbedienung:
-    Enter oder Pfeil nach oben.
-  */
-
   handle.addEventListener(
     'keydown',
     event=>{
@@ -2324,19 +2086,15 @@ faders.forEach(handle=>{
       ) {
 
         event.preventDefault();
-
-        finishNavigation(
-          handle
-        );
+        finishNavigation(handle);
       }
     }
   );
-
 });
 
-/* ==========================================
-   ANIMIERTE VU-METER
-========================================== */
+/* ====================================
+   VU-METER
+==================================== */
 
 function createMeter(id) {
 
@@ -2348,9 +2106,7 @@ function createMeter(id) {
     (_,i)=>{
 
       const led=
-        document.createElement(
-          'span'
-        );
+        document.createElement('span');
 
       led.className=
         'vu-led '+
@@ -2369,11 +2125,8 @@ function createMeter(id) {
   );
 }
 
-const leftLeds=
-  createMeter('vuLeft');
-
-const rightLeds=
-  createMeter('vuRight');
+const leftLeds=createMeter('vuLeft');
+const rightLeds=createMeter('vuRight');
 
 let leftLevel=6;
 let rightLevel=7;
@@ -2399,48 +2152,29 @@ function animateMeters() {
   );
 
   leftLeds.forEach((led,i)=>{
-
     led.classList.toggle(
       'on',
       i<leftLevel
     );
-
   });
 
   rightLeds.forEach((led,i)=>{
-
     led.classList.toggle(
       'on',
       i<rightLevel
     );
-
   });
 }
 
 animateMeters();
 
-const reduceMotion=
-  window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches;
-
 if(!reduceMotion) {
-
-  setInterval(
-    animateMeters,
-    170
-  );
+  setInterval(animateMeters,170);
 }
 
-/* ==========================================
-   CROSSFADER
-
-   SINGLE LINKS
-   ALBUM RECHTS
-
-   BEIDE VINYLPLATTEN WERDEN
-   DARÜBER GESTEUERT.
-========================================== */
+/* ====================================
+   CROSSFADER / VINYL
+==================================== */
 
 const crossfader=
   document.getElementById(
@@ -2468,14 +2202,8 @@ const albumTurntable=
   );
 
 let activeCategory='single';
-
 let allMusic=[];
-
 let visibleCount=10;
-
-/* ==========================================
-   KATEGORIE UMSCHALTEN
-========================================== */
 
 function chooseCategory(category) {
 
@@ -2484,7 +2212,6 @@ function chooseCategory(category) {
   }
 
   activeCategory=category;
-
   visibleCount=10;
 
   singleLabel.classList.toggle(
@@ -2497,8 +2224,6 @@ function chooseCategory(category) {
     category==='album'
   );
 
-  /* Linke / rechte Vinylplatte */
-
   singleTurntable.classList.toggle(
     'playing',
     category==='single'
@@ -2509,18 +2234,9 @@ function chooseCategory(category) {
     category==='album'
   );
 
-  /* LED-Text */
-
-  updateLEDMessage(
-    category
-  );
-
-  /* Musikcover */
-
+  updateLEDMessage(category);
   renderMusic();
 }
-
-/* Während des Schiebens */
 
 crossfader.addEventListener(
   'input',
@@ -2531,11 +2247,8 @@ crossfader.addEventListener(
         ? 'single'
         : 'album'
     );
-
   }
 );
-
-/* Beim Loslassen links/rechts einrasten */
 
 crossfader.addEventListener(
   'change',
@@ -2545,33 +2258,24 @@ crossfader.addEventListener(
       Number(crossfader.value)<50;
 
     crossfader.value=
-      isSingle
-        ? '0'
-        : '100';
+      isSingle?'0':'100';
 
     chooseCategory(
-      isSingle
-        ? 'single'
-        : 'album'
+      isSingle?'single':'album'
     );
   }
 );
 
-/* ==========================================
+/* ====================================
    LED-PUNKTMATRIX
-========================================== */
+==================================== */
 
 const ledCanvas=
   document.getElementById(
     'ledCanvas'
   );
 
-const ctx=
-  ledCanvas.getContext('2d');
-
-/*
-  5 x 7 Punktschrift.
-*/
+const ctx=ledCanvas.getContext('2d');
 
 const FONT={
 
@@ -2674,22 +2378,15 @@ const FONT={
 };
 
 let ledColumns=[];
-
 let ledPosition=0;
-
 let ledDirection=1;
-
 let ledLastTime=0;
-
 let ledPitch=8;
-
 let ledTextWidth=0;
 
 const LED_SPEED=80;
 
-/* ==========================================
-   TEXT IN LED-PUNKTE UMWANDELN
-========================================== */
+/* Text in LED-Spalten */
 
 function buildLEDText(text) {
 
@@ -2719,17 +2416,12 @@ function buildLEDText(text) {
   return cols;
 }
 
-/* ==========================================
-   LED-PUNKTRASTER BERECHNEN
-========================================== */
+/* LED-Geometrie */
 
 function calculateLEDLayout() {
 
-  const width=
-    ledCanvas.clientWidth;
-
-  const height=
-    ledCanvas.clientHeight;
+  const width=ledCanvas.clientWidth;
+  const height=ledCanvas.clientHeight;
 
   ledPitch=Math.min(
     9.4,
@@ -2751,9 +2443,7 @@ function calculateLEDLayout() {
   );
 }
 
-/* ==========================================
-   SINGLE- / ALBUM-LED-TEXT
-========================================== */
+/* Text umschalten */
 
 function updateLEDMessage(category) {
 
@@ -2767,8 +2457,7 @@ function updateLEDMessage(category) {
     message
   );
 
-  ledColumns=
-    buildLEDText(message);
+  ledColumns=buildLEDText(message);
 
   ledPosition=0;
   ledDirection=1;
@@ -2776,24 +2465,12 @@ function updateLEDMessage(category) {
   calculateLEDLayout();
 }
 
-/* ==========================================
-   CANVAS AUFLÖSUNG
-
-   Das Canvas behält intern seine
-   Ausgangsgröße.
-
-   Die gesamte sichtbare LED-Leiste
-   wird über den Master-Container
-   proportional mitskaliert.
-========================================== */
+/* Canvas-Auflösung */
 
 function resizeLEDCanvas() {
 
-  const width=
-    ledCanvas.clientWidth;
-
-  const height=
-    ledCanvas.clientHeight;
+  const width=ledCanvas.clientWidth;
+  const height=ledCanvas.clientHeight;
 
   const dpr=
     window.devicePixelRatio||1;
@@ -2811,16 +2488,10 @@ function resizeLEDCanvas() {
   calculateLEDLayout();
 }
 
-/* ==========================================
-   EINZELNE LED ZEICHNEN
-========================================== */
+/* Einzelner LED-Punkt */
 
 function drawDot(
-  x,
-  y,
-  radius,
-  color,
-  glow=false
+  x,y,radius,color,glow=false
 ) {
 
   ctx.beginPath();
@@ -2841,21 +2512,15 @@ function drawDot(
   }
 
   ctx.fill();
-
   ctx.shadowBlur=0;
 }
 
-/* ==========================================
-   LED-LAUFSCHRIFT
-========================================== */
+/* LED-Anzeige */
 
 function drawLED(time) {
 
-  const width=
-    ledCanvas.clientWidth;
-
-  const height=
-    ledCanvas.clientHeight;
+  const width=ledCanvas.clientWidth;
+  const height=ledCanvas.clientHeight;
 
   ctx.clearRect(
     0,0,width,height
@@ -2880,9 +2545,13 @@ function drawLED(time) {
       (width-2*padding)/ledPitch
     );
 
-  /* Alle ausgeschalteten Punkte */
+  /* Dunkles LED-Raster */
 
-  for(let c=0;c<=columnsVisible;c++) {
+  for(
+    let c=0;
+    c<=columnsVisible;
+    c++
+  ) {
 
     const x=
       padding+(c+.5)*ledPitch;
@@ -2902,14 +2571,18 @@ function drawLED(time) {
     }
   }
 
-  /* Leuchtende Buchstaben */
+  /* Helle LED-Buchstaben */
 
   const startColumn=
     Math.round(
       ledPosition/ledPitch
     );
 
-  for(let c=0;c<ledColumns.length;c++) {
+  for(
+    let c=0;
+    c<ledColumns.length;
+    c++
+  ) {
 
     const displayColumn=
       startColumn+c;
@@ -2944,7 +2617,7 @@ function drawLED(time) {
     }
   }
 
-  /* Text pendelt links/rechts */
+  /* Links-rechts-Bewegung */
 
   if(
     !reduceMotion &&
@@ -2969,13 +2642,11 @@ function drawLED(time) {
       ledDirection;
 
     if(ledPosition>=maxPosition) {
-
       ledPosition=maxPosition;
       ledDirection=-1;
     }
 
     if(ledPosition<=0) {
-
       ledPosition=0;
       ledDirection=1;
     }
@@ -2983,55 +2654,32 @@ function drawLED(time) {
 
   ledLastTime=time;
 
-  requestAnimationFrame(
-    drawLED
-  );
+  requestAnimationFrame(drawLED);
 }
 
-/* LED-Anzeige starten */
-
 updateLEDMessage('single');
-
 resizeLEDCanvas();
 
-requestAnimationFrame(
-  drawLED
-);
+requestAnimationFrame(drawLED);
 
-/*
-  Bei einer reinen Master-Skalierung
-  ist kein zusätzliches Stauchen
-  der LED-Matrix erforderlich.
-*/
-
-/* ==========================================
+/* ====================================
    MUSIKGALERIE
-========================================== */
+==================================== */
 
 const gallery=
-  document.getElementById(
-    'gallery'
-  );
+  document.getElementById('gallery');
 
 const moreButton=
-  document.getElementById(
-    'moreButton'
-  );
+  document.getElementById('moreButton');
 
 const videoModal=
-  document.getElementById(
-    'videoModal'
-  );
+  document.getElementById('videoModal');
 
 const videoFrame=
-  document.getElementById(
-    'videoFrame'
-  );
+  document.getElementById('videoFrame');
 
 const closeVideo=
-  document.getElementById(
-    'closeVideo'
-  );
+  document.getElementById('closeVideo');
 
 /* HTML-Sonderzeichen */
 
@@ -3045,7 +2693,7 @@ function escapeHTML(value) {
     .replace(/'/g,'&#039;');
 }
 
-/* Links prüfen */
+/* Sichere URLs */
 
 function safeURL(value) {
 
@@ -3056,15 +2704,12 @@ function safeURL(value) {
       location.href
     );
 
-    return [
-      'https:',
-      'http:'
-    ].includes(url.protocol)
+    return ['https:','http:']
+      .includes(url.protocol)
       ? url.href
       : '';
 
   } catch {
-
     return '';
   }
 }
@@ -3094,7 +2739,7 @@ function formatDate(value) {
       );
 }
 
-/* Single oder Album */
+/* Musiktyp */
 
 function categoryOf(item) {
 
@@ -3105,9 +2750,7 @@ function categoryOf(item) {
   ).toLowerCase();
 
   return [
-    'album',
-    'albums',
-    'lp'
+    'album','albums','lp'
   ].includes(category)
     ? 'album'
     : 'single';
@@ -3142,8 +2785,7 @@ function getYoutubeId(item) {
     ) {
 
       return (
-        url.pathname.split('/')[1]||
-        ''
+        url.pathname.split('/')[1]||''
       );
     }
 
@@ -3156,10 +2798,8 @@ function getYoutubeId(item) {
     ) {
 
       if(url.pathname==='/watch') {
-
         return (
-          url.searchParams.get('v')||
-          ''
+          url.searchParams.get('v')||''
         );
       }
 
@@ -3168,12 +2808,9 @@ function getYoutubeId(item) {
 
       if(
         [
-          'shorts',
-          'embed',
-          'live'
+          'shorts','embed','live'
         ].includes(parts[1])
       ) {
-
         return parts[2]||'';
       }
     }
@@ -3183,9 +2820,9 @@ function getYoutubeId(item) {
   return '';
 }
 
-/* ==========================================
+/* ====================================
    YOUTUBE-VIDEOFENSTER
-========================================== */
+==================================== */
 
 function openVideo(id) {
 
@@ -3200,17 +2837,12 @@ function openVideo(id) {
     id+
     '?autoplay=1';
 
-  videoModal.classList.add(
-    'open'
-  );
+  videoModal.classList.add('open');
 }
 
 function closeVideoPlayer() {
 
-  videoModal.classList.remove(
-    'open'
-  );
-
+  videoModal.classList.remove('open');
   videoFrame.src='';
 }
 
@@ -3239,9 +2871,9 @@ document.addEventListener(
   }
 );
 
-/* ==========================================
-   MUSIKKARTEN ANZEIGEN
-========================================== */
+/* ====================================
+   MUSIKKARTEN
+==================================== */
 
 function renderMusic() {
 
@@ -3275,7 +2907,6 @@ function renderMusic() {
       '</div>';
 
     moreButton.hidden=true;
-
     return;
   }
 
@@ -3283,8 +2914,7 @@ function renderMusic() {
     .slice(0,visibleCount)
     .forEach(item=>{
 
-      const id=
-        getYoutubeId(item);
+      const id=getYoutubeId(item);
 
       const valid=
         /^[A-Za-z0-9_-]{11}$/.test(id)
@@ -3323,14 +2953,12 @@ function renderMusic() {
           ${valid?'':'disabled'}
           aria-label="Video öffnen"
         >
-
           <img
             class="cover"
             src="${escapeHTML(cover)}"
             alt="${escapeHTML(item.title||'R.M.B.')}"
             loading="lazy"
           >
-
         </button>
 
         <div class="track-title">
@@ -3420,28 +3048,24 @@ function renderMusic() {
       : 'WEITERE ALBEN ANZEIGEN';
 }
 
-/* Weitere Musik anzeigen */
-
 moreButton.addEventListener(
   'click',
   ()=>{
 
     visibleCount+=10;
-
     renderMusic();
   }
 );
 
-/* ==========================================
+/* ====================================
    SONGS.JSON LADEN
-========================================== */
+==================================== */
 
 fetch('songs.json')
 
   .then(response=>{
 
     if(!response.ok) {
-
       throw new Error(
         'songs.json nicht gefunden'
       );
@@ -3470,18 +3094,16 @@ fetch('songs.json')
     console.error(error);
   });
 
-/* ==========================================
+/* ====================================
    ABSCHLIESSENDE INITIALISIERUNG
-========================================== */
+==================================== */
 
 window.addEventListener(
   'load',
   ()=>{
 
     resizeMasterStage();
-
     resetFaders();
-
   }
 );
 
