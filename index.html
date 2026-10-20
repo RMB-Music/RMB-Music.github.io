@@ -138,10 +138,10 @@ h1 {
 }
 
 .cover img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 .song {
@@ -165,13 +165,25 @@ h1 {
 
 .release-link {
   display: block;
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
 .release-link:hover .song {
   color: #ffffff;
   text-shadow: 0 0 8px rgba(220,235,255,0.65);
+}
+
+.release-link:focus-visible {
+  outline: 2px solid #d4e4ff;
+  outline-offset: 4px;
+}
+
+.release-status {
+  grid-column: 1 / -1;
+  color: #a7b0bf;
+  font-size: 12px;
+  line-height: 1.8;
 }
 
 /* FUSSZEILE */
@@ -187,6 +199,7 @@ footer {
   nav { gap: 15px; }
   nav a { font-size: 11px; }
   main { padding: 22px 15px; }
+
   .cover-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -201,7 +214,7 @@ footer {
 </header>
 
 <nav>
-  <a class="active" href="index.html">HOME</a>
+  <a class="active" aria-current="page" href="index.html">HOME</a>
   <a href="music.html">MUSIC</a>
   <a href="upcoming.html">UPCOMING</a>
   <a href="about.html">ABOUT</a>
@@ -211,6 +224,7 @@ footer {
 <main>
 
 <section class="hero">
+
   <div class="wave" id="wave" aria-hidden="true"></div>
 
   <div class="origin">
@@ -222,12 +236,19 @@ footer {
   <p class="subtitle">
     90s Eurodance · Techno · Trance · EDM
   </p>
+
 </section>
 
 <section class="releases">
+
   <h2>Latest Releases</h2>
 
   <div class="cover-grid" id="latest-releases">
+
+    <div class="release-status">
+      Veröffentlichungen werden geladen ...
+    </div>
+
   </div>
 
 </section>
@@ -240,93 +261,221 @@ footer {
 
 <script>
 
-/* ANIMIERTE SOUNDWELLE */
+/* ====================================
+   ANIMIERTE SOUNDWELLE
+==================================== */
+
 const wave = document.getElementById("wave");
 
 for (let i = 0; i < 64; i++) {
+
   const bar = document.createElement("span");
+
   bar.style.height =
     (8 + Math.abs(Math.sin(i * 1.71) * 65)) + "px";
+
   bar.style.animationDelay = (i * .035) + "s";
+
   wave.appendChild(bar);
 }
 
 
-/* AKTUELL BEKANNTE VERÖFFENTLICHUNGEN */
-/* Diese dienen als Ausgangsdaten, bis die
-   MUSIC-Seite ihre Daten bereitstellt. */
+/* ====================================
+   LATEST RELEASES
+   AUTOMATISCH AUS SONGS.JSON
+==================================== */
 
-const initialReleases = [
-  {
-    title: "The Pulse of the Earth (Tribal Flute Mix)",
-    date: "2026-08-18",
-    youtube: "https://youtu.be/kg21wBqmves"
-  },
-  {
-    title: "LaPalma (Astral Flow)",
-    date: "2026-10-05",
-    youtube: "https://youtu.be/xJInRUzUBcg"
-  },
-  {
-    title: "LaPalma (Celestial Drift)",
-    date: "2026-10-14",
-    youtube: "https://youtu.be/E_onL29z7n0"
+const releasesContainer =
+  document.getElementById("latest-releases");
+
+
+/* ====================================
+   DATUM FORMATIEREN
+==================================== */
+
+function formatReleaseDate(value) {
+
+  const date = String(value || "").slice(0, 10);
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return "";
   }
-];
 
-
-/* DATUM FORMATIEREN */
-function formatDate(dateString) {
-  const parts = dateString.split("-");
-
-  if (parts.length !== 3) {
-    return dateString;
-  }
+  const parts = date.split("-");
 
   return parts[2] + "." + parts[1] + "." + parts[0];
 }
 
 
-/* YOUTUBE-VIDEO-ID ERMITTELN */
-function getYouTubeId(url) {
-  try {
-    const parsed = new URL(url);
+/* ====================================
+   YOUTUBE-ID ERMITTELN
+==================================== */
 
-    if (
-      parsed.hostname === "youtu.be" ||
-      parsed.hostname === "www.youtu.be"
-    ) {
-      return parsed.pathname.split("/")[1];
-    }
+function getYouTubeId(value) {
 
-    if (
-      parsed.hostname === "youtube.com" ||
-      parsed.hostname === "www.youtube.com"
-    ) {
-      if (parsed.pathname === "/watch") {
-        return parsed.searchParams.get("v");
-      }
-    }
-  } catch (error) {
-    return null;
+  const input = String(value || "").trim();
+
+  if (/^[A-Za-z0-9_-]{11}$/.test(input)) {
+    return input;
   }
 
-  return null;
+  try {
+
+    const url = new URL(input);
+
+    const host = url.hostname.toLowerCase();
+
+    if (
+      host === "youtu.be" ||
+      host === "www.youtu.be"
+    ) {
+      return url.pathname.split("/")[1] || "";
+    }
+
+    if (
+      host === "youtube.com" ||
+      host === "www.youtube.com" ||
+      host === "m.youtube.com"
+    ) {
+
+      if (url.pathname === "/watch") {
+        return url.searchParams.get("v") || "";
+      }
+
+      const parts = url.pathname.split("/");
+
+      if (
+        ["shorts", "embed", "live"].includes(parts[1])
+      ) {
+        return parts[2] || "";
+      }
+    }
+
+  } catch (error) {}
+
+  return "";
 }
 
 
-/* DIE DREI NEUESTEN VERÖFFENTLICHUNGEN */
-function renderLatestReleases(releases) {
+/* ====================================
+   LINK PRÜFEN
+==================================== */
 
-  const container =
-    document.getElementById("latest-releases");
+function safeURL(value) {
 
-  container.replaceChildren();
+  try {
 
-  const latest = [...releases]
-    .filter(item => item.title && item.date)
-    .sort((a, b) => b.date.localeCompare(a.date))
+    const url = new URL(value, location.href);
+
+    return ["https:", "http:"].includes(url.protocol)
+      ? url.href
+      : "";
+
+  } catch (error) {
+    return "";
+  }
+}
+
+
+/* ====================================
+   YOUTUBE-ODER-ALBUM-LINK
+==================================== */
+
+function getReleaseLink(item) {
+
+  const original = String(item.youtube || "").trim();
+
+  const videoId = getYouTubeId(original);
+
+  if (/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+    return "https://www.youtube.com/watch?v=" + videoId;
+  }
+
+  return safeURL(original) || "music.html";
+}
+
+
+/* ====================================
+   COVER ERMITTELN
+==================================== */
+
+function getReleaseCover(item) {
+
+  const providedCover = safeURL(item.cover);
+
+  if (providedCover) {
+    return providedCover;
+  }
+
+  const videoId = getYouTubeId(item.youtube);
+
+  if (/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+
+    return (
+      "https://img.youtube.com/vi/" +
+      videoId +
+      "/hqdefault.jpg"
+    );
+  }
+
+  return "";
+}
+
+
+/* ====================================
+   DIE DREI NEUESTEN ANZEIGEN
+==================================== */
+
+function renderLatestReleases(data) {
+
+  releasesContainer.replaceChildren();
+
+  const today = new Date();
+  const localToday =
+    today.getFullYear() + "-" +
+    String(today.getMonth() + 1).padStart(2, "0") + "-" +
+    String(today.getDate()).padStart(2, "0");
+
+  const latest = data
+
+    .filter(item => {
+
+      if (!item || !item.title || !item.releaseDate) {
+        return false;
+      }
+
+      const date = String(item.releaseDate).slice(0, 10);
+
+      return (
+        /^\d{4}-\d{2}-\d{2}$/.test(date) &&
+        date <= localToday
+      );
+
+    })
+
+    .sort((a, b) => {
+
+      return String(b.releaseDate)
+        .localeCompare(String(a.releaseDate));
+
+    })
+
     .slice(0, 3);
+
+
+  if (!latest.length) {
+
+    const message = document.createElement("div");
+    message.className = "release-status";
+
+    message.textContent =
+      "Zurzeit sind keine Veröffentlichungen verfügbar.";
+
+    releasesContainer.appendChild(message);
+
+    return;
+  }
+
 
   latest.forEach(item => {
 
@@ -335,49 +484,68 @@ function renderLatestReleases(releases) {
     const link = document.createElement("a");
     link.className = "release-link";
 
-    const videoId = getYouTubeId(item.youtube || "");
+    link.href = getReleaseLink(item);
 
-    if (videoId) {
-      link.href = "https://www.youtube.com/watch?v=" +
-                  encodeURIComponent(videoId);
+    if (link.href !== new URL("music.html", location.href).href) {
       link.target = "_blank";
       link.rel = "noopener noreferrer";
-    } else {
-      link.href = "music.html";
     }
 
     const cover = document.createElement("div");
     cover.className = "cover";
 
-    if (videoId) {
-      const img = document.createElement("img");
-      img.src =
-        "https://img.youtube.com/vi/" +
-        encodeURIComponent(videoId) +
-        "/hqdefault.jpg";
-      img.alt = item.title;
-      img.loading = "lazy";
+    const coverURL = getReleaseCover(item);
 
-      img.onerror = function() {
+    if (coverURL) {
+
+      const image = document.createElement("img");
+
+      image.src = coverURL;
+      image.alt = item.title;
+      image.loading = "lazy";
+
+      image.onerror = function() {
         cover.textContent = "R.M.B.";
+        image.remove();
       };
 
-      cover.appendChild(img);
+      cover.appendChild(image);
+
     } else {
+
       cover.textContent = "R.M.B.";
+
     }
+
 
     const song = document.createElement("div");
     song.className = "song";
+
     song.textContent = item.title;
+
+
+    if (item.version) {
+
+      const version = document.createElement("span");
+
+      version.textContent = " (" + item.version + ")";
+
+      song.appendChild(version);
+
+    }
+
 
     const artist = document.createElement("div");
     artist.className = "artist";
     artist.textContent = "R.M.B.";
 
+
     const releaseDate = document.createElement("div");
     releaseDate.className = "release-date";
-    releaseDate.textContent = formatDate(item.date);
+
+    releaseDate.textContent =
+      formatReleaseDate(item.releaseDate);
+
 
     link.appendChild(cover);
     link.appendChild(song);
@@ -385,94 +553,60 @@ function renderLatestReleases(releases) {
     link.appendChild(releaseDate);
 
     wrapper.appendChild(link);
-    container.appendChild(wrapper);
+
+    releasesContainer.appendChild(wrapper);
 
   });
 }
 
 
-/* VERÖFFENTLICHUNGEN VON MUSIC.HTML LADEN */
-/*
-  Voraussetzung für die automatische Übernahme:
+/* ====================================
+   SONGS.JSON AUTOMATISCH LADEN
+==================================== */
 
-  Die MUSIC-Seite stellt für jeden Song
-  folgende Datenattribute bereit:
-
-  data-release-title
-  data-release-date
-  data-release-youtube
-
-  Sobald diese vorhanden sind, übernimmt
-  HOME die Veröffentlichungen automatisch.
-*/
-
-async function loadMusicReleases() {
+async function loadLatestReleases() {
 
   try {
 
-    const response = await fetch("music.html", {
+    const response = await fetch("songs.json", {
       cache: "no-store"
     });
 
     if (!response.ok) {
-      throw new Error("MUSIC-Seite nicht erreichbar");
+      throw new Error("songs.json konnte nicht geladen werden");
     }
 
-    const html = await response.text();
+    const data = await response.json();
 
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(
-      html,
-      "text/html"
-    );
-
-    const elements = doc.querySelectorAll(
-      "[data-release-title][data-release-date]"
-    );
-
-    const releases = [];
-
-    elements.forEach(element => {
-
-      const title =
-        element.getAttribute("data-release-title");
-
-      const date =
-        element.getAttribute("data-release-date");
-
-      const youtube =
-        element.getAttribute("data-release-youtube") || "";
-
-      if (
-        title &&
-        /^\d{4}-\d{2}-\d{2}$/.test(date)
-      ) {
-        releases.push({
-          title: title,
-          date: date,
-          youtube: youtube
-        });
-      }
-
-    });
-
-    if (releases.length > 0) {
-      renderLatestReleases(releases);
+    if (!Array.isArray(data)) {
+      throw new Error("Ungültiges Format der songs.json");
     }
+
+    renderLatestReleases(data);
 
   } catch (error) {
-    console.warn(
-      "Latest Releases: Ausgangsdaten werden verwendet.",
-      error
-    );
-  }
 
+    console.error("Latest Releases:", error);
+
+    releasesContainer.replaceChildren();
+
+    const message = document.createElement("div");
+
+    message.className = "release-status";
+
+    message.textContent =
+      "Die neuesten Veröffentlichungen konnten nicht geladen werden.";
+
+    releasesContainer.appendChild(message);
+  }
 }
 
 
-/* START */
-renderLatestReleases(initialReleases);
-loadMusicReleases();
+/* ====================================
+   INITIALISIERUNG
+==================================== */
+
+loadLatestReleases();
 
 </script>
 
