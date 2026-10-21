@@ -826,6 +826,8 @@ a:focus-visible {
    GRÜN = PLAY
    ROT  = HÄKCHEN
 
+   GILT FÜR SINGLES UND ALBEN
+
    POSITION:
    OBERES LINKES VIERTEL
 ====================================== */
@@ -881,8 +883,6 @@ a:focus-visible {
   pointer-events:none;
 }
 
-/* GRÜNER PLAY-SCHRIFTZUG */
-
 .video-stamp-text {
   position:relative;
   z-index:1;
@@ -901,8 +901,6 @@ a:focus-visible {
   text-shadow:0 0 4px currentColor;
 }
 
-/* HÄKCHEN VORERST AUSBLENDEN */
-
 .video-stamp-check {
   display:none;
   position:relative;
@@ -920,8 +918,6 @@ a:focus-visible {
   filter:drop-shadow(0 0 3px currentColor);
 }
 
-/* ROTER STATUS NACH DEM ERSTEN START */
-
 .video-stamp.watched {
   border-color:#ff636d;
   color:#ff8189;
@@ -933,19 +929,13 @@ a:focus-visible {
     inset 0 1px 2px rgba(255,255,255,.22);
 }
 
-/* BEI ROT: PLAY AUSBLENDEN */
-
 .video-stamp.watched .video-stamp-text {
   display:none;
 }
 
-/* BEI ROT: HÄKCHEN EINBLENDEN */
-
 .video-stamp.watched .video-stamp-check {
   display:block;
 }
-
-/* WÄHREND DER PLAYER GEÖFFNET IST */
 
 body.video-is-open .video-stamp {
   opacity:0;
@@ -2682,10 +2672,10 @@ function getYoutubeId(item) {
 /* ======================================
    SPEICHERUNG DES ABSPIELSTATUS
 
+   SINGLES UND ALBEN
+
    NUR FÜR DIE AKTUELLE
    BROWSER-TAB-SITZUNG
-
-   KEINE DAUERHAFTE SPEICHERUNG
 ====================================== */
 
 const VIDEO_STORAGE_PREFIX=
@@ -2735,13 +2725,34 @@ function rememberOpenedVideo(id) {
 }
 
 /* ======================================
+   ALBUM-STATUS
+
+   EIGENER SCHLÜSSEL PRO
+   YOUTUBE-ALBUM-PLAYLIST
+====================================== */
+
+function albumStorageId(url) {
+
+  try {
+
+    const parsed=new URL(url);
+
+    const list=parsed.searchParams.get('list');
+
+    if(list) {
+      return 'ALBUM_'+list;
+    }
+
+  } catch {}
+
+  return 'ALBUM_'+url;
+}
+
+/* ======================================
    STATUS AKTUALISIEREN
 
-   NICHT GEÖFFNET:
-   GRÜNER KREIS MIT PLAY
-
-   BEREITS GEÖFFNET:
-   ROTER KREIS MIT HÄKCHEN
+   GRÜN = NOCH NICHT GEÖFFNET
+   ROT  = BEREITS GEÖFFNET
 ====================================== */
 
 function refreshVideoStamps() {
@@ -2766,14 +2777,14 @@ function refreshVideoStamps() {
     );
 
     button.title=watched
-      ?'Bereits abgespielt – erneut anhören'
+      ?'Bereits geöffnet – erneut anhören'
       :'Musik anhören';
 
     button.setAttribute(
       'aria-label',
       watched
-        ?'Bereits gestarteten Song erneut anhören'
-        :'Song anhören'
+        ?'Bereits geöffneten Song oder Album erneut anhören'
+        :'Song oder Album anhören'
     );
   });
 }
@@ -2790,11 +2801,7 @@ function openVideo(id) {
 
   stopRadio();
 
-  /* SONG ALS GEÖFFNET MARKIEREN */
-
   rememberOpenedVideo(id);
-
-  /* SOFORT ROTEN HAKEN SETZEN */
 
   refreshVideoStamps();
 
@@ -2819,8 +2826,6 @@ function closeVideoPlayer() {
   document.body.classList.remove(
     'video-is-open'
   );
-
-  /* ROTER HAKEN BLEIBT SICHTBAR */
 
   refreshVideoStamps();
 }
@@ -2970,23 +2975,31 @@ function renderMusic() {
       valid&&!albumURL
     );
 
-    const alreadyWatched=
-      hasInternalVideo&&
-      hasOpenedVideo(valid);
-
     /* ==================================
-       BUTTON 40 x 40 PIXEL
+       NEU:
 
-       GRÜN:
-       PLAY
+       SINGLES UND ALBEN
+       ERHALTEN DEN PLAY-BUTTON
 
-       ROT:
-       SVG-HÄKCHEN
-
-       KEIN PLAY-DREIECK
+       ALBEN WERDEN ÜBER IHRE
+       PLAYLIST-ID GESPEICHERT
     ================================== */
 
-    const videoStampHTML=hasInternalVideo
+    const stampId=albumURL
+      ?albumStorageId(albumURL)
+      :hasInternalVideo
+        ?valid
+        :'';
+
+    const hasPlayStamp=Boolean(
+      stampId
+    );
+
+    const alreadyWatched=
+      hasPlayStamp&&
+      hasOpenedVideo(stampId);
+
+    const videoStampHTML=hasPlayStamp
       ?`
         <span
           class="video-stamp ${alreadyWatched?'watched':''}"
@@ -3015,8 +3028,8 @@ function renderMusic() {
         type="button"
         class="cover-button"
         ${canOpen?'':'disabled'}
-        ${hasInternalVideo
-          ?'data-video-id="'+valid+'"'
+        ${hasPlayStamp
+          ?'data-video-id="'+escapeHTML(stampId)+'"'
           :''}
         aria-label="${albumURL
           ?'Album auf YouTube öffnen'
@@ -3054,23 +3067,15 @@ function renderMusic() {
 
       <div class="music-links">
 
-        ${albumURL
+        ${!albumURL&&valid
           ?`
             <a
-              href="${escapeHTML(albumURL)}"
+              href="https://www.youtube.com/watch?v=${valid}"
               target="_blank"
               rel="noopener noreferrer"
             >YouTube</a>
           `
-          :valid
-            ?`
-              <a
-                href="https://www.youtube.com/watch?v=${valid}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >YouTube</a>
-            `
-            :''}
+          :''}
 
         ${spotify
           ?`
@@ -3097,6 +3102,11 @@ function renderMusic() {
 
     /* ==================================
        COVER ANKLICKEN
+
+       ALBEN:
+       DIREKT ZU YOUTUBE
+
+       STATUS VORHER SPEICHERN
     ================================== */
 
     if(albumURL) {
@@ -3108,6 +3118,12 @@ function renderMusic() {
         ()=>{
 
           stopRadio();
+
+          rememberOpenedVideo(
+            stampId
+          );
+
+          refreshVideoStamps();
 
           window.location.assign(
             albumURL
