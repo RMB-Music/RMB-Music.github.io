@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>R.M.B. | MUSIC</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +19,9 @@
   --red:#ff636d;
 }
 
-* { box-sizing:border-box; }
+* {
+  box-sizing:border-box;
+}
 
 html,body {
   margin:0;
@@ -32,7 +35,9 @@ body {
   overflow-x:hidden;
 }
 
-button,input { font:inherit; }
+button,input {
+  font:inherit;
+}
 
 button:focus-visible,
 input:focus-visible,
@@ -41,9 +46,9 @@ a:focus-visible {
   outline-offset:3px;
 }
 
-/* ====================================
+/* ======================================
    MASTER-CONTAINER
-==================================== */
+====================================== */
 
 .master-shell {
   position:relative;
@@ -60,9 +65,9 @@ a:focus-visible {
   transform-origin:top left;
 }
 
-/* ====================================
+/* ======================================
    MUSIC / SKYLINE
-==================================== */
+====================================== */
 
 .music-composition {
   position:relative;
@@ -98,9 +103,9 @@ a:focus-visible {
   pointer-events:none;
 }
 
-/* ====================================
-   R.M.B. RADIO
-==================================== */
+/* ======================================
+   RADIO
+====================================== */
 
 .radio-button {
   position:absolute;
@@ -114,7 +119,7 @@ a:focus-visible {
   height:36px;
   padding:0;
   transform:translateX(-50%);
-  border:2px solid #ff636d;
+  border:2px solid var(--red);
   border-radius:50%;
   background:radial-gradient(
     circle at 35% 25%,
@@ -130,13 +135,11 @@ a:focus-visible {
   transition:
     border-color .2s,
     color .2s,
-    box-shadow .2s,
-    background .2s;
-  touch-action:manipulation;
+    box-shadow .2s;
 }
 
 .radio-button.playing {
-  border-color:#49ff96;
+  border-color:var(--green);
   color:#7dffb1;
   box-shadow:
     0 0 5px rgba(73,255,150,1),
@@ -158,13 +161,21 @@ a:focus-visible {
   fill:currentColor;
 }
 
-.radio-button .pause-icon { display:none; }
-.radio-button.playing .play-icon { display:none; }
-.radio-button.playing .pause-icon { display:block; }
+.radio-button .pause-icon {
+  display:none;
+}
 
-/* ====================================
-   GENREZEILE
-==================================== */
+.radio-button.playing .play-icon {
+  display:none;
+}
+
+.radio-button.playing .pause-icon {
+  display:block;
+}
+
+/* ======================================
+   GENRE
+====================================== */
 
 .genre-area {
   position:relative;
@@ -181,14 +192,13 @@ a:focus-visible {
   font-family:Michroma,Arial,sans-serif;
   font-size:11px;
   letter-spacing:1.4px;
-  line-height:1;
   white-space:nowrap;
   text-shadow:0 0 8px rgba(126,200,255,.24);
 }
 
-/* ====================================
+/* ======================================
    DJ-ANLAGE
-==================================== */
+====================================== */
 
 .dj-setup {
   display:grid;
@@ -227,13 +237,13 @@ a:focus-visible {
   left:38.4%;
   top:46.4%;
   width:61%;
-  aspect-ratio:1/1;
+  aspect-ratio:1;
   transform:translate(-50%,-50%);
   z-index:2;
   pointer-events:none;
   opacity:0;
   visibility:hidden;
-  transition:opacity .35s ease,visibility .35s ease;
+  transition:opacity .35s,visibility .35s;
 }
 
 .turntable.playing .vinyl-position {
@@ -245,7 +255,6 @@ a:focus-visible {
   display:block;
   width:100%;
   height:100%;
-  aspect-ratio:1/1;
   object-fit:contain;
   border-radius:50%;
   transform-origin:center;
@@ -259,13 +268,13 @@ a:focus-visible {
 }
 
 @keyframes vinylRotation {
-  from { transform:rotate(0deg); }
-  to { transform:rotate(360deg); }
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
 
-/* ====================================
+/* ======================================
    MISCHPULT
-==================================== */
+====================================== */
 
 .mixer {
   padding:9px 12px 7px;
@@ -327,7 +336,7 @@ a:focus-visible {
 
 .eq-panel {
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:4px;
   min-width:0;
   padding:5px 4px;
@@ -400,9 +409,9 @@ a:focus-visible {
   white-space:nowrap;
 }
 
-/* ====================================
+/* ======================================
    VU-METER
-==================================== */
+====================================== */
 
 .mixer-center {
   display:grid;
@@ -430,9 +439,9 @@ a:focus-visible {
   opacity:.28;
 }
 
-.vu-led.green { --lit:#3dec83; }
-.vu-led.yellow { --lit:#efdb54; }
-.vu-led.red { --lit:#ff6a60; }
+.vu-led.green {--lit:#3dec83;}
+.vu-led.yellow {--lit:#efdb54;}
+.vu-led.red {--lit:#ff6a60;}
 
 .vu-led.on {
   background:var(--lit);
@@ -440,9 +449,9 @@ a:focus-visible {
   box-shadow:0 0 4px var(--lit);
 }
 
-/* ====================================
+/* ======================================
    NAVIGATIONSFADER
-==================================== */
+====================================== */
 
 .mixer-channels {
   display:grid;
@@ -502,7 +511,6 @@ a:focus-visible {
   right:2px;
   bottom:4px;
   left:2px;
-  min-height:0;
 }
 
 .fader-track::before {
@@ -578,9 +586,9 @@ a:focus-visible {
     inset 0 1px 1px #fff;
 }
 
-/* ====================================
+/* ======================================
    CROSSFADER
-==================================== */
+====================================== */
 
 .crossfader-section {
   position:absolute;
@@ -600,7 +608,6 @@ a:focus-visible {
   font-family:Michroma,Arial,sans-serif;
   font-size:7px;
   letter-spacing:1px;
-  line-height:1;
   color:#7f9ab1;
   text-align:center;
   white-space:nowrap;
@@ -670,15 +677,14 @@ a:focus-visible {
   font-family:Michroma,Arial,sans-serif;
   font-size:8px;
   letter-spacing:1px;
-  line-height:1;
   color:#9cb2c7;
   position:relative;
   z-index:3;
   pointer-events:none;
 }
 
-#singleLabel { justify-self:start; }
-#albumLabel { justify-self:end; }
+#singleLabel {justify-self:start;}
+#albumLabel {justify-self:end;}
 
 .crossfader-labels .active {
   color:#69baff;
@@ -716,9 +722,9 @@ a:focus-visible {
   }
 }
 
-/* ====================================
+/* ======================================
    LED-LAUFLEISTE
-==================================== */
+====================================== */
 
 .led-display-wrap {
   width:1360px;
@@ -753,9 +759,9 @@ a:focus-visible {
   background:#07111b;
 }
 
-/* ====================================
+/* ======================================
    MUSIKGALERIE
-==================================== */
+====================================== */
 
 .content {
   max-width:1400px;
@@ -812,26 +818,22 @@ a:focus-visible {
   border-radius:7px;
 }
 
-/* ====================================
-   NEUER PLAY / PLAYED BUTTON
+/* ======================================
+   PLAY / HÄKCHEN
 
    40 x 40 PIXEL
 
+   GRÜN = PLAY
+   ROT  = HÄKCHEN
+
    POSITION:
-   MITTE DES OBEREN LINKEN VIERTELS
-
-   ROT: PLAY
-   GRÜN: PLAYED
-
-   KEIN PLAY-DREIECK
-==================================== */
+   OBERES LINKES VIERTEL
+====================================== */
 
 .video-stamp {
   position:absolute;
-
   top:25%;
   left:25%;
-
   z-index:3;
 
   display:flex;
@@ -844,7 +846,7 @@ a:focus-visible {
 
   transform:translate(-50%,-50%);
 
-  border:2px solid #ff636d;
+  border:2px solid #49ff96;
   border-radius:50%;
 
   background:radial-gradient(
@@ -853,12 +855,12 @@ a:focus-visible {
     rgba(10,17,25,.98) 75%
   );
 
-  color:#ff8189;
+  color:#7dffb1;
 
   box-shadow:
-    0 0 5px rgba(255,99,109,.95),
-    0 0 10px rgba(255,99,109,.55),
-    0 0 15px rgba(255,99,109,.2),
+    0 0 5px rgba(73,255,150,1),
+    0 0 10px rgba(73,255,150,.7),
+    0 0 16px rgba(73,255,150,.3),
     inset 0 1px 2px rgba(255,255,255,.22);
 
   pointer-events:none;
@@ -879,6 +881,8 @@ a:focus-visible {
   pointer-events:none;
 }
 
+/* GRÜNER PLAY-SCHRIFTZUG */
+
 .video-stamp-text {
   position:relative;
   z-index:1;
@@ -894,29 +898,63 @@ a:focus-visible {
 
   text-align:center;
   white-space:nowrap;
-
   text-shadow:0 0 4px currentColor;
 }
 
+/* HÄKCHEN VORERST AUSBLENDEN */
+
+.video-stamp-check {
+  display:none;
+  position:relative;
+  z-index:1;
+
+  width:23px;
+  height:23px;
+
+  stroke:currentColor;
+  stroke-width:3.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+
+  filter:drop-shadow(0 0 3px currentColor);
+}
+
+/* ROTER STATUS NACH DEM ERSTEN START */
+
 .video-stamp.watched {
-  border-color:#49ff96;
-  color:#7dffb1;
+  border-color:#ff636d;
+  color:#ff8189;
 
   box-shadow:
-    0 0 5px rgba(73,255,150,1),
-    0 0 10px rgba(73,255,150,.7),
-    0 0 16px rgba(73,255,150,.3),
+    0 0 5px rgba(255,99,109,.95),
+    0 0 10px rgba(255,99,109,.55),
+    0 0 15px rgba(255,99,109,.2),
     inset 0 1px 2px rgba(255,255,255,.22);
 }
+
+/* BEI ROT: PLAY AUSBLENDEN */
+
+.video-stamp.watched .video-stamp-text {
+  display:none;
+}
+
+/* BEI ROT: HÄKCHEN EINBLENDEN */
+
+.video-stamp.watched .video-stamp-check {
+  display:block;
+}
+
+/* WÄHREND DER PLAYER GEÖFFNET IST */
 
 body.video-is-open .video-stamp {
   opacity:0;
   visibility:hidden;
 }
 
-/* ====================================
-   TITEL / STREAMING-BUTTONS
-==================================== */
+/* ======================================
+   TITEL / STREAMING
+====================================== */
 
 .track-title {
   margin:14px 0 5px;
@@ -984,9 +1022,9 @@ body.video-is-open .video-stamp {
   display:none;
 }
 
-/* ====================================
-   YOUTUBE-VIDEOFENSTER
-==================================== */
+/* ======================================
+   YOUTUBE-PLAYER
+====================================== */
 
 .video-modal {
   display:none;
@@ -1034,9 +1072,9 @@ footer {
   font-size:12px;
 }
 
-/* ====================================
+/* ======================================
    RESPONSIVE
-==================================== */
+====================================== */
 
 @media(max-width:700px) {
   .content {
@@ -1083,12 +1121,10 @@ footer {
 
 <body>
 
-<!-- ====================================
-     MASTER-CONTAINER
-==================================== -->
-
 <section class="master-shell" id="masterShell">
 <div class="master-stage" id="masterStage">
+
+  <!-- MUSIC UND SKYLINE -->
 
   <div class="music-composition">
 
@@ -1124,17 +1160,22 @@ footer {
 
   </div>
 
+  <!-- GENRE -->
+
   <div class="genre-area">
     <p class="genre-line">
       90s Eurodance · EDM · Trance · House · Techno · Goa
     </p>
   </div>
 
+  <!-- DJ-ANLAGE -->
+
   <div class="dj-setup">
 
     <!-- LINKER PLATTENSPIELER -->
 
     <div class="turntable single" id="singleTurntable">
+
       <img
         class="turntable-image"
         src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
@@ -1148,6 +1189,7 @@ footer {
           alt="Drehende SINGLES-Schallplatte"
         >
       </div>
+
     </div>
 
     <!-- MISCHPULT -->
@@ -1170,6 +1212,7 @@ footer {
         <div class="eq-panel">
 
           <div class="eq-column">
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">GAIN</span>
@@ -1189,9 +1232,11 @@ footer {
               <span class="eq-knob"></span>
               <span class="eq-label">BASS</span>
             </div>
+
           </div>
 
           <div class="eq-column offset">
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">MIC</span>
@@ -1206,6 +1251,7 @@ footer {
               <span class="eq-knob"></span>
               <span class="eq-label">FX</span>
             </div>
+
           </div>
 
         </div>
@@ -1290,6 +1336,7 @@ footer {
         <div class="eq-panel">
 
           <div class="eq-column">
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">GAIN</span>
@@ -1309,9 +1356,11 @@ footer {
               <span class="eq-knob"></span>
               <span class="eq-label">BASS</span>
             </div>
+
           </div>
 
           <div class="eq-column offset">
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">MIC</span>
@@ -1326,6 +1375,7 @@ footer {
               <span class="eq-knob"></span>
               <span class="eq-label">FX</span>
             </div>
+
           </div>
 
         </div>
@@ -1362,6 +1412,7 @@ footer {
     <!-- RECHTER PLATTENSPIELER -->
 
     <div class="turntable album" id="albumTurntable">
+
       <img
         class="turntable-image"
         src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
@@ -1375,6 +1426,7 @@ footer {
           alt="Drehende ALBUMS-Schallplatte"
         >
       </div>
+
     </div>
 
   </div>
@@ -1395,7 +1447,7 @@ footer {
 </div>
 </section>
 
-<!-- HINTERGRUNDRADIO -->
+<!-- RADIO -->
 
 <audio id="rmbRadio" preload="auto" loop>
   <source src="audio/music-song.mp3" type="audio/mpeg">
@@ -1425,13 +1477,14 @@ footer {
 <!-- INTERNER YOUTUBE-PLAYER -->
 
 <div class="video-modal" id="videoModal">
+
   <div class="video-window">
 
     <button
       type="button"
       class="close-video"
       id="closeVideo"
-      aria-label="Video schließen"
+      aria-label="Player schließen"
     >&times;</button>
 
     <iframe
@@ -1443,13 +1496,14 @@ footer {
     ></iframe>
 
   </div>
+
 </div>
 
 <script>
 
-/* ====================================
-   ALLGEMEINE FUNKTIONEN
-==================================== */
+/* ======================================
+   HILFSFUNKTIONEN
+====================================== */
 
 function clamp(value,min,max) {
   return Math.min(max,Math.max(min,value));
@@ -1459,46 +1513,59 @@ const reduceMotion=window.matchMedia(
   '(prefers-reduced-motion: reduce)'
 ).matches;
 
-/* ====================================
+/* ======================================
    MASTER-SKALIERUNG
-==================================== */
+====================================== */
 
 const MASTER_WIDTH=1360;
+
 const masterShell=document.getElementById('masterShell');
 const masterStage=document.getElementById('masterStage');
 
 let masterScale=1;
 
 function resizeMasterStage() {
+
   const availableWidth=masterShell.clientWidth;
+
   if(availableWidth<=0) return;
 
-  masterScale=Math.min(1,availableWidth/MASTER_WIDTH);
+  masterScale=Math.min(
+    1,
+    availableWidth/MASTER_WIDTH
+  );
 
-  masterStage.style.transform='scale('+masterScale+')';
-
-  const originalHeight=masterStage.offsetHeight;
+  masterStage.style.transform=
+    'scale('+masterScale+')';
 
   masterShell.style.height=
-    Math.ceil(originalHeight*masterScale)+'px';
+    Math.ceil(
+      masterStage.offsetHeight*masterScale
+    )+'px';
 }
 
-window.addEventListener('resize',resizeMasterStage);
+window.addEventListener(
+  'resize',
+  resizeMasterStage
+);
 
 window.addEventListener('orientationchange',()=>{
   requestAnimationFrame(resizeMasterStage);
 });
 
 if(typeof ResizeObserver!=='undefined') {
-  const observer=new ResizeObserver(resizeMasterStage);
+  const observer=new ResizeObserver(
+    resizeMasterStage
+  );
+
   observer.observe(masterShell);
 }
 
 resizeMasterStage();
 
-/* ====================================
+/* ======================================
    NAVIGATIONSFADER
-==================================== */
+====================================== */
 
 const faders=Array.from(
   document.querySelectorAll('.fader-handle')
@@ -1512,55 +1579,59 @@ let dragging=null;
 let navigationStarted=false;
 
 function setActiveChannel(handle) {
-  document.querySelectorAll('.mixer-channel').forEach(channel=>{
-    channel.classList.toggle(
-      'active-channel',
-      channel.contains(handle)
-    );
-  });
+
+  document.querySelectorAll('.mixer-channel')
+    .forEach(channel=>{
+
+      channel.classList.toggle(
+        'active-channel',
+        channel.contains(handle)
+      );
+
+    });
 }
 
 function maxTravel(handle) {
-  const track=handle.parentElement;
-  return Math.max(0,track.clientHeight-handle.offsetHeight);
+  return Math.max(
+    0,
+    handle.parentElement.clientHeight-
+    handle.offsetHeight
+  );
 }
 
 function setFaderPosition(handle,progress) {
-  const distance=maxTravel(handle);
 
   handle.style.top=
-    (distance*(1-clamp(progress,0,1)))+'px';
+    (
+      maxTravel(handle)*
+      (1-clamp(progress,0,1))
+    )+'px';
 }
 
 function resetFaders() {
+
   dragging=null;
   navigationStarted=false;
 
   setActiveChannel(activeFader);
 
   faders.forEach(handle=>{
-    handle.classList.remove('dragging','returning');
+
+    handle.classList.remove(
+      'dragging',
+      'returning'
+    );
 
     setFaderPosition(
       handle,
       handle===activeFader?1:0
     );
+
   });
 }
 
-window.addEventListener('pageshow',()=>{
-  resizeMasterStage();
-  resetFaders();
-
-  requestAnimationFrame(()=>{
-    resizeMasterStage();
-    resetFaders();
-  });
-});
-
-requestAnimationFrame(resetFaders);
-
 function restoreFaders() {
+
   setActiveChannel(activeFader);
 
   faders.forEach(handle=>{
@@ -1568,28 +1639,41 @@ function restoreFaders() {
   });
 
   faders.forEach(handle=>{
+
     setFaderPosition(
       handle,
       handle===activeFader?1:0
     );
+
   });
 }
 
 function finishNavigation(handle) {
-  if(navigationStarted||handle===activeFader) return;
+
+  if(
+    navigationStarted||
+    handle===activeFader
+  ) return;
 
   navigationStarted=true;
 
   stopRadio();
+
   setActiveChannel(handle);
   setFaderPosition(handle,1);
   setFaderPosition(activeFader,0);
 
-  window.location.assign(handle.dataset.url);
+  window.location.assign(
+    handle.dataset.url
+  );
 }
 
 function moveFader(event) {
-  if(!dragging||dragging.pointerId!==event.pointerId) return;
+
+  if(
+    !dragging||
+    dragging.pointerId!==event.pointerId
+  ) return;
 
   const handle=dragging.handle;
   const travel=maxTravel(handle);
@@ -1607,87 +1691,151 @@ function moveFader(event) {
   setFaderPosition(handle,progress);
 
   if(handle!==activeFader) {
-    setFaderPosition(activeFader,1-progress);
 
-    if(progress>0) {
-      setActiveChannel(handle);
-    } else {
-      setActiveChannel(activeFader);
+    setFaderPosition(
+      activeFader,
+      1-progress
+    );
+
+    setActiveChannel(
+      progress>0
+        ?handle
+        :activeFader
+    );
+
+    if(progress>=1) {
+      finishNavigation(handle);
     }
-
-    if(progress>=1) finishNavigation(handle);
   }
 }
 
 function releaseFader(event) {
-  if(!dragging||dragging.pointerId!==event.pointerId) return;
+
+  if(
+    !dragging||
+    dragging.pointerId!==event.pointerId
+  ) return;
 
   const handle=dragging.handle;
 
   dragging=null;
+
   handle.classList.remove('dragging');
 
-  if(!navigationStarted) restoreFaders();
+  if(!navigationStarted) {
+    restoreFaders();
+  }
 }
 
 faders.forEach(handle=>{
 
-  handle.addEventListener('pointerdown',event=>{
-    if(navigationStarted||dragging) return;
+  handle.addEventListener(
+    'pointerdown',
+    event=>{
 
-    if(event.pointerType==='mouse'&&event.button!==0) return;
+      if(navigationStarted||dragging) return;
 
-    event.preventDefault();
+      if(
+        event.pointerType==='mouse'&&
+        event.button!==0
+      ) return;
 
-    faders.forEach(h=>h.classList.remove('returning'));
-
-    dragging={
-      handle,
-      pointerId:event.pointerId,
-      startY:event.clientY
-    };
-
-    handle.classList.add('dragging');
-    handle.setPointerCapture(event.pointerId);
-  });
-
-  handle.addEventListener('pointermove',moveFader);
-  handle.addEventListener('pointerup',releaseFader);
-  handle.addEventListener('pointercancel',releaseFader);
-
-  handle.addEventListener('lostpointercapture',()=>{
-    if(dragging&&dragging.handle===handle) {
-      dragging=null;
-      handle.classList.remove('dragging');
-
-      if(!navigationStarted) restoreFaders();
-    }
-  });
-
-  handle.addEventListener('keydown',event=>{
-    if(
-      handle!==activeFader&&
-      (event.key==='Enter'||event.key==='ArrowUp')
-    ) {
       event.preventDefault();
-      finishNavigation(handle);
+
+      faders.forEach(h=>{
+        h.classList.remove('returning');
+      });
+
+      dragging={
+        handle,
+        pointerId:event.pointerId,
+        startY:event.clientY
+      };
+
+      handle.classList.add('dragging');
+
+      handle.setPointerCapture(
+        event.pointerId
+      );
     }
-  });
+  );
+
+  handle.addEventListener(
+    'pointermove',
+    moveFader
+  );
+
+  handle.addEventListener(
+    'pointerup',
+    releaseFader
+  );
+
+  handle.addEventListener(
+    'pointercancel',
+    releaseFader
+  );
+
+  handle.addEventListener(
+    'lostpointercapture',
+    ()=>{
+
+      if(
+        dragging&&
+        dragging.handle===handle
+      ) {
+
+        dragging=null;
+
+        handle.classList.remove('dragging');
+
+        if(!navigationStarted) {
+          restoreFaders();
+        }
+      }
+    }
+  );
+
+  handle.addEventListener(
+    'keydown',
+    event=>{
+
+      if(
+        handle!==activeFader&&
+        (
+          event.key==='Enter'||
+          event.key==='ArrowUp'
+        )
+      ) {
+
+        event.preventDefault();
+        finishNavigation(handle);
+
+      }
+    }
+  );
 
 });
 
-/* ====================================
+requestAnimationFrame(resetFaders);
+
+/* ======================================
    VU-METER
-==================================== */
+====================================== */
 
 function createMeter(id) {
+
   const meter=document.getElementById(id);
 
   return Array.from({length:14},(_,i)=>{
+
     const led=document.createElement('span');
 
     led.className='vu-led '+(
-      i<8?'green':i<11?'yellow':'red'
+      i<8
+        ?'green'
+        :i<11
+          ?'yellow'
+          :'red'
     );
 
     meter.appendChild(led);
@@ -1703,24 +1851,35 @@ let leftLevel=6;
 let rightLevel=7;
 
 function animateMeters() {
+
   if(document.hidden) return;
 
   leftLevel=clamp(
-    leftLevel+Math.floor(Math.random()*7)-3,
-    2,14
+    leftLevel+
+    Math.floor(Math.random()*7)-3,
+    2,
+    14
   );
 
   rightLevel=clamp(
-    rightLevel+Math.floor(Math.random()*7)-3,
-    2,14
+    rightLevel+
+    Math.floor(Math.random()*7)-3,
+    2,
+    14
   );
 
   leftLeds.forEach((led,i)=>{
-    led.classList.toggle('on',i<leftLevel);
+    led.classList.toggle(
+      'on',
+      i<leftLevel
+    );
   });
 
   rightLeds.forEach((led,i)=>{
-    led.classList.toggle('on',i<rightLevel);
+    led.classList.toggle(
+      'on',
+      i<rightLevel
+    );
   });
 }
 
@@ -1730,16 +1889,29 @@ if(!reduceMotion) {
   setInterval(animateMeters,170);
 }
 
-/* ====================================
-   CROSSFADER / VINYL
-==================================== */
+/* ======================================
+   CROSSFADER
+====================================== */
 
-const crossfader=document.getElementById('crossfader');
-const singleLabel=document.getElementById('singleLabel');
-const albumLabel=document.getElementById('albumLabel');
+const crossfader=document.getElementById(
+  'crossfader'
+);
 
-const singleTurntable=document.getElementById('singleTurntable');
-const albumTurntable=document.getElementById('albumTurntable');
+const singleLabel=document.getElementById(
+  'singleLabel'
+);
+
+const albumLabel=document.getElementById(
+  'albumLabel'
+);
+
+const singleTurntable=document.getElementById(
+  'singleTurntable'
+);
+
+const albumTurntable=document.getElementById(
+  'albumTurntable'
+);
 
 let activeCategory='middle';
 let allMusic=[];
@@ -1748,21 +1920,38 @@ let visibleCount=10;
 const CENTER_LEFT=38;
 const CENTER_RIGHT=62;
 
-/* ====================================
+/* ======================================
    RADIO
-==================================== */
+====================================== */
 
-const rmbRadio=document.getElementById('rmbRadio');
-const radioButton=document.getElementById('radioButton');
+const rmbRadio=document.getElementById(
+  'rmbRadio'
+);
+
+const radioButton=document.getElementById(
+  'radioButton'
+);
 
 let radioRequest=0;
 
 function updateRadioButton() {
-  const isPlaying=!rmbRadio.paused&&!rmbRadio.ended;
-  const isMiddle=activeCategory==='middle';
 
-  radioButton.classList.toggle('playing',isPlaying);
-  radioButton.classList.toggle('inactive',!isMiddle);
+  const isPlaying=
+    !rmbRadio.paused&&
+    !rmbRadio.ended;
+
+  const isMiddle=
+    activeCategory==='middle';
+
+  radioButton.classList.toggle(
+    'playing',
+    isPlaying
+  );
+
+  radioButton.classList.toggle(
+    'inactive',
+    !isMiddle
+  );
 
   radioButton.disabled=!isMiddle;
 
@@ -1788,20 +1977,27 @@ function updateRadioButton() {
 }
 
 async function startRadio() {
+
   if(activeCategory!=='middle') return;
 
   const request=++radioRequest;
 
   try {
+
     await rmbRadio.play();
 
-    if(request!==radioRequest||activeCategory!=='middle') {
+    if(
+      request!==radioRequest||
+      activeCategory!=='middle'
+    ) {
       rmbRadio.pause();
       return;
     }
+
   } catch(error) {
+
     console.info(
-      'R.M.B. Radio konnte nicht automatisch starten:',
+      'Radio konnte nicht automatisch starten:',
       error
     );
   }
@@ -1810,13 +2006,18 @@ async function startRadio() {
 }
 
 function pauseRadio() {
+
   radioRequest++;
+
   rmbRadio.pause();
+
   updateRadioButton();
 }
 
 function stopRadio() {
+
   radioRequest++;
+
   rmbRadio.pause();
 
   try {
@@ -1826,25 +2027,40 @@ function stopRadio() {
   updateRadioButton();
 }
 
-radioButton.addEventListener('click',()=>{
-  if(activeCategory!=='middle') return;
+radioButton.addEventListener(
+  'click',
+  ()=>{
 
-  if(rmbRadio.paused) {
-    startRadio();
-  } else {
-    pauseRadio();
+    if(activeCategory!=='middle') return;
+
+    if(rmbRadio.paused) {
+      startRadio();
+    } else {
+      pauseRadio();
+    }
   }
+);
+
+[
+  'play',
+  'pause',
+  'ended',
+  'error'
+].forEach(eventName=>{
+
+  rmbRadio.addEventListener(
+    eventName,
+    updateRadioButton
+  );
+
 });
 
-['play','pause','ended','error'].forEach(eventName=>{
-  rmbRadio.addEventListener(eventName,updateRadioButton);
-});
-
-/* ====================================
+/* ======================================
    KATEGORIEN
-==================================== */
+====================================== */
 
 function chooseCategory(category) {
+
   if(category===activeCategory) return;
 
   const previousCategory=activeCategory;
@@ -1873,9 +2089,13 @@ function chooseCategory(category) {
   );
 
   if(category!=='middle') {
+
     stopRadio();
+
   } else if(previousCategory!=='middle') {
+
     startRadio();
+
   }
 
   updateRadioButton();
@@ -1884,28 +2104,42 @@ function chooseCategory(category) {
 }
 
 function categoryFromValue(value) {
+
   if(value<CENTER_LEFT) return 'single';
+
   if(value>CENTER_RIGHT) return 'album';
+
   return 'middle';
 }
 
 crossfader.addEventListener('input',()=>{
+
   chooseCategory(
-    categoryFromValue(Number(crossfader.value))
+    categoryFromValue(
+      Number(crossfader.value)
+    )
   );
+
 });
 
 function snapCrossfader() {
+
   const value=Number(crossfader.value);
 
   let snappedValue;
 
   if(value<CENTER_LEFT) {
+
     snappedValue=0;
+
   } else if(value>CENTER_RIGHT) {
+
     snappedValue=100;
+
   } else {
+
     snappedValue=50;
+
   }
 
   crossfader.value=String(snappedValue);
@@ -1919,51 +2153,85 @@ function snapCrossfader() {
   );
 }
 
-crossfader.addEventListener('change',snapCrossfader);
-crossfader.addEventListener('pointerup',snapCrossfader);
+crossfader.addEventListener(
+  'change',
+  snapCrossfader
+);
 
-crossfader.addEventListener('touchend',()=>{
-  requestAnimationFrame(snapCrossfader);
-},{passive:true});
+crossfader.addEventListener(
+  'pointerup',
+  snapCrossfader
+);
 
-crossfader.addEventListener('keydown',event=>{
-  if(event.key==='Home'||event.key==='End') return;
-
-  if(
-    event.key==='ArrowLeft'||
-    event.key==='ArrowRight'
-  ) {
-    const current=Number(crossfader.value);
-    const positions=[0,50,100];
-
-    let next=current;
-
-    if(event.key==='ArrowRight') {
-      next=positions.find(value=>value>current)??100;
-    } else {
-      next=[...positions].reverse()
-        .find(value=>value<current)??0;
-    }
-
-    event.preventDefault();
-
-    crossfader.value=String(next);
-
-    chooseCategory(
-      next===0
-        ?'single'
-        :next===100
-          ?'album'
-          :'middle'
+crossfader.addEventListener(
+  'touchend',
+  ()=>{
+    requestAnimationFrame(
+      snapCrossfader
     );
+  },
+  {passive:true}
+);
+
+crossfader.addEventListener(
+  'keydown',
+  event=>{
+
+    if(
+      event.key==='Home'||
+      event.key==='End'
+    ) return;
+
+    if(
+      event.key==='ArrowLeft'||
+      event.key==='ArrowRight'
+    ) {
+
+      const current=Number(
+        crossfader.value
+      );
+
+      const positions=[0,50,100];
+
+      let next=current;
+
+      if(event.key==='ArrowRight') {
+
+        next=positions.find(
+          value=>value>current
+        )??100;
+
+      } else {
+
+        next=[...positions]
+          .reverse()
+          .find(value=>value<current)??0;
+
+      }
+
+      event.preventDefault();
+
+      crossfader.value=String(next);
+
+      chooseCategory(
+        next===0
+          ?'single'
+          :next===100
+            ?'album'
+            :'middle'
+      );
+    }
   }
-});
+);
 
-/* ====================================
+/* ======================================
    LED-PUNKTMATRIX
-==================================== */
+====================================== */
 
-const ledCanvas=document.getElementById('ledCanvas');
+const ledCanvas=document.getElementById(
+  'ledCanvas'
+);
+
 const ctx=ledCanvas.getContext('2d');
 
 const FONT={
@@ -2001,12 +2269,15 @@ let ledTextWidth=0;
 const LED_SPEED=80;
 
 function buildLEDText(text) {
+
   const cols=[];
 
   for(const ch of text.toUpperCase()) {
+
     const pattern=FONT[ch]||FONT[' '];
 
     for(let c=0;c<5;c++) {
+
       cols.push(
         Array.from(
           {length:7},
@@ -2015,13 +2286,16 @@ function buildLEDText(text) {
       );
     }
 
-    cols.push(Array(7).fill(false));
+    cols.push(
+      Array(7).fill(false)
+    );
   }
 
   return cols;
 }
 
 function calculateLEDLayout() {
+
   const width=ledCanvas.clientWidth;
   const height=ledCanvas.clientHeight;
 
@@ -2032,29 +2306,44 @@ function calculateLEDLayout() {
       Math.max(1,ledColumns.length)
   );
 
-  ledTextWidth=ledPitch*ledColumns.length;
+  ledTextWidth=
+    ledPitch*ledColumns.length;
 
   ledPosition=clamp(
     ledPosition,
     0,
-    Math.max(0,width-24-ledTextWidth)
+    Math.max(
+      0,
+      width-24-ledTextWidth
+    )
   );
 }
 
 function updateLEDMessage(category) {
+
   let message;
 
   if(category==='single') {
+
     message='THE SINGLE COLLECTION';
+
   } else if(category==='album') {
+
     message='THE ALBUM COLLECTION';
+
   } else {
+
     message='THE SOUND OF R.M.B.';
+
   }
 
-  ledCanvas.setAttribute('aria-label',message);
+  ledCanvas.setAttribute(
+    'aria-label',
+    message
+  );
 
   ledColumns=buildLEDText(message);
+
   ledPosition=0;
   ledDirection=1;
 
@@ -2062,56 +2351,100 @@ function updateLEDMessage(category) {
 }
 
 function resizeLEDCanvas() {
+
   const width=ledCanvas.clientWidth;
   const height=ledCanvas.clientHeight;
+
   const dpr=window.devicePixelRatio||1;
 
-  ledCanvas.width=Math.round(width*dpr);
-  ledCanvas.height=Math.round(height*dpr);
+  ledCanvas.width=Math.round(
+    width*dpr
+  );
 
-  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ledCanvas.height=Math.round(
+    height*dpr
+  );
+
+  ctx.setTransform(
+    dpr,0,0,dpr,0,0
+  );
 
   calculateLEDLayout();
 }
 
-function drawDot(x,y,radius,color,glow=false) {
+function drawDot(
+  x,
+  y,
+  radius,
+  color,
+  glow=false
+) {
+
   ctx.beginPath();
-  ctx.arc(x,y,radius,0,Math.PI*2);
+
+  ctx.arc(
+    x,
+    y,
+    radius,
+    0,
+    Math.PI*2
+  );
 
   ctx.fillStyle=color;
 
   if(glow) {
-    ctx.shadowBlur=Math.max(3,ledPitch*1.1);
+
+    ctx.shadowBlur=Math.max(
+      3,
+      ledPitch*1.1
+    );
+
     ctx.shadowColor='#65bdff';
   }
 
   ctx.fill();
+
   ctx.shadowBlur=0;
 }
 
 function drawLED(time) {
+
   const width=ledCanvas.clientWidth;
   const height=ledCanvas.clientHeight;
 
-  ctx.clearRect(0,0,width,height);
+  ctx.clearRect(
+    0,0,width,height
+  );
 
   ctx.fillStyle='#07111b';
-  ctx.fillRect(0,0,width,height);
+
+  ctx.fillRect(
+    0,0,width,height
+  );
 
   const padding=12;
-  const startY=(height-7*ledPitch)/2;
-  const radius=Math.max(.35,ledPitch*.29);
+
+  const startY=
+    (height-7*ledPitch)/2;
+
+  const radius=Math.max(
+    .35,
+    ledPitch*.29
+  );
 
   const columnsVisible=Math.floor(
     (width-2*padding)/ledPitch
   );
 
   for(let c=0;c<=columnsVisible;c++) {
-    const x=padding+(c+.5)*ledPitch;
+
+    const x=
+      padding+(c+.5)*ledPitch;
 
     if(x>width-padding) break;
 
     for(let row=0;row<7;row++) {
+
       drawDot(
         x,
         startY+(row+.5)*ledPitch,
@@ -2121,22 +2454,30 @@ function drawLED(time) {
     }
   }
 
-  const startColumn=Math.round(ledPosition/ledPitch);
+  const startColumn=Math.round(
+    ledPosition/ledPitch
+  );
 
   for(let c=0;c<ledColumns.length;c++) {
-    const displayColumn=startColumn+c;
+
+    const displayColumn=
+      startColumn+c;
 
     if(
       displayColumn<0||
       displayColumn>columnsVisible
     ) continue;
 
-    const x=padding+(displayColumn+.5)*ledPitch;
+    const x=
+      padding+
+      (displayColumn+.5)*ledPitch;
 
     if(x>width-padding) continue;
 
     for(let row=0;row<7;row++) {
+
       if(ledColumns[c][row]) {
+
         drawDot(
           x,
           startY+(row+.5)*ledPitch,
@@ -2153,6 +2494,7 @@ function drawLED(time) {
     !document.hidden&&
     ledLastTime
   ) {
+
     const delta=Math.min(
       .05,
       (time-ledLastTime)/1000
@@ -2163,14 +2505,17 @@ function drawLED(time) {
       width-24-ledTextWidth
     );
 
-    ledPosition+=LED_SPEED*delta*ledDirection;
+    ledPosition+=
+      LED_SPEED*delta*ledDirection;
 
     if(ledPosition>=maxPosition) {
+
       ledPosition=maxPosition;
       ledDirection=-1;
     }
 
     if(ledPosition<=0) {
+
       ledPosition=0;
       ledDirection=1;
     }
@@ -2182,22 +2527,37 @@ function drawLED(time) {
 }
 
 updateLEDMessage('middle');
+
 resizeLEDCanvas();
 
 requestAnimationFrame(drawLED);
 
-/* ====================================
+/* ======================================
    MUSIKGALERIE
-==================================== */
+====================================== */
 
-const gallery=document.getElementById('gallery');
-const moreButton=document.getElementById('moreButton');
+const gallery=document.getElementById(
+  'gallery'
+);
 
-const videoModal=document.getElementById('videoModal');
-const videoFrame=document.getElementById('videoFrame');
-const closeVideo=document.getElementById('closeVideo');
+const moreButton=document.getElementById(
+  'moreButton'
+);
+
+const videoModal=document.getElementById(
+  'videoModal'
+);
+
+const videoFrame=document.getElementById(
+  'videoFrame'
+);
+
+const closeVideo=document.getElementById(
+  'closeVideo'
+);
 
 function escapeHTML(value) {
+
   return String(value??'')
     .replace(/&/g,'&amp;')
     .replace(/</g,'&lt;')
@@ -2207,58 +2567,87 @@ function escapeHTML(value) {
 }
 
 function safeURL(value) {
-  try {
-    const url=new URL(value,location.href);
 
-    return ['https:','http:'].includes(url.protocol)
+  try {
+
+    const url=new URL(
+      value,
+      location.href
+    );
+
+    return [
+      'https:',
+      'http:'
+    ].includes(url.protocol)
       ?url.href
       :'';
+
   } catch {
+
     return '';
+
   }
 }
 
 function formatDate(value) {
+
   if(!value) return '';
 
   const date=new Date(
-    String(value).slice(0,10)+'T12:00:00'
+    String(value).slice(0,10)+
+    'T12:00:00'
   );
 
   return isNaN(date.getTime())
     ?''
-    :date.toLocaleDateString('de-DE',{
-      day:'2-digit',
-      month:'2-digit',
-      year:'numeric'
-    });
+    :date.toLocaleDateString(
+      'de-DE',
+      {
+        day:'2-digit',
+        month:'2-digit',
+        year:'numeric'
+      }
+    );
 }
 
 function categoryOf(item) {
+
   const category=String(
-    item.type||item.category||'single'
+    item.type||
+    item.category||
+    'single'
   ).toLowerCase();
 
-  return ['album','albums','lp'].includes(category)
+  return [
+    'album',
+    'albums',
+    'lp'
+  ].includes(category)
     ?'album'
     :'single';
 }
 
 function getYoutubeId(item) {
-  const value=String(item.youtube||'').trim();
+
+  const value=String(
+    item.youtube||''
+  ).trim();
 
   if(/^[A-Za-z0-9_-]{11}$/.test(value)) {
     return value;
   }
 
   try {
+
     const url=new URL(value);
+
     const host=url.hostname.toLowerCase();
 
     if([
       'youtu.be',
       'www.youtu.be'
     ].includes(host)) {
+
       return url.pathname.split('/')[1]||'';
     }
 
@@ -2269,6 +2658,7 @@ function getYoutubeId(item) {
     ].includes(host)) {
 
       if(url.pathname==='/watch') {
+
         return url.searchParams.get('v')||'';
       }
 
@@ -2279,106 +2669,138 @@ function getYoutubeId(item) {
         'embed',
         'live'
       ].includes(parts[1])) {
+
         return parts[2]||'';
       }
     }
+
   } catch {}
 
   return '';
 }
 
-/* ====================================
-   PLAY / PLAYED STATUS
+/* ======================================
+   SPEICHERUNG DES ABSPIELSTATUS
 
-   BISHERIGER SPEICHERSCHLÜSSEL
-   BLEIBT UNVERÄNDERT
-==================================== */
+   BISHERIGER SCHLÜSSEL BLEIBT
+   UNVERÄNDERT
 
-const VIDEO_STORAGE_PREFIX='RMB_MUSIC_WATCHED_';
+   RMB_MUSIC_WATCHED_
+====================================== */
+
+const VIDEO_STORAGE_PREFIX=
+  'RMB_MUSIC_WATCHED_';
 
 const watchedVideosThisSession=new Set();
 
 function videoStorageKey(id) {
+
   return VIDEO_STORAGE_PREFIX+id;
 }
 
 function hasOpenedVideo(id) {
+
   if(watchedVideosThisSession.has(id)) {
     return true;
   }
 
   try {
+
     return localStorage.getItem(
       videoStorageKey(id)
     )==='1';
+
   } catch {
+
     return false;
   }
 }
 
 function rememberOpenedVideo(id) {
+
   watchedVideosThisSession.add(id);
 
   try {
+
     localStorage.setItem(
       videoStorageKey(id),
       '1'
     );
+
   } catch {
-    /* Status bleibt innerhalb der Sitzung */
+
+    /* Status bleibt für diese Sitzung */
+
   }
 }
 
-/* ====================================
-   BUTTON-FARBE UND TEXT AKTUALISIEREN
+/* ======================================
+   STATUS AKTUALISIEREN
 
-   ROT: PLAY
-   GRÜN: PLAYED
-==================================== */
+   NICHT GEÖFFNET:
+   GRÜNER KREIS MIT PLAY
+
+   BEREITS GEÖFFNET:
+   ROTER KREIS MIT HÄKCHEN
+====================================== */
 
 function refreshVideoStamps() {
+
   gallery.querySelectorAll(
     '.cover-button[data-video-id]'
   ).forEach(button=>{
 
     const id=button.dataset.videoId;
-    const stamp=button.querySelector('.video-stamp');
+
+    const stamp=button.querySelector(
+      '.video-stamp'
+    );
 
     if(!stamp) return;
 
     const watched=hasOpenedVideo(id);
 
-    stamp.classList.toggle('watched',watched);
-
-    const text=stamp.querySelector('.video-stamp-text');
-
-    if(text) {
-      text.textContent=watched?'PLAYED':'PLAY';
-    }
+    stamp.classList.toggle(
+      'watched',
+      watched
+    );
 
     button.title=watched
       ?'Bereits abgespielt – erneut anhören'
       :'Musik anhören';
+
+    button.setAttribute(
+      'aria-label',
+      watched
+        ?'Bereits gestarteten Song erneut anhören'
+        :'Song anhören'
+    );
   });
 }
 
-/* ====================================
-   INTERNER YOUTUBE-PLAYER
-==================================== */
+/* ======================================
+   YOUTUBE-PLAYER
+====================================== */
 
 function openVideo(id) {
+
   if(!/^[A-Za-z0-9_-]{11}$/.test(id)) {
     return;
   }
 
   stopRadio();
 
+  /* SONG ALS GEÖFFNET MARKIEREN */
+
   rememberOpenedVideo(id);
 
-  /* SOFORT AUF PLAYED UMSCHALTEN */
+  /* SOFORT ROTEN HAKEN SETZEN */
+
   refreshVideoStamps();
 
-  document.body.classList.add('video-is-open');
+  document.body.classList.add(
+    'video-is-open'
+  );
 
   videoFrame.src=
     'https://www.youtube-nocookie.com/embed/'+
@@ -2389,11 +2811,16 @@ function openVideo(id) {
 }
 
 function closeVideoPlayer() {
+
   videoModal.classList.remove('open');
 
   videoFrame.src='';
 
-  document.body.classList.remove('video-is-open');
+  document.body.classList.remove(
+    'video-is-open'
+  );
+
+  /* ROTER HAKEN BLEIBT SICHTBAR */
 
   refreshVideoStamps();
 }
@@ -2403,31 +2830,43 @@ closeVideo.addEventListener(
   closeVideoPlayer
 );
 
-videoModal.addEventListener('click',event=>{
-  if(event.target===videoModal) {
-    closeVideoPlayer();
-  }
-});
+videoModal.addEventListener(
+  'click',
+  event=>{
 
-document.addEventListener('keydown',event=>{
-  if(event.key==='Escape') {
-    closeVideoPlayer();
+    if(event.target===videoModal) {
+      closeVideoPlayer();
+    }
   }
-});
+);
 
-/* ====================================
-   MUSIKKARTEN
-==================================== */
+document.addEventListener(
+  'keydown',
+  event=>{
+
+    if(event.key==='Escape') {
+      closeVideoPlayer();
+    }
+  }
+);
+
+/* ======================================
+   MUSIKKARTEN ERSTELLEN
+====================================== */
 
 function renderMusic() {
 
   if(activeCategory==='middle') {
+
     gallery.innerHTML='';
+
     moreButton.hidden=true;
+
     return;
   }
 
-  const isSingle=activeCategory==='single';
+  const isSingle=
+    activeCategory==='single';
 
   const items=allMusic
     .filter(item=>
@@ -2442,6 +2881,7 @@ function renderMusic() {
   gallery.innerHTML='';
 
   if(!items.length) {
+
     gallery.innerHTML=
       '<div class="empty-message">'+
       (
@@ -2452,27 +2892,36 @@ function renderMusic() {
       '</div>';
 
     moreButton.hidden=true;
+
     return;
   }
 
-  items.slice(0,visibleCount).forEach(item=>{
+  items.slice(
+    0,
+    visibleCount
+  ).forEach(item=>{
 
     const id=getYoutubeId(item);
 
-    const valid=/^[A-Za-z0-9_-]{11}$/.test(id)
-      ?id
-      :'';
+    const valid=
+      /^[A-Za-z0-9_-]{11}$/.test(id)
+        ?id
+        :'';
 
     let albumURL='';
 
     if(categoryOf(item)==='album') {
+
       try {
+
         const url=new URL(
           String(item.youtube||'').trim()
         );
 
         const host=url.hostname.toLowerCase();
-        const playlistId=url.searchParams.get('list');
+
+        const playlistId=
+          url.searchParams.get('list');
 
         if(
           [
@@ -2481,10 +2930,14 @@ function renderMusic() {
             'm.youtube.com'
           ].includes(host)&&
           url.pathname==='/playlist'&&
-          /^[A-Za-z0-9_-]+$/.test(playlistId||'')
+          /^[A-Za-z0-9_-]+$/.test(
+            playlistId||''
+          )
         ) {
+
           albumURL=url.href;
         }
+
       } catch {}
     }
 
@@ -2498,28 +2951,40 @@ function renderMusic() {
 
     const spotify=safeURL(item.spotify);
     const amazon=safeURL(item.amazon);
-    const date=formatDate(item.releaseDate);
 
-    const card=document.createElement('article');
+    const date=formatDate(
+      item.releaseDate
+    );
+
+    const card=document.createElement(
+      'article'
+    );
+
     card.className='music-card';
 
-    const canOpen=Boolean(valid||albumURL);
+    const canOpen=Boolean(
+      valid||albumURL
+    );
 
     const hasInternalVideo=Boolean(
       valid&&!albumURL
     );
 
     const alreadyWatched=
-      hasInternalVideo&&hasOpenedVideo(valid);
+      hasInternalVideo&&
+      hasOpenedVideo(valid);
 
-    /* ====================================
-       NEUER 40-PIXEL-BUTTON
+    /* ==================================
+       BUTTON 40 x 40 PIXEL
 
-       PLAY   = ROT
-       PLAYED = GRÜN
+       GRÜN:
+       PLAY
 
-       OHNE PLAY-SYMBOL
-    ==================================== */
+       ROT:
+       SVG-HÄKCHEN
+
+       KEIN PLAY-DREIECK
+    ================================== */
 
     const videoStampHTML=hasInternalVideo
       ?`
@@ -2527,14 +2992,25 @@ function renderMusic() {
           class="video-stamp ${alreadyWatched?'watched':''}"
           aria-hidden="true"
         >
+
           <span class="video-stamp-text">
-            ${alreadyWatched?'PLAYED':'PLAY'}
+            PLAY
           </span>
+
+          <svg
+            class="video-stamp-check"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M4 12.5L9.5 18L20 6"/>
+          </svg>
+
         </span>
       `
       :'';
 
     card.innerHTML=`
+
       <button
         type="button"
         class="cover-button"
@@ -2619,34 +3095,56 @@ function renderMusic() {
       </div>
     `;
 
+    /* ==================================
+       COVER ANKLICKEN
+    ================================== */
+
     if(albumURL) {
 
-      card.querySelector('.cover-button')
-        .addEventListener('click',()=>{
+      card.querySelector(
+        '.cover-button'
+      ).addEventListener(
+        'click',
+        ()=>{
+
           stopRadio();
-          window.location.assign(albumURL);
-        });
+
+          window.location.assign(
+            albumURL
+          );
+        }
+      );
 
     } else if(valid) {
 
-      card.querySelector('.cover-button')
-        .addEventListener(
-          'click',
-          ()=>openVideo(valid)
-        );
-
+      card.querySelector(
+        '.cover-button'
+      ).addEventListener(
+        'click',
+        ()=>openVideo(valid)
+      );
     }
 
-    card.querySelectorAll('.music-links a')
-      .forEach(link=>{
-        link.addEventListener('click',stopRadio);
-      });
+    /* ==================================
+       EXTERNE STREAMING-LINKS
+    ================================== */
+
+    card.querySelectorAll(
+      '.music-links a'
+    ).forEach(link=>{
+
+      link.addEventListener(
+        'click',
+        stopRadio
+      );
+    });
 
     gallery.appendChild(card);
 
   });
 
-  moreButton.hidden=items.length<=visibleCount;
+  moreButton.hidden=
+    items.length<=visibleCount;
 
   moreButton.textContent=isSingle
     ?'WEITERE SONGS ANZEIGEN'
@@ -2655,22 +3153,29 @@ function renderMusic() {
   refreshVideoStamps();
 }
 
-/* ====================================
+/* ======================================
    WEITERE SONGS
-==================================== */
+====================================== */
 
-moreButton.addEventListener('click',()=>{
-  visibleCount+=10;
-  renderMusic();
-});
+moreButton.addEventListener(
+  'click',
+  ()=>{
 
-/* ====================================
+    visibleCount+=10;
+
+    renderMusic();
+  }
+);
+
+/* ======================================
    SONGS.JSON LADEN
-==================================== */
+====================================== */
 
 fetch('songs.json')
   .then(response=>{
+
     if(!response.ok) {
+
       throw new Error(
         'songs.json nicht gefunden'
       );
@@ -2679,11 +3184,17 @@ fetch('songs.json')
     return response.json();
   })
   .then(data=>{
-    allMusic=Array.isArray(data)?data:[];
+
+    allMusic=Array.isArray(data)
+      ?data
+      :[];
+
     renderMusic();
   })
   .catch(error=>{
+
     if(activeCategory!=='middle') {
+
       gallery.innerHTML=
         '<div class="empty-message">'+
         'Die Musikdaten konnten nicht geladen werden.'+
@@ -2693,58 +3204,91 @@ fetch('songs.json')
     console.error(error);
   });
 
-/* ====================================
-   STARTSTELLUNG CROSSFADER
-==================================== */
+/* ======================================
+   STARTSTELLUNG
+====================================== */
 
 function initializeCrossfader() {
+
   crossfader.value='50';
 
   activeCategory='middle';
   visibleCount=10;
 
-  singleLabel.classList.remove('active');
-  albumLabel.classList.remove('active');
+  singleLabel.classList.remove(
+    'active'
+  );
 
-  singleTurntable.classList.remove('playing');
-  albumTurntable.classList.remove('playing');
+  albumLabel.classList.remove(
+    'active'
+  );
+
+  singleTurntable.classList.remove(
+    'playing'
+  );
+
+  albumTurntable.classList.remove(
+    'playing'
+  );
 
   updateLEDMessage('middle');
+
   renderMusic();
+
   updateRadioButton();
 }
 
 initializeCrossfader();
 
-/* ====================================
+/* ======================================
    RADIO-AUTOSTART
-==================================== */
+====================================== */
 
 function attemptRadioAutostart() {
+
   if(
     activeCategory==='middle'&&
     rmbRadio.paused
   ) {
+
     startRadio();
   }
 }
 
-/* ====================================
+/* ======================================
    ABSCHLIESSENDE INITIALISIERUNG
-==================================== */
+====================================== */
 
-window.addEventListener('load',()=>{
-  resizeMasterStage();
-  resetFaders();
-  attemptRadioAutostart();
-});
+window.addEventListener(
+  'load',
+  ()=>{
 
-window.addEventListener('pageshow',()=>{
-  initializeCrossfader();
-  attemptRadioAutostart();
-});
+    resizeMasterStage();
 
-window.addEventListener('pagehide',stopRadio);
+    resetFaders();
+
+    attemptRadioAutostart();
+  }
+);
+
+window.addEventListener(
+  'pageshow',
+  ()=>{
+
+    resizeMasterStage();
+
+    resetFaders();
+
+    initializeCrossfader();
+
+    attemptRadioAutostart();
+  }
+);
+
+window.addEventListener(
+  'pagehide',
+  stopRadio
+);
 
 </script>
 
