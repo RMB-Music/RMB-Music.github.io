@@ -760,6 +760,87 @@ a:focus-visible {
 }
 
 /* ======================================
+   NEU: MIXER GUIDE
+====================================== */
+
+.mixer-guide {
+  width:min(950px,calc(100% - 32px));
+  margin:36px auto 42px;
+  padding:32px 35px;
+  border:1px solid #48515f;
+  border-radius:12px;
+  background:#1c2530;
+  box-shadow:0 8px 24px rgba(0,0,0,.22);
+  text-align:center;
+}
+
+.mixer-guide h2 {
+  margin:0 0 23px;
+  color:#f2f4f8;
+  font-family:Michroma,Arial,sans-serif;
+  font-size:clamp(15px,2.5vw,22px);
+  letter-spacing:1px;
+}
+
+.guide-language {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:26px;
+}
+
+.guide-language button {
+  padding:11px 18px;
+  border:1px solid #526075;
+  border-radius:7px;
+  background:#252e3b;
+  color:#c5d1df;
+  font-family:Michroma,Arial,sans-serif;
+  font-size:10px;
+  cursor:pointer;
+}
+
+.guide-language button.selected {
+  background:#43546c;
+  border-color:#a9bdd5;
+  color:#fff;
+}
+
+.guide-language button:hover {
+  background:#344255;
+}
+
+.guide-description {
+  max-width:780px;
+  margin:0 auto;
+  text-align:left;
+}
+
+.guide-description[hidden] {
+  display:none !important;
+}
+
+.guide-item {
+  padding:17px 0;
+  border-top:1px solid #354353;
+}
+
+.guide-item h3 {
+  margin:0 0 9px;
+  color:#dcecff;
+  font-family:Michroma,Arial,sans-serif;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.guide-item p {
+  margin:0;
+  color:#cbd5e1;
+  font-size:13px;
+  line-height:1.9;
+}
+
+/* ======================================
    MUSIKGALERIE
 ====================================== */
 
@@ -826,8 +907,6 @@ a:focus-visible {
    GRÜN = PLAY
    ROT  = HÄKCHEN
 
-   GILT FÜR SINGLES UND ALBEN
-
    POSITION:
    OBERES LINKES VIERTEL
 ====================================== */
@@ -886,16 +965,13 @@ a:focus-visible {
 .video-stamp-text {
   position:relative;
   z-index:1;
-
   display:block;
   width:100%;
-
   font-family:Michroma,Arial,sans-serif;
   font-size:6px;
   font-weight:bold;
   line-height:1;
   letter-spacing:-.15px;
-
   text-align:center;
   white-space:nowrap;
   text-shadow:0 0 4px currentColor;
@@ -905,23 +981,19 @@ a:focus-visible {
   display:none;
   position:relative;
   z-index:1;
-
   width:23px;
   height:23px;
-
   stroke:currentColor;
   stroke-width:3.5;
   stroke-linecap:round;
   stroke-linejoin:round;
   fill:none;
-
   filter:drop-shadow(0 0 3px currentColor);
 }
 
 .video-stamp.watched {
   border-color:#ff636d;
   color:#ff8189;
-
   box-shadow:
     0 0 5px rgba(255,99,109,.95),
     0 0 10px rgba(255,99,109,.55),
@@ -1079,6 +1151,24 @@ footer {
     width:calc(50% - 6px);
     min-width:150px;
     padding:9px;
+  }
+
+  .mixer-guide {
+    margin:26px auto 34px;
+    padding:23px 18px;
+  }
+
+  .guide-language button {
+    padding:10px 13px;
+    font-size:9px;
+  }
+
+  .guide-item h3 {
+    font-size:10px;
+  }
+
+  .guide-item p {
+    font-size:12px;
   }
 }
 
@@ -1437,6 +1527,155 @@ footer {
 </div>
 </section>
 
+<!-- ======================================
+     NEU: MIXER GUIDE
+====================================== -->
+
+<section class="mixer-guide" aria-label="MUSIC Mixer Guide">
+
+  <h2>R.M.B. MUSIC – MIXER GUIDE</h2>
+
+  <div class="guide-language">
+
+    <button
+      type="button"
+      id="guideBtnDe"
+      class="selected"
+      aria-pressed="true"
+      onclick="switchGuideLanguage('de')"
+    >
+      DEUTSCH
+    </button>
+
+    <button
+      type="button"
+      id="guideBtnEn"
+      aria-pressed="false"
+      onclick="switchGuideLanguage('en')"
+    >
+      ENGLISH
+    </button>
+
+  </div>
+
+  <!-- DEUTSCHE ERKLÄRUNG -->
+
+  <div
+    class="guide-description"
+    id="guideDe"
+    lang="de"
+  >
+
+    <div class="guide-item">
+      <h3>▶ R.M.B. RADIO</h3>
+      <p>
+        Tippe auf den kleinen Play-Button
+        über dem Buchstaben „I“ im MUSIC-Schriftzug,
+        um R.M.B. RADIO zu starten oder zu pausieren.
+        Das Radio ist aktivierbar, solange sich
+        der Crossfader in der Mittelstellung befindet.
+      </p>
+    </div>
+
+    <div class="guide-item">
+      <h3>↔ CROSSFADER – SINGLE / ALBUM</h3>
+      <p>
+        Bewege den Crossfader in der Mitte des
+        Mischpults nach links, um die Single-Collection
+        anzuzeigen, oder nach rechts, um die
+        Album-Collection zu entdecken.
+        In der Mittelstellung erscheint wieder
+        THE SOUND OF R.M.B. und das Radio
+        steht zur Verfügung.
+      </p>
+    </div>
+
+    <div class="guide-item">
+      <h3>🎚 MENÜREGLER</h3>
+      <p>
+        Schiebe einen der fünf senkrechten
+        Regler nach oben, um den entsprechenden
+        Bereich der Website aufzurufen:
+        HOME, MUSIC, UPCOMING, ABOUT oder CONTACT.
+      </p>
+    </div>
+
+    <div class="guide-item">
+      <h3>♫ MUSIK ENTDECKEN</h3>
+      <p>
+        Wähle einen Titel aus der Single- oder
+        Album-Collection. Über das Cover kannst
+        du verfügbare Videos abspielen.
+        Alternativ führen dich die Links zu
+        YouTube, Spotify oder Amazon Music.
+        Ein rotes Häkchen zeigt dir an,
+        welche Videos du bereits geöffnet hast.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ENGLISCHE ERKLÄRUNG -->
+
+  <div
+    class="guide-description"
+    id="guideEn"
+    lang="en"
+    hidden
+  >
+
+    <div class="guide-item">
+      <h3>▶ R.M.B. RADIO</h3>
+      <p>
+        Tap the small play button above the
+        letter “I” in the MUSIC logo to start
+        or pause R.M.B. RADIO.
+        The radio is available while the
+        crossfader is in its centre position.
+      </p>
+    </div>
+
+    <div class="guide-item">
+      <h3>↔ CROSSFADER – SINGLE / ALBUM</h3>
+      <p>
+        Move the crossfader in the centre
+        of the mixing console to the left
+        to display the Single Collection,
+        or to the right to explore the
+        Album Collection.
+        Return it to the centre to display
+        THE SOUND OF R.M.B. and make
+        the radio available again.
+      </p>
+    </div>
+
+    <div class="guide-item">
+      <h3>🎚 MENU FADERS</h3>
+      <p>
+        Slide one of the five vertical
+        faders upwards to open the corresponding
+        section of the website:
+        HOME, MUSIC, UPCOMING, ABOUT or CONTACT.
+      </p>
+    </div>
+
+    <div class="guide-item">
+      <h3>♫ EXPLORE THE MUSIC</h3>
+      <p>
+        Choose a track from the Single
+        or Album Collection.
+        Tap the cover to play available videos,
+        or use the links to listen on YouTube,
+        Spotify or Amazon Music.
+        A red checkmark indicates which
+        videos you have already opened.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
 <!-- RADIO -->
 
 <audio id="rmbRadio" preload="auto" loop>
@@ -1490,6 +1729,51 @@ footer {
 </div>
 
 <script>
+
+/* ======================================
+   NEU: MIXER GUIDE SPRACHUMSCHALTUNG
+====================================== */
+
+function switchGuideLanguage(language) {
+
+  const german=language==='de';
+
+  document.getElementById(
+    'guideDe'
+  ).hidden=!german;
+
+  document.getElementById(
+    'guideEn'
+  ).hidden=german;
+
+  const deButton=document.getElementById(
+    'guideBtnDe'
+  );
+
+  const enButton=document.getElementById(
+    'guideBtnEn'
+  );
+
+  deButton.classList.toggle(
+    'selected',
+    german
+  );
+
+  enButton.classList.toggle(
+    'selected',
+    !german
+  );
+
+  deButton.setAttribute(
+    'aria-pressed',
+    String(german)
+  );
+
+  enButton.setAttribute(
+    'aria-pressed',
+    String(!german)
+  );
+}
 
 /* ======================================
    HILFSFUNKTIONEN
@@ -2672,10 +2956,10 @@ function getYoutubeId(item) {
 /* ======================================
    SPEICHERUNG DES ABSPIELSTATUS
 
-   SINGLES UND ALBEN
+   BISHERIGER SCHLÜSSEL BLEIBT
+   UNVERÄNDERT
 
-   NUR FÜR DIE AKTUELLE
-   BROWSER-TAB-SITZUNG
+   RMB_MUSIC_WATCHED_
 ====================================== */
 
 const VIDEO_STORAGE_PREFIX=
@@ -2696,7 +2980,7 @@ function hasOpenedVideo(id) {
 
   try {
 
-    return sessionStorage.getItem(
+    return localStorage.getItem(
       videoStorageKey(id)
     )==='1';
 
@@ -2712,47 +2996,20 @@ function rememberOpenedVideo(id) {
 
   try {
 
-    sessionStorage.setItem(
+    localStorage.setItem(
       videoStorageKey(id),
       '1'
     );
 
   } catch {
 
-    /* Status bleibt innerhalb dieser Seite erhalten */
+    /* Status bleibt für diese Sitzung */
 
   }
 }
 
 /* ======================================
-   ALBUM-STATUS
-
-   EIGENER SCHLÜSSEL PRO
-   YOUTUBE-ALBUM-PLAYLIST
-====================================== */
-
-function albumStorageId(url) {
-
-  try {
-
-    const parsed=new URL(url);
-
-    const list=parsed.searchParams.get('list');
-
-    if(list) {
-      return 'ALBUM_'+list;
-    }
-
-  } catch {}
-
-  return 'ALBUM_'+url;
-}
-
-/* ======================================
    STATUS AKTUALISIEREN
-
-   GRÜN = NOCH NICHT GEÖFFNET
-   ROT  = BEREITS GEÖFFNET
 ====================================== */
 
 function refreshVideoStamps() {
@@ -2777,14 +3034,14 @@ function refreshVideoStamps() {
     );
 
     button.title=watched
-      ?'Bereits geöffnet – erneut anhören'
+      ?'Bereits abgespielt – erneut anhören'
       :'Musik anhören';
 
     button.setAttribute(
       'aria-label',
       watched
-        ?'Bereits geöffneten Song oder Album erneut anhören'
-        :'Song oder Album anhören'
+        ?'Bereits gestarteten Song erneut anhören'
+        :'Song anhören'
     );
   });
 }
@@ -2975,31 +3232,11 @@ function renderMusic() {
       valid&&!albumURL
     );
 
-    /* ==================================
-       NEU:
-
-       SINGLES UND ALBEN
-       ERHALTEN DEN PLAY-BUTTON
-
-       ALBEN WERDEN ÜBER IHRE
-       PLAYLIST-ID GESPEICHERT
-    ================================== */
-
-    const stampId=albumURL
-      ?albumStorageId(albumURL)
-      :hasInternalVideo
-        ?valid
-        :'';
-
-    const hasPlayStamp=Boolean(
-      stampId
-    );
-
     const alreadyWatched=
-      hasPlayStamp&&
-      hasOpenedVideo(stampId);
+      hasInternalVideo&&
+      hasOpenedVideo(valid);
 
-    const videoStampHTML=hasPlayStamp
+    const videoStampHTML=hasInternalVideo
       ?`
         <span
           class="video-stamp ${alreadyWatched?'watched':''}"
@@ -3028,8 +3265,8 @@ function renderMusic() {
         type="button"
         class="cover-button"
         ${canOpen?'':'disabled'}
-        ${hasPlayStamp
-          ?'data-video-id="'+escapeHTML(stampId)+'"'
+        ${hasInternalVideo
+          ?'data-video-id="'+valid+'"'
           :''}
         aria-label="${albumURL
           ?'Album auf YouTube öffnen'
@@ -3067,15 +3304,23 @@ function renderMusic() {
 
       <div class="music-links">
 
-        ${!albumURL&&valid
+        ${albumURL
           ?`
             <a
-              href="https://www.youtube.com/watch?v=${valid}"
+              href="${escapeHTML(albumURL)}"
               target="_blank"
               rel="noopener noreferrer"
             >YouTube</a>
           `
-          :''}
+          :valid
+            ?`
+              <a
+                href="https://www.youtube.com/watch?v=${valid}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >YouTube</a>
+            `
+            :''}
 
         ${spotify
           ?`
@@ -3100,15 +3345,6 @@ function renderMusic() {
       </div>
     `;
 
-    /* ==================================
-       COVER ANKLICKEN
-
-       ALBEN:
-       DIREKT ZU YOUTUBE
-
-       STATUS VORHER SPEICHERN
-    ================================== */
-
     if(albumURL) {
 
       card.querySelector(
@@ -3118,12 +3354,6 @@ function renderMusic() {
         ()=>{
 
           stopRadio();
-
-          rememberOpenedVideo(
-            stampId
-          );
-
-          refreshVideoStamps();
 
           window.location.assign(
             albumURL
@@ -3140,10 +3370,6 @@ function renderMusic() {
         ()=>openVideo(valid)
       );
     }
-
-    /* ==================================
-       EXTERNE STREAMING-LINKS
-    ================================== */
 
     card.querySelectorAll(
       '.music-links a'
