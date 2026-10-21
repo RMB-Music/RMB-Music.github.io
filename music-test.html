@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -760,7 +759,7 @@ a:focus-visible {
 }
 
 /* ======================================
-   NEU: MINIMALISTISCHER MIXER GUIDE
+   MIXER QUICK GUIDE
 ====================================== */
 
 .mixer-guide {
@@ -773,6 +772,12 @@ a:focus-visible {
   color:#cbd3df;
 }
 
+/* NEU: TAFEL BEI SINGLE / ALBUM AUSBLENDEN */
+
+.mixer-guide[hidden] {
+  display:none;
+}
+
 .guide-heading {
   margin:0;
   color:#f5f7fb;
@@ -782,8 +787,6 @@ a:focus-visible {
   line-height:1.5;
   text-align:center;
 }
-
-/* Sprachschalter innerhalb der Tafel */
 
 .guide-languages {
   display:flex;
@@ -911,14 +914,6 @@ a:focus-visible {
 
 /* ======================================
    PLAY / HÄKCHEN
-
-   40 x 40 PIXEL
-
-   GRÜN = PLAY
-   ROT  = HÄKCHEN
-
-   POSITION:
-   OBERES LINKES VIERTEL
 ====================================== */
 
 .video-stamp {
@@ -926,36 +921,27 @@ a:focus-visible {
   top:25%;
   left:25%;
   z-index:3;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   width:40px;
   height:40px;
   padding:2px;
-
   transform:translate(-50%,-50%);
-
   border:2px solid #49ff96;
   border-radius:50%;
-
   background:radial-gradient(
     circle at 35% 25%,
     rgba(55,73,91,.97),
     rgba(10,17,25,.98) 75%
   );
-
   color:#7dffb1;
-
   box-shadow:
     0 0 5px rgba(73,255,150,1),
     0 0 10px rgba(73,255,150,.7),
     0 0 16px rgba(73,255,150,.3),
     inset 0 1px 2px rgba(255,255,255,.22);
-
   pointer-events:none;
-
   transition:
     border-color .25s,
     color .25s,
@@ -1556,20 +1542,19 @@ footer {
 </audio>
 
 <!-- ======================================
-     NEU: MIXER QUICK GUIDE
-     DEUTSCH / ENGLISH
+     MIXER QUICK GUIDE
+     NUR IN DER MITTELSTELLUNG
 ====================================== -->
 
 <section
   class="mixer-guide"
+  id="mixerGuide"
   aria-labelledby="guideHeading"
 >
 
   <h2 class="guide-heading" id="guideHeading">
     MIXER QUICK GUIDE
   </h2>
-
-  <!-- SPRACHSCHALTER INNERHALB DER TAFEL -->
 
   <div
     class="guide-languages"
@@ -1599,7 +1584,7 @@ footer {
 
   <div class="guide-divider"></div>
 
-  <!-- DEUTSCHE KURZANLEITUNG -->
+  <!-- DEUTSCH -->
 
   <div class="guide-text" id="guideTextGerman" lang="de">
 
@@ -1635,7 +1620,7 @@ footer {
 
   </div>
 
-  <!-- ENGLISCHE KURZANLEITUNG -->
+  <!-- ENGLISH -->
 
   <div
     class="guide-text"
@@ -1727,7 +1712,7 @@ footer {
 <script>
 
 /* ======================================
-   NEU: SPRACHSCHALTER MIXER GUIDE
+   SPRACHSCHALTER MIXER GUIDE
 ====================================== */
 
 const guideGerman=document.getElementById(
@@ -2196,6 +2181,12 @@ const albumTurntable=document.getElementById(
   'albumTurntable'
 );
 
+/* NEU: REFERENZ AUF DEN QUICK GUIDE */
+
+const mixerGuide=document.getElementById(
+  'mixerGuide'
+);
+
 let activeCategory='middle';
 let allMusic=[];
 let visibleCount=10;
@@ -2350,6 +2341,10 @@ function chooseCategory(category) {
 
   activeCategory=category;
   visibleCount=10;
+
+  /* NEU: GUIDE NUR IN DER MITTE SICHTBAR */
+
+  mixerGuide.hidden=category!=='middle';
 
   singleLabel.classList.toggle(
     'active',
@@ -2964,11 +2959,6 @@ function getYoutubeId(item) {
 
 /* ======================================
    SPEICHERUNG DES ABSPIELSTATUS
-
-   BISHERIGER SCHLÜSSEL BLEIBT
-   UNVERÄNDERT
-
-   RMB_MUSIC_WATCHED_
 ====================================== */
 
 const VIDEO_STORAGE_PREFIX=
@@ -3019,12 +3009,6 @@ function rememberOpenedVideo(id) {
 
 /* ======================================
    STATUS AKTUALISIEREN
-
-   NICHT GEÖFFNET:
-   GRÜNER KREIS MIT PLAY
-
-   BEREITS GEÖFFNET:
-   ROTER KREIS MIT HÄKCHEN
 ====================================== */
 
 function refreshVideoStamps() {
@@ -3471,6 +3455,10 @@ function initializeCrossfader() {
 
   activeCategory='middle';
   visibleCount=10;
+
+  /* NEU: GUIDE BEIM START EINBLENDEN */
+
+  mixerGuide.hidden=false;
 
   singleLabel.classList.remove(
     'active'
