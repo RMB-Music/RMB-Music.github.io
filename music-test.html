@@ -5,32 +5,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>R.M.B. | MUSIC</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
 
 <style>
-/* ====================================
-   GRUNDEINSTELLUNGEN
-==================================== */
 :root {
   --bg:#101720;
   --blue:#82d2ff;
   --green:#49ff96;
   --red:#ff636d;
 }
+
 * { box-sizing:border-box; }
+
 html,body {
   margin:0;
   min-height:100%;
   background:var(--bg);
 }
+
 body {
   color:#e7edf5;
   font-family:Arial,sans-serif;
   overflow-x:hidden;
 }
+
 button,input { font:inherit; }
+
 button:focus-visible,
 input:focus-visible,
 a:focus-visible {
@@ -41,12 +44,14 @@ a:focus-visible {
 /* ====================================
    MASTER-CONTAINER
 ==================================== */
+
 .master-shell {
   position:relative;
   width:98%;
   max-width:1360px;
   margin:0 auto;
 }
+
 .master-stage {
   position:absolute;
   top:0;
@@ -58,12 +63,14 @@ a:focus-visible {
 /* ====================================
    MUSIC / SKYLINE
 ==================================== */
+
 .music-composition {
   position:relative;
   width:1360px;
   height:245px;
   isolation:isolate;
 }
+
 .skyline {
   position:absolute;
   left:0;
@@ -76,6 +83,7 @@ a:focus-visible {
   filter:brightness(0) invert(1);
   pointer-events:none;
 }
+
 .music-heading {
   position:absolute;
   top:28px;
@@ -92,8 +100,8 @@ a:focus-visible {
 
 /* ====================================
    R.M.B. RADIO
-   POSITION UNVERÄNDERT: left 62%
 ==================================== */
+
 .radio-button {
   position:absolute;
   top:18px;
@@ -108,16 +116,25 @@ a:focus-visible {
   transform:translateX(-50%);
   border:2px solid #ff636d;
   border-radius:50%;
-  background:radial-gradient(circle at 35% 25%,#34475a,#101820 72%);
+  background:radial-gradient(
+    circle at 35% 25%,
+    #34475a,
+    #101820 72%
+  );
   color:#ff8189;
   box-shadow:
     0 0 5px rgba(255,99,109,.9),
     0 0 12px rgba(255,99,109,.45),
     inset 0 1px 2px rgba(255,255,255,.2);
   cursor:pointer;
-  transition:border-color .2s,color .2s,box-shadow .2s,background .2s;
+  transition:
+    border-color .2s,
+    color .2s,
+    box-shadow .2s,
+    background .2s;
   touch-action:manipulation;
 }
+
 .radio-button.playing {
   border-color:#49ff96;
   color:#7dffb1;
@@ -127,17 +144,20 @@ a:focus-visible {
     0 0 22px rgba(73,255,150,.3),
     inset 0 1px 2px rgba(255,255,255,.2);
 }
+
 .radio-button.inactive {
   opacity:.38;
   box-shadow:none;
   cursor:default;
 }
+
 .radio-button svg {
   display:block;
   width:13px;
   height:13px;
   fill:currentColor;
 }
+
 .radio-button .pause-icon { display:none; }
 .radio-button.playing .play-icon { display:none; }
 .radio-button.playing .pause-icon { display:block; }
@@ -145,6 +165,7 @@ a:focus-visible {
 /* ====================================
    GENREZEILE
 ==================================== */
+
 .genre-area {
   position:relative;
   width:1360px;
@@ -153,6 +174,7 @@ a:focus-visible {
   align-items:center;
   justify-content:center;
 }
+
 .genre-line {
   margin:0;
   color:#b9d3ee;
@@ -167,6 +189,7 @@ a:focus-visible {
 /* ====================================
    DJ-ANLAGE
 ==================================== */
+
 .dj-setup {
   display:grid;
   grid-template-columns:330px 680px 330px;
@@ -175,6 +198,7 @@ a:focus-visible {
   height:260px;
   align-items:stretch;
 }
+
 .turntable,.mixer {
   position:relative;
   width:100%;
@@ -183,11 +207,13 @@ a:focus-visible {
   border-radius:6px;
   box-shadow:0 8px 20px rgba(0,0,0,.45);
 }
+
 .turntable {
   border:1px solid #667b91;
   background:#cbd5df;
   isolation:isolate;
 }
+
 .turntable-image {
   display:block;
   width:100%;
@@ -195,6 +221,7 @@ a:focus-visible {
   object-fit:fill;
   pointer-events:none;
 }
+
 .vinyl-position {
   position:absolute;
   left:38.4%;
@@ -208,10 +235,12 @@ a:focus-visible {
   visibility:hidden;
   transition:opacity .35s ease,visibility .35s ease;
 }
+
 .turntable.playing .vinyl-position {
   opacity:1;
   visibility:visible;
 }
+
 .vinyl-record {
   display:block;
   width:100%;
@@ -224,9 +253,11 @@ a:focus-visible {
   animation:vinylRotation 2.4s linear infinite;
   animation-play-state:paused;
 }
+
 .turntable.playing .vinyl-record {
   animation-play-state:running;
 }
+
 @keyframes vinylRotation {
   from { transform:rotate(0deg); }
   to { transform:rotate(360deg); }
@@ -235,17 +266,28 @@ a:focus-visible {
 /* ====================================
    MISCHPULT
 ==================================== */
+
 .mixer {
   padding:9px 12px 7px;
   border:1px solid #708299;
   background:
-    linear-gradient(135deg,rgba(255,255,255,.12),transparent 30%),
-    linear-gradient(170deg,#35485a,#222f3f 38%,#111923);
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.12),
+      transparent 30%
+    ),
+    linear-gradient(
+      170deg,
+      #35485a,
+      #222f3f 38%,
+      #111923
+    );
   box-shadow:
     inset 0 1px 2px rgba(255,255,255,.25),
     inset 0 -3px 6px rgba(0,0,0,.5),
     0 8px 20px rgba(0,0,0,.45);
 }
+
 .mixer-header {
   display:flex;
   justify-content:space-between;
@@ -258,11 +300,13 @@ a:focus-visible {
   font-size:8px;
   white-space:nowrap;
 }
+
 .power-indicator {
   display:inline-flex;
   align-items:center;
   gap:5px;
 }
+
 .power-led {
   display:inline-block;
   width:7px;
@@ -271,6 +315,7 @@ a:focus-visible {
   background:#82d2ff;
   box-shadow:0 0 8px #6bc5ff;
 }
+
 .mixer-panel {
   display:grid;
   grid-template-columns:112px minmax(0,1fr) 112px;
@@ -279,6 +324,7 @@ a:focus-visible {
   height:172px;
   min-width:0;
 }
+
 .eq-panel {
   display:grid;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);
@@ -289,6 +335,7 @@ a:focus-visible {
   border-radius:4px;
   background:rgba(6,13,20,.23);
 }
+
 .eq-column {
   display:flex;
   flex-direction:column;
@@ -297,10 +344,12 @@ a:focus-visible {
   gap:2px;
   min-width:0;
 }
+
 .eq-column.offset {
   padding-top:19px;
   padding-bottom:4px;
 }
+
 .eq-unit {
   display:flex;
   flex-direction:column;
@@ -310,6 +359,7 @@ a:focus-visible {
   width:100%;
   min-height:35px;
 }
+
 .eq-knob {
   position:relative;
   display:block;
@@ -318,11 +368,18 @@ a:focus-visible {
   height:18px;
   border:2px solid #8d9fb0;
   border-radius:50%;
-  background:conic-gradient(#263c51,#e2eaf1,#687f94,#c0ccd8,#263c51);
+  background:conic-gradient(
+    #263c51,
+    #e2eaf1,
+    #687f94,
+    #c0ccd8,
+    #263c51
+  );
   box-shadow:
     0 2px 3px rgba(0,0,0,.5),
     inset 0 1px 2px rgba(255,255,255,.7);
 }
+
 .eq-knob::after {
   content:"";
   position:absolute;
@@ -332,6 +389,7 @@ a:focus-visible {
   height:6px;
   background:#172432;
 }
+
 .eq-label {
   display:block;
   color:#b8cadd;
@@ -345,6 +403,7 @@ a:focus-visible {
 /* ====================================
    VU-METER
 ==================================== */
+
 .mixer-center {
   display:grid;
   grid-template-columns:11px minmax(0,1fr) 11px;
@@ -352,6 +411,7 @@ a:focus-visible {
   min-width:0;
   min-height:0;
 }
+
 .vu-meter {
   display:flex;
   flex-direction:column-reverse;
@@ -361,6 +421,7 @@ a:focus-visible {
   border-radius:3px;
   background:#080e14;
 }
+
 .vu-led {
   flex:1;
   min-height:2px;
@@ -368,9 +429,11 @@ a:focus-visible {
   background:#14241f;
   opacity:.28;
 }
+
 .vu-led.green { --lit:#3dec83; }
 .vu-led.yellow { --lit:#efdb54; }
 .vu-led.red { --lit:#ff6a60; }
+
 .vu-led.on {
   background:var(--lit);
   opacity:1;
@@ -380,6 +443,7 @@ a:focus-visible {
 /* ====================================
    NAVIGATIONSFADER
 ==================================== */
+
 .mixer-channels {
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
@@ -388,14 +452,21 @@ a:focus-visible {
   min-height:0;
   padding:0 4px;
 }
+
 .mixer-channel {
   position:relative;
   min-width:0;
   min-height:0;
   border:1px solid #3c4e61;
   border-radius:3px;
-  background:linear-gradient(90deg,#192532,#304356 50%,#182532);
+  background:linear-gradient(
+    90deg,
+    #192532,
+    #304356 50%,
+    #182532
+  );
 }
+
 .channel-label {
   position:absolute;
   top:3px;
@@ -416,6 +487,7 @@ a:focus-visible {
     0 0 7px rgba(255,55,70,.5);
   pointer-events:none;
 }
+
 .mixer-channel.active-channel .channel-label {
   color:var(--green);
   text-shadow:
@@ -423,6 +495,7 @@ a:focus-visible {
     0 0 7px rgba(60,255,140,.75),
     0 0 12px rgba(35,230,110,.35);
 }
+
 .fader-track {
   position:absolute;
   top:18px;
@@ -431,6 +504,7 @@ a:focus-visible {
   left:2px;
   min-height:0;
 }
+
 .fader-track::before {
   content:"";
   position:absolute;
@@ -443,6 +517,7 @@ a:focus-visible {
   background:#060b11;
   box-shadow:inset 0 0 2px #000,0 0 1px #93a7b8;
 }
+
 .fader-handle {
   position:absolute;
   top:0;
@@ -471,13 +546,16 @@ a:focus-visible {
   -webkit-user-select:none;
   z-index:2;
 }
+
 .fader-handle.dragging {
   cursor:grabbing;
   z-index:5;
 }
+
 .fader-handle.returning {
   transition:top .23s ease-out;
 }
+
 .fader-handle::before {
   content:"";
   position:absolute;
@@ -491,6 +569,7 @@ a:focus-visible {
   );
   pointer-events:none;
 }
+
 .fader-handle[aria-current="page"] {
   border-color:#a2dbff;
   box-shadow:
@@ -502,6 +581,7 @@ a:focus-visible {
 /* ====================================
    CROSSFADER
 ==================================== */
+
 .crossfader-section {
   position:absolute;
   left:50%;
@@ -510,6 +590,7 @@ a:focus-visible {
   max-width:460px;
   transform:translateX(-50%);
 }
+
 .crossfader-title {
   display:flex;
   align-items:center;
@@ -526,6 +607,7 @@ a:focus-visible {
   transform:translateY(4px);
   pointer-events:none;
 }
+
 .crossfader-slider {
   display:block;
   width:100%;
@@ -537,13 +619,17 @@ a:focus-visible {
   cursor:ew-resize;
   touch-action:pan-y;
 }
+
 .crossfader-slider::-webkit-slider-runnable-track {
   height:7px;
   border:1px solid #51677b;
   border-radius:5px;
   background:#090f17;
-  box-shadow:inset 0 1px 3px #000,0 1px 1px #7a8ca0;
+  box-shadow:
+    inset 0 1px 3px #000,
+    0 1px 1px #7a8ca0;
 }
+
 .crossfader-slider::-webkit-slider-thumb {
   appearance:none;
   -webkit-appearance:none;
@@ -552,14 +638,22 @@ a:focus-visible {
   margin-top:-7px;
   border:1px solid #e5edf4;
   border-radius:3px;
-  background:linear-gradient(#eff4f8,#aebfd0 48%,#71879d);
-  box-shadow:0 3px 5px #000,inset 0 1px 1px #fff;
+  background:linear-gradient(
+    #eff4f8,
+    #aebfd0 48%,
+    #71879d
+  );
+  box-shadow:
+    0 3px 5px #000,
+    inset 0 1px 1px #fff;
 }
+
 .crossfader-slider::-moz-range-track {
   height:7px;
   border-radius:5px;
   background:#090f17;
 }
+
 .crossfader-slider::-moz-range-thumb {
   width:38px;
   height:18px;
@@ -567,6 +661,7 @@ a:focus-visible {
   border-radius:3px;
   background:#aebfd0;
 }
+
 .crossfader-labels {
   display:grid;
   grid-template-columns:1fr auto 1fr;
@@ -581,8 +676,10 @@ a:focus-visible {
   z-index:3;
   pointer-events:none;
 }
+
 #singleLabel { justify-self:start; }
 #albumLabel { justify-self:end; }
+
 .crossfader-labels .active {
   color:#69baff;
   text-shadow:
@@ -591,6 +688,7 @@ a:focus-visible {
     0 0 13px rgba(30,103,235,.55),
     0 0 20px rgba(24,88,205,.3);
 }
+
 .slide-me {
   justify-self:center;
   color:#c9eaff;
@@ -598,9 +696,12 @@ a:focus-visible {
   font-size:7px;
   letter-spacing:1px;
   white-space:nowrap;
-  text-shadow:0 0 4px #fff,0 0 8px #82d2ff;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 8px #82d2ff;
   animation:slidePulse 2s ease-in-out infinite;
 }
+
 @keyframes slidePulse {
   0%,100% {
     opacity:.5;
@@ -608,17 +709,22 @@ a:focus-visible {
   }
   50% {
     opacity:1;
-    text-shadow:0 0 3px #fff,0 0 9px #82d2ff,0 0 18px #6bc5ff;
+    text-shadow:
+      0 0 3px #fff,
+      0 0 9px #82d2ff,
+      0 0 18px #6bc5ff;
   }
 }
 
 /* ====================================
    LED-LAUFLEISTE
 ==================================== */
+
 .led-display-wrap {
   width:1360px;
   margin:12px 0 0;
 }
+
 .led-display {
   width:100%;
   padding:8px 12px;
@@ -626,13 +732,18 @@ a:focus-visible {
   border:1px solid rgba(170,210,250,.55);
   border-radius:10px;
   background:
-    linear-gradient(180deg,rgba(215,235,255,.12),rgba(40,65,95,.1)),
+    linear-gradient(
+      180deg,
+      rgba(215,235,255,.12),
+      rgba(40,65,95,.1)
+    ),
     #142231;
   box-shadow:
     inset 0 1px 1px rgba(255,255,255,.24),
     inset 0 -1px 2px rgba(0,0,0,.45),
     0 0 15px rgba(110,185,255,.14);
 }
+
 .led-canvas {
   display:block;
   width:100%;
@@ -645,6 +756,7 @@ a:focus-visible {
 /* ====================================
    MUSIKGALERIE
 ==================================== */
+
 .content {
   max-width:1400px;
   margin:0 auto;
@@ -652,12 +764,14 @@ a:focus-visible {
   background:var(--bg);
   text-align:center;
 }
+
 .gallery {
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   gap:24px;
 }
+
 .music-card {
   width:min(220px,100%);
   min-width:180px;
@@ -669,9 +783,11 @@ a:focus-visible {
   display:flex;
   flex-direction:column;
 }
+
 .music-card:hover {
   transform:translateY(-4px);
 }
+
 .cover-button {
   position:relative;
   display:block;
@@ -682,9 +798,11 @@ a:focus-visible {
   cursor:pointer;
   isolation:isolate;
 }
+
 .cover-button:disabled {
   cursor:default;
 }
+
 .cover {
   display:block;
   width:100%;
@@ -695,27 +813,43 @@ a:focus-visible {
 }
 
 /* ====================================
-   VIDEO-STEMPEL – 55 x 55 PIXEL
+   VIDEO-BUTTON – NEUE VERSION
 
-   MITTIG AUF DEM COVER
-   ROT  = NOCH NICHT GEÖFFNET
+   DURCHMESSER: 45 x 45 PIXEL
+
+   POSITION:
+   25 % VON LINKS
+   25 % VON OBEN
+
+   ANORDNUNG:
+   VIDEO
+     ▶
+   ANSEHEN
+
+   ROT = NOCH NICHT GEÖFFNET
    GRÜN = BEREITS GEÖFFNET
 ==================================== */
+
 .video-stamp {
   position:absolute;
-  top:50%;
-  left:50%;
+
+  /* MITTE DES LINKEN OBEREN VIERTELS */
+  top:25%;
+  left:25%;
+
   z-index:3;
 
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
+
   gap:1px;
 
-  width:55px;
-  height:55px;
-  padding:5px 3px;
+  width:45px;
+  height:45px;
+
+  padding:4px 2px;
 
   transform:translate(-50%,-50%);
 
@@ -731,8 +865,9 @@ a:focus-visible {
   color:#ff8189;
 
   box-shadow:
-    0 0 6px rgba(255,99,109,.95),
-    0 0 12px rgba(255,99,109,.45),
+    0 0 5px rgba(255,99,109,.95),
+    0 0 10px rgba(255,99,109,.55),
+    0 0 15px rgba(255,99,109,.2),
     inset 0 1px 2px rgba(255,255,255,.22);
 
   pointer-events:none;
@@ -748,47 +883,71 @@ a:focus-visible {
   content:"";
   position:absolute;
   inset:3px;
-  border:1px solid rgba(220,230,240,.45);
+  border:1px solid rgba(220,230,240,.4);
   border-radius:50%;
   pointer-events:none;
 }
+
+/* OBERER SCHRIFTZUG: VIDEO */
+
+.video-stamp-top {
+  display:block;
+  font-family:Michroma,Arial,sans-serif;
+  font-size:5px;
+  font-weight:bold;
+  line-height:1.2;
+  letter-spacing:0;
+  text-align:center;
+  white-space:nowrap;
+  text-shadow:0 0 4px currentColor;
+}
+
+/* MITTLERES PLAY-SYMBOL */
 
 .video-stamp-icon {
   display:flex;
   align-items:center;
   justify-content:center;
-  width:15px;
-  height:15px;
+  width:12px;
+  height:12px;
   flex-shrink:0;
 }
 
 .video-stamp-icon svg {
-  width:13px;
-  height:13px;
+  display:block;
+  width:11px;
+  height:11px;
   fill:currentColor;
 }
 
-.video-stamp-text {
+/* UNTERER SCHRIFTZUG: ANSEHEN */
+
+.video-stamp-bottom {
   display:block;
   font-family:Michroma,Arial,sans-serif;
   font-size:4px;
   font-weight:bold;
-  line-height:1.5;
-  letter-spacing:0;
+  line-height:1.2;
+  letter-spacing:-.1px;
   text-align:center;
+  white-space:nowrap;
   text-shadow:0 0 4px currentColor;
 }
+
+/* BEREITS GEÖFFNET: GRÜN */
 
 .video-stamp.watched {
   border-color:#49ff96;
   color:#7dffb1;
 
   box-shadow:
-    0 0 6px rgba(73,255,150,1),
-    0 0 12px rgba(73,255,150,.7),
-    0 0 19px rgba(73,255,150,.25),
+    0 0 5px rgba(73,255,150,1),
+    0 0 10px rgba(73,255,150,.7),
+    0 0 16px rgba(73,255,150,.3),
     inset 0 1px 2px rgba(255,255,255,.22);
 }
+
+/* WÄHREND DER VIDEOWIEDERGABE AUSBLENDEN */
 
 body.video-is-open .video-stamp {
   opacity:0;
@@ -798,22 +957,26 @@ body.video-is-open .video-stamp {
 /* ====================================
    TITEL / STREAMING-BUTTONS
 ==================================== */
+
 .track-title {
   margin:14px 0 5px;
   font-size:14px;
   font-weight:bold;
   line-height:1.5;
 }
+
 .track-version {
   margin-bottom:8px;
   color:#9bafc5;
   font-size:12px;
 }
+
 .track-date {
   margin-bottom:10px;
   color:#8197ae;
   font-size:11px;
 }
+
 .music-links {
   display:flex;
   justify-content:center;
@@ -822,6 +985,7 @@ body.video-is-open .video-stamp {
   margin-top:auto;
   padding-top:12px;
 }
+
 .music-links a {
   padding:8px 10px;
   background:#293d53;
@@ -830,9 +994,11 @@ body.video-is-open .video-stamp {
   text-decoration:none;
   font-size:11px;
 }
+
 .music-links a:hover {
   background:#405c78;
 }
+
 .empty-message {
   width:min(420px,100%);
   padding:38px 18px;
@@ -841,6 +1007,7 @@ body.video-is-open .video-stamp {
   border-radius:12px;
   color:#aebfd2;
 }
+
 .more-button {
   margin-top:35px;
   padding:13px 22px;
@@ -852,11 +1019,15 @@ body.video-is-open .video-stamp {
   font-size:10px;
   cursor:pointer;
 }
-.more-button[hidden] { display:none; }
+
+.more-button[hidden] {
+  display:none;
+}
 
 /* ====================================
    YOUTUBE-VIDEOFENSTER
 ==================================== */
+
 .video-modal {
   display:none;
   position:fixed;
@@ -867,17 +1038,23 @@ body.video-is-open .video-stamp {
   align-items:center;
   justify-content:center;
 }
-.video-modal.open { display:flex; }
+
+.video-modal.open {
+  display:flex;
+}
+
 .video-window {
   position:relative;
   width:min(900px,100%);
 }
+
 .video-frame {
   width:100%;
   aspect-ratio:16/9;
   border:0;
   background:black;
 }
+
 .close-video {
   position:absolute;
   right:0;
@@ -888,6 +1065,7 @@ body.video-is-open .video-stamp {
   font-size:34px;
   cursor:pointer;
 }
+
 footer {
   padding:30px 15px 35px;
   background:var(--bg);
@@ -899,23 +1077,46 @@ footer {
 /* ====================================
    RESPONSIVE
 ==================================== */
+
 @media(max-width:700px) {
-  .content { padding:12px 12px 65px; }
-  .gallery { gap:12px; }
+  .content {
+    padding:12px 12px 65px;
+  }
+
+  .gallery {
+    gap:12px;
+  }
+
   .music-card {
     width:calc(50% - 6px);
     min-width:150px;
     padding:9px;
   }
 }
+
 @media(max-width:420px) {
-  .music-card { width:100%; }
+  .music-card {
+    width:100%;
+  }
 }
+
 @media(prefers-reduced-motion:reduce) {
-  .slide-me { animation:none; opacity:1; }
-  .fader-handle.returning { transition:none; }
-  .vinyl-record { animation-duration:8s; }
-  .video-stamp { transition:none; }
+  .slide-me {
+    animation:none;
+    opacity:1;
+  }
+
+  .fader-handle.returning {
+    transition:none;
+  }
+
+  .vinyl-record {
+    animation-duration:8s;
+  }
+
+  .video-stamp {
+    transition:none;
+  }
 }
 </style>
 </head>
@@ -925,6 +1126,7 @@ footer {
 <!-- ====================================
      MASTER-CONTAINER
 ==================================== -->
+
 <section class="master-shell" id="masterShell">
 <div class="master-stage" id="masterStage">
 
@@ -953,6 +1155,7 @@ footer {
       <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M7 3.5L21 12 7 20.5Z"/>
       </svg>
+
       <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true">
         <rect x="5" y="3" width="5" height="18" rx="1"/>
         <rect x="14" y="3" width="5" height="18" rx="1"/>
@@ -970,12 +1173,14 @@ footer {
   <div class="dj-setup">
 
     <!-- LINKER PLATTENSPIELER -->
+
     <div class="turntable single" id="singleTurntable">
       <img
         class="turntable-image"
         src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
-        alt="Bausys-tem Plattenspieler links"
+        alt="Plattenspieler links"
       >
+
       <div class="vinyl-position">
         <img
           class="vinyl-record"
@@ -986,10 +1191,12 @@ footer {
     </div>
 
     <!-- MISCHPULT -->
+
     <div class="mixer">
 
       <div class="mixer-header">
         <span>R.M.B. · 5 CHANNEL DJ MIXER</span>
+
         <span class="power-indicator">
           <span class="power-led"></span>
           POWER
@@ -999,42 +1206,52 @@ footer {
       <div class="mixer-panel">
 
         <!-- LINKE EQ-REGLER -->
+
         <div class="eq-panel">
+
           <div class="eq-column">
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">GAIN</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">HIGH</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">MID</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">BASS</span>
             </div>
           </div>
+
           <div class="eq-column offset">
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">MIC</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">ECHO</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">FX</span>
             </div>
           </div>
+
         </div>
 
         <!-- MITTELTEIL -->
+
         <div class="mixer-center">
 
           <div class="vu-meter" id="vuLeft" aria-hidden="true"></div>
@@ -1105,47 +1322,58 @@ footer {
           </nav>
 
           <div class="vu-meter" id="vuRight" aria-hidden="true"></div>
+
         </div>
 
         <!-- RECHTE EQ-REGLER -->
+
         <div class="eq-panel">
+
           <div class="eq-column">
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">GAIN</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">HIGH</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">MID</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">BASS</span>
             </div>
           </div>
+
           <div class="eq-column offset">
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">MIC</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">ECHO</span>
             </div>
+
             <div class="eq-unit">
               <span class="eq-knob"></span>
               <span class="eq-label">FX</span>
             </div>
           </div>
+
         </div>
 
       </div>
 
       <!-- CROSSFADER -->
+
       <div class="crossfader-section">
 
         <span class="crossfader-title">CROSSFADER</span>
@@ -1168,15 +1396,18 @@ footer {
         </div>
 
       </div>
+
     </div>
 
     <!-- RECHTER PLATTENSPIELER -->
+
     <div class="turntable album" id="albumTurntable">
       <img
         class="turntable-image"
         src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
-        alt="Bausys-tem Plattenspieler rechts"
+        alt="Plattenspieler rechts"
       >
+
       <div class="vinyl-position">
         <img
           class="vinyl-record"
@@ -1189,6 +1420,7 @@ footer {
   </div>
 
   <!-- LED-LAUFLEISTE -->
+
   <div class="led-display-wrap">
     <div class="led-display">
       <canvas
@@ -1204,13 +1436,17 @@ footer {
 </section>
 
 <!-- HINTERGRUNDRADIO -->
+
 <audio id="rmbRadio" preload="auto" loop>
   <source src="audio/music-song.mp3" type="audio/mpeg">
 </audio>
 
 <!-- MUSIKGALERIE -->
+
 <main class="content">
+
   <div class="gallery" id="gallery"></div>
+
   <button
     type="button"
     class="more-button"
@@ -1219,6 +1455,7 @@ footer {
   >
     WEITERE SONGS ANZEIGEN
   </button>
+
 </main>
 
 <footer>
@@ -1226,14 +1463,17 @@ footer {
 </footer>
 
 <!-- INTERNER VIDEOPLAYER -->
+
 <div class="video-modal" id="videoModal">
   <div class="video-window">
+
     <button
       type="button"
       class="close-video"
       id="closeVideo"
       aria-label="Video schließen"
     >&times;</button>
+
     <iframe
       id="videoFrame"
       class="video-frame"
@@ -1241,13 +1481,16 @@ footer {
       allow="autoplay; encrypted-media; picture-in-picture"
       allowfullscreen
     ></iframe>
+
   </div>
 </div>
 
 <script>
+
 /* ====================================
    ALLGEMEINE FUNKTIONEN
 ==================================== */
+
 function clamp(value,min,max) {
   return Math.min(max,Math.max(min,value));
 }
@@ -1259,9 +1502,11 @@ const reduceMotion=window.matchMedia(
 /* ====================================
    MASTER-SKALIERUNG
 ==================================== */
+
 const MASTER_WIDTH=1360;
 const masterShell=document.getElementById('masterShell');
 const masterStage=document.getElementById('masterStage');
+
 let masterScale=1;
 
 function resizeMasterStage() {
@@ -1269,14 +1514,17 @@ function resizeMasterStage() {
   if(availableWidth<=0) return;
 
   masterScale=Math.min(1,availableWidth/MASTER_WIDTH);
+
   masterStage.style.transform='scale('+masterScale+')';
 
   const originalHeight=masterStage.offsetHeight;
+
   masterShell.style.height=
     Math.ceil(originalHeight*masterScale)+'px';
 }
 
 window.addEventListener('resize',resizeMasterStage);
+
 window.addEventListener('orientationchange',()=>{
   requestAnimationFrame(resizeMasterStage);
 });
@@ -1285,14 +1533,17 @@ if(typeof ResizeObserver!=='undefined') {
   const observer=new ResizeObserver(resizeMasterStage);
   observer.observe(masterShell);
 }
+
 resizeMasterStage();
 
 /* ====================================
    NAVIGATIONSFADER
 ==================================== */
+
 const faders=Array.from(
   document.querySelectorAll('.fader-handle')
 );
+
 const activeFader=document.querySelector(
   '.fader-handle[aria-current="page"]'
 );
@@ -1316,6 +1567,7 @@ function maxTravel(handle) {
 
 function setFaderPosition(handle,progress) {
   const distance=maxTravel(handle);
+
   handle.style.top=
     (distance*(1-clamp(progress,0,1)))+'px';
 }
@@ -1323,10 +1575,12 @@ function setFaderPosition(handle,progress) {
 function resetFaders() {
   dragging=null;
   navigationStarted=false;
+
   setActiveChannel(activeFader);
 
   faders.forEach(handle=>{
     handle.classList.remove('dragging','returning');
+
     setFaderPosition(
       handle,
       handle===activeFader?1:0
@@ -1337,6 +1591,7 @@ function resetFaders() {
 window.addEventListener('pageshow',()=>{
   resizeMasterStage();
   resetFaders();
+
   requestAnimationFrame(()=>{
     resizeMasterStage();
     resetFaders();
@@ -1347,9 +1602,11 @@ requestAnimationFrame(resetFaders);
 
 function restoreFaders() {
   setActiveChannel(activeFader);
+
   faders.forEach(handle=>{
     handle.classList.add('returning');
   });
+
   faders.forEach(handle=>{
     setFaderPosition(
       handle,
@@ -1362,10 +1619,12 @@ function finishNavigation(handle) {
   if(navigationStarted||handle===activeFader) return;
 
   navigationStarted=true;
+
   stopRadio();
   setActiveChannel(handle);
   setFaderPosition(handle,1);
   setFaderPosition(activeFader,0);
+
   window.location.assign(handle.dataset.url);
 }
 
@@ -1374,6 +1633,7 @@ function moveFader(event) {
 
   const handle=dragging.handle;
   const travel=maxTravel(handle);
+
   if(travel<=0) return;
 
   const delta=
@@ -1403,6 +1663,7 @@ function releaseFader(event) {
   if(!dragging||dragging.pointerId!==event.pointerId) return;
 
   const handle=dragging.handle;
+
   dragging=null;
   handle.classList.remove('dragging');
 
@@ -1410,8 +1671,10 @@ function releaseFader(event) {
 }
 
 faders.forEach(handle=>{
+
   handle.addEventListener('pointerdown',event=>{
     if(navigationStarted||dragging) return;
+
     if(event.pointerType==='mouse'&&event.button!==0) return;
 
     event.preventDefault();
@@ -1436,6 +1699,7 @@ faders.forEach(handle=>{
     if(dragging&&dragging.handle===handle) {
       dragging=null;
       handle.classList.remove('dragging');
+
       if(!navigationStarted) restoreFaders();
     }
   });
@@ -1449,25 +1713,32 @@ faders.forEach(handle=>{
       finishNavigation(handle);
     }
   });
+
 });
 
 /* ====================================
    VU-METER
 ==================================== */
+
 function createMeter(id) {
   const meter=document.getElementById(id);
+
   return Array.from({length:14},(_,i)=>{
     const led=document.createElement('span');
+
     led.className='vu-led '+(
       i<8?'green':i<11?'yellow':'red'
     );
+
     meter.appendChild(led);
+
     return led;
   });
 }
 
 const leftLeds=createMeter('vuLeft');
 const rightLeds=createMeter('vuRight');
+
 let leftLevel=6;
 let rightLevel=7;
 
@@ -1478,6 +1749,7 @@ function animateMeters() {
     leftLevel+Math.floor(Math.random()*7)-3,
     2,14
   );
+
   rightLevel=clamp(
     rightLevel+Math.floor(Math.random()*7)-3,
     2,14
@@ -1486,20 +1758,26 @@ function animateMeters() {
   leftLeds.forEach((led,i)=>{
     led.classList.toggle('on',i<leftLevel);
   });
+
   rightLeds.forEach((led,i)=>{
     led.classList.toggle('on',i<rightLevel);
   });
 }
 
 animateMeters();
-if(!reduceMotion) setInterval(animateMeters,170);
+
+if(!reduceMotion) {
+  setInterval(animateMeters,170);
+}
 
 /* ====================================
    CROSSFADER / VINYL
 ==================================== */
+
 const crossfader=document.getElementById('crossfader');
 const singleLabel=document.getElementById('singleLabel');
 const albumLabel=document.getElementById('albumLabel');
+
 const singleTurntable=document.getElementById('singleTurntable');
 const albumTurntable=document.getElementById('albumTurntable');
 
@@ -1513,8 +1791,10 @@ const CENTER_RIGHT=62;
 /* ====================================
    RADIO
 ==================================== */
+
 const rmbRadio=document.getElementById('rmbRadio');
 const radioButton=document.getElementById('radioButton');
+
 let radioRequest=0;
 
 function updateRadioButton() {
@@ -1523,25 +1803,38 @@ function updateRadioButton() {
 
   radioButton.classList.toggle('playing',isPlaying);
   radioButton.classList.toggle('inactive',!isMiddle);
+
   radioButton.disabled=!isMiddle;
 
-  radioButton.setAttribute('aria-pressed',String(isPlaying));
+  radioButton.setAttribute(
+    'aria-pressed',
+    String(isPlaying)
+  );
+
   radioButton.setAttribute(
     'aria-label',
-    isPlaying?'R.M.B. Radio pausieren':'R.M.B. Radio abspielen'
+    isPlaying
+      ?'R.M.B. Radio pausieren'
+      :'R.M.B. Radio abspielen'
   );
 
   radioButton.title=isMiddle
-    ?(isPlaying?'R.M.B. RADIO – PAUSE':'R.M.B. RADIO – PLAY')
+    ?(
+      isPlaying
+        ?'R.M.B. RADIO – PAUSE'
+        :'R.M.B. RADIO – PLAY'
+    )
     :'Radio nur in Mittelstellung';
 }
 
 async function startRadio() {
   if(activeCategory!=='middle') return;
+
   const request=++radioRequest;
 
   try {
     await rmbRadio.play();
+
     if(request!==radioRequest||activeCategory!=='middle') {
       rmbRadio.pause();
       return;
@@ -1565,14 +1858,22 @@ function pauseRadio() {
 function stopRadio() {
   radioRequest++;
   rmbRadio.pause();
-  try { rmbRadio.currentTime=0; } catch {}
+
+  try {
+    rmbRadio.currentTime=0;
+  } catch {}
+
   updateRadioButton();
 }
 
 radioButton.addEventListener('click',()=>{
   if(activeCategory!=='middle') return;
-  if(rmbRadio.paused) startRadio();
-  else pauseRadio();
+
+  if(rmbRadio.paused) {
+    startRadio();
+  } else {
+    pauseRadio();
+  }
 });
 
 ['play','pause','ended','error'].forEach(eventName=>{
@@ -1582,17 +1883,34 @@ radioButton.addEventListener('click',()=>{
 /* ====================================
    KATEGORIEN
 ==================================== */
+
 function chooseCategory(category) {
   if(category===activeCategory) return;
 
   const previousCategory=activeCategory;
+
   activeCategory=category;
   visibleCount=10;
 
-  singleLabel.classList.toggle('active',category==='single');
-  albumLabel.classList.toggle('active',category==='album');
-  singleTurntable.classList.toggle('playing',category==='single');
-  albumTurntable.classList.toggle('playing',category==='album');
+  singleLabel.classList.toggle(
+    'active',
+    category==='single'
+  );
+
+  albumLabel.classList.toggle(
+    'active',
+    category==='album'
+  );
+
+  singleTurntable.classList.toggle(
+    'playing',
+    category==='single'
+  );
+
+  albumTurntable.classList.toggle(
+    'playing',
+    category==='album'
+  );
 
   if(category!=='middle') {
     stopRadio();
@@ -1612,26 +1930,38 @@ function categoryFromValue(value) {
 }
 
 crossfader.addEventListener('input',()=>{
-  chooseCategory(categoryFromValue(Number(crossfader.value)));
+  chooseCategory(
+    categoryFromValue(Number(crossfader.value))
+  );
 });
 
 function snapCrossfader() {
   const value=Number(crossfader.value);
+
   let snappedValue;
 
-  if(value<CENTER_LEFT) snappedValue=0;
-  else if(value>CENTER_RIGHT) snappedValue=100;
-  else snappedValue=50;
+  if(value<CENTER_LEFT) {
+    snappedValue=0;
+  } else if(value>CENTER_RIGHT) {
+    snappedValue=100;
+  } else {
+    snappedValue=50;
+  }
 
   crossfader.value=String(snappedValue);
+
   chooseCategory(
-    snappedValue===0?'single':
-    snappedValue===100?'album':'middle'
+    snappedValue===0
+      ?'single'
+      :snappedValue===100
+        ?'album'
+        :'middle'
   );
 }
 
 crossfader.addEventListener('change',snapCrossfader);
 crossfader.addEventListener('pointerup',snapCrossfader);
+
 crossfader.addEventListener('touchend',()=>{
   requestAnimationFrame(snapCrossfader);
 },{passive:true});
@@ -1639,9 +1969,13 @@ crossfader.addEventListener('touchend',()=>{
 crossfader.addEventListener('keydown',event=>{
   if(event.key==='Home'||event.key==='End') return;
 
-  if(event.key==='ArrowLeft'||event.key==='ArrowRight') {
+  if(
+    event.key==='ArrowLeft'||
+    event.key==='ArrowRight'
+  ) {
     const current=Number(crossfader.value);
     const positions=[0,50,100];
+
     let next=current;
 
     if(event.key==='ArrowRight') {
@@ -1652,9 +1986,15 @@ crossfader.addEventListener('keydown',event=>{
     }
 
     event.preventDefault();
+
     crossfader.value=String(next);
+
     chooseCategory(
-      next===0?'single':next===100?'album':'middle'
+      next===0
+        ?'single'
+        :next===100
+          ?'album'
+          :'middle'
     );
   }
 });
@@ -1662,6 +2002,7 @@ crossfader.addEventListener('keydown',event=>{
 /* ====================================
    LED-PUNKTMATRIX
 ==================================== */
+
 const ledCanvas=document.getElementById('ledCanvas');
 const ctx=ledCanvas.getContext('2d');
 
@@ -1707,7 +2048,10 @@ function buildLEDText(text) {
 
     for(let c=0;c<5;c++) {
       cols.push(
-        Array.from({length:7},(_,row)=>pattern[row][c]==='1')
+        Array.from(
+          {length:7},
+          (_,row)=>pattern[row][c]==='1'
+        )
       );
     }
 
@@ -1725,7 +2069,7 @@ function calculateLEDLayout() {
     9.4,
     (height-16)/7,
     Math.max(1,(width-24)*.75)/
-    Math.max(1,ledColumns.length)
+      Math.max(1,ledColumns.length)
   );
 
   ledTextWidth=ledPitch*ledColumns.length;
@@ -1749,9 +2093,11 @@ function updateLEDMessage(category) {
   }
 
   ledCanvas.setAttribute('aria-label',message);
+
   ledColumns=buildLEDText(message);
   ledPosition=0;
   ledDirection=1;
+
   calculateLEDLayout();
 }
 
@@ -1762,13 +2108,16 @@ function resizeLEDCanvas() {
 
   ledCanvas.width=Math.round(width*dpr);
   ledCanvas.height=Math.round(height*dpr);
+
   ctx.setTransform(dpr,0,0,dpr,0,0);
+
   calculateLEDLayout();
 }
 
 function drawDot(x,y,radius,color,glow=false) {
   ctx.beginPath();
   ctx.arc(x,y,radius,0,Math.PI*2);
+
   ctx.fillStyle=color;
 
   if(glow) {
@@ -1785,18 +2134,21 @@ function drawLED(time) {
   const height=ledCanvas.clientHeight;
 
   ctx.clearRect(0,0,width,height);
+
   ctx.fillStyle='#07111b';
   ctx.fillRect(0,0,width,height);
 
   const padding=12;
   const startY=(height-7*ledPitch)/2;
   const radius=Math.max(.35,ledPitch*.29);
+
   const columnsVisible=Math.floor(
     (width-2*padding)/ledPitch
   );
 
   for(let c=0;c<=columnsVisible;c++) {
     const x=padding+(c+.5)*ledPitch;
+
     if(x>width-padding) break;
 
     for(let row=0;row<7;row++) {
@@ -1814,9 +2166,13 @@ function drawLED(time) {
   for(let c=0;c<ledColumns.length;c++) {
     const displayColumn=startColumn+c;
 
-    if(displayColumn<0||displayColumn>columnsVisible) continue;
+    if(
+      displayColumn<0||
+      displayColumn>columnsVisible
+    ) continue;
 
     const x=padding+(displayColumn+.5)*ledPitch;
+
     if(x>width-padding) continue;
 
     for(let row=0;row<7;row++) {
@@ -1832,9 +2188,20 @@ function drawLED(time) {
     }
   }
 
-  if(!reduceMotion&&!document.hidden&&ledLastTime) {
-    const delta=Math.min(.05,(time-ledLastTime)/1000);
-    const maxPosition=Math.max(0,width-24-ledTextWidth);
+  if(
+    !reduceMotion&&
+    !document.hidden&&
+    ledLastTime
+  ) {
+    const delta=Math.min(
+      .05,
+      (time-ledLastTime)/1000
+    );
+
+    const maxPosition=Math.max(
+      0,
+      width-24-ledTextWidth
+    );
 
     ledPosition+=LED_SPEED*delta*ledDirection;
 
@@ -1842,6 +2209,7 @@ function drawLED(time) {
       ledPosition=maxPosition;
       ledDirection=-1;
     }
+
     if(ledPosition<=0) {
       ledPosition=0;
       ledDirection=1;
@@ -1849,18 +2217,22 @@ function drawLED(time) {
   }
 
   ledLastTime=time;
+
   requestAnimationFrame(drawLED);
 }
 
 updateLEDMessage('middle');
 resizeLEDCanvas();
+
 requestAnimationFrame(drawLED);
 
 /* ====================================
    MUSIKGALERIE
 ==================================== */
+
 const gallery=document.getElementById('gallery');
 const moreButton=document.getElementById('moreButton');
+
 const videoModal=document.getElementById('videoModal');
 const videoFrame=document.getElementById('videoFrame');
 const closeVideo=document.getElementById('closeVideo');
@@ -1877,8 +2249,10 @@ function escapeHTML(value) {
 function safeURL(value) {
   try {
     const url=new URL(value,location.href);
+
     return ['https:','http:'].includes(url.protocol)
-      ?url.href:'';
+      ?url.href
+      :'';
   } catch {
     return '';
   }
@@ -1906,19 +2280,25 @@ function categoryOf(item) {
   ).toLowerCase();
 
   return ['album','albums','lp'].includes(category)
-    ?'album':'single';
+    ?'album'
+    :'single';
 }
 
 function getYoutubeId(item) {
   const value=String(item.youtube||'').trim();
 
-  if(/^[A-Za-z0-9_-]{11}$/.test(value)) return value;
+  if(/^[A-Za-z0-9_-]{11}$/.test(value)) {
+    return value;
+  }
 
   try {
     const url=new URL(value);
     const host=url.hostname.toLowerCase();
 
-    if(['youtu.be','www.youtu.be'].includes(host)) {
+    if([
+      'youtu.be',
+      'www.youtu.be'
+    ].includes(host)) {
       return url.pathname.split('/')[1]||'';
     }
 
@@ -1934,7 +2314,11 @@ function getYoutubeId(item) {
 
       const parts=url.pathname.split('/');
 
-      if(['shorts','embed','live'].includes(parts[1])) {
+      if([
+        'shorts',
+        'embed',
+        'live'
+      ].includes(parts[1])) {
         return parts[2]||'';
       }
     }
@@ -1944,9 +2328,14 @@ function getYoutubeId(item) {
 }
 
 /* ====================================
-   VIDEOSTATUS SPEICHERN
+   VIDEO-STATUS SPEICHERN
+
+   BISHERIGER SPEICHERSCHLÜSSEL
+   BLEIBT UNVERÄNDERT
 ==================================== */
+
 const VIDEO_STORAGE_PREFIX='RMB_MUSIC_WATCHED_';
+
 const watchedVideosThisSession=new Set();
 
 function videoStorageKey(id) {
@@ -1954,10 +2343,14 @@ function videoStorageKey(id) {
 }
 
 function hasOpenedVideo(id) {
-  if(watchedVideosThisSession.has(id)) return true;
+  if(watchedVideosThisSession.has(id)) {
+    return true;
+  }
 
   try {
-    return localStorage.getItem(videoStorageKey(id))==='1';
+    return localStorage.getItem(
+      videoStorageKey(id)
+    )==='1';
   } catch {
     return false;
   }
@@ -1967,9 +2360,12 @@ function rememberOpenedVideo(id) {
   watchedVideosThisSession.add(id);
 
   try {
-    localStorage.setItem(videoStorageKey(id),'1');
+    localStorage.setItem(
+      videoStorageKey(id),
+      '1'
+    );
   } catch {
-    /* STATUS BLEIBT INNERHALB DER SITZUNG */
+    /* Status bleibt innerhalb der Sitzung */
   }
 }
 
@@ -1977,11 +2373,14 @@ function refreshVideoStamps() {
   gallery.querySelectorAll(
     '.cover-button[data-video-id]'
   ).forEach(button=>{
+
     const id=button.dataset.videoId;
     const stamp=button.querySelector('.video-stamp');
+
     if(!stamp) return;
 
     const watched=hasOpenedVideo(id);
+
     stamp.classList.toggle('watched',watched);
 
     button.title=watched
@@ -1993,8 +2392,11 @@ function refreshVideoStamps() {
 /* ====================================
    INTERNER YOUTUBE-PLAYER
 ==================================== */
+
 function openVideo(id) {
-  if(!/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+  if(!/^[A-Za-z0-9_-]{11}$/.test(id)) {
+    return;
+  }
 
   stopRadio();
 
@@ -2005,32 +2407,45 @@ function openVideo(id) {
 
   videoFrame.src=
     'https://www.youtube-nocookie.com/embed/'+
-    id+'?autoplay=1';
+    id+
+    '?autoplay=1';
 
   videoModal.classList.add('open');
 }
 
 function closeVideoPlayer() {
   videoModal.classList.remove('open');
+
   videoFrame.src='';
+
   document.body.classList.remove('video-is-open');
+
   refreshVideoStamps();
 }
 
-closeVideo.addEventListener('click',closeVideoPlayer);
+closeVideo.addEventListener(
+  'click',
+  closeVideoPlayer
+);
 
 videoModal.addEventListener('click',event=>{
-  if(event.target===videoModal) closeVideoPlayer();
+  if(event.target===videoModal) {
+    closeVideoPlayer();
+  }
 });
 
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape') closeVideoPlayer();
+  if(event.key==='Escape') {
+    closeVideoPlayer();
+  }
 });
 
 /* ====================================
    MUSIKKARTEN
 ==================================== */
+
 function renderMusic() {
+
   if(activeCategory==='middle') {
     gallery.innerHTML='';
     moreButton.hidden=true;
@@ -2040,7 +2455,9 @@ function renderMusic() {
   const isSingle=activeCategory==='single';
 
   const items=allMusic
-    .filter(item=>categoryOf(item)===activeCategory)
+    .filter(item=>
+      categoryOf(item)===activeCategory
+    )
     .sort((a,b)=>
       String(b.releaseDate||'').localeCompare(
         String(a.releaseDate||'')
@@ -2052,9 +2469,11 @@ function renderMusic() {
   if(!items.length) {
     gallery.innerHTML=
       '<div class="empty-message">'+
-      (isSingle
-        ?'Hier erscheinen deine R.M.B.-Singles.'
-        :'Hier erscheinen deine R.M.B.-Alben.')+
+      (
+        isSingle
+          ?'Hier erscheinen deine R.M.B.-Singles.'
+          :'Hier erscheinen deine R.M.B.-Alben.'
+      )+
       '</div>';
 
     moreButton.hidden=true;
@@ -2062,16 +2481,21 @@ function renderMusic() {
   }
 
   items.slice(0,visibleCount).forEach(item=>{
+
     const id=getYoutubeId(item);
 
     const valid=/^[A-Za-z0-9_-]{11}$/.test(id)
-      ?id:'';
+      ?id
+      :'';
 
     let albumURL='';
 
     if(categoryOf(item)==='album') {
       try {
-        const url=new URL(String(item.youtube||'').trim());
+        const url=new URL(
+          String(item.youtube||'').trim()
+        );
+
         const host=url.hostname.toLowerCase();
         const playlistId=url.searchParams.get('list');
 
@@ -2091,7 +2515,9 @@ function renderMusic() {
 
     const cover=safeURL(item.cover)||(
       valid
-        ?'https://img.youtube.com/vi/'+valid+'/hqdefault.jpg'
+        ?'https://img.youtube.com/vi/'+
+          valid+
+          '/hqdefault.jpg'
         :''
     );
 
@@ -2103,9 +2529,21 @@ function renderMusic() {
     card.className='music-card';
 
     const canOpen=Boolean(valid||albumURL);
-    const hasInternalVideo=Boolean(valid&&!albumURL);
+
+    const hasInternalVideo=Boolean(
+      valid&&!albumURL
+    );
+
     const alreadyWatched=
       hasInternalVideo&&hasOpenedVideo(valid);
+
+    /* ====================================
+       NEUER 45-PIXEL-VIDEOBUTTON
+
+       VIDEO
+         ▶
+       ANSEHEN
+    ==================================== */
 
     const videoStampHTML=hasInternalVideo
       ?`
@@ -2113,14 +2551,24 @@ function renderMusic() {
           class="video-stamp ${alreadyWatched?'watched':''}"
           aria-hidden="true"
         >
+
+          <span class="video-stamp-top">
+            VIDEO
+          </span>
+
           <span class="video-stamp-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
               <path d="M7 3.5L21 12 7 20.5Z"/>
             </svg>
           </span>
-          <span class="video-stamp-text">
-            VIDEO<br>ANSEHEN
+
+          <span class="video-stamp-bottom">
+            ANSEHEN
           </span>
+
         </span>
       `
       :'';
@@ -2139,13 +2587,16 @@ function renderMusic() {
             ?'Musikvideo ansehen'
             :'Kein Video verfügbar'}"
       >
+
         <img
           class="cover"
           src="${escapeHTML(cover)}"
           alt="${escapeHTML(item.title||'R.M.B.')}"
           loading="lazy"
         >
+
         ${videoStampHTML}
+
       </button>
 
       <div class="track-title">
@@ -2157,10 +2608,15 @@ function renderMusic() {
       </div>
 
       ${date
-        ?`<div class="track-date">${escapeHTML(date)}</div>`
+        ?`
+          <div class="track-date">
+            ${escapeHTML(date)}
+          </div>
+        `
         :''}
 
       <div class="music-links">
+
         ${albumURL
           ?`
             <a
@@ -2198,28 +2654,39 @@ function renderMusic() {
             >Amazon</a>
           `
           :''}
+
       </div>
     `;
 
     if(albumURL) {
+
       card.querySelector('.cover-button')
         .addEventListener('click',()=>{
           stopRadio();
           window.location.assign(albumURL);
         });
+
     } else if(valid) {
+
       card.querySelector('.cover-button')
-        .addEventListener('click',()=>openVideo(valid));
+        .addEventListener(
+          'click',
+          ()=>openVideo(valid)
+        );
+
     }
 
-    card.querySelectorAll('.music-links a').forEach(link=>{
-      link.addEventListener('click',stopRadio);
-    });
+    card.querySelectorAll('.music-links a')
+      .forEach(link=>{
+        link.addEventListener('click',stopRadio);
+      });
 
     gallery.appendChild(card);
+
   });
 
   moreButton.hidden=items.length<=visibleCount;
+
   moreButton.textContent=isSingle
     ?'WEITERE SONGS ANZEIGEN'
     :'WEITERE ALBEN ANZEIGEN';
@@ -2228,6 +2695,7 @@ function renderMusic() {
 /* ====================================
    WEITERE SONGS
 ==================================== */
+
 moreButton.addEventListener('click',()=>{
   visibleCount+=10;
   renderMusic();
@@ -2236,11 +2704,15 @@ moreButton.addEventListener('click',()=>{
 /* ====================================
    SONGS.JSON LADEN
 ==================================== */
+
 fetch('songs.json')
   .then(response=>{
     if(!response.ok) {
-      throw new Error('songs.json nicht gefunden');
+      throw new Error(
+        'songs.json nicht gefunden'
+      );
     }
+
     return response.json();
   })
   .then(data=>{
@@ -2254,19 +2726,23 @@ fetch('songs.json')
         'Die Musikdaten konnten nicht geladen werden.'+
         '</div>';
     }
+
     console.error(error);
   });
 
 /* ====================================
    STARTSTELLUNG CROSSFADER
 ==================================== */
+
 function initializeCrossfader() {
   crossfader.value='50';
+
   activeCategory='middle';
   visibleCount=10;
 
   singleLabel.classList.remove('active');
   albumLabel.classList.remove('active');
+
   singleTurntable.classList.remove('playing');
   albumTurntable.classList.remove('playing');
 
@@ -2280,8 +2756,12 @@ initializeCrossfader();
 /* ====================================
    RADIO-AUTOSTART
 ==================================== */
+
 function attemptRadioAutostart() {
-  if(activeCategory==='middle'&&rmbRadio.paused) {
+  if(
+    activeCategory==='middle'&&
+    rmbRadio.paused
+  ) {
     startRadio();
   }
 }
@@ -2289,6 +2769,7 @@ function attemptRadioAutostart() {
 /* ====================================
    ABSCHLIESSENDE INITIALISIERUNG
 ==================================== */
+
 window.addEventListener('load',()=>{
   resizeMasterStage();
   resetFaders();
@@ -2303,5 +2784,6 @@ window.addEventListener('pageshow',()=>{
 window.addEventListener('pagehide',stopRadio);
 
 </script>
+
 </body>
 </html>
