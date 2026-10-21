@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -760,6 +759,99 @@ a:focus-visible {
 }
 
 /* ======================================
+   MIXER QUICK GUIDE
+====================================== */
+
+.mixer-guide {
+  width:min(900px,calc(100% - 48px));
+  margin:42px auto 65px;
+  padding:38px 36px 42px;
+  background:#1c2530;
+  border:1px solid #48515f;
+  border-radius:28px;
+  color:#cbd3df;
+}
+
+.mixer-guide[hidden] {
+  display:none;
+}
+
+.guide-heading {
+  margin:0;
+  color:#f5f7fb;
+  font-family:Michroma,Arial,sans-serif;
+  font-size:clamp(15px,2.5vw,25px);
+  font-weight:normal;
+  line-height:1.5;
+  text-align:center;
+}
+
+.guide-languages {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:25px 0 35px;
+}
+
+.guide-language {
+  padding:11px 17px;
+  border:1px solid transparent;
+  border-radius:20px;
+  background:transparent;
+  color:#919baa;
+  font-family:Michroma,Arial,sans-serif;
+  font-size:11px;
+  cursor:pointer;
+  transition:
+    background .2s,
+    color .2s,
+    border-color .2s;
+}
+
+.guide-language.active {
+  background:#2c3037;
+  color:#fff;
+}
+
+.guide-language:hover {
+  color:#fff;
+}
+
+.guide-divider {
+  height:1px;
+  margin:0 0 30px;
+  background:#48515f;
+}
+
+.guide-text {
+  display:grid;
+  gap:22px;
+}
+
+.guide-text[hidden] {
+  display:none;
+}
+
+.guide-item {
+  margin:0;
+  color:#cbd3df;
+  font-family:Arial,sans-serif;
+  font-size:17px;
+  line-height:1.65;
+}
+
+.guide-item strong {
+  font-weight:600;
+}
+
+.guide-symbol {
+  display:inline-block;
+  min-width:25px;
+  color:#cbd3df;
+}
+
+/* ======================================
    MUSIKGALERIE
 ====================================== */
 
@@ -820,14 +912,7 @@ a:focus-visible {
 
 /* ======================================
    PLAY / HÄKCHEN
-
-   40 x 40 PIXEL
-
-   GRÜN = PLAY
-   ROT  = HÄKCHEN
-
-   POSITION:
-   OBERES LINKES VIERTEL
+   SINGLES UND ALBEN
 ====================================== */
 
 .video-stamp {
@@ -835,36 +920,27 @@ a:focus-visible {
   top:25%;
   left:25%;
   z-index:3;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   width:40px;
   height:40px;
   padding:2px;
-
   transform:translate(-50%,-50%);
-
   border:2px solid #49ff96;
   border-radius:50%;
-
   background:radial-gradient(
     circle at 35% 25%,
     rgba(55,73,91,.97),
     rgba(10,17,25,.98) 75%
   );
-
   color:#7dffb1;
-
   box-shadow:
     0 0 5px rgba(73,255,150,1),
     0 0 10px rgba(73,255,150,.7),
     0 0 16px rgba(73,255,150,.3),
     inset 0 1px 2px rgba(255,255,255,.22);
-
   pointer-events:none;
-
   transition:
     border-color .25s,
     color .25s,
@@ -881,51 +957,38 @@ a:focus-visible {
   pointer-events:none;
 }
 
-/* GRÜNER PLAY-SCHRIFTZUG */
-
 .video-stamp-text {
   position:relative;
   z-index:1;
-
   display:block;
   width:100%;
-
   font-family:Michroma,Arial,sans-serif;
   font-size:6px;
   font-weight:bold;
   line-height:1;
   letter-spacing:-.15px;
-
   text-align:center;
   white-space:nowrap;
   text-shadow:0 0 4px currentColor;
 }
 
-/* HÄKCHEN VORERST AUSBLENDEN */
-
 .video-stamp-check {
   display:none;
   position:relative;
   z-index:1;
-
   width:23px;
   height:23px;
-
   stroke:currentColor;
   stroke-width:3.5;
   stroke-linecap:round;
   stroke-linejoin:round;
   fill:none;
-
   filter:drop-shadow(0 0 3px currentColor);
 }
-
-/* ROTER STATUS NACH DEM ERSTEN START */
 
 .video-stamp.watched {
   border-color:#ff636d;
   color:#ff8189;
-
   box-shadow:
     0 0 5px rgba(255,99,109,.95),
     0 0 10px rgba(255,99,109,.55),
@@ -933,19 +996,13 @@ a:focus-visible {
     inset 0 1px 2px rgba(255,255,255,.22);
 }
 
-/* BEI ROT: PLAY AUSBLENDEN */
-
 .video-stamp.watched .video-stamp-text {
   display:none;
 }
 
-/* BEI ROT: HÄKCHEN EINBLENDEN */
-
 .video-stamp.watched .video-stamp-check {
   display:block;
 }
-
-/* WÄHREND DER PLAYER GEÖFFNET IST */
 
 body.video-is-open .video-stamp {
   opacity:0;
@@ -1089,6 +1146,36 @@ footer {
     width:calc(50% - 6px);
     min-width:150px;
     padding:9px;
+  }
+
+  .mixer-guide {
+    width:calc(100% - 30px);
+    margin:32px auto 45px;
+    padding:28px 23px 32px;
+    border-radius:20px;
+  }
+
+  .guide-heading {
+    font-size:15px;
+  }
+
+  .guide-languages {
+    gap:5px;
+    margin:20px 0 27px;
+  }
+
+  .guide-language {
+    padding:10px 12px;
+    font-size:9px;
+  }
+
+  .guide-item {
+    font-size:15px;
+    line-height:1.65;
+  }
+
+  .guide-text {
+    gap:19px;
   }
 }
 
@@ -1453,6 +1540,128 @@ footer {
   <source src="audio/music-song.mp3" type="audio/mpeg">
 </audio>
 
+<!-- ======================================
+     MIXER QUICK GUIDE
+     NUR IN DER MITTELSTELLUNG
+====================================== -->
+
+<section
+  class="mixer-guide"
+  id="mixerGuide"
+  aria-labelledby="guideHeading"
+>
+
+  <h2 class="guide-heading" id="guideHeading">
+    MIXER QUICK GUIDE
+  </h2>
+
+  <div
+    class="guide-languages"
+    role="group"
+    aria-label="Sprache auswählen"
+  >
+
+    <button
+      type="button"
+      class="guide-language active"
+      id="guideGerman"
+      aria-pressed="true"
+    >
+      DEUTSCH
+    </button>
+
+    <button
+      type="button"
+      class="guide-language"
+      id="guideEnglish"
+      aria-pressed="false"
+    >
+      ENGLISH
+    </button>
+
+  </div>
+
+  <div class="guide-divider"></div>
+
+  <!-- DEUTSCH -->
+
+  <div class="guide-text" id="guideTextGerman" lang="de">
+
+    <p class="guide-item">
+      <span class="guide-symbol">▶</span>
+      <strong>R.M.B. SOUND</strong> –
+      Über dem „I“ im MUSIC-Schriftzug
+      starten oder pausieren.
+    </p>
+
+    <p class="guide-item">
+      <span class="guide-symbol">↔</span>
+      <strong>Crossfader</strong> –
+      Links die Singles, rechts die Alben
+      auswählen.
+    </p>
+
+    <p class="guide-item">
+      <span class="guide-symbol">🎚</span>
+      <strong>Menüregler</strong> –
+      Die verschiedenen Bereiche der
+      Website aufrufen.
+    </p>
+
+    <p class="guide-item">
+      <span class="guide-symbol">♫</span>
+      <strong>Musik abspielen</strong> –
+      Singles und Alben über PLAY öffnen
+      und anhören. Spotify und Amazon Music
+      stehen als weitere Musikanbieter
+      zur Verfügung.
+    </p>
+
+  </div>
+
+  <!-- ENGLISH -->
+
+  <div
+    class="guide-text"
+    id="guideTextEnglish"
+    lang="en"
+    hidden
+  >
+
+    <p class="guide-item">
+      <span class="guide-symbol">▶</span>
+      <strong>R.M.B. SOUND</strong> –
+      Start or pause above the “I”
+      in the MUSIC logo.
+    </p>
+
+    <p class="guide-item">
+      <span class="guide-symbol">↔</span>
+      <strong>Crossfader</strong> –
+      Singles on the left, albums
+      on the right.
+    </p>
+
+    <p class="guide-item">
+      <span class="guide-symbol">🎚</span>
+      <strong>Menu faders</strong> –
+      Navigate between the different
+      sections of the website.
+    </p>
+
+    <p class="guide-item">
+      <span class="guide-symbol">♫</span>
+      <strong>Play music</strong> –
+      Open and listen to singles and albums
+      using PLAY. Spotify and Amazon Music
+      are available as additional
+      streaming platforms.
+    </p>
+
+  </div>
+
+</section>
+
 <!-- MUSIKGALERIE -->
 
 <main class="content">
@@ -1500,6 +1709,64 @@ footer {
 </div>
 
 <script>
+
+/* ======================================
+   SPRACHSCHALTER MIXER GUIDE
+====================================== */
+
+const guideGerman=document.getElementById(
+  'guideGerman'
+);
+
+const guideEnglish=document.getElementById(
+  'guideEnglish'
+);
+
+const guideTextGerman=document.getElementById(
+  'guideTextGerman'
+);
+
+const guideTextEnglish=document.getElementById(
+  'guideTextEnglish'
+);
+
+function setGuideLanguage(language) {
+
+  const german=language==='de';
+
+  guideTextGerman.hidden=!german;
+  guideTextEnglish.hidden=german;
+
+  guideGerman.classList.toggle(
+    'active',
+    german
+  );
+
+  guideEnglish.classList.toggle(
+    'active',
+    !german
+  );
+
+  guideGerman.setAttribute(
+    'aria-pressed',
+    String(german)
+  );
+
+  guideEnglish.setAttribute(
+    'aria-pressed',
+    String(!german)
+  );
+}
+
+guideGerman.addEventListener(
+  'click',
+  ()=>setGuideLanguage('de')
+);
+
+guideEnglish.addEventListener(
+  'click',
+  ()=>setGuideLanguage('en')
+);
 
 /* ======================================
    HILFSFUNKTIONEN
@@ -1913,6 +2180,10 @@ const albumTurntable=document.getElementById(
   'albumTurntable'
 );
 
+const mixerGuide=document.getElementById(
+  'mixerGuide'
+);
+
 let activeCategory='middle';
 let allMusic=[];
 let visibleCount=10;
@@ -2067,6 +2338,8 @@ function chooseCategory(category) {
 
   activeCategory=category;
   visibleCount=10;
+
+  mixerGuide.hidden=category!=='middle';
 
   singleLabel.classList.toggle(
     'active',
@@ -2681,21 +2954,26 @@ function getYoutubeId(item) {
 
 /* ======================================
    SPEICHERUNG DES ABSPIELSTATUS
-
-   BISHERIGER SCHLÜSSEL BLEIBT
-   UNVERÄNDERT
-
-   RMB_MUSIC_WATCHED_
+   SINGLES UND ALBEN
 ====================================== */
 
 const VIDEO_STORAGE_PREFIX=
   'RMB_MUSIC_WATCHED_';
 
+const ALBUM_STORAGE_PREFIX=
+  'RMB_MUSIC_ALBUM_OPENED_';
+
 const watchedVideosThisSession=new Set();
+const openedAlbumsThisSession=new Set();
 
 function videoStorageKey(id) {
 
   return VIDEO_STORAGE_PREFIX+id;
+}
+
+function albumStorageKey(id) {
+
+  return ALBUM_STORAGE_PREFIX+id;
 }
 
 function hasOpenedVideo(id) {
@@ -2735,22 +3013,59 @@ function rememberOpenedVideo(id) {
 }
 
 /* ======================================
+   ALBUM-STATUS SPEICHERN
+====================================== */
+
+function hasOpenedAlbum(id) {
+
+  if(openedAlbumsThisSession.has(id)) {
+    return true;
+  }
+
+  try {
+
+    return localStorage.getItem(
+      albumStorageKey(id)
+    )==='1';
+
+  } catch {
+
+    return false;
+  }
+}
+
+function rememberOpenedAlbum(id) {
+
+  openedAlbumsThisSession.add(id);
+
+  try {
+
+    localStorage.setItem(
+      albumStorageKey(id),
+      '1'
+    );
+
+  } catch {
+
+    /* Status bleibt für diese Sitzung */
+
+  }
+}
+
+/* ======================================
    STATUS AKTUALISIEREN
-
-   NICHT GEÖFFNET:
-   GRÜNER KREIS MIT PLAY
-
-   BEREITS GEÖFFNET:
-   ROTER KREIS MIT HÄKCHEN
 ====================================== */
 
 function refreshVideoStamps() {
 
   gallery.querySelectorAll(
-    '.cover-button[data-video-id]'
+    '.cover-button[data-video-id], .cover-button[data-album-id]'
   ).forEach(button=>{
 
-    const id=button.dataset.videoId;
+    const videoId=button.dataset.videoId;
+    const albumId=button.dataset.albumId;
+
+    const isAlbum=Boolean(albumId);
 
     const stamp=button.querySelector(
       '.video-stamp'
@@ -2758,22 +3073,40 @@ function refreshVideoStamps() {
 
     if(!stamp) return;
 
-    const watched=hasOpenedVideo(id);
+    const watched=isAlbum
+      ?hasOpenedAlbum(albumId)
+      :hasOpenedVideo(videoId);
 
     stamp.classList.toggle(
       'watched',
       watched
     );
 
-    button.title=watched
-      ?'Bereits abgespielt – erneut anhören'
-      :'Musik anhören';
+    button.title=isAlbum
+      ?(
+        watched
+          ?'Album bereits geöffnet – erneut öffnen'
+          :'Album öffnen'
+      )
+      :(
+        watched
+          ?'Bereits abgespielt – erneut anhören'
+          :'Musik anhören'
+      );
 
     button.setAttribute(
       'aria-label',
-      watched
-        ?'Bereits gestarteten Song erneut anhören'
-        :'Song anhören'
+      isAlbum
+        ?(
+          watched
+            ?'Bereits geöffnetes Album erneut öffnen'
+            :'Album auf YouTube öffnen'
+        )
+        :(
+          watched
+            ?'Bereits gestarteten Song erneut anhören'
+            :'Song anhören'
+        )
     );
   });
 }
@@ -2790,11 +3123,7 @@ function openVideo(id) {
 
   stopRadio();
 
-  /* SONG ALS GEÖFFNET MARKIEREN */
-
   rememberOpenedVideo(id);
-
-  /* SOFORT ROTEN HAKEN SETZEN */
 
   refreshVideoStamps();
 
@@ -2819,8 +3148,6 @@ function closeVideoPlayer() {
   document.body.classList.remove(
     'video-is-open'
   );
-
-  /* ROTER HAKEN BLEIBT SICHTBAR */
 
   refreshVideoStamps();
 }
@@ -2970,23 +3297,26 @@ function renderMusic() {
       valid&&!albumURL
     );
 
-    const alreadyWatched=
-      hasInternalVideo&&
-      hasOpenedVideo(valid);
+    /* ALBUMS BEKOMMEN EIGENEN STATUS */
 
-    /* ==================================
-       BUTTON 40 x 40 PIXEL
+    const albumId=albumURL
+      ?albumURL
+      :'';
 
-       GRÜN:
-       PLAY
+    const alreadyWatched=albumURL
+      ?hasOpenedAlbum(albumId)
+      :(
+        hasInternalVideo&&
+        hasOpenedVideo(valid)
+      );
 
-       ROT:
-       SVG-HÄKCHEN
+    /* PLAY-BUTTON AUCH BEI ALBEN */
 
-       KEIN PLAY-DREIECK
-    ================================== */
+    const showPlayStamp=Boolean(
+      hasInternalVideo||albumURL
+    );
 
-    const videoStampHTML=hasInternalVideo
+    const videoStampHTML=showPlayStamp
       ?`
         <span
           class="video-stamp ${alreadyWatched?'watched':''}"
@@ -3015,9 +3345,11 @@ function renderMusic() {
         type="button"
         class="cover-button"
         ${canOpen?'':'disabled'}
-        ${hasInternalVideo
-          ?'data-video-id="'+valid+'"'
-          :''}
+        ${albumURL
+          ?'data-album-id="'+escapeHTML(albumId)+'"'
+          :hasInternalVideo
+            ?'data-video-id="'+valid+'"'
+            :''}
         aria-label="${albumURL
           ?'Album auf YouTube öffnen'
           :hasInternalVideo
@@ -3054,24 +3386,6 @@ function renderMusic() {
 
       <div class="music-links">
 
-        ${albumURL
-          ?`
-            <a
-              href="${escapeHTML(albumURL)}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >YouTube</a>
-          `
-          :valid
-            ?`
-              <a
-                href="https://www.youtube.com/watch?v=${valid}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >YouTube</a>
-            `
-            :''}
-
         ${spotify
           ?`
             <a
@@ -3095,10 +3409,6 @@ function renderMusic() {
       </div>
     `;
 
-    /* ==================================
-       COVER ANKLICKEN
-    ================================== */
-
     if(albumURL) {
 
       card.querySelector(
@@ -3108,6 +3418,14 @@ function renderMusic() {
         ()=>{
 
           stopRadio();
+
+          /* ALBUM ALS GEÖFFNET MARKIEREN */
+
+          rememberOpenedAlbum(albumId);
+
+          refreshVideoStamps();
+
+          /* EXTERNE ALBUMSEITE ÖFFNEN */
 
           window.location.assign(
             albumURL
@@ -3124,10 +3442,6 @@ function renderMusic() {
         ()=>openVideo(valid)
       );
     }
-
-    /* ==================================
-       EXTERNE STREAMING-LINKS
-    ================================== */
 
     card.querySelectorAll(
       '.music-links a'
@@ -3214,6 +3528,8 @@ function initializeCrossfader() {
 
   activeCategory='middle';
   visibleCount=10;
+
+  mixerGuide.hidden=false;
 
   singleLabel.classList.remove(
     'active'
