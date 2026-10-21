@@ -2682,10 +2682,10 @@ function getYoutubeId(item) {
 /* ======================================
    SPEICHERUNG DES ABSPIELSTATUS
 
-   BISHERIGER SCHLÜSSEL BLEIBT
-   UNVERÄNDERT
+   NUR FÜR DIE AKTUELLE
+   BROWSER-TAB-SITZUNG
 
-   RMB_MUSIC_WATCHED_
+   KEINE DAUERHAFTE SPEICHERUNG
 ====================================== */
 
 const VIDEO_STORAGE_PREFIX=
@@ -2706,7 +2706,7 @@ function hasOpenedVideo(id) {
 
   try {
 
-    return localStorage.getItem(
+    return sessionStorage.getItem(
       videoStorageKey(id)
     )==='1';
 
@@ -2722,14 +2722,14 @@ function rememberOpenedVideo(id) {
 
   try {
 
-    localStorage.setItem(
+    sessionStorage.setItem(
       videoStorageKey(id),
       '1'
     );
 
   } catch {
 
-    /* Status bleibt für diese Sitzung */
+    /* Status bleibt innerhalb dieser Seite erhalten */
 
   }
 }
