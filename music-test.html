@@ -1611,10 +1611,10 @@ footer {
     <p class="guide-item">
       <span class="guide-symbol">♫</span>
       <strong>Musik abspielen</strong> –
-      Singles über PLAY direkt auf der
-      Website anhören. Alben extern über
-      die verfügbaren Musikanbieter
-      auswählen und abspielen.
+      Singles und Alben über PLAY öffnen
+      und anhören. Spotify und Amazon Music
+      stehen als weitere Musikanbieter
+      zur Verfügung.
     </p>
 
   </div>
@@ -1652,10 +1652,10 @@ footer {
     <p class="guide-item">
       <span class="guide-symbol">♫</span>
       <strong>Play music</strong> –
-      Play singles directly on the
-      website using PLAY. Choose and
-      listen to albums externally via
-      the available music platforms.
+      Open and listen to singles and albums
+      using PLAY. Spotify and Amazon Music
+      are available as additional
+      streaming platforms.
     </p>
 
   </div>
@@ -3385,24 +3385,6 @@ function renderMusic() {
         :''}
 
       <div class="music-links">
-
-        ${albumURL
-          ?`
-            <a
-              href="${escapeHTML(albumURL)}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >YouTube</a>
-          `
-          :valid
-            ?`
-              <a
-                href="https://www.youtube.com/watch?v=${valid}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >YouTube</a>
-            `
-            :''}
 
         ${spotify
           ?`
