@@ -760,84 +760,94 @@ a:focus-visible {
 }
 
 /* ======================================
-   NEU: MIXER GUIDE
+   NEU: MINIMALISTISCHER MIXER GUIDE
 ====================================== */
 
 .mixer-guide {
-  width:min(950px,calc(100% - 32px));
-  margin:36px auto 42px;
-  padding:32px 35px;
-  border:1px solid #48515f;
-  border-radius:12px;
+  width:min(900px,calc(100% - 48px));
+  margin:42px auto 65px;
+  padding:38px 36px 42px;
   background:#1c2530;
-  box-shadow:0 8px 24px rgba(0,0,0,.22);
+  border:1px solid #48515f;
+  border-radius:28px;
+  color:#cbd3df;
+}
+
+.guide-heading {
+  margin:0;
+  color:#f5f7fb;
+  font-family:Michroma,Arial,sans-serif;
+  font-size:clamp(15px,2.5vw,25px);
+  font-weight:normal;
+  line-height:1.5;
   text-align:center;
 }
 
-.mixer-guide h2 {
-  margin:0 0 23px;
-  color:#f2f4f8;
-  font-family:Michroma,Arial,sans-serif;
-  font-size:clamp(15px,2.5vw,22px);
-  letter-spacing:1px;
+/* Sprachschalter innerhalb der Tafel */
+
+.guide-languages {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:25px 0 35px;
 }
 
 .guide-language {
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-bottom:26px;
-}
-
-.guide-language button {
-  padding:11px 18px;
-  border:1px solid #526075;
-  border-radius:7px;
-  background:#252e3b;
-  color:#c5d1df;
+  padding:11px 17px;
+  border:1px solid transparent;
+  border-radius:20px;
+  background:transparent;
+  color:#919baa;
   font-family:Michroma,Arial,sans-serif;
-  font-size:10px;
+  font-size:11px;
   cursor:pointer;
+  transition:
+    background .2s,
+    color .2s,
+    border-color .2s;
 }
 
-.guide-language button.selected {
-  background:#43546c;
-  border-color:#a9bdd5;
+.guide-language.active {
+  background:#2c3037;
   color:#fff;
 }
 
-.guide-language button:hover {
-  background:#344255;
+.guide-language:hover {
+  color:#fff;
 }
 
-.guide-description {
-  max-width:780px;
-  margin:0 auto;
-  text-align:left;
+.guide-divider {
+  height:1px;
+  margin:0 0 30px;
+  background:#48515f;
 }
 
-.guide-description[hidden] {
-  display:none !important;
+.guide-text {
+  display:grid;
+  gap:22px;
+}
+
+.guide-text[hidden] {
+  display:none;
 }
 
 .guide-item {
-  padding:17px 0;
-  border-top:1px solid #354353;
-}
-
-.guide-item h3 {
-  margin:0 0 9px;
-  color:#dcecff;
-  font-family:Michroma,Arial,sans-serif;
-  font-size:12px;
-  line-height:1.8;
-}
-
-.guide-item p {
   margin:0;
-  color:#cbd5e1;
-  font-size:13px;
-  line-height:1.9;
+  color:#cbd3df;
+  font-family:Arial,sans-serif;
+  font-size:17px;
+  line-height:1.65;
+}
+
+.guide-item strong {
+  font-weight:600;
+}
+
+.guide-symbol {
+  display:inline-block;
+  min-width:25px;
+  color:#cbd3df;
 }
 
 /* ======================================
@@ -1154,21 +1164,33 @@ footer {
   }
 
   .mixer-guide {
-    margin:26px auto 34px;
-    padding:23px 18px;
+    width:calc(100% - 30px);
+    margin:32px auto 45px;
+    padding:28px 23px 32px;
+    border-radius:20px;
   }
 
-  .guide-language button {
-    padding:10px 13px;
+  .guide-heading {
+    font-size:15px;
+  }
+
+  .guide-languages {
+    gap:5px;
+    margin:20px 0 27px;
+  }
+
+  .guide-language {
+    padding:10px 12px;
     font-size:9px;
   }
 
-  .guide-item h3 {
-    font-size:10px;
+  .guide-item {
+    font-size:15px;
+    line-height:1.65;
   }
 
-  .guide-item p {
-    font-size:12px;
+  .guide-text {
+    gap:19px;
   }
 }
 
@@ -1527,160 +1549,134 @@ footer {
 </div>
 </section>
 
+<!-- RADIO -->
+
+<audio id="rmbRadio" preload="auto" loop>
+  <source src="audio/music-song.mp3" type="audio/mpeg">
+</audio>
+
 <!-- ======================================
      NEU: MIXER GUIDE
+     DEUTSCH / ENGLISH
 ====================================== -->
 
-<section class="mixer-guide" aria-label="MUSIC Mixer Guide">
+<section
+  class="mixer-guide"
+  aria-labelledby="guideHeading"
+>
 
-  <h2>R.M.B. MUSIC – MIXER GUIDE</h2>
+  <h2 class="guide-heading" id="guideHeading">
+    MIXER GUIDE
+  </h2>
 
-  <div class="guide-language">
+  <!-- SPRACHSCHALTER INNERHALB DER TAFEL -->
+
+  <div
+    class="guide-languages"
+    role="group"
+    aria-label="Sprache auswählen"
+  >
 
     <button
       type="button"
-      id="guideBtnDe"
-      class="selected"
+      class="guide-language active"
+      id="guideGerman"
       aria-pressed="true"
-      onclick="switchGuideLanguage('de')"
     >
       DEUTSCH
     </button>
 
     <button
       type="button"
-      id="guideBtnEn"
+      class="guide-language"
+      id="guideEnglish"
       aria-pressed="false"
-      onclick="switchGuideLanguage('en')"
     >
       ENGLISH
     </button>
 
   </div>
 
-  <!-- DEUTSCHE ERKLÄRUNG -->
+  <div class="guide-divider"></div>
 
-  <div
-    class="guide-description"
-    id="guideDe"
-    lang="de"
-  >
+  <!-- DEUTSCHE KURZANLEITUNG -->
 
-    <div class="guide-item">
-      <h3>▶ R.M.B. RADIO</h3>
-      <p>
-        Tippe auf den kleinen Play-Button
-        über dem Buchstaben „I“ im MUSIC-Schriftzug,
-        um R.M.B. RADIO zu starten oder zu pausieren.
-        Das Radio ist aktivierbar, solange sich
-        der Crossfader in der Mittelstellung befindet.
-      </p>
-    </div>
+  <div class="guide-text" id="guideTextGerman" lang="de">
 
-    <div class="guide-item">
-      <h3>↔ CROSSFADER – SINGLE / ALBUM</h3>
-      <p>
-        Bewege den Crossfader in der Mitte des
-        Mischpults nach links, um die Single-Collection
-        anzuzeigen, oder nach rechts, um die
-        Album-Collection zu entdecken.
-        In der Mittelstellung erscheint wieder
-        THE SOUND OF R.M.B. und das Radio
-        steht zur Verfügung.
-      </p>
-    </div>
+    <p class="guide-item">
+      <span class="guide-symbol">▶</span>
+      <strong>R.M.B. RADIO</strong> –
+      Über dem „I“ im MUSIC-Schriftzug
+      starten oder pausieren.
+    </p>
 
-    <div class="guide-item">
-      <h3>🎚 MENÜREGLER</h3>
-      <p>
-        Schiebe einen der fünf senkrechten
-        Regler nach oben, um den entsprechenden
-        Bereich der Website aufzurufen:
-        HOME, MUSIC, UPCOMING, ABOUT oder CONTACT.
-      </p>
-    </div>
+    <p class="guide-item">
+      <span class="guide-symbol">↔</span>
+      <strong>Crossfader</strong> –
+      Links die Singles, rechts die Alben
+      auswählen.
+    </p>
 
-    <div class="guide-item">
-      <h3>♫ MUSIK ENTDECKEN</h3>
-      <p>
-        Wähle einen Titel aus der Single- oder
-        Album-Collection. Über das Cover kannst
-        du verfügbare Videos abspielen.
-        Alternativ führen dich die Links zu
-        YouTube, Spotify oder Amazon Music.
-        Ein rotes Häkchen zeigt dir an,
-        welche Videos du bereits geöffnet hast.
-      </p>
-    </div>
+    <p class="guide-item">
+      <span class="guide-symbol">🎚</span>
+      <strong>Menüregler</strong> –
+      Die verschiedenen Bereiche der
+      Website aufrufen.
+    </p>
+
+    <p class="guide-item">
+      <span class="guide-symbol">♫</span>
+      <strong>Musik abspielen</strong> –
+      Singles über PLAY direkt auf der
+      Website anhören. Alben extern über
+      die verfügbaren Musikanbieter
+      auswählen und abspielen.
+    </p>
 
   </div>
 
-  <!-- ENGLISCHE ERKLÄRUNG -->
+  <!-- ENGLISCHE KURZANLEITUNG -->
 
   <div
-    class="guide-description"
-    id="guideEn"
+    class="guide-text"
+    id="guideTextEnglish"
     lang="en"
     hidden
   >
 
-    <div class="guide-item">
-      <h3>▶ R.M.B. RADIO</h3>
-      <p>
-        Tap the small play button above the
-        letter “I” in the MUSIC logo to start
-        or pause R.M.B. RADIO.
-        The radio is available while the
-        crossfader is in its centre position.
-      </p>
-    </div>
+    <p class="guide-item">
+      <span class="guide-symbol">▶</span>
+      <strong>R.M.B. RADIO</strong> –
+      Start or pause above the “I”
+      in the MUSIC logo.
+    </p>
 
-    <div class="guide-item">
-      <h3>↔ CROSSFADER – SINGLE / ALBUM</h3>
-      <p>
-        Move the crossfader in the centre
-        of the mixing console to the left
-        to display the Single Collection,
-        or to the right to explore the
-        Album Collection.
-        Return it to the centre to display
-        THE SOUND OF R.M.B. and make
-        the radio available again.
-      </p>
-    </div>
+    <p class="guide-item">
+      <span class="guide-symbol">↔</span>
+      <strong>Crossfader</strong> –
+      Singles on the left, albums
+      on the right.
+    </p>
 
-    <div class="guide-item">
-      <h3>🎚 MENU FADERS</h3>
-      <p>
-        Slide one of the five vertical
-        faders upwards to open the corresponding
-        section of the website:
-        HOME, MUSIC, UPCOMING, ABOUT or CONTACT.
-      </p>
-    </div>
+    <p class="guide-item">
+      <span class="guide-symbol">🎚</span>
+      <strong>Menu faders</strong> –
+      Navigate between the different
+      sections of the website.
+    </p>
 
-    <div class="guide-item">
-      <h3>♫ EXPLORE THE MUSIC</h3>
-      <p>
-        Choose a track from the Single
-        or Album Collection.
-        Tap the cover to play available videos,
-        or use the links to listen on YouTube,
-        Spotify or Amazon Music.
-        A red checkmark indicates which
-        videos you have already opened.
-      </p>
-    </div>
+    <p class="guide-item">
+      <span class="guide-symbol">♫</span>
+      <strong>Play music</strong> –
+      Play singles directly on the
+      website using PLAY. Choose and
+      listen to albums externally via
+      the available music platforms.
+    </p>
 
   </div>
 
 </section>
-
-<!-- RADIO -->
-
-<audio id="rmbRadio" preload="auto" loop>
-  <source src="audio/music-song.mp3" type="audio/mpeg">
-</audio>
 
 <!-- MUSIKGALERIE -->
 
@@ -1731,49 +1727,62 @@ footer {
 <script>
 
 /* ======================================
-   NEU: MIXER GUIDE SPRACHUMSCHALTUNG
+   NEU: SPRACHSCHALTER MIXER GUIDE
 ====================================== */
 
-function switchGuideLanguage(language) {
+const guideGerman=document.getElementById(
+  'guideGerman'
+);
+
+const guideEnglish=document.getElementById(
+  'guideEnglish'
+);
+
+const guideTextGerman=document.getElementById(
+  'guideTextGerman'
+);
+
+const guideTextEnglish=document.getElementById(
+  'guideTextEnglish'
+);
+
+function setGuideLanguage(language) {
 
   const german=language==='de';
 
-  document.getElementById(
-    'guideDe'
-  ).hidden=!german;
+  guideTextGerman.hidden=!german;
+  guideTextEnglish.hidden=german;
 
-  document.getElementById(
-    'guideEn'
-  ).hidden=german;
-
-  const deButton=document.getElementById(
-    'guideBtnDe'
-  );
-
-  const enButton=document.getElementById(
-    'guideBtnEn'
-  );
-
-  deButton.classList.toggle(
-    'selected',
+  guideGerman.classList.toggle(
+    'active',
     german
   );
 
-  enButton.classList.toggle(
-    'selected',
+  guideEnglish.classList.toggle(
+    'active',
     !german
   );
 
-  deButton.setAttribute(
+  guideGerman.setAttribute(
     'aria-pressed',
     String(german)
   );
 
-  enButton.setAttribute(
+  guideEnglish.setAttribute(
     'aria-pressed',
     String(!german)
   );
 }
+
+guideGerman.addEventListener(
+  'click',
+  ()=>setGuideLanguage('de')
+);
+
+guideEnglish.addEventListener(
+  'click',
+  ()=>setGuideLanguage('en')
+);
 
 /* ======================================
    HILFSFUNKTIONEN
@@ -3010,6 +3019,12 @@ function rememberOpenedVideo(id) {
 
 /* ======================================
    STATUS AKTUALISIEREN
+
+   NICHT GEÖFFNET:
+   GRÜNER KREIS MIT PLAY
+
+   BEREITS GEÖFFNET:
+   ROTER KREIS MIT HÄKCHEN
 ====================================== */
 
 function refreshVideoStamps() {
