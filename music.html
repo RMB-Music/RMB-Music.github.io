@@ -12,11 +12,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
 
 <style>
-
-/* ====================================
-   GRUNDEINSTELLUNGEN
-==================================== */
-
 :root {
   --bg:#101720;
   --blue:#82d2ff;
@@ -51,9 +46,9 @@ a:focus-visible {
   outline-offset:3px;
 }
 
-/* ====================================
-   GEMEINSAMER MASTER-CONTAINER
-==================================== */
+/* ======================================
+   MASTER-CONTAINER
+====================================== */
 
 .master-shell {
   position:relative;
@@ -70,9 +65,9 @@ a:focus-visible {
   transform-origin:top left;
 }
 
-/* ====================================
-   MUSIC / FRANKFURTER SKYLINE
-==================================== */
+/* ======================================
+   MUSIC / SKYLINE
+====================================== */
 
 .music-composition {
   position:relative;
@@ -104,69 +99,48 @@ a:focus-visible {
   height:auto;
   transform:translateX(-50%);
   mix-blend-mode:screen;
-  filter:drop-shadow(
-    0 0 10px rgba(95,165,255,.18)
-  );
+  filter:drop-shadow(0 0 10px rgba(95,165,255,.18));
   pointer-events:none;
 }
 
-/* ====================================
-   NEU: R.M.B. RADIO PLAY/PAUSE
-
-   EIGENSTÄNDIG ÜBER DEM MUSIC-BILD.
-   DER SCHRIFTZUG BLEIBT UNVERÄNDERT.
-
-   POSITION BEI BEDARF ÜBER
-   top UND left FEIN EINSTELLBAR.
-==================================== */
+/* ======================================
+   RADIO
+====================================== */
 
 .radio-button {
   position:absolute;
   top:18px;
   left:62%;
   z-index:10;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   width:36px;
   height:36px;
   padding:0;
-
   transform:translateX(-50%);
-
-  border:2px solid #ff636d;
+  border:2px solid var(--red);
   border-radius:50%;
-
   background:radial-gradient(
     circle at 35% 25%,
     #34475a,
     #101820 72%
   );
-
   color:#ff8189;
-
   box-shadow:
     0 0 5px rgba(255,99,109,.9),
     0 0 12px rgba(255,99,109,.45),
     inset 0 1px 2px rgba(255,255,255,.2);
-
   cursor:pointer;
-
   transition:
     border-color .2s,
     color .2s,
-    box-shadow .2s,
-    background .2s;
-
-  touch-action:manipulation;
+    box-shadow .2s;
 }
 
 .radio-button.playing {
-  border-color:#49ff96;
+  border-color:var(--green);
   color:#7dffb1;
-
   box-shadow:
     0 0 5px rgba(73,255,150,1),
     0 0 13px rgba(73,255,150,.7),
@@ -199,9 +173,9 @@ a:focus-visible {
   display:block;
 }
 
-/* ====================================
-   GENREZEILE
-==================================== */
+/* ======================================
+   GENRE
+====================================== */
 
 .genre-area {
   position:relative;
@@ -218,14 +192,13 @@ a:focus-visible {
   font-family:Michroma,Arial,sans-serif;
   font-size:11px;
   letter-spacing:1.4px;
-  line-height:1;
   white-space:nowrap;
   text-shadow:0 0 8px rgba(126,200,255,.24);
 }
 
-/* ====================================
+/* ======================================
    DJ-ANLAGE
-==================================== */
+====================================== */
 
 .dj-setup {
   display:grid;
@@ -245,10 +218,6 @@ a:focus-visible {
   box-shadow:0 8px 20px rgba(0,0,0,.45);
 }
 
-/* ====================================
-   PLATTENSPIELER
-==================================== */
-
 .turntable {
   border:1px solid #667b91;
   background:#cbd5df;
@@ -263,24 +232,18 @@ a:focus-visible {
   pointer-events:none;
 }
 
-/* ====================================
-   VINYLPLATTEN
-==================================== */
-
 .vinyl-position {
   position:absolute;
   left:38.4%;
   top:46.4%;
   width:61%;
-  aspect-ratio:1 / 1;
+  aspect-ratio:1;
   transform:translate(-50%,-50%);
   z-index:2;
   pointer-events:none;
   opacity:0;
   visibility:hidden;
-  transition:
-    opacity .35s ease,
-    visibility .35s ease;
+  transition:opacity .35s,visibility .35s;
 }
 
 .turntable.playing .vinyl-position {
@@ -292,13 +255,10 @@ a:focus-visible {
   display:block;
   width:100%;
   height:100%;
-  aspect-ratio:1 / 1;
   object-fit:contain;
   border-radius:50%;
   transform-origin:center;
-  filter:drop-shadow(
-    1px 2px 3px rgba(0,0,0,.6)
-  );
+  filter:drop-shadow(1px 2px 3px rgba(0,0,0,.6));
   animation:vinylRotation 2.4s linear infinite;
   animation-play-state:paused;
 }
@@ -308,13 +268,13 @@ a:focus-visible {
 }
 
 @keyframes vinylRotation {
-  from { transform:rotate(0deg); }
-  to { transform:rotate(360deg); }
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
 
-/* ====================================
+/* ======================================
    MISCHPULT
-==================================== */
+====================================== */
 
 .mixer {
   padding:9px 12px 7px;
@@ -365,28 +325,18 @@ a:focus-visible {
   box-shadow:0 0 8px #6bc5ff;
 }
 
-/* ====================================
-   MISCHPULT-INNENBEREICH
-==================================== */
-
 .mixer-panel {
   display:grid;
-  grid-template-columns:
-    112px minmax(0,1fr) 112px;
+  grid-template-columns:112px minmax(0,1fr) 112px;
   gap:9px;
   width:100%;
   height:172px;
   min-width:0;
 }
 
-/* ====================================
-   DREHREGLER
-==================================== */
-
 .eq-panel {
   display:grid;
-  grid-template-columns:
-    minmax(0,1fr) minmax(0,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:4px;
   min-width:0;
   padding:5px 4px;
@@ -459,14 +409,13 @@ a:focus-visible {
   white-space:nowrap;
 }
 
-/* ====================================
+/* ======================================
    VU-METER
-==================================== */
+====================================== */
 
 .mixer-center {
   display:grid;
-  grid-template-columns:
-    11px minmax(0,1fr) 11px;
+  grid-template-columns:11px minmax(0,1fr) 11px;
   gap:5px;
   min-width:0;
   min-height:0;
@@ -490,9 +439,9 @@ a:focus-visible {
   opacity:.28;
 }
 
-.vu-led.green { --lit:#3dec83; }
-.vu-led.yellow { --lit:#efdb54; }
-.vu-led.red { --lit:#ff6a60; }
+.vu-led.green {--lit:#3dec83;}
+.vu-led.yellow {--lit:#efdb54;}
+.vu-led.red {--lit:#ff6a60;}
 
 .vu-led.on {
   background:var(--lit);
@@ -500,9 +449,9 @@ a:focus-visible {
   box-shadow:0 0 4px var(--lit);
 }
 
-/* ====================================
-   FÜNF NAVIGATIONSFADER
-==================================== */
+/* ======================================
+   NAVIGATIONSFADER
+====================================== */
 
 .mixer-channels {
   display:grid;
@@ -562,7 +511,6 @@ a:focus-visible {
   right:2px;
   bottom:4px;
   left:2px;
-  min-height:0;
 }
 
 .fader-track::before {
@@ -575,9 +523,7 @@ a:focus-visible {
   transform:translateX(-50%);
   border-radius:4px;
   background:#060b11;
-  box-shadow:
-    inset 0 0 2px #000,
-    0 0 1px #93a7b8;
+  box-shadow:inset 0 0 2px #000,0 0 1px #93a7b8;
 }
 
 .fader-handle {
@@ -640,9 +586,9 @@ a:focus-visible {
     inset 0 1px 1px #fff;
 }
 
-/* ====================================
+/* ======================================
    CROSSFADER
-==================================== */
+====================================== */
 
 .crossfader-section {
   position:absolute;
@@ -662,7 +608,6 @@ a:focus-visible {
   font-family:Michroma,Arial,sans-serif;
   font-size:7px;
   letter-spacing:1px;
-  line-height:1;
   color:#7f9ab1;
   text-align:center;
   white-space:nowrap;
@@ -732,15 +677,14 @@ a:focus-visible {
   font-family:Michroma,Arial,sans-serif;
   font-size:8px;
   letter-spacing:1px;
-  line-height:1;
   color:#9cb2c7;
   position:relative;
   z-index:3;
   pointer-events:none;
 }
 
-#singleLabel { justify-self:start; }
-#albumLabel { justify-self:end; }
+#singleLabel {justify-self:start;}
+#albumLabel {justify-self:end;}
 
 .crossfader-labels .active {
   color:#69baff;
@@ -778,9 +722,9 @@ a:focus-visible {
   }
 }
 
-/* ====================================
+/* ======================================
    LED-LAUFLEISTE
-==================================== */
+====================================== */
 
 .led-display-wrap {
   width:1360px;
@@ -815,9 +759,9 @@ a:focus-visible {
   background:#07111b;
 }
 
-/* ====================================
+/* ======================================
    MUSIKGALERIE
-==================================== */
+====================================== */
 
 .content {
   max-width:1400px;
@@ -842,8 +786,6 @@ a:focus-visible {
   border:1px solid #304052;
   border-radius:12px;
   transition:transform .2s;
-
-  /* NEU: GLEICHE BUTTON-HÖHE */
   display:flex;
   flex-direction:column;
 }
@@ -853,12 +795,14 @@ a:focus-visible {
 }
 
 .cover-button {
+  position:relative;
   display:block;
   width:100%;
   padding:0;
   border:0;
   background:none;
   cursor:pointer;
+  isolation:isolate;
 }
 
 .cover-button:disabled {
@@ -873,6 +817,144 @@ a:focus-visible {
   background:#090d13;
   border-radius:7px;
 }
+
+/* ======================================
+   PLAY / HÄKCHEN
+
+   40 x 40 PIXEL
+
+   GRÜN = PLAY
+   ROT  = HÄKCHEN
+
+   POSITION:
+   OBERES LINKES VIERTEL
+====================================== */
+
+.video-stamp {
+  position:absolute;
+  top:25%;
+  left:25%;
+  z-index:3;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:40px;
+  height:40px;
+  padding:2px;
+
+  transform:translate(-50%,-50%);
+
+  border:2px solid #49ff96;
+  border-radius:50%;
+
+  background:radial-gradient(
+    circle at 35% 25%,
+    rgba(55,73,91,.97),
+    rgba(10,17,25,.98) 75%
+  );
+
+  color:#7dffb1;
+
+  box-shadow:
+    0 0 5px rgba(73,255,150,1),
+    0 0 10px rgba(73,255,150,.7),
+    0 0 16px rgba(73,255,150,.3),
+    inset 0 1px 2px rgba(255,255,255,.22);
+
+  pointer-events:none;
+
+  transition:
+    border-color .25s,
+    color .25s,
+    box-shadow .25s,
+    opacity .2s;
+}
+
+.video-stamp::before {
+  content:"";
+  position:absolute;
+  inset:3px;
+  border:1px solid rgba(220,230,240,.4);
+  border-radius:50%;
+  pointer-events:none;
+}
+
+/* GRÜNER PLAY-SCHRIFTZUG */
+
+.video-stamp-text {
+  position:relative;
+  z-index:1;
+
+  display:block;
+  width:100%;
+
+  font-family:Michroma,Arial,sans-serif;
+  font-size:6px;
+  font-weight:bold;
+  line-height:1;
+  letter-spacing:-.15px;
+
+  text-align:center;
+  white-space:nowrap;
+  text-shadow:0 0 4px currentColor;
+}
+
+/* HÄKCHEN VORERST AUSBLENDEN */
+
+.video-stamp-check {
+  display:none;
+  position:relative;
+  z-index:1;
+
+  width:23px;
+  height:23px;
+
+  stroke:currentColor;
+  stroke-width:3.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+
+  filter:drop-shadow(0 0 3px currentColor);
+}
+
+/* ROTER STATUS NACH DEM ERSTEN START */
+
+.video-stamp.watched {
+  border-color:#ff636d;
+  color:#ff8189;
+
+  box-shadow:
+    0 0 5px rgba(255,99,109,.95),
+    0 0 10px rgba(255,99,109,.55),
+    0 0 15px rgba(255,99,109,.2),
+    inset 0 1px 2px rgba(255,255,255,.22);
+}
+
+/* BEI ROT: PLAY AUSBLENDEN */
+
+.video-stamp.watched .video-stamp-text {
+  display:none;
+}
+
+/* BEI ROT: HÄKCHEN EINBLENDEN */
+
+.video-stamp.watched .video-stamp-check {
+  display:block;
+}
+
+/* WÄHREND DER PLAYER GEÖFFNET IST */
+
+body.video-is-open .video-stamp {
+  opacity:0;
+  visibility:hidden;
+}
+
+/* ======================================
+   TITEL / STREAMING
+====================================== */
 
 .track-title {
   margin:14px 0 5px;
@@ -898,8 +980,6 @@ a:focus-visible {
   justify-content:center;
   flex-wrap:wrap;
   gap:7px;
-
-  /* NEU: BUTTONS UNTEN */
   margin-top:auto;
   padding-top:12px;
 }
@@ -942,9 +1022,9 @@ a:focus-visible {
   display:none;
 }
 
-/* ====================================
-   YOUTUBE-VIDEOFENSTER
-==================================== */
+/* ======================================
+   YOUTUBE-PLAYER
+====================================== */
 
 .video-modal {
   display:none;
@@ -968,7 +1048,7 @@ a:focus-visible {
 
 .video-frame {
   width:100%;
-  aspect-ratio:16 / 9;
+  aspect-ratio:16/9;
   border:0;
   background:black;
 }
@@ -992,9 +1072,9 @@ footer {
   font-size:12px;
 }
 
-/* ====================================
-   RESPONSIVE MUSIKGALERIE
-==================================== */
+/* ======================================
+   RESPONSIVE
+====================================== */
 
 @media(max-width:700px) {
   .content {
@@ -1031,443 +1111,353 @@ footer {
   .vinyl-record {
     animation-duration:8s;
   }
-}
 
+  .video-stamp {
+    transition:none;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- ====================================
-     PROPORTIONALER MASTER-CONTAINER
-==================================== -->
-
 <section class="master-shell" id="masterShell">
+<div class="master-stage" id="masterStage">
 
-  <div class="master-stage" id="masterStage">
+  <!-- MUSIC UND SKYLINE -->
 
-    <!-- MUSIC UND SKYLINE -->
+  <div class="music-composition">
 
-    <div class="music-composition">
+    <img
+      class="skyline"
+      src="images/frankfurt-skyline.png"
+      alt=""
+    >
+
+    <img
+      class="music-heading"
+      src="images/music-schriftzug.png"
+      alt="MUSIC – THE SOUND OF R.M.B."
+    >
+
+    <button
+      type="button"
+      class="radio-button"
+      id="radioButton"
+      aria-label="R.M.B. Radio abspielen"
+      aria-pressed="false"
+      title="R.M.B. RADIO"
+    >
+      <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 3.5L21 12 7 20.5Z"/>
+      </svg>
+
+      <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="5" y="3" width="5" height="18" rx="1"/>
+        <rect x="14" y="3" width="5" height="18" rx="1"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- GENRE -->
+
+  <div class="genre-area">
+    <p class="genre-line">
+      90s Eurodance · EDM · Trance · House · Techno · Goa
+    </p>
+  </div>
+
+  <!-- DJ-ANLAGE -->
+
+  <div class="dj-setup">
+
+    <!-- LINKER PLATTENSPIELER -->
+
+    <div class="turntable single" id="singleTurntable">
 
       <img
-        class="skyline"
-        src="images/frankfurt-skyline.png"
-        alt=""
+        class="turntable-image"
+        src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
+        alt="Plattenspieler links"
       >
+
+      <div class="vinyl-position">
+        <img
+          class="vinyl-record"
+          src="images/6E5C2868-0282-4435-95E7-678E8971E477.png"
+          alt="Drehende SINGLES-Schallplatte"
+        >
+      </div>
+
+    </div>
+
+    <!-- MISCHPULT -->
+
+    <div class="mixer">
+
+      <div class="mixer-header">
+        <span>R.M.B. · 5 CHANNEL DJ MIXER</span>
+
+        <span class="power-indicator">
+          <span class="power-led"></span>
+          POWER
+        </span>
+      </div>
+
+      <div class="mixer-panel">
+
+        <!-- LINKE EQ-REGLER -->
+
+        <div class="eq-panel">
+
+          <div class="eq-column">
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">GAIN</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">HIGH</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">MID</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">BASS</span>
+            </div>
+
+          </div>
+
+          <div class="eq-column offset">
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">MIC</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">ECHO</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">FX</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- MITTELTEIL -->
+
+        <div class="mixer-center">
+
+          <div class="vu-meter" id="vuLeft" aria-hidden="true"></div>
+
+          <nav class="mixer-channels" aria-label="DJ-Mischpult Navigation">
+
+            <div class="mixer-channel">
+              <span class="channel-label">HOME</span>
+              <div class="fader-track">
+                <button
+                  type="button"
+                  class="fader-handle"
+                  data-url="index.html"
+                  aria-label="HOME nach oben schieben"
+                ></button>
+              </div>
+            </div>
+
+            <div class="mixer-channel active-channel">
+              <span class="channel-label">MUSIC</span>
+              <div class="fader-track">
+                <button
+                  type="button"
+                  class="fader-handle"
+                  data-url="music.html"
+                  aria-current="page"
+                  aria-label="MUSIC ist aktiv"
+                ></button>
+              </div>
+            </div>
+
+            <div class="mixer-channel">
+              <span class="channel-label">UPCOMING</span>
+              <div class="fader-track">
+                <button
+                  type="button"
+                  class="fader-handle"
+                  data-url="upcoming.html"
+                  aria-label="UPCOMING nach oben schieben"
+                ></button>
+              </div>
+            </div>
+
+            <div class="mixer-channel">
+              <span class="channel-label">ABOUT</span>
+              <div class="fader-track">
+                <button
+                  type="button"
+                  class="fader-handle"
+                  data-url="about.html"
+                  aria-label="ABOUT nach oben schieben"
+                ></button>
+              </div>
+            </div>
+
+            <div class="mixer-channel">
+              <span class="channel-label">CONTACT</span>
+              <div class="fader-track">
+                <button
+                  type="button"
+                  class="fader-handle"
+                  data-url="contact.html"
+                  aria-label="CONTACT nach oben schieben"
+                ></button>
+              </div>
+            </div>
+
+          </nav>
+
+          <div class="vu-meter" id="vuRight" aria-hidden="true"></div>
+
+        </div>
+
+        <!-- RECHTE EQ-REGLER -->
+
+        <div class="eq-panel">
+
+          <div class="eq-column">
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">GAIN</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">HIGH</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">MID</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">BASS</span>
+            </div>
+
+          </div>
+
+          <div class="eq-column offset">
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">MIC</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">ECHO</span>
+            </div>
+
+            <div class="eq-unit">
+              <span class="eq-knob"></span>
+              <span class="eq-label">FX</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CROSSFADER -->
+
+      <div class="crossfader-section">
+
+        <span class="crossfader-title">CROSSFADER</span>
+
+        <input
+          type="range"
+          class="crossfader-slider"
+          id="crossfader"
+          min="0"
+          max="100"
+          step="1"
+          value="50"
+          aria-label="Crossfader: Single, Mitte oder Album"
+        >
+
+        <div class="crossfader-labels">
+          <span id="singleLabel">SINGLE</span>
+          <span class="slide-me">SLIDE ME</span>
+          <span id="albumLabel">ALBUM</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RECHTER PLATTENSPIELER -->
+
+    <div class="turntable album" id="albumTurntable">
 
       <img
-        class="music-heading"
-        src="images/music-schriftzug.png"
-        alt="MUSIC – THE SOUND OF R.M.B."
+        class="turntable-image"
+        src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
+        alt="Plattenspieler rechts"
       >
 
-      <!-- ====================================
-           NEU: PLAY/PAUSE ÜBER MUSIC
-      ==================================== -->
-
-      <button
-        type="button"
-        class="radio-button"
-        id="radioButton"
-        aria-label="R.M.B. Radio abspielen"
-        aria-pressed="false"
-        title="R.M.B. RADIO"
-      >
-
-        <svg
-          class="play-icon"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path d="M7 3.5L21 12 7 20.5Z"/>
-        </svg>
-
-        <svg
-          class="pause-icon"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <rect x="5" y="3" width="5" height="18" rx="1"/>
-          <rect x="14" y="3" width="5" height="18" rx="1"/>
-        </svg>
-
-      </button>
-
-    </div>
-
-    <!-- GENREZEILE -->
-
-    <div class="genre-area">
-      <p class="genre-line">
-        90s Eurodance · EDM · Trance · House · Techno · Goa
-      </p>
-    </div>
-
-    <!-- DJ-GERÄTE -->
-
-    <div class="dj-setup">
-
-      <!-- LINKER PLATTENSPIELER -->
-
-      <div
-        class="turntable single"
-        id="singleTurntable"
-      >
-
+      <div class="vinyl-position">
         <img
-          class="turntable-image"
-          src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
-          alt="Bausys-tem Plattenspieler links"
+          class="vinyl-record"
+          src="images/D1EDD58D-F7A6-4A1B-B4EC-98244E93DDD1.png"
+          alt="Drehende ALBUMS-Schallplatte"
         >
-
-        <div class="vinyl-position">
-          <img
-            class="vinyl-record"
-            src="images/6E5C2868-0282-4435-95E7-678E8971E477.png"
-            alt="Drehende SINGLES-Schallplatte"
-          >
-        </div>
-
-      </div>
-
-      <!-- MISCHPULT -->
-
-      <div class="mixer">
-
-        <div class="mixer-header">
-
-          <span>
-            R.M.B. · 5 CHANNEL DJ MIXER
-          </span>
-
-          <span class="power-indicator">
-            <span class="power-led"></span>
-            POWER
-          </span>
-
-        </div>
-
-        <div class="mixer-panel">
-
-          <!-- LINKE DREHREGLER -->
-
-          <div class="eq-panel">
-
-            <div class="eq-column">
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">GAIN</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">HIGH</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">MID</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">BASS</span>
-              </div>
-
-            </div>
-
-            <div class="eq-column offset">
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">MIC</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">ECHO</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">FX</span>
-              </div>
-
-            </div>
-
-          </div>
-
-          <!-- MITTELTEIL -->
-
-          <div class="mixer-center">
-
-            <div
-              class="vu-meter"
-              id="vuLeft"
-              aria-hidden="true"
-            ></div>
-
-            <nav
-              class="mixer-channels"
-              aria-label="DJ-Mischpult Navigation"
-            >
-
-              <!-- HOME -->
-
-              <div class="mixer-channel">
-
-                <span class="channel-label">HOME</span>
-
-                <div class="fader-track">
-                  <button
-                    type="button"
-                    class="fader-handle"
-                    data-url="index.html"
-                    aria-label="HOME nach oben schieben"
-                  ></button>
-                </div>
-
-              </div>
-
-              <!-- MUSIC -->
-
-              <div class="mixer-channel active-channel">
-
-                <span class="channel-label">MUSIC</span>
-
-                <div class="fader-track">
-                  <button
-                    type="button"
-                    class="fader-handle"
-                    data-url="music.html"
-                    aria-current="page"
-                    aria-label="MUSIC ist aktiv"
-                  ></button>
-                </div>
-
-              </div>
-
-              <!-- UPCOMING -->
-
-              <div class="mixer-channel">
-
-                <span class="channel-label">UPCOMING</span>
-
-                <div class="fader-track">
-                  <button
-                    type="button"
-                    class="fader-handle"
-                    data-url="upcoming.html"
-                    aria-label="UPCOMING nach oben schieben"
-                  ></button>
-                </div>
-
-              </div>
-
-              <!-- ABOUT -->
-
-              <div class="mixer-channel">
-
-                <span class="channel-label">ABOUT</span>
-
-                <div class="fader-track">
-                  <button
-                    type="button"
-                    class="fader-handle"
-                    data-url="about.html"
-                    aria-label="ABOUT nach oben schieben"
-                  ></button>
-                </div>
-
-              </div>
-
-              <!-- CONTACT -->
-
-              <div class="mixer-channel">
-
-                <span class="channel-label">CONTACT</span>
-
-                <div class="fader-track">
-                  <button
-                    type="button"
-                    class="fader-handle"
-                    data-url="contact.html"
-                    aria-label="CONTACT nach oben schieben"
-                  ></button>
-                </div>
-
-              </div>
-
-            </nav>
-
-            <div
-              class="vu-meter"
-              id="vuRight"
-              aria-hidden="true"
-            ></div>
-
-          </div>
-
-          <!-- RECHTE DREHREGLER -->
-
-          <div class="eq-panel">
-
-            <div class="eq-column">
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">GAIN</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">HIGH</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">MID</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">BASS</span>
-              </div>
-
-            </div>
-
-            <div class="eq-column offset">
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">MIC</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">ECHO</span>
-              </div>
-
-              <div class="eq-unit">
-                <span class="eq-knob"></span>
-                <span class="eq-label">FX</span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- CROSSFADER -->
-
-        <div class="crossfader-section">
-
-          <span class="crossfader-title">
-            CROSSFADER
-          </span>
-
-          <input
-            type="range"
-            class="crossfader-slider"
-            id="crossfader"
-            min="0"
-            max="100"
-            step="1"
-            value="50"
-            aria-label="Crossfader: Single, Mitte oder Album"
-          >
-
-          <div class="crossfader-labels">
-
-            <span id="singleLabel">SINGLE</span>
-
-            <span class="slide-me">SLIDE ME</span>
-
-            <span id="albumLabel">ALBUM</span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- RECHTER PLATTENSPIELER -->
-
-      <div
-        class="turntable album"
-        id="albumTurntable"
-      >
-
-        <img
-          class="turntable-image"
-          src="images/2DC1E1DB-FFB5-42D1-88F9-EE3AD793EF8D.png"
-          alt="Bausys-tem Plattenspieler rechts"
-        >
-
-        <div class="vinyl-position">
-          <img
-            class="vinyl-record"
-            src="images/D1EDD58D-F7A6-4A1B-B4EC-98244E93DDD1.png"
-            alt="Drehende ALBUMS-Schallplatte"
-          >
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- LED-LEISTE -->
-
-    <div class="led-display-wrap">
-
-      <div class="led-display">
-
-        <canvas
-          id="ledCanvas"
-          class="led-canvas"
-          role="img"
-          aria-label="THE SOUND OF R.M.B."
-        ></canvas>
-
       </div>
 
     </div>
 
   </div>
 
+  <!-- LED-LAUFLEISTE -->
+
+  <div class="led-display-wrap">
+    <div class="led-display">
+      <canvas
+        id="ledCanvas"
+        class="led-canvas"
+        role="img"
+        aria-label="THE SOUND OF R.M.B."
+      ></canvas>
+    </div>
+  </div>
+
+</div>
 </section>
 
-<!-- ====================================
-     NEU: HINTERGRUNDRADIO
+<!-- RADIO -->
 
-     DATEINAME BLEIBT IMMER GLEICH.
-     MP3 SPÄTER EINFACH AUSTAUSCHEN.
-==================================== -->
-
-<audio
-  id="rmbRadio"
-  preload="auto"
-  loop
->
-  <source
-    src="audio/music-song.mp3"
-    type="audio/mpeg"
-  >
+<audio id="rmbRadio" preload="auto" loop>
+  <source src="audio/music-song.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ====================================
-     MUSIKGALERIE
-==================================== -->
+<!-- MUSIKGALERIE -->
 
 <main class="content">
 
-  <div
-    class="gallery"
-    id="gallery"
-  ></div>
+  <div class="gallery" id="gallery"></div>
 
   <button
     type="button"
@@ -1484,14 +1474,9 @@ footer {
   © R.M.B. MUSIC · FRANKFURT AM MAIN
 </footer>
 
-<!-- ====================================
-     YOUTUBE-FENSTER
-==================================== -->
+<!-- INTERNER YOUTUBE-PLAYER -->
 
-<div
-  class="video-modal"
-  id="videoModal"
->
+<div class="video-modal" id="videoModal">
 
   <div class="video-window">
 
@@ -1499,15 +1484,13 @@ footer {
       type="button"
       class="close-video"
       id="closeVideo"
-      aria-label="Video schließen"
-    >
-      &times;
-    </button>
+      aria-label="Player schließen"
+    >&times;</button>
 
     <iframe
       id="videoFrame"
       class="video-frame"
-      title="R.M.B. Musikvideo"
+      title="R.M.B. Musik"
       allow="autoplay; encrypted-media; picture-in-picture"
       allowfullscreen
     ></iframe>
@@ -1518,44 +1501,34 @@ footer {
 
 <script>
 
-/* ====================================
-   ALLGEMEINE FUNKTIONEN
-==================================== */
+/* ======================================
+   HILFSFUNKTIONEN
+====================================== */
 
 function clamp(value,min,max) {
-  return Math.min(
-    max,
-    Math.max(min,value)
-  );
+  return Math.min(max,Math.max(min,value));
 }
 
-const reduceMotion=
-  window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches;
+const reduceMotion=window.matchMedia(
+  '(prefers-reduced-motion: reduce)'
+).matches;
 
-/* ====================================
-   PROPORTIONALE MASTER-SKALIERUNG
-==================================== */
+/* ======================================
+   MASTER-SKALIERUNG
+====================================== */
 
 const MASTER_WIDTH=1360;
 
-const masterShell=
-  document.getElementById('masterShell');
-
-const masterStage=
-  document.getElementById('masterStage');
+const masterShell=document.getElementById('masterShell');
+const masterStage=document.getElementById('masterStage');
 
 let masterScale=1;
 
 function resizeMasterStage() {
 
-  const availableWidth=
-    masterShell.clientWidth;
+  const availableWidth=masterShell.clientWidth;
 
-  if(availableWidth<=0) {
-    return;
-  }
+  if(availableWidth<=0) return;
 
   masterScale=Math.min(
     1,
@@ -1565,12 +1538,9 @@ function resizeMasterStage() {
   masterStage.style.transform=
     'scale('+masterScale+')';
 
-  const originalHeight=
-    masterStage.offsetHeight;
-
   masterShell.style.height=
     Math.ceil(
-      originalHeight*masterScale
+      masterStage.offsetHeight*masterScale
     )+'px';
 }
 
@@ -1579,75 +1549,61 @@ window.addEventListener(
   resizeMasterStage
 );
 
-window.addEventListener(
-  'orientationchange',
-  ()=>{
-    requestAnimationFrame(
-      resizeMasterStage
-    );
-  }
-);
+window.addEventListener('orientationchange',()=>{
+  requestAnimationFrame(resizeMasterStage);
+});
 
 if(typeof ResizeObserver!=='undefined') {
-
-  const observer=
-    new ResizeObserver(
-      resizeMasterStage
-    );
+  const observer=new ResizeObserver(
+    resizeMasterStage
+  );
 
   observer.observe(masterShell);
 }
 
 resizeMasterStage();
 
-/* ====================================
-   FÜNF NAVIGATIONSFADER
-==================================== */
+/* ======================================
+   NAVIGATIONSFADER
+====================================== */
 
 const faders=Array.from(
-  document.querySelectorAll(
-    '.fader-handle'
-  )
+  document.querySelectorAll('.fader-handle')
 );
 
-const activeFader=
-  document.querySelector(
-    '.fader-handle[aria-current="page"]'
-  );
+const activeFader=document.querySelector(
+  '.fader-handle[aria-current="page"]'
+);
 
 let dragging=null;
 let navigationStarted=false;
 
 function setActiveChannel(handle) {
 
-  document.querySelectorAll(
-    '.mixer-channel'
-  ).forEach(channel=>{
+  document.querySelectorAll('.mixer-channel')
+    .forEach(channel=>{
 
-    channel.classList.toggle(
-      'active-channel',
-      channel.contains(handle)
-    );
-  });
+      channel.classList.toggle(
+        'active-channel',
+        channel.contains(handle)
+      );
+
+    });
 }
 
 function maxTravel(handle) {
-
-  const track=handle.parentElement;
-
   return Math.max(
     0,
-    track.clientHeight-handle.offsetHeight
+    handle.parentElement.clientHeight-
+    handle.offsetHeight
   );
 }
 
 function setFaderPosition(handle,progress) {
 
-  const distance=maxTravel(handle);
-
   handle.style.top=
     (
-      distance*
+      maxTravel(handle)*
       (1-clamp(progress,0,1))
     )+'px';
 }
@@ -1670,24 +1626,9 @@ function resetFaders() {
       handle,
       handle===activeFader?1:0
     );
+
   });
 }
-
-window.addEventListener(
-  'pageshow',
-  ()=>{
-
-    resizeMasterStage();
-    resetFaders();
-
-    requestAnimationFrame(()=>{
-      resizeMasterStage();
-      resetFaders();
-    });
-  }
-);
-
-requestAnimationFrame(resetFaders);
 
 function restoreFaders() {
 
@@ -1703,25 +1644,22 @@ function restoreFaders() {
       handle,
       handle===activeFader?1:0
     );
+
   });
 }
 
 function finishNavigation(handle) {
 
   if(
-    navigationStarted ||
+    navigationStarted||
     handle===activeFader
-  ) {
-    return;
-  }
+  ) return;
 
   navigationStarted=true;
 
-  /* RADIO BEIM SEITENWECHSEL STOPPEN */
   stopRadio();
 
   setActiveChannel(handle);
-
   setFaderPosition(handle,1);
   setFaderPosition(activeFader,0);
 
@@ -1733,34 +1671,24 @@ function finishNavigation(handle) {
 function moveFader(event) {
 
   if(
-    !dragging ||
+    !dragging||
     dragging.pointerId!==event.pointerId
-  ) {
-    return;
-  }
+  ) return;
 
   const handle=dragging.handle;
   const travel=maxTravel(handle);
 
-  if(travel<=0) {
-    return;
-  }
+  if(travel<=0) return;
 
   const delta=
-    (
-      event.clientY-dragging.startY
-    )/
+    (event.clientY-dragging.startY)/
     Math.max(masterScale,.001);
 
-  const progress=
-    handle===activeFader
-      ? clamp(1-delta/travel,0,1)
-      : clamp(-delta/travel,0,1);
+  const progress=handle===activeFader
+    ?clamp(1-delta/travel,0,1)
+    :clamp(-delta/travel,0,1);
 
-  setFaderPosition(
-    handle,
-    progress
-  );
+  setFaderPosition(handle,progress);
 
   if(handle!==activeFader) {
 
@@ -1769,11 +1697,11 @@ function moveFader(event) {
       1-progress
     );
 
-    if(progress>0) {
-      setActiveChannel(handle);
-    } else {
-      setActiveChannel(activeFader);
-    }
+    setActiveChannel(
+      progress>0
+        ?handle
+        :activeFader
+    );
 
     if(progress>=1) {
       finishNavigation(handle);
@@ -1784,18 +1712,15 @@ function moveFader(event) {
 function releaseFader(event) {
 
   if(
-    !dragging ||
+    !dragging||
     dragging.pointerId!==event.pointerId
-  ) {
-    return;
-  }
+  ) return;
 
   const handle=dragging.handle;
+
   dragging=null;
 
-  handle.classList.remove(
-    'dragging'
-  );
+  handle.classList.remove('dragging');
 
   if(!navigationStarted) {
     restoreFaders();
@@ -1808,16 +1733,12 @@ faders.forEach(handle=>{
     'pointerdown',
     event=>{
 
-      if(navigationStarted||dragging) {
-        return;
-      }
+      if(navigationStarted||dragging) return;
 
       if(
-        event.pointerType==='mouse' &&
+        event.pointerType==='mouse'&&
         event.button!==0
-      ) {
-        return;
-      }
+      ) return;
 
       event.preventDefault();
 
@@ -1859,15 +1780,13 @@ faders.forEach(handle=>{
     ()=>{
 
       if(
-        dragging &&
+        dragging&&
         dragging.handle===handle
       ) {
 
         dragging=null;
 
-        handle.classList.remove(
-          'dragging'
-        );
+        handle.classList.remove('dragging');
 
         if(!navigationStarted) {
           restoreFaders();
@@ -1881,51 +1800,48 @@ faders.forEach(handle=>{
     event=>{
 
       if(
-        handle!==activeFader &&
+        handle!==activeFader&&
         (
-          event.key==='Enter' ||
+          event.key==='Enter'||
           event.key==='ArrowUp'
         )
       ) {
 
         event.preventDefault();
         finishNavigation(handle);
+
       }
     }
   );
+
 });
 
-/* ====================================
+requestAnimationFrame(resetFaders);
+
+/* ======================================
    VU-METER
-==================================== */
+====================================== */
 
 function createMeter(id) {
 
-  const meter=
-    document.getElementById(id);
+  const meter=document.getElementById(id);
 
-  return Array.from(
-    {length:14},
-    (_,i)=>{
+  return Array.from({length:14},(_,i)=>{
 
-      const led=
-        document.createElement('span');
+    const led=document.createElement('span');
 
-      led.className=
-        'vu-led '+
-        (
-          i<8
-            ? 'green'
-            : i<11
-              ? 'yellow'
-              : 'red'
-        );
+    led.className='vu-led '+(
+      i<8
+        ?'green'
+        :i<11
+          ?'yellow'
+          :'red'
+    );
 
-      meter.appendChild(led);
+    meter.appendChild(led);
 
-      return led;
-    }
-  );
+    return led;
+  });
 }
 
 const leftLeds=createMeter('vuLeft');
@@ -1936,9 +1852,7 @@ let rightLevel=7;
 
 function animateMeters() {
 
-  if(document.hidden) {
-    return;
-  }
+  if(document.hidden) return;
 
   leftLevel=clamp(
     leftLevel+
@@ -1975,34 +1889,29 @@ if(!reduceMotion) {
   setInterval(animateMeters,170);
 }
 
-/* ====================================
-   CROSSFADER / VINYL
-==================================== */
+/* ======================================
+   CROSSFADER
+====================================== */
 
-const crossfader=
-  document.getElementById(
-    'crossfader'
-  );
+const crossfader=document.getElementById(
+  'crossfader'
+);
 
-const singleLabel=
-  document.getElementById(
-    'singleLabel'
-  );
+const singleLabel=document.getElementById(
+  'singleLabel'
+);
 
-const albumLabel=
-  document.getElementById(
-    'albumLabel'
-  );
+const albumLabel=document.getElementById(
+  'albumLabel'
+);
 
-const singleTurntable=
-  document.getElementById(
-    'singleTurntable'
-  );
+const singleTurntable=document.getElementById(
+  'singleTurntable'
+);
 
-const albumTurntable=
-  document.getElementById(
-    'albumTurntable'
-  );
+const albumTurntable=document.getElementById(
+  'albumTurntable'
+);
 
 let activeCategory='middle';
 let allMusic=[];
@@ -2011,26 +1920,24 @@ let visibleCount=10;
 const CENTER_LEFT=38;
 const CENTER_RIGHT=62;
 
-/* ====================================
-   NEU: R.M.B. HINTERGRUNDRADIO
-==================================== */
+/* ======================================
+   RADIO
+====================================== */
 
-const rmbRadio=
-  document.getElementById(
-    'rmbRadio'
-  );
+const rmbRadio=document.getElementById(
+  'rmbRadio'
+);
 
-const radioButton=
-  document.getElementById(
-    'radioButton'
-  );
+const radioButton=document.getElementById(
+  'radioButton'
+);
 
 let radioRequest=0;
 
 function updateRadioButton() {
 
   const isPlaying=
-    !rmbRadio.paused &&
+    !rmbRadio.paused&&
     !rmbRadio.ended;
 
   const isMiddle=
@@ -2056,25 +1963,22 @@ function updateRadioButton() {
   radioButton.setAttribute(
     'aria-label',
     isPlaying
-      ? 'R.M.B. Radio pausieren'
-      : 'R.M.B. Radio abspielen'
+      ?'R.M.B. Radio pausieren'
+      :'R.M.B. Radio abspielen'
   );
 
-  radioButton.title=
-    isMiddle
-      ? (
-          isPlaying
-            ? 'R.M.B. RADIO – PAUSE'
-            : 'R.M.B. RADIO – PLAY'
-        )
-      : 'Radio nur in Mittelstellung';
+  radioButton.title=isMiddle
+    ?(
+      isPlaying
+        ?'R.M.B. RADIO – PAUSE'
+        :'R.M.B. RADIO – PLAY'
+    )
+    :'Radio nur in Mittelstellung';
 }
 
 async function startRadio() {
 
-  if(activeCategory!=='middle') {
-    return;
-  }
+  if(activeCategory!=='middle') return;
 
   const request=++radioRequest;
 
@@ -2083,24 +1987,17 @@ async function startRadio() {
     await rmbRadio.play();
 
     if(
-      request!==radioRequest ||
+      request!==radioRequest||
       activeCategory!=='middle'
     ) {
-
       rmbRadio.pause();
       return;
     }
 
   } catch(error) {
 
-    /* AUTOSTART KANN VOM BROWSER
-       BLOCKIERT WERDEN.
-
-       DER PLAY-BUTTON BLEIBT DANN ROT.
-    */
-
     console.info(
-      'R.M.B. Radio konnte nicht automatisch starten:',
+      'Radio konnte nicht automatisch starten:',
       error
     );
   }
@@ -2111,13 +2008,16 @@ async function startRadio() {
 function pauseRadio() {
 
   radioRequest++;
+
   rmbRadio.pause();
+
   updateRadioButton();
 }
 
 function stopRadio() {
 
   radioRequest++;
+
   rmbRadio.pause();
 
   try {
@@ -2131,9 +2031,7 @@ radioButton.addEventListener(
   'click',
   ()=>{
 
-    if(activeCategory!=='middle') {
-      return;
-    }
+    if(activeCategory!=='middle') return;
 
     if(rmbRadio.paused) {
       startRadio();
@@ -2143,38 +2041,29 @@ radioButton.addEventListener(
   }
 );
 
-rmbRadio.addEventListener(
+[
   'play',
-  updateRadioButton
-);
-
-rmbRadio.addEventListener(
   'pause',
-  updateRadioButton
-);
-
-rmbRadio.addEventListener(
   'ended',
-  updateRadioButton
-);
+  'error'
+].forEach(eventName=>{
 
-rmbRadio.addEventListener(
-  'error',
-  updateRadioButton
-);
+  rmbRadio.addEventListener(
+    eventName,
+    updateRadioButton
+  );
 
-/* ====================================
-   KATEGORIE UND PLATTEN
-==================================== */
+});
+
+/* ======================================
+   KATEGORIEN
+====================================== */
 
 function chooseCategory(category) {
 
-  if(category===activeCategory) {
-    return;
-  }
+  if(category===activeCategory) return;
 
-  const previousCategory=
-    activeCategory;
+  const previousCategory=activeCategory;
 
   activeCategory=category;
   visibleCount=10;
@@ -2199,77 +2088,68 @@ function chooseCategory(category) {
     category==='album'
   );
 
-  /* RADIO NUR IN MITTELSTELLUNG */
-
   if(category!=='middle') {
 
     stopRadio();
 
   } else if(previousCategory!=='middle') {
 
-    /* RÜCKKEHR ZUR MITTE:
-       AUTOSTART VERSUCHEN.
-    */
-
     startRadio();
+
   }
 
   updateRadioButton();
-
   updateLEDMessage(category);
   renderMusic();
 }
 
 function categoryFromValue(value) {
 
-  if(value<CENTER_LEFT) {
-    return 'single';
-  }
+  if(value<CENTER_LEFT) return 'single';
 
-  if(value>CENTER_RIGHT) {
-    return 'album';
-  }
+  if(value>CENTER_RIGHT) return 'album';
 
   return 'middle';
 }
 
-crossfader.addEventListener(
-  'input',
-  ()=>{
+crossfader.addEventListener('input',()=>{
 
-    const value=
-      Number(crossfader.value);
+  chooseCategory(
+    categoryFromValue(
+      Number(crossfader.value)
+    )
+  );
 
-    chooseCategory(
-      categoryFromValue(value)
-    );
-  }
-);
+});
 
 function snapCrossfader() {
 
-  const value=
-    Number(crossfader.value);
+  const value=Number(crossfader.value);
 
   let snappedValue;
 
   if(value<CENTER_LEFT) {
+
     snappedValue=0;
+
   } else if(value>CENTER_RIGHT) {
+
     snappedValue=100;
+
   } else {
+
     snappedValue=50;
+
   }
 
-  crossfader.value=
-    String(snappedValue);
+  crossfader.value=String(snappedValue);
 
   chooseCategory(
     snappedValue===0
-      ? 'single'
-      : snappedValue===100
-        ? 'album'
-        : 'middle'
+      ?'single'
+      :snappedValue===100
+        ?'album'
+        :'middle'
   );
 }
 
@@ -2298,19 +2178,18 @@ crossfader.addEventListener(
   event=>{
 
     if(
-      event.key==='Home' ||
+      event.key==='Home'||
       event.key==='End'
-    ) {
-      return;
-    }
+    ) return;
 
     if(
-      event.key==='ArrowLeft' ||
+      event.key==='ArrowLeft'||
       event.key==='ArrowRight'
     ) {
 
-      const current=
-        Number(crossfader.value);
+      const current=Number(
+        crossfader.value
+      );
 
       const positions=[0,50,100];
 
@@ -2318,19 +2197,16 @@ crossfader.addEventListener(
 
       if(event.key==='ArrowRight') {
 
-        next=
-          positions.find(
-            value=>value>current
-          )??100;
+        next=positions.find(
+          value=>value>current
+        )??100;
 
       } else {
 
-        next=
-          [...positions]
-            .reverse()
-            .find(
-              value=>value<current
-            )??0;
+        next=[...positions]
+          .reverse()
+          .find(value=>value<current)??0;
+
       }
 
       event.preventDefault();
@@ -2339,134 +2215,48 @@ crossfader.addEventListener(
 
       chooseCategory(
         next===0
-          ? 'single'
-          : next===100
-            ? 'album'
-            : 'middle'
+          ?'single'
+          :next===100
+            ?'album'
+            :'middle'
       );
     }
   }
 );
 
-/* ====================================
+/* ======================================
    LED-PUNKTMATRIX
-==================================== */
+====================================== */
 
-const ledCanvas=
-  document.getElementById(
-    'ledCanvas'
-  );
+const ledCanvas=document.getElementById(
+  'ledCanvas'
+);
 
 const ctx=ledCanvas.getContext('2d');
 
 const FONT={
-
-  A:[
-    '01110','10001','10001',
-    '11111','10001','10001','10001'
-  ],
-
-  B:[
-    '11110','10001','10001',
-    '11110','10001','10001','11110'
-  ],
-
-  C:[
-    '01111','10000','10000',
-    '10000','10000','10000','01111'
-  ],
-
-  D:[
-    '11110','10001','10001',
-    '10001','10001','10001','11110'
-  ],
-
-  E:[
-    '11111','10000','10000',
-    '11110','10000','10000','11111'
-  ],
-
-  F:[
-    '11111','10000','10000',
-    '11110','10000','10000','10000'
-  ],
-
-  G:[
-    '01111','10000','10000',
-    '10111','10001','10001','01111'
-  ],
-
-  H:[
-    '10001','10001','10001',
-    '11111','10001','10001','10001'
-  ],
-
-  I:[
-    '11111','00100','00100',
-    '00100','00100','00100','11111'
-  ],
-
-  L:[
-    '10000','10000','10000',
-    '10000','10000','10000','11111'
-  ],
-
-  M:[
-    '10001','11011','10101',
-    '10101','10001','10001','10001'
-  ],
-
-  N:[
-    '10001','11001','10101',
-    '10011','10001','10001','10001'
-  ],
-
-  O:[
-    '01110','10001','10001',
-    '10001','10001','10001','01110'
-  ],
-
-  P:[
-    '11110','10001','10001',
-    '11110','10000','10000','10000'
-  ],
-
-  R:[
-    '11110','10001','10001',
-    '11110','10100','10010','10001'
-  ],
-
-  S:[
-    '01111','10000','10000',
-    '01110','00001','00001','11110'
-  ],
-
-  T:[
-    '11111','00100','00100',
-    '00100','00100','00100','00100'
-  ],
-
-  U:[
-    '10001','10001','10001',
-    '10001','10001','10001','01110'
-  ],
-
-  Y:[
-    '10001','10001','01010',
-    '00100','00100','00100','00100'
-  ],
-
+  A:['01110','10001','10001','11111','10001','10001','10001'],
+  B:['11110','10001','10001','11110','10001','10001','11110'],
+  C:['01111','10000','10000','10000','10000','10000','01111'],
+  D:['11110','10001','10001','10001','10001','10001','11110'],
+  E:['11111','10000','10000','11110','10000','10000','11111'],
+  F:['11111','10000','10000','11110','10000','10000','10000'],
+  G:['01111','10000','10000','10111','10001','10001','01111'],
+  H:['10001','10001','10001','11111','10001','10001','10001'],
+  I:['11111','00100','00100','00100','00100','00100','11111'],
+  L:['10000','10000','10000','10000','10000','10000','11111'],
+  M:['10001','11011','10101','10101','10001','10001','10001'],
+  N:['10001','11001','10101','10011','10001','10001','10001'],
+  O:['01110','10001','10001','10001','10001','10001','01110'],
+  P:['11110','10001','10001','11110','10000','10000','10000'],
+  R:['11110','10001','10001','11110','10100','10010','10001'],
+  S:['01111','10000','10000','01110','00001','00001','11110'],
+  T:['11111','00100','00100','00100','00100','00100','00100'],
+  U:['10001','10001','10001','10001','10001','10001','01110'],
+  Y:['10001','10001','01010','00100','00100','00100','00100'],
   ' ':Array(7).fill('00000'),
-
-  '·':[
-    '00000','00000','00100',
-    '00000','00100','00000','00000'
-  ],
-
-  '.':[
-    '00000','00000','00000',
-    '00000','00000','01100','01100'
-  ]
+  '·':['00000','00000','00100','00000','00100','00000','00000'],
+  '.':['00000','00000','00000','00000','00000','01100','01100']
 };
 
 let ledColumns=[];
@@ -2482,20 +2272,16 @@ function buildLEDText(text) {
 
   const cols=[];
 
-  for(
-    const ch of text.toUpperCase()
-  ) {
+  for(const ch of text.toUpperCase()) {
 
-    const pattern=
-      FONT[ch]||FONT[' '];
+    const pattern=FONT[ch]||FONT[' '];
 
     for(let c=0;c<5;c++) {
 
       cols.push(
         Array.from(
           {length:7},
-          (_,row)=>
-            pattern[row][c]==='1'
+          (_,row)=>pattern[row][c]==='1'
         )
       );
     }
@@ -2516,14 +2302,8 @@ function calculateLEDLayout() {
   ledPitch=Math.min(
     9.4,
     (height-16)/7,
-    Math.max(
-      1,
-      (width-24)*.75
-    )/
-    Math.max(
-      1,
-      ledColumns.length
-    )
+    Math.max(1,(width-24)*.75)/
+      Math.max(1,ledColumns.length)
   );
 
   ledTextWidth=
@@ -2545,18 +2325,16 @@ function updateLEDMessage(category) {
 
   if(category==='single') {
 
-    message=
-      'THE SINGLE COLLECTION';
+    message='THE SINGLE COLLECTION';
 
   } else if(category==='album') {
 
-    message=
-      'THE ALBUM COLLECTION';
+    message='THE ALBUM COLLECTION';
 
   } else {
 
-    message=
-      'THE SOUND OF R.M.B.';
+    message='THE SOUND OF R.M.B.';
+
   }
 
   ledCanvas.setAttribute(
@@ -2564,9 +2342,7 @@ function updateLEDMessage(category) {
     message
   );
 
-  ledColumns=buildLEDText(
-    message
-  );
+  ledColumns=buildLEDText(message);
 
   ledPosition=0;
   ledDirection=1;
@@ -2576,20 +2352,18 @@ function updateLEDMessage(category) {
 
 function resizeLEDCanvas() {
 
-  const width=
-    ledCanvas.clientWidth;
+  const width=ledCanvas.clientWidth;
+  const height=ledCanvas.clientHeight;
 
-  const height=
-    ledCanvas.clientHeight;
+  const dpr=window.devicePixelRatio||1;
 
-  const dpr=
-    window.devicePixelRatio||1;
+  ledCanvas.width=Math.round(
+    width*dpr
+  );
 
-  ledCanvas.width=
-    Math.round(width*dpr);
-
-  ledCanvas.height=
-    Math.round(height*dpr);
+  ledCanvas.height=Math.round(
+    height*dpr
+  );
 
   ctx.setTransform(
     dpr,0,0,dpr,0,0
@@ -2599,40 +2373,44 @@ function resizeLEDCanvas() {
 }
 
 function drawDot(
-  x,y,radius,color,glow=false
+  x,
+  y,
+  radius,
+  color,
+  glow=false
 ) {
 
   ctx.beginPath();
 
   ctx.arc(
-    x,y,radius,
-    0,Math.PI*2
+    x,
+    y,
+    radius,
+    0,
+    Math.PI*2
   );
 
   ctx.fillStyle=color;
 
   if(glow) {
 
-    ctx.shadowBlur=
-      Math.max(
-        3,
-        ledPitch*1.1
-      );
+    ctx.shadowBlur=Math.max(
+      3,
+      ledPitch*1.1
+    );
 
     ctx.shadowColor='#65bdff';
   }
 
   ctx.fill();
+
   ctx.shadowBlur=0;
 }
 
 function drawLED(time) {
 
-  const width=
-    ledCanvas.clientWidth;
-
-  const height=
-    ledCanvas.clientHeight;
+  const width=ledCanvas.clientWidth;
+  const height=ledCanvas.clientHeight;
 
   ctx.clearRect(
     0,0,width,height
@@ -2649,91 +2427,60 @@ function drawLED(time) {
   const startY=
     (height-7*ledPitch)/2;
 
-  const radius=
-    Math.max(
-      .35,
-      ledPitch*.29
-    );
+  const radius=Math.max(
+    .35,
+    ledPitch*.29
+  );
 
-  const columnsVisible=
-    Math.floor(
-      (width-2*padding)/
-      ledPitch
-    );
+  const columnsVisible=Math.floor(
+    (width-2*padding)/ledPitch
+  );
 
-  for(
-    let c=0;
-    c<=columnsVisible;
-    c++
-  ) {
+  for(let c=0;c<=columnsVisible;c++) {
 
     const x=
-      padding+
-      (c+.5)*ledPitch;
+      padding+(c+.5)*ledPitch;
 
-    if(x>width-padding) {
-      break;
-    }
+    if(x>width-padding) break;
 
-    for(
-      let row=0;
-      row<7;
-      row++
-    ) {
+    for(let row=0;row<7;row++) {
 
       drawDot(
         x,
-        startY+
-        (row+.5)*ledPitch,
+        startY+(row+.5)*ledPitch,
         radius,
         'rgba(125,165,205,.15)'
       );
     }
   }
 
-  const startColumn=
-    Math.round(
-      ledPosition/ledPitch
-    );
+  const startColumn=Math.round(
+    ledPosition/ledPitch
+  );
 
-  for(
-    let c=0;
-    c<ledColumns.length;
-    c++
-  ) {
+  for(let c=0;c<ledColumns.length;c++) {
 
     const displayColumn=
       startColumn+c;
 
     if(
-      displayColumn<0 ||
-      displayColumn>
-      columnsVisible
-    ) {
-      continue;
-    }
+      displayColumn<0||
+      displayColumn>columnsVisible
+    ) continue;
 
     const x=
       padding+
-      (displayColumn+.5)*
-      ledPitch;
+      (displayColumn+.5)*ledPitch;
 
-    if(x>width-padding) {
-      continue;
-    }
+    if(x>width-padding) continue;
 
-    for(
-      let row=0;
-      row<7;
-      row++
-    ) {
+    for(let row=0;row<7;row++) {
 
       if(ledColumns[c][row]) {
 
         drawDot(
           x,
-          startY+
-          (row+.5)*ledPitch,
+          startY+(row+.5)*ledPitch,
           radius,
           '#d9f2ff',
           true
@@ -2743,8 +2490,8 @@ function drawLED(time) {
   }
 
   if(
-    !reduceMotion &&
-    !document.hidden &&
+    !reduceMotion&&
+    !document.hidden&&
     ledLastTime
   ) {
 
@@ -2753,16 +2500,13 @@ function drawLED(time) {
       (time-ledLastTime)/1000
     );
 
-    const maxPosition=
-      Math.max(
-        0,
-        width-24-ledTextWidth
-      );
+    const maxPosition=Math.max(
+      0,
+      width-24-ledTextWidth
+    );
 
     ledPosition+=
-      LED_SPEED*
-      delta*
-      ledDirection;
+      LED_SPEED*delta*ledDirection;
 
     if(ledPosition>=maxPosition) {
 
@@ -2779,46 +2523,38 @@ function drawLED(time) {
 
   ledLastTime=time;
 
-  requestAnimationFrame(
-    drawLED
-  );
+  requestAnimationFrame(drawLED);
 }
 
 updateLEDMessage('middle');
+
 resizeLEDCanvas();
 
-requestAnimationFrame(
-  drawLED
+requestAnimationFrame(drawLED);
+
+/* ======================================
+   MUSIKGALERIE
+====================================== */
+
+const gallery=document.getElementById(
+  'gallery'
 );
 
-/* ====================================
-   MUSIKGALERIE
-==================================== */
+const moreButton=document.getElementById(
+  'moreButton'
+);
 
-const gallery=
-  document.getElementById(
-    'gallery'
-  );
+const videoModal=document.getElementById(
+  'videoModal'
+);
 
-const moreButton=
-  document.getElementById(
-    'moreButton'
-  );
+const videoFrame=document.getElementById(
+  'videoFrame'
+);
 
-const videoModal=
-  document.getElementById(
-    'videoModal'
-  );
-
-const videoFrame=
-  document.getElementById(
-    'videoFrame'
-  );
-
-const closeVideo=
-  document.getElementById(
-    'closeVideo'
-  );
+const closeVideo=document.getElementById(
+  'closeVideo'
+);
 
 function escapeHTML(value) {
 
@@ -2839,39 +2575,39 @@ function safeURL(value) {
       location.href
     );
 
-    return ['https:','http:']
-      .includes(url.protocol)
-      ? url.href
-      : '';
+    return [
+      'https:',
+      'http:'
+    ].includes(url.protocol)
+      ?url.href
+      :'';
 
   } catch {
+
     return '';
+
   }
 }
 
 function formatDate(value) {
 
-  if(!value) {
-    return '';
-  }
+  if(!value) return '';
 
   const date=new Date(
     String(value).slice(0,10)+
     'T12:00:00'
   );
 
-  return isNaN(
-    date.getTime()
-  )
-    ? ''
-    : date.toLocaleDateString(
-        'de-DE',
-        {
-          day:'2-digit',
-          month:'2-digit',
-          year:'numeric'
-        }
-      );
+  return isNaN(date.getTime())
+    ?''
+    :date.toLocaleDateString(
+      'de-DE',
+      {
+        day:'2-digit',
+        month:'2-digit',
+        year:'numeric'
+      }
+    );
 }
 
 function categoryOf(item) {
@@ -2887,8 +2623,8 @@ function categoryOf(item) {
     'albums',
     'lp'
   ].includes(category)
-    ? 'album'
-    : 'single';
+    ?'album'
+    :'single';
 }
 
 function getYoutubeId(item) {
@@ -2897,9 +2633,7 @@ function getYoutubeId(item) {
     item.youtube||''
   ).trim();
 
-  if(
-    /^[A-Za-z0-9_-]{11}$/.test(value)
-  ) {
+  if(/^[A-Za-z0-9_-]{11}$/.test(value)) {
     return value;
   }
 
@@ -2907,46 +2641,34 @@ function getYoutubeId(item) {
 
     const url=new URL(value);
 
-    const host=
-      url.hostname.toLowerCase();
+    const host=url.hostname.toLowerCase();
 
-    if(
-      [
-        'youtu.be',
-        'www.youtu.be'
-      ].includes(host)
-    ) {
+    if([
+      'youtu.be',
+      'www.youtu.be'
+    ].includes(host)) {
 
-      return (
-        url.pathname.split('/')[1]||''
-      );
+      return url.pathname.split('/')[1]||'';
     }
 
-    if(
-      [
-        'youtube.com',
-        'www.youtube.com',
-        'm.youtube.com'
-      ].includes(host)
-    ) {
+    if([
+      'youtube.com',
+      'www.youtube.com',
+      'm.youtube.com'
+    ].includes(host)) {
 
       if(url.pathname==='/watch') {
 
-        return (
-          url.searchParams.get('v')||''
-        );
+        return url.searchParams.get('v')||'';
       }
 
-      const parts=
-        url.pathname.split('/');
+      const parts=url.pathname.split('/');
 
-      if(
-        [
-          'shorts',
-          'embed',
-          'live'
-        ].includes(parts[1])
-      ) {
+      if([
+        'shorts',
+        'embed',
+        'live'
+      ].includes(parts[1])) {
 
         return parts[2]||'';
       }
@@ -2957,41 +2679,150 @@ function getYoutubeId(item) {
   return '';
 }
 
-/* ====================================
-   YOUTUBE-VIDEOFENSTER
-==================================== */
+/* ======================================
+   SPEICHERUNG DES ABSPIELSTATUS
+
+   BISHERIGER SCHLÜSSEL BLEIBT
+   UNVERÄNDERT
+
+   RMB_MUSIC_WATCHED_
+====================================== */
+
+const VIDEO_STORAGE_PREFIX=
+  'RMB_MUSIC_WATCHED_';
+
+const watchedVideosThisSession=new Set();
+
+function videoStorageKey(id) {
+
+  return VIDEO_STORAGE_PREFIX+id;
+}
+
+function hasOpenedVideo(id) {
+
+  if(watchedVideosThisSession.has(id)) {
+    return true;
+  }
+
+  try {
+
+    return localStorage.getItem(
+      videoStorageKey(id)
+    )==='1';
+
+  } catch {
+
+    return false;
+  }
+}
+
+function rememberOpenedVideo(id) {
+
+  watchedVideosThisSession.add(id);
+
+  try {
+
+    localStorage.setItem(
+      videoStorageKey(id),
+      '1'
+    );
+
+  } catch {
+
+    /* Status bleibt für diese Sitzung */
+
+  }
+}
+
+/* ======================================
+   STATUS AKTUALISIEREN
+
+   NICHT GEÖFFNET:
+   GRÜNER KREIS MIT PLAY
+
+   BEREITS GEÖFFNET:
+   ROTER KREIS MIT HÄKCHEN
+====================================== */
+
+function refreshVideoStamps() {
+
+  gallery.querySelectorAll(
+    '.cover-button[data-video-id]'
+  ).forEach(button=>{
+
+    const id=button.dataset.videoId;
+
+    const stamp=button.querySelector(
+      '.video-stamp'
+    );
+
+    if(!stamp) return;
+
+    const watched=hasOpenedVideo(id);
+
+    stamp.classList.toggle(
+      'watched',
+      watched
+    );
+
+    button.title=watched
+      ?'Bereits abgespielt – erneut anhören'
+      :'Musik anhören';
+
+    button.setAttribute(
+      'aria-label',
+      watched
+        ?'Bereits gestarteten Song erneut anhören'
+        :'Song anhören'
+    );
+  });
+}
+
+/* ======================================
+   YOUTUBE-PLAYER
+====================================== */
 
 function openVideo(id) {
 
-  if(
-    !/^[A-Za-z0-9_-]{11}$/.test(id)
-  ) {
+  if(!/^[A-Za-z0-9_-]{11}$/.test(id)) {
     return;
   }
 
-  /* RADIO STOPPEN,
-     DAMIT NICHT ZWEI SONGS LAUFEN.
-  */
-
   stopRadio();
+
+  /* SONG ALS GEÖFFNET MARKIEREN */
+
+  rememberOpenedVideo(id);
+
+  /* SOFORT ROTEN HAKEN SETZEN */
+
+  refreshVideoStamps();
+
+  document.body.classList.add(
+    'video-is-open'
+  );
 
   videoFrame.src=
     'https://www.youtube-nocookie.com/embed/'+
     id+
     '?autoplay=1';
 
-  videoModal.classList.add(
-    'open'
-  );
+  videoModal.classList.add('open');
 }
 
 function closeVideoPlayer() {
 
-  videoModal.classList.remove(
-    'open'
-  );
+  videoModal.classList.remove('open');
 
   videoFrame.src='';
+
+  document.body.classList.remove(
+    'video-is-open'
+  );
+
+  /* ROTER HAKEN BLEIBT SICHTBAR */
+
+  refreshVideoStamps();
 }
 
 closeVideo.addEventListener(
@@ -3019,15 +2850,16 @@ document.addEventListener(
   }
 );
 
-/* ====================================
-   MUSIKKARTEN
-==================================== */
+/* ======================================
+   MUSIKKARTEN ERSTELLEN
+====================================== */
 
 function renderMusic() {
 
   if(activeCategory==='middle') {
 
     gallery.innerHTML='';
+
     moreButton.hidden=true;
 
     return;
@@ -3037,19 +2869,12 @@ function renderMusic() {
     activeCategory==='single';
 
   const items=allMusic
-
     .filter(item=>
-      categoryOf(item)===
-      activeCategory
+      categoryOf(item)===activeCategory
     )
-
     .sort((a,b)=>
-      String(
-        b.releaseDate||''
-      ).localeCompare(
-        String(
-          a.releaseDate||''
-        )
+      String(b.releaseDate||'').localeCompare(
+        String(a.releaseDate||'')
       )
     );
 
@@ -3061,8 +2886,8 @@ function renderMusic() {
       '<div class="empty-message">'+
       (
         isSingle
-          ? 'Hier erscheinen deine R.M.B.-Singles.'
-          : 'Hier erscheinen deine R.M.B.-Alben.'
+          ?'Hier erscheinen deine R.M.B.-Singles.'
+          :'Hier erscheinen deine R.M.B.-Alben.'
       )+
       '</div>';
 
@@ -3071,246 +2896,282 @@ function renderMusic() {
     return;
   }
 
-  items
-    .slice(0,visibleCount)
-    .forEach(item=>{
+  items.slice(
+    0,
+    visibleCount
+  ).forEach(item=>{
 
-      const id=
-        getYoutubeId(item);
+    const id=getYoutubeId(item);
 
-      const valid=
-        /^[A-Za-z0-9_-]{11}$/
-          .test(id)
-          ? id
-          : '';
+    const valid=
+      /^[A-Za-z0-9_-]{11}$/.test(id)
+        ?id
+        :'';
 
-      let albumURL='';
+    let albumURL='';
 
-      if(categoryOf(item)==='album') {
+    if(categoryOf(item)==='album') {
 
-        try {
+      try {
 
-          const url=new URL(
-            String(item.youtube||'').trim()
-          );
-
-          const host=
-            url.hostname.toLowerCase();
-
-          const playlistId=
-            url.searchParams.get('list');
-
-          if(
-            [
-              'youtube.com',
-              'www.youtube.com',
-              'm.youtube.com'
-            ].includes(host) &&
-            url.pathname==='/playlist' &&
-            /^[A-Za-z0-9_-]+$/.test(
-              playlistId||''
-            )
-          ) {
-
-            albumURL=url.href;
-          }
-
-        } catch {}
-      }
-
-      const cover=
-        safeURL(item.cover)||
-        (
-          valid
-            ? 'https://img.youtube.com/vi/'+
-              valid+
-              '/hqdefault.jpg'
-            : ''
+        const url=new URL(
+          String(item.youtube||'').trim()
         );
 
-      const spotify=
-        safeURL(item.spotify);
+        const host=url.hostname.toLowerCase();
 
-      const amazon=
-        safeURL(item.amazon);
+        const playlistId=
+          url.searchParams.get('list');
 
-      const date=
-        formatDate(
-          item.releaseDate
-        );
+        if(
+          [
+            'youtube.com',
+            'www.youtube.com',
+            'm.youtube.com'
+          ].includes(host)&&
+          url.pathname==='/playlist'&&
+          /^[A-Za-z0-9_-]+$/.test(
+            playlistId||''
+          )
+        ) {
 
-      const card=
-        document.createElement(
-          'article'
-        );
-
-      card.className='music-card';
-
-      const canOpen=
-        Boolean(valid||albumURL);
-
-      card.innerHTML=`
-
-        <button
-          type="button"
-          class="cover-button"
-          ${canOpen?'':'disabled'}
-          aria-label="${albumURL
-            ? 'Album auf YouTube öffnen'
-            : 'Video öffnen'}"
-        >
-          <img
-            class="cover"
-            src="${escapeHTML(cover)}"
-            alt="${escapeHTML(item.title||'R.M.B.')}"
-            loading="lazy"
-          >
-        </button>
-
-        <div class="track-title">
-          ${escapeHTML(item.title||'R.M.B.')}
-        </div>
-
-        <div class="track-version">
-          ${escapeHTML(item.version||'')}
-        </div>
-
-        ${
-          date
-            ? `
-              <div class="track-date">
-                ${escapeHTML(date)}
-              </div>
-            `
-            : ''
+          albumURL=url.href;
         }
 
-        <div class="music-links">
+      } catch {}
+    }
 
-          ${
+    const cover=safeURL(item.cover)||(
+      valid
+        ?'https://img.youtube.com/vi/'+
+          valid+
+          '/hqdefault.jpg'
+        :''
+    );
+
+    const spotify=safeURL(item.spotify);
+    const amazon=safeURL(item.amazon);
+
+    const date=formatDate(
+      item.releaseDate
+    );
+
+    const card=document.createElement(
+      'article'
+    );
+
+    card.className='music-card';
+
+    const canOpen=Boolean(
+      valid||albumURL
+    );
+
+    const hasInternalVideo=Boolean(
+      valid&&!albumURL
+    );
+
+    const alreadyWatched=
+      hasInternalVideo&&
+      hasOpenedVideo(valid);
+
+    /* ==================================
+       BUTTON 40 x 40 PIXEL
+
+       GRÜN:
+       PLAY
+
+       ROT:
+       SVG-HÄKCHEN
+
+       KEIN PLAY-DREIECK
+    ================================== */
+
+    const videoStampHTML=hasInternalVideo
+      ?`
+        <span
+          class="video-stamp ${alreadyWatched?'watched':''}"
+          aria-hidden="true"
+        >
+
+          <span class="video-stamp-text">
+            PLAY
+          </span>
+
+          <svg
+            class="video-stamp-check"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M4 12.5L9.5 18L20 6"/>
+          </svg>
+
+        </span>
+      `
+      :'';
+
+    card.innerHTML=`
+
+      <button
+        type="button"
+        class="cover-button"
+        ${canOpen?'':'disabled'}
+        ${hasInternalVideo
+          ?'data-video-id="'+valid+'"'
+          :''}
+        aria-label="${albumURL
+          ?'Album auf YouTube öffnen'
+          :hasInternalVideo
+            ?'Musik anhören'
+            :'Keine Wiedergabe verfügbar'}"
+      >
+
+        <img
+          class="cover"
+          src="${escapeHTML(cover)}"
+          alt="${escapeHTML(item.title||'R.M.B.')}"
+          loading="lazy"
+        >
+
+        ${videoStampHTML}
+
+      </button>
+
+      <div class="track-title">
+        ${escapeHTML(item.title||'R.M.B.')}
+      </div>
+
+      <div class="track-version">
+        ${escapeHTML(item.version||'')}
+      </div>
+
+      ${date
+        ?`
+          <div class="track-date">
+            ${escapeHTML(date)}
+          </div>
+        `
+        :''}
+
+      <div class="music-links">
+
+        ${albumURL
+          ?`
+            <a
+              href="${escapeHTML(albumURL)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >YouTube</a>
+          `
+          :valid
+            ?`
+              <a
+                href="https://www.youtube.com/watch?v=${valid}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >YouTube</a>
+            `
+            :''}
+
+        ${spotify
+          ?`
+            <a
+              href="${escapeHTML(spotify)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Spotify</a>
+          `
+          :''}
+
+        ${amazon
+          ?`
+            <a
+              href="${escapeHTML(amazon)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Amazon</a>
+          `
+          :''}
+
+      </div>
+    `;
+
+    /* ==================================
+       COVER ANKLICKEN
+    ================================== */
+
+    if(albumURL) {
+
+      card.querySelector(
+        '.cover-button'
+      ).addEventListener(
+        'click',
+        ()=>{
+
+          stopRadio();
+
+          window.location.assign(
             albumURL
-              ? `
-                <a
-                  href="${escapeHTML(albumURL)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  YouTube
-                </a>
-              `
-              : valid
-                ? `
-                  <a
-                    href="https://www.youtube.com/watch?v=${valid}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    YouTube
-                  </a>
-                `
-                : ''
-          }
+          );
+        }
+      );
 
-          ${
-            spotify
-              ? `
-                <a
-                  href="${escapeHTML(spotify)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Spotify
-                </a>
-              `
-              : ''
-          }
+    } else if(valid) {
 
-          ${
-            amazon
-              ? `
-                <a
-                  href="${escapeHTML(amazon)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Amazon
-                </a>
-              `
-              : ''
-          }
+      card.querySelector(
+        '.cover-button'
+      ).addEventListener(
+        'click',
+        ()=>openVideo(valid)
+      );
+    }
 
-        </div>
-      `;
+    /* ==================================
+       EXTERNE STREAMING-LINKS
+    ================================== */
 
-      if(albumURL) {
+    card.querySelectorAll(
+      '.music-links a'
+    ).forEach(link=>{
 
-        card.querySelector(
-          '.cover-button'
-        ).addEventListener(
-          'click',
-          ()=>{
-            stopRadio();
-            window.location.assign(
-              albumURL
-            );
-          }
-        );
-
-      } else if(valid) {
-
-        card.querySelector(
-          '.cover-button'
-        ).addEventListener(
-          'click',
-          ()=>openVideo(valid)
-        );
-      }
-
-      /* RADIO AUCH BEI EXTERNEN
-         MUSIKLINKS STOPPEN.
-      */
-
-      card.querySelectorAll(
-        '.music-links a'
-      ).forEach(link=>{
-
-        link.addEventListener(
-          'click',
-          stopRadio
-        );
-      });
-
-      gallery.appendChild(card);
+      link.addEventListener(
+        'click',
+        stopRadio
+      );
     });
+
+    gallery.appendChild(card);
+
+  });
 
   moreButton.hidden=
     items.length<=visibleCount;
 
-  moreButton.textContent=
-    isSingle
-      ? 'WEITERE SONGS ANZEIGEN'
-      : 'WEITERE ALBEN ANZEIGEN';
+  moreButton.textContent=isSingle
+    ?'WEITERE SONGS ANZEIGEN'
+    :'WEITERE ALBEN ANZEIGEN';
+
+  refreshVideoStamps();
 }
 
-/* ====================================
+/* ======================================
    WEITERE SONGS
-==================================== */
+====================================== */
 
 moreButton.addEventListener(
   'click',
   ()=>{
 
     visibleCount+=10;
+
     renderMusic();
   }
 );
 
-/* ====================================
+/* ======================================
    SONGS.JSON LADEN
-==================================== */
+====================================== */
 
 fetch('songs.json')
-
   .then(response=>{
 
     if(!response.ok) {
@@ -3322,17 +3183,14 @@ fetch('songs.json')
 
     return response.json();
   })
-
   .then(data=>{
 
-    allMusic=
-      Array.isArray(data)
-        ? data
-        : [];
+    allMusic=Array.isArray(data)
+      ?data
+      :[];
 
     renderMusic();
   })
-
   .catch(error=>{
 
     if(activeCategory!=='middle') {
@@ -3346,9 +3204,9 @@ fetch('songs.json')
     console.error(error);
   });
 
-/* ====================================
-   STARTSTELLUNG DES CROSSFADERS
-==================================== */
+/* ======================================
+   STARTSTELLUNG
+====================================== */
 
 function initializeCrossfader() {
 
@@ -3357,13 +3215,24 @@ function initializeCrossfader() {
   activeCategory='middle';
   visibleCount=10;
 
-  singleLabel.classList.remove('active');
-  albumLabel.classList.remove('active');
+  singleLabel.classList.remove(
+    'active'
+  );
 
-  singleTurntable.classList.remove('playing');
-  albumTurntable.classList.remove('playing');
+  albumLabel.classList.remove(
+    'active'
+  );
+
+  singleTurntable.classList.remove(
+    'playing'
+  );
+
+  albumTurntable.classList.remove(
+    'playing'
+  );
 
   updateLEDMessage('middle');
+
   renderMusic();
 
   updateRadioButton();
@@ -3371,18 +3240,14 @@ function initializeCrossfader() {
 
 initializeCrossfader();
 
-/* ====================================
-   AUTOSTART-VERSUCH
-
-   DER BROWSER ENTSCHEIDET,
-   OB MUSIK MIT TON SOFORT
-   STARTEN DARF.
-==================================== */
+/* ======================================
+   RADIO-AUTOSTART
+====================================== */
 
 function attemptRadioAutostart() {
 
   if(
-    activeCategory==='middle' &&
+    activeCategory==='middle'&&
     rmbRadio.paused
   ) {
 
@@ -3390,15 +3255,16 @@ function attemptRadioAutostart() {
   }
 }
 
-/* ====================================
+/* ======================================
    ABSCHLIESSENDE INITIALISIERUNG
-==================================== */
+====================================== */
 
 window.addEventListener(
   'load',
   ()=>{
 
     resizeMasterStage();
+
     resetFaders();
 
     attemptRadioAutostart();
@@ -3408,6 +3274,10 @@ window.addEventListener(
 window.addEventListener(
   'pageshow',
   ()=>{
+
+    resizeMasterStage();
+
+    resetFaders();
 
     initializeCrossfader();
 
