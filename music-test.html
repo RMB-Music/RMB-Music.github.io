@@ -813,43 +813,34 @@ a:focus-visible {
 }
 
 /* ====================================
-   VIDEO-BUTTON – NEUE VERSION
+   NEUER PLAY / PLAYED BUTTON
 
-   DURCHMESSER: 45 x 45 PIXEL
+   40 x 40 PIXEL
 
    POSITION:
-   25 % VON LINKS
-   25 % VON OBEN
+   MITTE DES OBEREN LINKEN VIERTELS
 
-   ANORDNUNG:
-   VIDEO
-     ▶
-   ANSEHEN
+   ROT: PLAY
+   GRÜN: PLAYED
 
-   ROT = NOCH NICHT GEÖFFNET
-   GRÜN = BEREITS GEÖFFNET
+   KEIN PLAY-DREIECK
 ==================================== */
 
 .video-stamp {
   position:absolute;
 
-  /* MITTE DES LINKEN OBEREN VIERTELS */
   top:25%;
   left:25%;
 
   z-index:3;
 
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
 
-  gap:1px;
-
-  width:45px;
-  height:45px;
-
-  padding:4px 2px;
+  width:40px;
+  height:40px;
+  padding:2px;
 
   transform:translate(-50%,-50%);
 
@@ -888,53 +879,24 @@ a:focus-visible {
   pointer-events:none;
 }
 
-/* OBERER SCHRIFTZUG: VIDEO */
+.video-stamp-text {
+  position:relative;
+  z-index:1;
 
-.video-stamp-top {
   display:block;
+  width:100%;
+
   font-family:Michroma,Arial,sans-serif;
-  font-size:5px;
+  font-size:6px;
   font-weight:bold;
-  line-height:1.2;
-  letter-spacing:0;
+  line-height:1;
+  letter-spacing:-.15px;
+
   text-align:center;
   white-space:nowrap;
+
   text-shadow:0 0 4px currentColor;
 }
-
-/* MITTLERES PLAY-SYMBOL */
-
-.video-stamp-icon {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:12px;
-  height:12px;
-  flex-shrink:0;
-}
-
-.video-stamp-icon svg {
-  display:block;
-  width:11px;
-  height:11px;
-  fill:currentColor;
-}
-
-/* UNTERER SCHRIFTZUG: ANSEHEN */
-
-.video-stamp-bottom {
-  display:block;
-  font-family:Michroma,Arial,sans-serif;
-  font-size:4px;
-  font-weight:bold;
-  line-height:1.2;
-  letter-spacing:-.1px;
-  text-align:center;
-  white-space:nowrap;
-  text-shadow:0 0 4px currentColor;
-}
-
-/* BEREITS GEÖFFNET: GRÜN */
 
 .video-stamp.watched {
   border-color:#49ff96;
@@ -946,8 +908,6 @@ a:focus-visible {
     0 0 16px rgba(73,255,150,.3),
     inset 0 1px 2px rgba(255,255,255,.22);
 }
-
-/* WÄHREND DER VIDEOWIEDERGABE AUSBLENDEN */
 
 body.video-is-open .video-stamp {
   opacity:0;
@@ -1462,7 +1422,7 @@ footer {
   © R.M.B. MUSIC · FRANKFURT AM MAIN
 </footer>
 
-<!-- INTERNER VIDEOPLAYER -->
+<!-- INTERNER YOUTUBE-PLAYER -->
 
 <div class="video-modal" id="videoModal">
   <div class="video-window">
@@ -1477,7 +1437,7 @@ footer {
     <iframe
       id="videoFrame"
       class="video-frame"
-      title="R.M.B. Musikvideo"
+      title="R.M.B. Musik"
       allow="autoplay; encrypted-media; picture-in-picture"
       allowfullscreen
     ></iframe>
@@ -2328,7 +2288,7 @@ function getYoutubeId(item) {
 }
 
 /* ====================================
-   VIDEO-STATUS SPEICHERN
+   PLAY / PLAYED STATUS
 
    BISHERIGER SPEICHERSCHLÜSSEL
    BLEIBT UNVERÄNDERT
@@ -2369,6 +2329,13 @@ function rememberOpenedVideo(id) {
   }
 }
 
+/* ====================================
+   BUTTON-FARBE UND TEXT AKTUALISIEREN
+
+   ROT: PLAY
+   GRÜN: PLAYED
+==================================== */
+
 function refreshVideoStamps() {
   gallery.querySelectorAll(
     '.cover-button[data-video-id]'
@@ -2383,9 +2350,15 @@ function refreshVideoStamps() {
 
     stamp.classList.toggle('watched',watched);
 
+    const text=stamp.querySelector('.video-stamp-text');
+
+    if(text) {
+      text.textContent=watched?'PLAYED':'PLAY';
+    }
+
     button.title=watched
-      ?'Video bereits geöffnet – erneut ansehen'
-      :'Video ansehen';
+      ?'Bereits abgespielt – erneut anhören'
+      :'Musik anhören';
   });
 }
 
@@ -2401,6 +2374,8 @@ function openVideo(id) {
   stopRadio();
 
   rememberOpenedVideo(id);
+
+  /* SOFORT AUF PLAYED UMSCHALTEN */
   refreshVideoStamps();
 
   document.body.classList.add('video-is-open');
@@ -2538,11 +2513,12 @@ function renderMusic() {
       hasInternalVideo&&hasOpenedVideo(valid);
 
     /* ====================================
-       NEUER 45-PIXEL-VIDEOBUTTON
+       NEUER 40-PIXEL-BUTTON
 
-       VIDEO
-         ▶
-       ANSEHEN
+       PLAY   = ROT
+       PLAYED = GRÜN
+
+       OHNE PLAY-SYMBOL
     ==================================== */
 
     const videoStampHTML=hasInternalVideo
@@ -2551,24 +2527,9 @@ function renderMusic() {
           class="video-stamp ${alreadyWatched?'watched':''}"
           aria-hidden="true"
         >
-
-          <span class="video-stamp-top">
-            VIDEO
+          <span class="video-stamp-text">
+            ${alreadyWatched?'PLAYED':'PLAY'}
           </span>
-
-          <span class="video-stamp-icon">
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path d="M7 3.5L21 12 7 20.5Z"/>
-            </svg>
-          </span>
-
-          <span class="video-stamp-bottom">
-            ANSEHEN
-          </span>
-
         </span>
       `
       :'';
@@ -2584,8 +2545,8 @@ function renderMusic() {
         aria-label="${albumURL
           ?'Album auf YouTube öffnen'
           :hasInternalVideo
-            ?'Musikvideo ansehen'
-            :'Kein Video verfügbar'}"
+            ?'Musik anhören'
+            :'Keine Wiedergabe verfügbar'}"
       >
 
         <img
@@ -2690,6 +2651,8 @@ function renderMusic() {
   moreButton.textContent=isSingle
     ?'WEITERE SONGS ANZEIGEN'
     :'WEITERE ALBEN ANZEIGEN';
+
+  refreshVideoStamps();
 }
 
 /* ====================================
