@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -32,6 +31,10 @@ body {
   background: #121820;
   color: #f2f4f8;
   font-family: 'Michroma', sans-serif;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 /* ====================================
@@ -154,10 +157,7 @@ main {
 }
 
 /* ====================================
-   PLATZHALTER
-
-   BEREICH FÜR SPÄTERE
-   SONGANKÜNDIGUNGEN UND PREVIEWS
+   UPCOMING CONTAINER
 ==================================== */
 
 .upcoming-container {
@@ -175,25 +175,263 @@ main {
   border-radius: 10px;
 }
 
-.placeholder {
+/* ====================================
+   UPCOMING RELEASE
+==================================== */
+
+.upcoming-release {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   text-align: center;
 }
 
-.placeholder-title {
-  margin: 0 0 18px;
+/* ====================================
+   SONGCOVER
+==================================== */
 
-  color: #dce8f6;
-  font-size: 15px;
-  letter-spacing: 1.5px;
+.release-cover {
+  position: relative;
+
+  width: min(100%, 440px);
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  background: #10151c;
+
+  border: 1px solid #48576a;
+  border-radius: 10px;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.35);
+}
+
+.release-cover img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* ====================================
+   GROSSER GRUENER PLAY-BUTTON
+
+   NUR DER BUTTON IST ANKLICKBAR
+==================================== */
+
+.release-play {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  width: 94px;
+  height: 94px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 2px solid #75ffad;
+  border-radius: 50%;
+
+  background: rgba(12,35,25,.78);
+  color: #ffffff;
+
+  box-shadow:
+    0 0 12px rgba(95,255,155,.55),
+    0 0 28px rgba(60,230,125,.25),
+    inset 0 0 15px rgba(75,255,140,.12);
+
+  cursor: pointer;
+  z-index: 2;
+
+  transition:
+    background .2s ease,
+    box-shadow .2s ease,
+    transform .2s ease;
+}
+
+.release-play svg {
+  width: 40px;
+  height: 40px;
+
+  fill: currentColor;
+
+  margin-left: 6px;
+}
+
+.release-play:hover {
+  transform: translate(-50%, -50%) scale(1.09);
+
+  background: rgba(25,95,55,.9);
+
+  box-shadow:
+    0 0 18px rgba(95,255,155,.85),
+    0 0 38px rgba(60,230,125,.5);
+}
+
+.release-play:active {
+  transform: translate(-50%, -50%) scale(.97);
+}
+
+.release-play:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 6px;
+}
+
+/* ====================================
+   SONGTITEL
+==================================== */
+
+.release-title {
+  margin: 26px 0 12px;
+
+  color: #f4f8ff;
+
+  font-size: clamp(14px, 2.5vw, 20px);
+  font-weight: normal;
+
+  letter-spacing: 1px;
   line-height: 1.8;
 }
 
-.placeholder-text {
+.release-artist {
   margin: 0;
 
-  color: #93a8bd;
+  color: #aebfd2;
+
   font-size: 11px;
-  line-height: 2.2;
+  line-height: 2;
+}
+
+/* ====================================
+   VIDEO POPUP HINTERGRUND
+==================================== */
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(0,0,0,.88);
+
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.video-modal.open {
+  display: flex;
+}
+
+/* ====================================
+   VIDEO POPUP FENSTER
+==================================== */
+
+.video-dialog {
+  position: relative;
+
+  width: min(100%, 900px);
+
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+
+  padding: 24px;
+
+  background: #151c25;
+
+  border: 1px solid #435064;
+  border-radius: 12px;
+
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.65);
+}
+
+.video-heading {
+  margin: 0 55px 22px 0;
+
+  color: #f4f8ff;
+
+  font-size: clamp(12px, 2vw, 17px);
+  font-weight: normal;
+
+  line-height: 1.8;
+}
+
+/* ====================================
+   VIDEO SCHLIESSEN
+==================================== */
+
+.video-close {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #647185;
+  border-radius: 50%;
+
+  background: #273240;
+  color: #ffffff;
+
+  font-family: Arial, sans-serif;
+  font-size: 27px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease;
+}
+
+.video-close:hover {
+  background: #3d4c60;
+  border-color: #ffffff;
+}
+
+.video-close:focus-visible {
+  outline: 2px solid #75ffad;
+  outline-offset: 4px;
+}
+
+/* ====================================
+   EINGEBETTETER MP4 PLAYER
+==================================== */
+
+.video-player {
+  display: block;
+
+  width: 100%;
+  max-height: 70dvh;
+
+  background: #000000;
+
+  border-radius: 6px;
 }
 
 /* ====================================
@@ -249,12 +487,40 @@ a:focus-visible {
     padding: 25px 15px;
   }
 
-  .placeholder-title {
+  .release-play {
+    width: 76px;
+    height: 76px;
+  }
+
+  .release-play svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .release-title {
+    margin-top: 22px;
+  }
+
+  .video-modal {
+    padding: 12px;
+  }
+
+  .video-dialog {
+    max-height: calc(100dvh - 24px);
+    padding: 16px;
+  }
+
+  .video-heading {
+    margin-right: 45px;
     font-size: 12px;
   }
 
-  .placeholder-text {
-    font-size: 10px;
+  .video-close {
+    top: 10px;
+    right: 10px;
+
+    width: 36px;
+    height: 36px;
   }
 }
 
@@ -332,13 +598,9 @@ a:focus-visible {
   </div>
 
   <!-- ====================================
-       PLATZHALTER
+       STEP UP TO THE BEAT
 
-       SPÄTER:
-       SONGCOVER
-       MUSIKPREVIEWS
-       VERÖFFENTLICHUNGSDATEN
-       VIDEOS
+       COVER MIT GROSSEM PLAY-BUTTON
   ==================================== -->
 
   <section
@@ -346,21 +608,110 @@ a:focus-visible {
     aria-label="Upcoming Music"
   >
 
-    <div class="placeholder">
+    <article class="upcoming-release">
 
-      <h2 class="placeholder-title">
-        COMING SOON
+      <div class="release-cover">
+
+        <img
+          src="images/step-up-to-the-beat.JPEG"
+          alt="Step Up to the Beat – R.M.B. Cover"
+          loading="lazy"
+        >
+
+        <button
+          class="release-play"
+          id="openVideo"
+          type="button"
+          aria-label="Musikvideo Step Up to the Beat abspielen"
+          aria-haspopup="dialog"
+          aria-controls="videoModal"
+        >
+
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M6 3.5v17l14-8.5z"/>
+          </svg>
+
+        </button>
+
+      </div>
+
+      <h2 class="release-title">
+        STEP UP TO THE BEAT
       </h2>
 
-      <p class="placeholder-text">
-        New Music &amp; Upcoming Releases
+      <p class="release-artist">
+        R.M.B.
       </p>
 
-    </div>
+    </article>
 
   </section>
 
 </main>
+
+<!-- ====================================
+     VIDEO POPUP
+
+     BLEIBT INNERHALB DER WEBSITE
+==================================== -->
+
+<div
+  class="video-modal"
+  id="videoModal"
+  role="presentation"
+  aria-hidden="true"
+>
+
+  <div
+    class="video-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="videoTitle"
+    tabindex="-1"
+  >
+
+    <button
+      class="video-close"
+      id="closeVideo"
+      type="button"
+      aria-label="Videoplayer schließen"
+    >
+      &times;
+    </button>
+
+    <h2
+      class="video-heading"
+      id="videoTitle"
+    >
+      R.M.B. – STEP UP TO THE BEAT
+    </h2>
+
+    <video
+      class="video-player"
+      id="upcomingVideo"
+      controls
+      playsinline
+      preload="metadata"
+      poster="images/step-up-to-the-beat.JPEG"
+    >
+
+      <source
+        src="videos/step-up-to-the-beat.mp4"
+        type="video/mp4"
+      >
+
+      Dein Browser unterstützt die
+      Videowiedergabe leider nicht.
+
+    </video>
+
+  </div>
+
+</div>
 
 <!-- ====================================
      FUSSZEILE
@@ -369,6 +720,142 @@ a:focus-visible {
 <footer>
   R.M.B. · Independent Electronic Music
 </footer>
+
+<!-- ====================================
+     VIDEO POPUP STEUERUNG
+==================================== -->
+
+<script>
+
+(function () {
+
+  "use strict";
+
+  const openButton =
+    document.getElementById("openVideo");
+
+  const closeButton =
+    document.getElementById("closeVideo");
+
+  const modal =
+    document.getElementById("videoModal");
+
+  const dialog =
+    modal.querySelector(".video-dialog");
+
+  const video =
+    document.getElementById("upcomingVideo");
+
+  let previousFocus = null;
+
+  function openVideo() {
+
+    previousFocus = document.activeElement;
+
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+
+    document.body.classList.add("modal-open");
+
+    dialog.focus();
+
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(function () {
+        // Browser kann manuelles Starten verlangen.
+      });
+    }
+  }
+
+  function closeVideo() {
+
+    video.pause();
+    video.currentTime = 0;
+
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+
+    document.body.classList.remove("modal-open");
+
+    if (
+      previousFocus &&
+      typeof previousFocus.focus === "function"
+    ) {
+      previousFocus.focus();
+    }
+  }
+
+  openButton.addEventListener(
+    "click",
+    openVideo
+  );
+
+  closeButton.addEventListener(
+    "click",
+    closeVideo
+  );
+
+  modal.addEventListener(
+    "click",
+    function (event) {
+
+      if (event.target === modal) {
+        closeVideo();
+      }
+    }
+  );
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (!modal.classList.contains("open")) {
+        return;
+      }
+
+      if (event.key === "Escape") {
+        closeVideo();
+        return;
+      }
+
+      if (event.key === "Tab") {
+
+        const focusable = [
+          closeButton,
+          video
+        ];
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (
+          event.shiftKey &&
+          document.activeElement === first
+        ) {
+          event.preventDefault();
+          last.focus();
+
+        } else if (
+          !event.shiftKey &&
+          document.activeElement === last
+        ) {
+          event.preventDefault();
+          first.focus();
+
+        } else if (
+          !focusable.includes(document.activeElement)
+        ) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  );
+
+})();
+
+</script>
 
 </body>
 </html>
