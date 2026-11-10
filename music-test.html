@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>R.M.B. | MUSIC</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +18,7 @@
   --red:#ff636d;
 }
 
-* {
-  box-sizing:border-box;
-}
+* {box-sizing:border-box;}
 
 html,body {
   margin:0;
@@ -34,9 +32,7 @@ body {
   overflow-x:hidden;
 }
 
-button,input {
-  font:inherit;
-}
+button,input {font:inherit;}
 
 button:focus-visible,
 input:focus-visible,
@@ -103,7 +99,7 @@ a:focus-visible {
 }
 
 /* ======================================
-   RADIO
+   RADIO / PLAY / PAUSE
 ====================================== */
 
 .radio-button {
@@ -160,16 +156,74 @@ a:focus-visible {
   fill:currentColor;
 }
 
-.radio-button .pause-icon {
-  display:none;
+.radio-button .pause-icon {display:none;}
+.radio-button.playing .play-icon {display:none;}
+.radio-button.playing .pause-icon {display:block;}
+
+/* ======================================
+   NEU: SKIP-TASTEN
+   24 PX = 2/3 DER PLAY-TASTE
+====================================== */
+
+.skip-button {
+  position:absolute;
+  top:24px;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  height:24px;
+  padding:0;
+  border:1.5px solid var(--red);
+  border-radius:50%;
+  background:radial-gradient(
+    circle at 35% 25%,
+    #34475a,
+    #101820 72%
+  );
+  color:#ff8189;
+  box-shadow:
+    0 0 4px rgba(255,99,109,.8),
+    0 0 8px rgba(255,99,109,.35),
+    inset 0 1px 2px rgba(255,255,255,.2);
+  cursor:pointer;
+  transition:
+    border-color .2s,
+    color .2s,
+    box-shadow .2s,
+    opacity .2s;
 }
 
-.radio-button.playing .play-icon {
-  display:none;
-}
-
-.radio-button.playing .pause-icon {
+.skip-button svg {
   display:block;
+  width:12px;
+  height:12px;
+  fill:currentColor;
+}
+
+.skip-previous {
+  left:calc(62% - 43px);
+  transform:translateX(-50%);
+}
+
+.skip-next {
+  left:calc(62% + 43px);
+  transform:translateX(-50%);
+}
+
+.skip-button:hover:not(:disabled) {
+  border-color:var(--green);
+  color:#7dffb1;
+  box-shadow:
+    0 0 5px rgba(73,255,150,.9),
+    0 0 12px rgba(73,255,150,.5);
+}
+
+.skip-button:disabled {
+  opacity:.38;
+  box-shadow:none;
+  cursor:default;
 }
 
 /* ======================================
@@ -701,9 +755,7 @@ a:focus-visible {
   font-size:7px;
   letter-spacing:1px;
   white-space:nowrap;
-  text-shadow:
-    0 0 4px #fff,
-    0 0 8px #82d2ff;
+  text-shadow:0 0 4px #fff,0 0 8px #82d2ff;
   animation:slidePulse 2s ease-in-out infinite;
 }
 
@@ -772,9 +824,7 @@ a:focus-visible {
   color:#cbd3df;
 }
 
-.mixer-guide[hidden] {
-  display:none;
-}
+.mixer-guide[hidden] {display:none;}
 
 .guide-heading {
   margin:0;
@@ -814,9 +864,7 @@ a:focus-visible {
   color:#fff;
 }
 
-.guide-language:hover {
-  color:#fff;
-}
+.guide-language:hover {color:#fff;}
 
 .guide-divider {
   height:1px;
@@ -829,9 +877,7 @@ a:focus-visible {
   gap:22px;
 }
 
-.guide-text[hidden] {
-  display:none;
-}
+.guide-text[hidden] {display:none;}
 
 .guide-item {
   margin:0;
@@ -841,9 +887,7 @@ a:focus-visible {
   line-height:1.65;
 }
 
-.guide-item strong {
-  font-weight:600;
-}
+.guide-item strong {font-weight:600;}
 
 .guide-symbol {
   display:inline-block;
@@ -882,9 +926,7 @@ a:focus-visible {
   flex-direction:column;
 }
 
-.music-card:hover {
-  transform:translateY(-4px);
-}
+.music-card:hover {transform:translateY(-4px);}
 
 .cover-button {
   position:relative;
@@ -897,9 +939,7 @@ a:focus-visible {
   isolation:isolate;
 }
 
-.cover-button:disabled {
-  cursor:default;
-}
+.cover-button:disabled {cursor:default;}
 
 .cover {
   display:block;
@@ -912,7 +952,6 @@ a:focus-visible {
 
 /* ======================================
    PLAY / HÄKCHEN
-   SINGLES UND ALBEN
 ====================================== */
 
 .video-stamp {
@@ -996,13 +1035,8 @@ a:focus-visible {
     inset 0 1px 2px rgba(255,255,255,.22);
 }
 
-.video-stamp.watched .video-stamp-text {
-  display:none;
-}
-
-.video-stamp.watched .video-stamp-check {
-  display:block;
-}
+.video-stamp.watched .video-stamp-text {display:none;}
+.video-stamp.watched .video-stamp-check {display:block;}
 
 body.video-is-open .video-stamp {
   opacity:0;
@@ -1050,9 +1084,7 @@ body.video-is-open .video-stamp {
   font-size:11px;
 }
 
-.music-links a:hover {
-  background:#405c78;
-}
+.music-links a:hover {background:#405c78;}
 
 .empty-message {
   width:min(420px,100%);
@@ -1075,9 +1107,7 @@ body.video-is-open .video-stamp {
   cursor:pointer;
 }
 
-.more-button[hidden] {
-  display:none;
-}
+.more-button[hidden] {display:none;}
 
 /* ======================================
    YOUTUBE-PLAYER
@@ -1094,9 +1124,7 @@ body.video-is-open .video-stamp {
   justify-content:center;
 }
 
-.video-modal.open {
-  display:flex;
-}
+.video-modal.open {display:flex;}
 
 .video-window {
   position:relative;
@@ -1134,13 +1162,8 @@ footer {
 ====================================== */
 
 @media(max-width:700px) {
-  .content {
-    padding:12px 12px 65px;
-  }
-
-  .gallery {
-    gap:12px;
-  }
+  .content {padding:12px 12px 65px;}
+  .gallery {gap:12px;}
 
   .music-card {
     width:calc(50% - 6px);
@@ -1155,9 +1178,7 @@ footer {
     border-radius:20px;
   }
 
-  .guide-heading {
-    font-size:15px;
-  }
+  .guide-heading {font-size:15px;}
 
   .guide-languages {
     gap:5px;
@@ -1174,15 +1195,11 @@ footer {
     line-height:1.65;
   }
 
-  .guide-text {
-    gap:19px;
-  }
+  .guide-text {gap:19px;}
 }
 
 @media(max-width:420px) {
-  .music-card {
-    width:100%;
-  }
+  .music-card {width:100%;}
 }
 
 @media(prefers-reduced-motion:reduce) {
@@ -1191,17 +1208,9 @@ footer {
     opacity:1;
   }
 
-  .fader-handle.returning {
-    transition:none;
-  }
-
-  .vinyl-record {
-    animation-duration:8s;
-  }
-
-  .video-stamp {
-    transition:none;
-  }
+  .fader-handle.returning {transition:none;}
+  .vinyl-record {animation-duration:8s;}
+  .video-stamp {transition:none;}
 }
 </style>
 </head>
@@ -1227,6 +1236,24 @@ footer {
       alt="MUSIC – THE SOUND OF R.M.B."
     >
 
+    <!-- NEU: VORHERIGER SONG -->
+
+    <button
+      type="button"
+      class="skip-button skip-previous"
+      id="skipPrevious"
+      aria-label="Vorheriger Song"
+      title="PREVIOUS TRACK"
+      disabled
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="5" width="3" height="14"/>
+        <path d="M20 4L7 12L20 20Z"/>
+      </svg>
+    </button>
+
+    <!-- BESTEHENDE PLAY-/PAUSE-TASTE -->
+
     <button
       type="button"
       class="radio-button"
@@ -1242,6 +1269,22 @@ footer {
       <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true">
         <rect x="5" y="3" width="5" height="18" rx="1"/>
         <rect x="14" y="3" width="5" height="18" rx="1"/>
+      </svg>
+    </button>
+
+    <!-- NEU: NÄCHSTER SONG -->
+
+    <button
+      type="button"
+      class="skip-button skip-next"
+      id="skipNext"
+      aria-label="Nächster Song"
+      title="NEXT TRACK"
+      disabled
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 4L17 12L4 20Z"/>
+        <rect x="18" y="5" width="3" height="14"/>
       </svg>
     </button>
 
@@ -1534,15 +1577,14 @@ footer {
 </div>
 </section>
 
-<!-- RADIO -->
+<!-- ======================================
+     RADIO / AUTOMATISCHE MP3-BIBLIOTHEK
+====================================== -->
 
-<audio id="rmbRadio" preload="auto" loop>
-  <source src="audio/music-song.mp3" type="audio/mpeg">
-</audio>
+<audio id="rmbRadio" preload="metadata"></audio>
 
 <!-- ======================================
      MIXER QUICK GUIDE
-     NUR IN DER MITTELSTELLUNG
 ====================================== -->
 
 <section
@@ -1583,8 +1625,6 @@ footer {
 
   <div class="guide-divider"></div>
 
-  <!-- DEUTSCH -->
-
   <div class="guide-text" id="guideTextGerman" lang="de">
 
     <p class="guide-item">
@@ -1592,6 +1632,8 @@ footer {
       <strong>R.M.B. SOUND</strong> –
       Über dem „I“ im MUSIC-Schriftzug
       starten oder pausieren.
+      Mit den kleinen Tasten links und rechts
+      den vorherigen oder nächsten Song wählen.
     </p>
 
     <p class="guide-item">
@@ -1612,14 +1654,12 @@ footer {
       <span class="guide-symbol">♫</span>
       <strong>Musik abspielen</strong> –
       Singles und Alben über PLAY öffnen
-      und anhören. Spotify und Amazon Music
+      und anhören. <br>Spotify und Amazon Music
       stehen als weitere Musikanbieter
       zur Verfügung.
     </p>
 
   </div>
-
-  <!-- ENGLISH -->
 
   <div
     class="guide-text"
@@ -1633,6 +1673,8 @@ footer {
       <strong>R.M.B. SOUND</strong> –
       Start or pause above the “I”
       in the MUSIC logo.
+      Use the small buttons on either side
+      to select the previous or next track.
     </p>
 
     <p class="guide-item">
@@ -1653,7 +1695,7 @@ footer {
       <span class="guide-symbol">♫</span>
       <strong>Play music</strong> –
       Open and listen to singles and albums
-      using PLAY. Spotify and Amazon Music
+      using PLAY. <br>Spotify and Amazon Music
       are available as additional
       streaming platforms.
     </p>
@@ -2192,8 +2234,43 @@ const CENTER_LEFT=38;
 const CENTER_RIGHT=62;
 
 /* ======================================
-   RADIO
+   NEU: AUTOMATISCHE MP3-BIBLIOTHEK
 ====================================== */
+
+/*
+  Der GitHub-Ordner "audio" wird automatisch
+  ausgelesen.
+
+  Es werden maximal 15 MP3-Dateien geladen.
+
+  Die Dateinamen ergeben die Songtitel.
+
+  Es ist keine manuelle Titelliste nötig.
+*/
+
+const MAX_RADIO_TRACKS=15;
+
+const RADIO_REFRESH_MS=5*60*1000;
+
+const RADIO_DEFAULT_TEXT='THE SOUND OF R.M.B.';
+
+const GITHUB_OWNER='rmb-music';
+
+const GITHUB_REPOSITORY='rmb-music.github.io';
+
+const GITHUB_AUDIO_API=
+  'https://api.github.com/repos/'+
+  GITHUB_OWNER+'/'+
+  GITHUB_REPOSITORY+
+  '/contents/audio';
+
+let radioTracks=[];
+let currentRadioIndex=0;
+let radioLibraryLoaded=false;
+let radioLibraryLoading=null;
+let lastRadioRefresh=0;
+let radioRequest=0;
+let radioPlaybackRequested=false;
 
 const rmbRadio=document.getElementById(
   'rmbRadio'
@@ -2203,7 +2280,48 @@ const radioButton=document.getElementById(
   'radioButton'
 );
 
-let radioRequest=0;
+const skipPrevious=document.getElementById(
+  'skipPrevious'
+);
+
+const skipNext=document.getElementById(
+  'skipNext'
+);
+
+/* ======================================
+   DATEINAME ZUM SONGTITEL
+====================================== */
+
+function radioTitleFromFilename(filename) {
+
+  return String(filename)
+    .replace(/\.mp3$/i,'')
+    .replace(/[_-]+/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+/* ======================================
+   SICHERE AUDIO-ADRESSE
+====================================== */
+
+function radioAudioURL(filename) {
+
+  return 'audio/'+encodeURIComponent(filename);
+}
+
+/* ======================================
+   AKTUELLEN SONG ERMITTELN
+====================================== */
+
+function currentRadioTrack() {
+
+  return radioTracks[currentRadioIndex]||null;
+}
+
+/* ======================================
+   RADIO-BUTTONS AKTUALISIEREN
+====================================== */
 
 function updateRadioButton() {
 
@@ -2245,13 +2363,340 @@ function updateRadioButton() {
         :'R.M.B. RADIO – PLAY'
     )
     :'Radio nur in Mittelstellung';
+
+  const skipDisabled=
+    !isMiddle||
+    !radioLibraryLoaded||
+    radioTracks.length===0;
+
+  skipPrevious.disabled=skipDisabled;
+  skipNext.disabled=skipDisabled;
+
+  const track=currentRadioTrack();
+
+  if(track) {
+
+    skipPrevious.title=
+      'PREVIOUS TRACK';
+
+    skipNext.title=
+      'NEXT TRACK';
+
+  }
 }
+
+/* ======================================
+   LED-TEXT AN RADIO ANPASSEN
+====================================== */
+
+function updateRadioLED() {
+
+  if(activeCategory!=='middle') {
+    return;
+  }
+
+  const playing=
+    !rmbRadio.paused&&
+    !rmbRadio.ended;
+
+  const track=currentRadioTrack();
+
+  if(playing&&track) {
+
+    setLEDText(track.title);
+
+  } else {
+
+    setLEDText(RADIO_DEFAULT_TEXT);
+
+  }
+}
+
+/* ======================================
+   MP3-DATEIEN AUS GITHUB LADEN
+====================================== */
+
+async function loadRadioLibrary(force=false) {
+
+  if(radioLibraryLoading) {
+    return radioLibraryLoading;
+  }
+
+  if(
+    !force&&
+    radioLibraryLoaded&&
+    Date.now()-lastRadioRefresh<RADIO_REFRESH_MS
+  ) {
+    return radioTracks;
+  }
+
+  radioLibraryLoading=(async()=>{
+
+    const previousTrack=currentRadioTrack();
+
+    const previousName=previousTrack
+      ?previousTrack.filename
+      :null;
+
+    try {
+
+      const response=await fetch(
+        GITHUB_AUDIO_API,
+        {
+          headers:{
+            'Accept':'application/vnd.github+json'
+          },
+          cache:'no-store'
+        }
+      );
+
+      if(!response.ok) {
+
+        throw new Error(
+          'GitHub API: HTTP '+response.status
+        );
+      }
+
+      const files=await response.json();
+
+      if(!Array.isArray(files)) {
+
+        throw new Error(
+          'Ungültige Antwort der GitHub-API'
+        );
+      }
+
+      const tracks=files
+        .filter(file=>
+          file.type==='file'&&
+          /\.mp3$/i.test(file.name)
+        )
+        .sort((a,b)=>
+          a.name.localeCompare(
+            b.name,
+            'de',
+            {
+              numeric:true,
+              sensitivity:'base'
+            }
+          )
+        )
+        .slice(0,MAX_RADIO_TRACKS)
+        .map(file=>({
+
+          filename:file.name,
+
+          title:radioTitleFromFilename(
+            file.name
+          ),
+
+          url:radioAudioURL(
+            file.name
+          )
+
+        }));
+
+      radioTracks=tracks;
+
+      radioLibraryLoaded=true;
+      lastRadioRefresh=Date.now();
+
+      if(previousName) {
+
+        const existingIndex=radioTracks
+          .findIndex(track=>
+            track.filename===previousName
+          );
+
+        currentRadioIndex=
+          existingIndex>=0
+            ?existingIndex
+            :0;
+
+      } else {
+
+        currentRadioIndex=0;
+
+      }
+
+      const selected=currentRadioTrack();
+
+      if(selected) {
+
+        const currentFile=
+          rmbRadio.dataset.filename||'';
+
+        if(currentFile!==selected.filename) {
+
+          const wasPlaying=!rmbRadio.paused;
+
+          rmbRadio.pause();
+
+          rmbRadio.src=selected.url;
+
+          rmbRadio.dataset.filename=
+            selected.filename;
+
+          rmbRadio.load();
+
+          if(
+            wasPlaying&&
+            activeCategory==='middle'
+          ) {
+
+            startRadio();
+
+          }
+        }
+
+      } else {
+
+        rmbRadio.pause();
+
+        rmbRadio.removeAttribute('src');
+
+        delete rmbRadio.dataset.filename;
+
+        rmbRadio.load();
+
+      }
+
+      console.info(
+        'R.M.B. MP3-Bibliothek geladen:',
+        radioTracks.map(track=>track.title)
+      );
+
+    } catch(error) {
+
+      console.error(
+        'MP3-Bibliothek konnte nicht geladen werden:',
+        error
+      );
+
+      /*
+        Bereits geladene Songs bleiben erhalten,
+        falls GitHub vorübergehend nicht antwortet.
+      */
+
+      if(!radioLibraryLoaded) {
+        radioTracks=[];
+      }
+
+    } finally {
+
+      updateRadioButton();
+      updateRadioLED();
+
+    }
+
+    return radioTracks;
+
+  })();
+
+  try {
+
+    return await radioLibraryLoading;
+
+  } finally {
+
+    radioLibraryLoading=null;
+
+  }
+}
+
+/* ======================================
+   SONG AUSWÄHLEN
+====================================== */
+
+function selectRadioTrack(index,playNow=false) {
+
+  if(!radioTracks.length) return;
+
+  const length=radioTracks.length;
+
+  currentRadioIndex=
+    ((index%length)+length)%length;
+
+  const track=currentRadioTrack();
+
+  radioRequest++;
+
+  rmbRadio.pause();
+
+  rmbRadio.src=track.url;
+
+  rmbRadio.dataset.filename=
+    track.filename;
+
+  rmbRadio.load();
+
+  updateRadioButton();
+  updateRadioLED();
+
+  if(
+    playNow&&
+    activeCategory==='middle'
+  ) {
+
+    startRadio();
+
+  }
+}
+
+/* ======================================
+   RADIO STARTEN
+====================================== */
 
 async function startRadio() {
 
   if(activeCategory!=='middle') return;
 
+  radioPlaybackRequested=true;
+
   const request=++radioRequest;
+
+  if(!radioLibraryLoaded) {
+
+    await loadRadioLibrary();
+
+  }
+
+  if(
+    request!==radioRequest||
+    activeCategory!=='middle'||
+    !radioPlaybackRequested
+  ) {
+    return;
+  }
+
+  const track=currentRadioTrack();
+
+  if(!track) {
+
+    radioPlaybackRequested=false;
+
+    console.warn(
+      'Keine MP3-Dateien im Audio-Ordner gefunden.'
+    );
+
+    updateRadioButton();
+    updateRadioLED();
+
+    return;
+  }
+
+  if(
+    rmbRadio.dataset.filename!==track.filename
+  ) {
+
+    rmbRadio.src=track.url;
+
+    rmbRadio.dataset.filename=
+      track.filename;
+
+    rmbRadio.load();
+
+  }
 
   try {
 
@@ -2259,8 +2704,10 @@ async function startRadio() {
 
     if(
       request!==radioRequest||
-      activeCategory!=='middle'
+      activeCategory!=='middle'||
+      !radioPlaybackRequested
     ) {
+
       rmbRadio.pause();
       return;
     }
@@ -2268,26 +2715,44 @@ async function startRadio() {
   } catch(error) {
 
     console.info(
-      'Radio konnte nicht automatisch starten:',
+      'Radio konnte nicht starten:',
       error
     );
+
+    if(request===radioRequest) {
+      radioPlaybackRequested=false;
+    }
   }
 
   updateRadioButton();
+  updateRadioLED();
 }
+
+/* ======================================
+   RADIO PAUSIEREN
+====================================== */
 
 function pauseRadio() {
 
   radioRequest++;
 
+  radioPlaybackRequested=false;
+
   rmbRadio.pause();
 
   updateRadioButton();
+  updateRadioLED();
 }
+
+/* ======================================
+   RADIO BEIM VERLASSEN ANHALTEN
+====================================== */
 
 function stopRadio() {
 
   radioRequest++;
+
+  radioPlaybackRequested=false;
 
   rmbRadio.pause();
 
@@ -2296,7 +2761,12 @@ function stopRadio() {
   } catch {}
 
   updateRadioButton();
+  updateRadioLED();
 }
+
+/* ======================================
+   PLAY-/PAUSE-TASTE
+====================================== */
 
 radioButton.addEventListener(
   'click',
@@ -2305,26 +2775,147 @@ radioButton.addEventListener(
     if(activeCategory!=='middle') return;
 
     if(rmbRadio.paused) {
+
       startRadio();
+
     } else {
+
       pauseRadio();
+
     }
   }
 );
 
-[
-  'play',
-  'pause',
-  'ended',
-  'error'
-].forEach(eventName=>{
+/* ======================================
+   SKIP-TASTEN
+====================================== */
 
-  rmbRadio.addEventListener(
-    eventName,
-    updateRadioButton
+function skipRadio(direction) {
+
+  if(
+    activeCategory!=='middle'||
+    !radioTracks.length
+  ) return;
+
+  const wasPlaying=
+    !rmbRadio.paused&&
+    !rmbRadio.ended;
+
+  selectRadioTrack(
+    currentRadioIndex+direction,
+    wasPlaying
   );
+}
 
-});
+skipPrevious.addEventListener(
+  'click',
+  ()=>skipRadio(-1)
+);
+
+skipNext.addEventListener(
+  'click',
+  ()=>skipRadio(1)
+);
+
+/* ======================================
+   RADIO-EREIGNISSE
+====================================== */
+
+rmbRadio.addEventListener(
+  'play',
+  ()=>{
+
+    updateRadioButton();
+    updateRadioLED();
+
+  }
+);
+
+rmbRadio.addEventListener(
+  'pause',
+  ()=>{
+
+    updateRadioButton();
+    updateRadioLED();
+
+  }
+);
+
+/*
+  Nach dem letzten Song automatisch
+  zum nächsten Titel wechseln.
+
+  Nach dem letzten Titel beginnt
+  die Bibliothek wieder von vorne.
+*/
+
+rmbRadio.addEventListener(
+  'ended',
+  ()=>{
+
+    if(
+      activeCategory==='middle'&&
+      radioTracks.length&&
+      radioPlaybackRequested
+    ) {
+
+      selectRadioTrack(
+        currentRadioIndex+1,
+        true
+      );
+
+    } else {
+
+      updateRadioButton();
+      updateRadioLED();
+
+    }
+  }
+);
+
+rmbRadio.addEventListener(
+  'error',
+  ()=>{
+
+    console.error(
+      'MP3 konnte nicht abgespielt werden:',
+      currentRadioTrack()
+    );
+
+    radioPlaybackRequested=false;
+
+    updateRadioButton();
+    updateRadioLED();
+  }
+);
+
+/* ======================================
+   AUTOMATISCHE BIBLIOTHEKS-AKTUALISIERUNG
+====================================== */
+
+setInterval(
+  ()=>{
+
+    if(!document.hidden) {
+
+      loadRadioLibrary();
+
+    }
+  },
+  RADIO_REFRESH_MS
+);
+
+document.addEventListener(
+  'visibilitychange',
+  ()=>{
+
+    if(!document.hidden) {
+
+      loadRadioLibrary();
+
+    }
+  }
+);
 
 /* ======================================
    KATEGORIEN
@@ -2507,6 +3098,13 @@ const ledCanvas=document.getElementById(
 
 const ctx=ledCanvas.getContext('2d');
 
+/*
+  Die bestehende Punktmatrix bleibt erhalten.
+
+  Ergänzt wurden fehlende Buchstaben,
+  Ziffern und häufige Sonderzeichen.
+*/
+
 const FONT={
   A:['01110','10001','10001','11111','10001','10001','10001'],
   B:['11110','10001','10001','11110','10001','10001','11110'],
@@ -2517,19 +3115,49 @@ const FONT={
   G:['01111','10000','10000','10111','10001','10001','01111'],
   H:['10001','10001','10001','11111','10001','10001','10001'],
   I:['11111','00100','00100','00100','00100','00100','11111'],
+  J:['00111','00010','00010','00010','10010','10010','01100'],
+  K:['10001','10010','10100','11000','10100','10010','10001'],
   L:['10000','10000','10000','10000','10000','10000','11111'],
   M:['10001','11011','10101','10101','10001','10001','10001'],
   N:['10001','11001','10101','10011','10001','10001','10001'],
   O:['01110','10001','10001','10001','10001','10001','01110'],
   P:['11110','10001','10001','11110','10000','10000','10000'],
+  Q:['01110','10001','10001','10001','10101','10010','01101'],
   R:['11110','10001','10001','11110','10100','10010','10001'],
   S:['01111','10000','10000','01110','00001','00001','11110'],
   T:['11111','00100','00100','00100','00100','00100','00100'],
   U:['10001','10001','10001','10001','10001','10001','01110'],
+  V:['10001','10001','10001','10001','10001','01010','00100'],
+  W:['10001','10001','10001','10101','10101','10101','01010'],
+  X:['10001','10001','01010','00100','01010','10001','10001'],
   Y:['10001','10001','01010','00100','00100','00100','00100'],
+  Z:['11111','00001','00010','00100','01000','10000','11111'],
+
+  '0':['01110','10001','10011','10101','11001','10001','01110'],
+  '1':['00100','01100','00100','00100','00100','00100','01110'],
+  '2':['01110','10001','00001','00010','00100','01000','11111'],
+  '3':['11110','00001','00001','01110','00001','00001','11110'],
+  '4':['00010','00110','01010','10010','11111','00010','00010'],
+  '5':['11111','10000','10000','11110','00001','00001','11110'],
+  '6':['01111','10000','10000','11110','10001','10001','01110'],
+  '7':['11111','00001','00010','00100','01000','01000','01000'],
+  '8':['01110','10001','10001','01110','10001','10001','01110'],
+  '9':['01110','10001','10001','01111','00001','00001','11110'],
+
   ' ':Array(7).fill('00000'),
+
   '·':['00000','00000','00100','00000','00100','00000','00000'],
-  '.':['00000','00000','00000','00000','00000','01100','01100']
+  '.':['00000','00000','00000','00000','00000','01100','01100'],
+  ':':['00000','00100','00100','00000','00100','00100','00000'],
+  '!':['00100','00100','00100','00100','00100','00000','00100'],
+  '?':['01110','10001','00001','00010','00100','00000','00100'],
+  "'":['00100','00100','00000','00000','00000','00000','00000'],
+  '&':['01100','10010','10100','01000','10101','10010','01101'],
+  '/':['00001','00001','00010','00100','01000','10000','10000'],
+  '+':['00000','00100','00100','11111','00100','00100','00000'],
+  '-':['00000','00000','00000','11111','00000','00000','00000'],
+  '(':['00010','00100','01000','01000','01000','00100','00010'],
+  ')':['01000','00100','00010','00010','00010','00100','01000']
 };
 
 let ledColumns=[];
@@ -2538,14 +3166,37 @@ let ledDirection=1;
 let ledLastTime=0;
 let ledPitch=8;
 let ledTextWidth=0;
+let currentLEDText='';
 
 const LED_SPEED=80;
+
+/* ======================================
+   TEXT FÜR LED AUFBEREITEN
+====================================== */
+
+function normalizeLEDText(text) {
+
+  return String(text||'')
+    .normalize('NFKD')
+    .replace(/ß/g,'SS')
+    .replace(/ẞ/g,'SS')
+    .replace(/Æ/g,'AE')
+    .replace(/æ/g,'AE')
+    .replace(/Œ/g,'OE')
+    .replace(/œ/g,'OE')
+    .replace(/[\u0300-\u036f]/g,'')
+    .toUpperCase()
+    .replace(/Ä/g,'AE')
+    .replace(/Ö/g,'OE')
+    .replace(/Ü/g,'UE')
+    .replace(/[^A-Z0-9 ·.!?:'&/+\-()]/g,' ');
+}
 
 function buildLEDText(text) {
 
   const cols=[];
 
-  for(const ch of text.toUpperCase()) {
+  for(const ch of normalizeLEDText(text)) {
 
     const pattern=FONT[ch]||FONT[' '];
 
@@ -2565,6 +3216,33 @@ function buildLEDText(text) {
   }
 
   return cols;
+}
+
+/* ======================================
+   LED-TEXT SETZEN
+====================================== */
+
+function setLEDText(message) {
+
+  const normalized=normalizeLEDText(message);
+
+  if(currentLEDText===normalized) {
+    return;
+  }
+
+  currentLEDText=normalized;
+
+  ledCanvas.setAttribute(
+    'aria-label',
+    normalized
+  );
+
+  ledColumns=buildLEDText(normalized);
+
+  ledPosition=0;
+  ledDirection=1;
+
+  calculateLEDLayout();
 }
 
 function calculateLEDLayout() {
@@ -2592,35 +3270,25 @@ function calculateLEDLayout() {
   );
 }
 
-function updateLEDMessage(category) {
+/* ======================================
+   LED-NACHRICHT NACH KATEGORIE
+====================================== */
 
-  let message;
+function updateLEDMessage(category) {
 
   if(category==='single') {
 
-    message='THE SINGLE COLLECTION';
+    setLEDText('THE SINGLE COLLECTION');
 
   } else if(category==='album') {
 
-    message='THE ALBUM COLLECTION';
+    setLEDText('THE ALBUM COLLECTION');
 
   } else {
 
-    message='THE SOUND OF R.M.B.';
+    updateRadioLED();
 
   }
-
-  ledCanvas.setAttribute(
-    'aria-label',
-    message
-  );
-
-  ledColumns=buildLEDText(message);
-
-  ledPosition=0;
-  ledDirection=1;
-
-  calculateLEDLayout();
 }
 
 function resizeLEDCanvas() {
@@ -3297,8 +3965,6 @@ function renderMusic() {
       valid&&!albumURL
     );
 
-    /* ALBUMS BEKOMMEN EIGENEN STATUS */
-
     const albumId=albumURL
       ?albumURL
       :'';
@@ -3309,8 +3975,6 @@ function renderMusic() {
         hasInternalVideo&&
         hasOpenedVideo(valid)
       );
-
-    /* PLAY-BUTTON AUCH BEI ALBEN */
 
     const showPlayStamp=Boolean(
       hasInternalVideo||albumURL
@@ -3419,13 +4083,9 @@ function renderMusic() {
 
           stopRadio();
 
-          /* ALBUM ALS GEÖFFNET MARKIEREN */
-
           rememberOpenedAlbum(albumId);
 
           refreshVideoStamps();
-
-          /* EXTERNE ALBUMSEITE ÖFFNEN */
 
           window.location.assign(
             albumURL
@@ -3483,6 +4143,8 @@ moreButton.addEventListener(
 
 /* ======================================
    SONGS.JSON LADEN
+   UNVERÄNDERT UND UNABHÄNGIG
+   VON DER MP3-BIBLIOTHEK
 ====================================== */
 
 fetch('songs.json')
@@ -3577,11 +4239,13 @@ function attemptRadioAutostart() {
 
 window.addEventListener(
   'load',
-  ()=>{
+  async()=>{
 
     resizeMasterStage();
 
     resetFaders();
+
+    await loadRadioLibrary();
 
     attemptRadioAutostart();
   }
@@ -3596,6 +4260,8 @@ window.addEventListener(
     resetFaders();
 
     initializeCrossfader();
+
+    loadRadioLibrary();
 
     attemptRadioAutostart();
   }
