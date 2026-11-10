@@ -161,7 +161,7 @@ a:focus-visible {
 .radio-button.playing .pause-icon {display:block;}
 
 /* ======================================
-   NEU: SKIP-TASTEN
+   SKIP-TASTEN
    24 PX = 2/3 DER PLAY-TASTE
 ====================================== */
 
@@ -212,12 +212,20 @@ a:focus-visible {
   transform:translateX(-50%);
 }
 
-.skip-button:hover:not(:disabled) {
+/* ======================================
+   NEU: SKIP-LEUCHTEFFEKT
+   500 MILLISEKUNDEN
+   KEIN DAUERHAFTER HOVER-EFFEKT
+====================================== */
+
+.skip-button.skip-flash:not(:disabled) {
   border-color:var(--green);
   color:#7dffb1;
   box-shadow:
-    0 0 5px rgba(73,255,150,.9),
-    0 0 12px rgba(73,255,150,.5);
+    0 0 5px rgba(73,255,150,.95),
+    0 0 12px rgba(73,255,150,.65),
+    0 0 18px rgba(73,255,150,.3),
+    inset 0 1px 2px rgba(255,255,255,.2);
 }
 
 .skip-button:disabled {
@@ -1236,7 +1244,7 @@ footer {
       alt="MUSIC – THE SOUND OF R.M.B."
     >
 
-    <!-- NEU: VORHERIGER SONG -->
+    <!-- VORHERIGER SONG -->
 
     <button
       type="button"
@@ -1252,7 +1260,7 @@ footer {
       </svg>
     </button>
 
-    <!-- BESTEHENDE PLAY-/PAUSE-TASTE -->
+    <!-- PLAY-/PAUSE-TASTE -->
 
     <button
       type="button"
@@ -1272,7 +1280,7 @@ footer {
       </svg>
     </button>
 
-    <!-- NEU: NÄCHSTER SONG -->
+    <!-- NÄCHSTER SONG -->
 
     <button
       type="button"
@@ -2234,7 +2242,7 @@ const CENTER_LEFT=38;
 const CENTER_RIGHT=62;
 
 /* ======================================
-   NEU: AUTOMATISCHE MP3-BIBLIOTHEK
+   AUTOMATISCHE MP3-BIBLIOTHEK
 ====================================== */
 
 /*
@@ -2787,8 +2795,34 @@ radioButton.addEventListener(
 );
 
 /* ======================================
-   SKIP-TASTEN
+   NEU: SKIP-TASTEN
+   500 MS GRÜNER LEUCHTEFFEKT
 ====================================== */
+
+const SKIP_FLASH_DURATION=500;
+
+const skipFlashTimers=new WeakMap();
+
+function flashSkipButton(button) {
+
+  const existingTimer=skipFlashTimers.get(button);
+
+  if(existingTimer) {
+    clearTimeout(existingTimer);
+  }
+
+  button.classList.add('skip-flash');
+
+  const timer=setTimeout(()=>{
+
+    button.classList.remove('skip-flash');
+
+    skipFlashTimers.delete(button);
+
+  },SKIP_FLASH_DURATION);
+
+  skipFlashTimers.set(button,timer);
+}
 
 function skipRadio(direction) {
 
@@ -2809,12 +2843,26 @@ function skipRadio(direction) {
 
 skipPrevious.addEventListener(
   'click',
-  ()=>skipRadio(-1)
+  ()=>{
+
+    flashSkipButton(skipPrevious);
+
+    skipRadio(-1);
+
+    skipPrevious.blur();
+  }
 );
 
 skipNext.addEventListener(
   'click',
-  ()=>skipRadio(1)
+  ()=>{
+
+    flashSkipButton(skipNext);
+
+    skipRadio(1);
+
+    skipNext.blur();
+  }
 );
 
 /* ======================================
