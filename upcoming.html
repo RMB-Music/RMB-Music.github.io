@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -210,13 +211,14 @@ main {
     0 10px 35px rgba(0,0,0,.35);
 }
 
-.release-cover img {
+.release-cover video {
   display: block;
 
   width: 100%;
   height: 100%;
 
   object-fit: cover;
+  pointer-events: none;
 }
 
 /* ====================================
@@ -598,9 +600,9 @@ a:focus-visible {
   </div>
 
   <!-- ====================================
-       STEP UP TO THE BEAT
+       WEIRD CHRISTMAS
 
-       COVER MIT GROSSEM PLAY-BUTTON
+       VIDEOVORSCHAU MIT PLAY-BUTTON
   ==================================== -->
 
   <section
@@ -612,17 +614,24 @@ a:focus-visible {
 
       <div class="release-cover">
 
-        <img
-          src="images/step-up-to-the-beat.JPEG"
-          alt="Step Up to the Beat – R.M.B. Cover"
-          loading="lazy"
+        <video
+          id="releasePreview"
+          muted
+          playsinline
+          preload="metadata"
+          aria-label="Weird Christmas – R.M.B. Videovorschau"
         >
+          <source
+            src="videos/Weird-Christmas-Upcoming.MP4#t=0.1"
+            type="video/mp4"
+          >
+        </video>
 
         <button
           class="release-play"
           id="openVideo"
           type="button"
-          aria-label="Musikvideo Step Up to the Beat abspielen"
+          aria-label="Musikvideo Weird Christmas abspielen"
           aria-haspopup="dialog"
           aria-controls="videoModal"
         >
@@ -640,7 +649,7 @@ a:focus-visible {
       </div>
 
       <h2 class="release-title">
-        STEP UP TO THE BEAT
+        WEIRD CHRISTMAS
       </h2>
 
       <p class="release-artist">
@@ -687,7 +696,7 @@ a:focus-visible {
       class="video-heading"
       id="videoTitle"
     >
-      R.M.B. – STEP UP TO THE BEAT
+      R.M.B. – WEIRD CHRISTMAS
     </h2>
 
     <video
@@ -696,11 +705,10 @@ a:focus-visible {
       controls
       playsinline
       preload="metadata"
-      poster="images/step-up-to-the-beat.JPEG"
     >
 
       <source
-        src="videos/step-up-to-the-beat.mp4"
+        src="videos/Weird-Christmas-Upcoming.MP4"
         type="video/mp4"
       >
 
